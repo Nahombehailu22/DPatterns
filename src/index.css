@@ -1,0 +1,134 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.wrapper {
+  background: 
+    repeating-radial-gradient(ellipse at 20% 20%, #634A6D 0%, transparent 70%),
+    repeating-radial-gradient(ellipse at 60% 20%, #4A91D6 0%, transparent 70%),
+    repeating-radial-gradient(ellipse at 100% 20%, #A2ACD8 0%, transparent 70%),
+    repeating-radial-gradient(ellipse at 100% 100%, #ED6897 0%, transparent 70%),
+    repeating-radial-gradient(ellipse at 20% 100%, #5A53A8 0%, transparent 70%);
+  height: 100%;
+}
+
+.react-flow .react-flow__handle {
+  width: 5px;
+  height: 5px;
+  border-radius: 2px;
+  background-color: #121214;
+}
+
+
+.react-flow .react-flow__edge path,
+.react-flow__connectionline path {
+  stroke-width: 2.5;
+}
+
+.wrapper {
+  flex-grow: 1;
+  height: 100%;
+}
+
+
+.edgebutton {
+  width: 20px;
+  height: 20px;
+  background: #eee;
+  border: 1px solid #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.edgebutton:hover {
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.08);
+}
+
+.edgebutton-foreignobject div {
+
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.text-updater-node {
+  background: color;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.text-updater-node div {
+  background: none;
+  border-radius: 5px;
+}
+
+.text-updater-node input {
+  color: white;
+  border: none;
+  width: 80px;
+  padding: 3px; 
+  border-radius: 5px; 
+}
+
+.text-updater-node input[type="text"] {
+  border-bottom: 2px solid #4b4b4d;
+}
+
+.text-updater-node div input {
+  color: #fff;
+  border: none;
+  width: 70px;
+  
+}
+
+.text-updater-node div button {
+  background-color: #232327;
+  color: white;
+  border: none;
+  font-size: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+#myModal {
+  background: rgb(158, 36, 36);
+  border-radius: 5px;
+}
+
+
+#myModal.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 50%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+#myModal.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+

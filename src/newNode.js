@@ -10,6 +10,7 @@ import ReactFlow, {
 } from 'reactflow';
 
 import './index.css';
+import 'reactflow/dist/style.css';
 
 import ButtonEdge from './ButtonEdge.js';
 import ClassNode from './ClassNode.js';

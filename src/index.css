@@ -14,12 +14,11 @@ code {
 
 .wrapper {
   background: 
-    repeating-radial-gradient(ellipse at 20% 20%, #634A6D 0%, transparent 70%),
-    repeating-radial-gradient(ellipse at 60% 20%, #4A91D6 0%, transparent 70%),
-    repeating-radial-gradient(ellipse at 100% 20%, #A2ACD8 0%, transparent 70%),
-    repeating-radial-gradient(ellipse at 100% 100%, #ED6897 0%, transparent 70%),
-    repeating-radial-gradient(ellipse at 20% 100%, #5A53A8 0%, transparent 70%);
-  height: 100%;
+  repeating-radial-gradient(ellipse at 20% 20%, #000000 0%, #808080 70%),
+  repeating-radial-gradient(ellipse at 60% 20%, #000000 0%, #808080 70%),
+  repeating-radial-gradient(ellipse at 100% 20%, #000000 0%, #808080 70%),
+  repeating-radial-gradient(ellipse at 100% 100%, #000000 0%, #808080 70%),
+  repeating-radial-gradient(ellipse at 20% 100%, #000000 0%, #808080 70%);
 }
 
 .react-flow .react-flow__handle {
@@ -66,9 +65,7 @@ code {
 
 }
 .text-updater-node {
-  background: color;
   border-radius: 10px;
-  padding: 5px;
 }
 
 .text-updater-node div {
@@ -80,55 +77,36 @@ code {
   color: white;
   border: none;
   width: 80px;
-  padding: 3px; 
+  padding: 5px; 
   border-radius: 5px; 
 }
 
 .text-updater-node input[type="text"] {
-  border-bottom: 2px solid #4b4b4d;
+  border-bottom: 2px solid #232327;
 }
 
 .text-updater-node div input {
-  color: #fff;
+  color: #000000;
   border: none;
   width: 70px;
   
 }
 
 .text-updater-node div button {
-  background-color: #232327;
-  color: white;
+  background-color: #343439;
+  color: rgb(0, 0, 0);
   border: none;
   font-size: 10px;
   border-radius: 4px;
   font-weight: bold;
 }
 
-#myModal {
-  background: rgb(158, 36, 36);
-  border-radius: 5px;
+.modal {
+  background: red;
+  border-radius: 20px;
 }
 
-
-#myModal.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 50%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+.modal-content h2 {
+  font-size: 1.5em;
+  font-weight: italic;
 }
-
-#myModal.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-

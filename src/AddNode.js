@@ -1,64 +1,41 @@
-import React, { useCallback, useRef, useState, useEffect } from 'react';
-import ReactFlow, { useNodesState, useEdgesState, addEdge, useReactFlow, Controls } from 'reactflow';
+import { useCallback } from 'react';
+import { nodeTypes } from './FactoryMethodValues.js';
 
-let id = 4;
-const getId = () => `${id++}`;
+let id = 3;
+const getId = () => `${id++}`;  
+const OnConnectEnd = (props) => {
+  const { reactFlowWrapper, source, project, setNodes, setEdges } = props;
 
-const AddNodeOnEdgeDrop = (props) => {
-  const nodeTypes = props.nodeTypes;
-  const edgeTypes = props.edgeTypes;
-  const initialNodes = props.initialNodes;
-  const initialEdges = props.initialEdges;
-
-  const reactFlowWrapper = useRef(null);
-  const connectingNodeId = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const { project } = useReactFlow();
-
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
-  const onConnectStart = useCallback((_, { nodeId }) => connectingNodeId.current = nodeId, []);
-
-  const onConnectEnd = useCallback(event => {
+const handleConnectEnd = useCallback((event) => {
     const targetIsPane = event.target.classList.contains('react-flow__pane');
     if (targetIsPane) {
-        const { top, left } = reactFlowWrapper.current.getBoundingClientRect();
-        const id = getId();
-        const newNode = {
-            id,
-            position: project({ x: event.clientX - left - 75, y: event.clientY - top }),
-            data: { label: `Node ${id}` },
-            type: 'classNode'
-        };
-      setNodes((nds) => nds.concat(newNode));
-      setEdges((eds) => eds.concat({
+      const { top, left } = reactFlowWrapper.current.getBoundingClientRect();
+      const id = getId();
+      nodeTypes['concreteCreator'].id = id;
+      nodeTypes['concreteCreator'].className = `ConcreteCreator${id}`;
+      const newNode = {
         id,
-        source: connectingNodeId.current,
-        sourceHandle: 'b',
-        target: id,
-        targetHandle:'u',
-        type: 'buttonedge'
-      }));
+        position: project({ x: event.clientX - left - 75, y: event.clientY - top }),
+        data: { label: `Node ${id}` },
+        type: 'concreteCreator',
+      };
+      
+      setNodes((nodes) => [...nodes, newNode]);
+      setEdges((edges) => [
+        ...edges,
+        {
+          id,
+          source,
+          sourceHandle: 'b',
+          target: id,
+          targetHandle: 'u',
+          type: 'buttonedge'
+        }
+      ]);
     }
-  }, [project]);
-  
-  return (
-    <div className="wrapper" ref={reactFlowWrapper} style={{ height: 800 }}>
-    <Controls />
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onConnectStart={onConnectStart}
-        onConnectEnd={onConnectEnd}
-        nodeTypes={nodeTypes}
-        edgeTypes={edgeTypes}
-        fitView
-      />
-    </div>
-  );
+  }, [project, reactFlowWrapper, setEdges, setNodes, source]);
+
+  return handleConnectEnd;
 };
 
-export default AddNodeOnEdgeDrop;
+export default OnConnectEnd;

@@ -1,0 +1,29 @@
+.info-popover-content {
+    background-color: #1b1b1b;
+    color: #ffffff;
+    padding: 30px;
+  }
+  
+  .info-popover-content h5 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  .info-popover-content ul, .info-popover-content ol {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-left: 30px;
+  }
+  
+  .info-popover-content li {
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  
+  .info-popover-content ol li {
+    font-size: 16px;
+  }
+  

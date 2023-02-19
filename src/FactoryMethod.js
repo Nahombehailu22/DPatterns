@@ -1,66 +1,121 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
-import {MarkerType} from 'reactflow';
+import ReactFlow, { useNodesState, useEdgesState, addEdge, useReactFlow, Controls } from 'reactflow';
+import ClassNode from './ClassNode.js';
 
+// Import component styles and ReactFlow default styles
 import './index.css';
 import 'reactflow/dist/style.css';
 
-import ButtonEdge from './ButtonEdge.js';
-import ClassNode from './ClassNode.js';
-import AddNodeOnEdgeDrop from './AddNode';
-import CustomNode from './cus';
+import OnConnectEnd from './AddNode';
+import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './FactoryMethodValues.js';
 
-const className = 'Creator';
-const methods = ['factroyMethod'];
 
-const nodeTypes = { 
-    creator: (props) => <ClassNode {...props} color1={'#2196F3'} color2={ '#00BCD4'} className = {className} methods = {methods} activeHandles={[0, 1, 1, 1]}/>,
-    concreteCreator: (props) => <ClassNode {...props} color1={'#2196F3'} color2={ '#00BCD4'} activeHandles={[1, 0, 0, 0]}/>,
-    product: (props) => <ClassNode {...props} color1={'#F44336'} color2={'#FF5252'} activeHandles={[0, 1, 0, 1]}/>,
-    concreteProduct: (props) => <ClassNode {...props} color1={'#2196F3'} color2={ '#00BCD4'} activeHandles={[1, 0, 0, 0]}/>,   
-}
-const edgeTypes = {
-    buttonedge: ButtonEdge,
+let concretePos = 1125;
+const getProductPosition = () => `${concretePos+=175}`;
+
+let id = 3;
+const getId = () => `${id++}`;
+// Define the FactoryMethod component
+const FactoryMethod = (props) => {
+  const reactFlowWrapper = useRef(null);
+  const connectingNodeId = useRef(null);
+
+  // Set up state for nodes and edges using ReactFlow hooks
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+  const { project } = useReactFlow();
+  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
+  const onConnectStart = useCallback((_, { nodeId }) => connectingNodeId.current = nodeId, []);
+  const onConnectEnd = OnConnectEnd({ reactFlowWrapper, source:"0", project, setNodes, setEdges });
+
+// const [methodValues, setMethodValues] = useState
+
+
+  const handleClassNameChange = (id, e) => {
+    const index = classNames.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      const updatedClassNames = [...classNames];
+      updatedClassNames[index].classname = e.target.value;
+      updatedClassNames[1].classname = e.target.value;
+      setClassNames(updatedClassNames);
+      console.log(classNames);
+    }
   };
+  const [classNames, setClassNames] = useState([
+    { title: "creator", classname: "Creator", id: "0" },
+    { title: "concreteCreator1", classname: "ConcreteCreator1", id: "1" },
+    { title: "concreteCreator2", classname: "ConcreteCreator2", id: "2" },
+    { title: "product", classname: "Product", id: "0a" },
+    { title: "concreteProduct1", classname: "concreteProduct1", id: "1a" },
+    { title: "concreteProduct2", classname: "concreteProduct2", id: "2a" },
+  ]);
 
-const initialNodes = [
-  {id: '1', type: 'creator', data: { label: 'Node' },position: { x: 100, y: 10 }},
-  {id: '2', type: 'concreteCreator', data: { label: 'Node2' },position: { x: 0, y: 200 }},
-  {id: '3',  type: 'concreteCreator', data: { label: 'Node 3' },position: { x: 200, y: 200 }},
+  const assignClasses = classNames.map(({title, classname}) => {
+    nodeTypes[title].className = classname;
+    nodeTypes[title].nameChange = handleClassNameChange;
+  });
 
-  {id: '1a',  type: 'product', data: { label: 'Node 1A' },position: { x: 450, y: 10 }},
-  {id: '2a', type: 'concreteProduct', data: { label: 'Node 2A' },position: { x: 375, y: 250 }},
-  {id: '3a',  type: 'concreteProduct', data: { label: 'Node 3A' },position: { x: 550, y: 250 }},
-];
+  console.log(nodeTypes['concreteCreator1'].className);
 
-const initialEdges = [
-    { id: 'e1-2', source: '1', sourceHandle: 'b', target: '2', type: 'buttonedge', targetHandle: 'u',
-        markerStart: {
-            type: MarkerType.Arrow,
-        }       
-    },
-    { id: 'e1-3', source: '1', sourceHandle: 'b', target: '3', targetHandle: 'u', type: 'buttonedge' },
-    { id: 'e1-1a', source: '1',  target: '1a', sourceHandle: 'r', type: 'straight', animated: 'true', targetHandle: 'l',
-        markerEnd: {
-            type: MarkerType.Arrow,
-        }, 
-    },
-    { id: 'e1a-2a', source: '1a',  sourceHandle: 'b', target: '2a', type: 'buttonedge', animated: 'true', targetHandle: 'u',   
-        markerStart: {
-            type: MarkerType.Arrow,
-    }},
-    { id: 'e1a-3a', source: '1a',  sourceHandle: 'b', target: '3a', type: 'buttonedge', animated: 'true', targetHandle: 'u'},
-];
+  function handleNodeDelete (id) {
+    console.log('deleting node with id:', id);
+    setNodes(nodes => nodes.filter(node => node.id !== id));
+    setEdges((edges) => edges.filter((edge) => edge.source !== id && edge.target !== id));
 
-
-const FactoryMethod = () => {
+    setNodes(nodes => nodes.filter(node => node.id !== id+"a"));
+    setEdges((edges) => edges.filter((edge) => edge.source !== id+"a" && edge.target !== id+"a"));
+  };
   
+  nodeTypes['concreteCreator'].onDelete = handleNodeDelete;
+  // Return the ReactFlow component with its properties and handlers
   return (
-    <AddNodeOnEdgeDrop
-      nodeTypes={nodeTypes}
-      edgeTypes={edgeTypes}
-      initialNodes={initialNodes}
-      initialEdges={initialEdges}
-    />
+    
+    <div className="wrapper" ref={reactFlowWrapper} style={{ height: '800px'}}>
+      <Controls className="controls" />
+
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        onNodesChange={onNodesChange}
+        onEdgesChange={onEdgesChange}
+        onConnect={onConnect}
+        onConnectStart={onConnectStart}
+        onConnectEnd={(event) => {
+          onConnectEnd(event);
+          // Create a new node with a new ID
+          const id = getId();
+          const concretePos = getProductPosition();
+          const ida = id + "a";
+          nodeTypes['concreteProduct'].id = ida;
+          nodeTypes['concreteProduct'].className = `ConcreteProduct${id}`;
+          const newNode = {
+            id: ida,
+            position: project({ x: concretePos, y: 475 }),
+            data: { label: 'concreteProduct'+ida },
+            type: 'concreteProduct'
+          };
+          // Add the new node and a corresponding edge to the state
+          setNodes((nodes) => [...nodes, newNode]);
+          setEdges((edges) => [
+            ...edges,
+            {
+              id: 'ea1-'+id+"a",
+              source: '0a',
+              sourceHandle: 'b',
+              target: ida,
+              targetHandle: 'u',
+              type: 'buttonedge',
+              animated: true,
+            }
+          ]);
+        }}
+        nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
+        fitView
+      />
+    </div>
+
   );
 };
 

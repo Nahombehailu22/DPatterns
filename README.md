@@ -21,6 +21,7 @@ Once the dependencies are installed, you can start the development server by run
 ```bash
 npm start
 ```
+Open your web browser and navigate to http://localhost:3000
 
 ## Project Structure
 
@@ -43,7 +44,6 @@ DPatterns/
 ├── .gitignore
 ├── package.json
 ├── README.md
-└── yarn.lock
 
 ```
 

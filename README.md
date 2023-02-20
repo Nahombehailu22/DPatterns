@@ -8,6 +8,7 @@ To get started with DPatterns, simply clone the repository to your local machine
 
 ```bash
 git clone https://github.com/username/DPatterns.git
+```
 
 Then, navigate to the project directory and install the necessary dependencies:
 
@@ -22,6 +23,7 @@ npm start
 
 The project structure is organized as follows:
 
+```bash
 DPatterns/
   src/
     AddNode.js
@@ -38,8 +40,9 @@ DPatterns/
   README.md
   package.json
   package-lock.json
+```
 
-##Features
+## Features
 
 Real-time manipulation of nodes and edges
 Interactive playground for experimenting with different design patterns

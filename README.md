@@ -14,13 +14,13 @@ Then, navigate to the project directory and install the necessary dependencies:
 ```bash
 cd DPatterns
 npm install
-```bash
+```
 
 Once the dependencies are installed, you can start the development server by running:
 
 ```bash
 npm start
-```bash
+```
 
 ## Project Structure
 
@@ -28,25 +28,26 @@ The project structure is organized as follows:
 
 ```bash
 DPatterns/
-  src/
-    AddNode.js
-    App.css
-    App.js
-    ButtonEdge.js
-    ClassNode.js
-    FactoryMethod.js
-    FactoryMethodValues.js
-    index.css
-    index.js
-    Popover.css
-    Popover.js
-  README.md
-  package.json
-  package-lock.json
+├── .src
+│   ├── AddNode.js
+│   ├── App.css
+│   ├── App.js
+│   ├── ButtonEdge.js
+│   ├── ClassNode.js
+│   ├── FactoryMethod.js
+│   ├── FactoryMethodValues.js
+│   ├── index.css
+│   ├── index.js
+│   ├── Popover.css
+│   └── Popover.js
+├── .gitignore
+├── package.json
+├── README.md
+└── yarn.lock
+
 ```
 
 ## Features
-Markup :
 * Real-time manipulation of nodes and edges
 * Interactive playground for experimenting with different design patterns
 * Easy-to-use interface for creating and editing nodes and edges

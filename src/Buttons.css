@@ -1,0 +1,27 @@
+.buttons {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .buttons button {
+    padding: 10px 20px;
+    background: #4a4a4a;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+
+.skip-button {
+    background: #4a4a4a;
+  }
+  
+  .next-button {
+    background: #4a4a4a;
+    margin-right: 0;
+  }
+  

@@ -33,19 +33,19 @@ const initialNodes = [
   {
     id: '0a',
     type: 'product',
-    data: { label: 'Node 1A' },
+    data: { label: 'Node 0A' },
     position: { x: 350, y: 0 },
   },
   {
     id: '1a',
     type: 'concreteProduct1',
-    data: { label: 'Node 2A' },
+    data: { label: 'Node 1A' },
     position: { x: 275, y: 250 },
   },
   {
     id: '2a',
     type: 'concreteProduct2',
-    data: { label: 'Node 3A' },
+    data: { label: 'Node 2A' },
     position: { x: 450, y: 250 },
   },
 ];

@@ -24,6 +24,7 @@ const FactoryMethod = (props) => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
+
   const { project } = useReactFlow();
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
   const onConnectStart = useCallback((_, { nodeId }) => connectingNodeId.current = nodeId, []);
@@ -33,6 +34,7 @@ const FactoryMethod = (props) => {
 
 
   const handleClassNameChange = (id, e) => {
+    // useEffect(()) => {
     const index = classNames.findIndex((item) => item.id === id);
     if (index !== -1) {
       const updatedClassNames = [...classNames];
@@ -40,6 +42,7 @@ const FactoryMethod = (props) => {
       updatedClassNames[1].classname = e.target.value;
       setClassNames(updatedClassNames);
       console.log(classNames);
+    // }
     }
   };
   const [classNames, setClassNames] = useState([

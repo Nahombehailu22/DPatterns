@@ -1,5 +1,5 @@
 {
-  "name": "systemdesi",
+  "name": "systemdesignpatterns",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-flow-diagram": "^2.13.0",
     "react-modal": "^3.16.1",
+    "react-router-dom": "^5.3.3",
     "react-scripts": "5.0.1",
     "reactflow": "^11.5.2",
     "web-vitals": "^2.1.4"

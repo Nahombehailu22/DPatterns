@@ -193,7 +193,7 @@ const nodeTypes = {
       color1={'#009688'}
       color2={'#4DB6AC'}
       className={nodeTypes['concreteProduct1'].className}
-      methods={[]}
+      methods={nodeTypes['concreteProduct1'].methods}
       activeHandles={[1, 0, 0, 0]}
       id="1a"
       title="Concrete Product"
@@ -207,7 +207,7 @@ const nodeTypes = {
         color1={'#009688'}
         color2={'#4DB6AC'}
         className={nodeTypes['concreteProduct2'].className}
-        methods={[]}
+        methods={nodeTypes['concreteProduct1'].methods}
         activeHandles={[1, 0, 0, 0]}
         id="2a"
         title="Concrete Product"
@@ -216,11 +216,6 @@ const nodeTypes = {
       />
     ),
   };
-
-
-  const productMethods = ["doSuff"];
-
-  
   function handleDelete() {}
   const handleClassNameChange = (e) => {};
   
@@ -240,6 +235,8 @@ const nodeTypes = {
   nodeTypes['concreteCreator1'].methods = ['createProduct', 'method2'];
   nodeTypes['concreteCreator2'].methods = ['createProduct', 'method2'];
   nodeTypes['product'].methods = ["doSuff"];
+  nodeTypes['concreteProduct1'].methods = ["doSuff"];
+  nodeTypes['concreteProduct2'].methods = ["doSuff"];
 
   //ids
   nodeTypes['concreteCreator'].id = "100";

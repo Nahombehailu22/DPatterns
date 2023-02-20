@@ -13,6 +13,7 @@ code {
 }
 
 .wrapper {
+  background-color: #1b1b1b;
   background: 
   repeating-radial-gradient(ellipse at 20% 20%, #000000 0%, #808080 70%),
   repeating-radial-gradient(ellipse at 60% 20%, #000000 0%, #808080 70%),
@@ -85,7 +86,7 @@ code {
 }
 
 .text-updater-node div input {
-  color: #000000;
+  color: white;
   border: none;
   width: 100px;
   

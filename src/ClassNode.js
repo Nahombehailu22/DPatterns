@@ -52,7 +52,7 @@ const ClassNode = React.memo(props => {
   };
 
   return (
-    <div className='text-updater-node' style={{background: backColor}}>
+    <div className='text-updater-node' style={{background: backColor, color:"white"}}>
       <div>
         {typeof onDelete === 'function' && (
           <button className="delete-button" onClick={() => onDelete(props.id)}>

@@ -11,13 +11,16 @@ git clone https://github.com/username/DPatterns.git
 ```
 
 Then, navigate to the project directory and install the necessary dependencies:
-
+```bash
 cd DPatterns
 npm install
+```bash
 
 Once the dependencies are installed, you can start the development server by running:
 
+```bash
 npm start
+```bash
 
 ## Project Structure
 
@@ -43,8 +46,8 @@ DPatterns/
 ```
 
 ## Features
-
-Real-time manipulation of nodes and edges
-Interactive playground for experimenting with different design patterns
-Easy-to-use interface for creating and editing nodes and edges
-Support for a variety of design patterns, including Factory Method, Adapter, and Strategy
+Markup :
+* Real-time manipulation of nodes and edges
+* Interactive playground for experimenting with different design patterns
+* Easy-to-use interface for creating and editing nodes and edges
+* Support for a variety of design patterns, including Factory Method, Adapter, and Strategy

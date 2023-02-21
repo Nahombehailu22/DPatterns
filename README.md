@@ -7,7 +7,7 @@ System Design Teaching Platform is a web-based platform designed to help users l
 To get started with DPatterns, simply clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/username/DPatterns.git
+git clone https://github.com/Nahombehailu22/DPatterns.git
 ```
 
 Then, navigate to the project directory and install the necessary dependencies:

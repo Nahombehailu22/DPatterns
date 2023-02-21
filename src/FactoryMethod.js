@@ -10,13 +10,6 @@ import './Buttons.css';
 import OnConnectEnd from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './FactoryMethodValues.js';
 import IncrementalHiddenButton from './HideUnhideNodes.js';
-// import ToggleHiddenButton from './HideUnhideNodes.js';
-
-
-const hide = (hidden) => (nodeOrEdge) => {
-  nodeOrEdge.hidden = hidden;
-  return nodeOrEdge;
-};
 
 let concretePos = 1125;
 const getProductPosition = () => `${concretePos+=175}`;

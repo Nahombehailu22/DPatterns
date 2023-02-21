@@ -14,12 +14,6 @@ code {
 
 .wrapper {
   background-color: #1b1b1b;
-  background: 
-  repeating-radial-gradient(ellipse at 20% 20%, #000000 0%, #808080 70%),
-  repeating-radial-gradient(ellipse at 60% 20%, #000000 0%, #808080 70%),
-  repeating-radial-gradient(ellipse at 100% 20%, #000000 0%, #808080 70%),
-  repeating-radial-gradient(ellipse at 100% 100%, #000000 0%, #808080 70%),
-  repeating-radial-gradient(ellipse at 20% 100%, #000000 0%, #808080 70%);
 }
 
 .react-flow .react-flow__handle {

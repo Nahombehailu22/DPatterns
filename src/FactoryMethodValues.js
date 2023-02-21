@@ -178,7 +178,7 @@ const nodeTypes = {
       color1={'#009688'}
       color2={'#4DB6AC'}
       className={nodeTypes['concreteProduct'].className}
-      methods={[]}
+      methods={nodeTypes['concreteProduct'].methods}
       activeHandles={[1, 0, 0, 0]}
       id={nodeTypes['concreteProduct'].id}
       onDelete={nodeTypes['concreteProduct'].onDelete}
@@ -235,6 +235,7 @@ const nodeTypes = {
   nodeTypes['concreteCreator1'].methods = ['createProduct', 'method2'];
   nodeTypes['concreteCreator2'].methods = ['createProduct', 'method2'];
   nodeTypes['product'].methods = ["doSuff"];
+  nodeTypes['concreteProduct'].methods = ["doSuff"];
   nodeTypes['concreteProduct1'].methods = ["doSuff"];
   nodeTypes['concreteProduct2'].methods = ["doSuff"];
 

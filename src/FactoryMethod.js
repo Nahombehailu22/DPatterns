@@ -92,7 +92,7 @@ const FactoryMethod = (props) => {
   nodeTypes['concreteCreator'].onDelete = handleNodeDelete;
 
   return (
-    <div className="wrapper" ref={reactFlowWrapper} style={{ height: "800px" }}>
+    <div className="wrapper" ref={reactFlowWrapper} style={{ height: 800 }}>
       <IncrementalHiddenButton hidden={hidden} setHidden={setHidden}/>
       <Controls className="controls" />
       <ReactFlow

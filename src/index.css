@@ -73,6 +73,7 @@ code {
   border: none;
   padding: 5px; 
   border-radius: 5px; 
+  font-size: 85%;
 }
 
 .text-updater-node input[type="text"] {

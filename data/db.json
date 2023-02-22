@@ -1,0 +1,163 @@
+{
+"patterns" : [
+        {
+                "id": 1,
+                "name": "Factory Method",
+                "description": "", 
+                "category": "creational", 
+                "image" : "/images/factory.png"
+        },
+
+        {
+                "id": 2,
+                "name": "Memento Method",  
+                "description": "",
+                "category": "behavioral", 
+                "image": "/images/memento.png"
+        
+        },
+
+        {
+                "id": 3,
+                "name": "Mediator Method",  
+                "description": "",
+                "category": "behavioral", 
+                "image": "/images/mediator.png"
+        },
+
+        {
+                "id": 4,
+                "name": "Observer Method",  
+                "description": "",
+                "category": "behavioral", 
+                "image": "/images/observer.png"
+        },
+
+        {
+                "id": 5,
+                "name": "Composite Method",  
+                "description": "",
+                "category": "structural",  
+                "image": "/images/composite.png"
+        },
+
+        {
+                "id": 6,
+                "name": "Strategy Method",  
+                "description": "",
+                "category": "behavioral",  
+                "image": "/images/strategy.png"
+        },
+
+        {
+                "id": 7,
+                "name": "State Method",  
+                "description": "",
+                "category": "behavioral",  
+                "image": "/images/state.png"
+        },
+
+        {
+                "id": 8,
+                "name": "Visitor Method",  
+                "description": "",
+                "category": "behavioral",  
+                "image": "/images/visitor.png"
+        },
+        {
+                "id": 9,
+                "name": "Prototype Method",  
+                "description": "",
+                "category": "creational",  
+                "image": "/images/prototype.png"
+        },
+        {
+                "id": 10,
+                "name": "Tamplate Method",  
+                "description": "",
+                "category": "behavioral",  
+                "image": "/images/template.png"
+        },
+        {
+                "id": 11,
+                "name": "Chain of Responsiblity Method",  
+                "description": "",
+                "category": "behavioral",  
+                "image": "/images/chain_of_responsibility.png"
+        },
+        {
+                "id": 12,
+                "name": "Adapter Method",  
+                "description": "",
+                "category": "structural",  
+                "image": "/images/adapter.png"
+        },
+        {
+                "id": 13,
+                "name": "Iterator Method",  
+                "description": "",
+                "category": "behavioral",  
+                "image": "/images/iterator.png"
+        },
+        {
+                "id": 14,
+                "name": "Command Method",  
+                "description": "",
+                "category": "behavioral",  
+                "image": "/images/command.png"
+        },
+        {
+                "id": 15,
+                "name": "Singleton Method",  
+                "description": "",
+                "category": "creational",  
+                "image": "/images/singleton.png"
+        },
+
+        {
+                "id": 16,
+                "name": "Bridge Method",  
+                "description": "",
+                "category": "structural",  
+                "image": "/images/bridge.png"
+        },
+
+        {
+                "id": 17,
+                "name": "Decorator Method",  
+                "description": "",
+                "category": "structural",  
+                "image": "/images/decorator.png"
+        },
+        {
+                "id": 18,
+                "name": "Proxy Method",  
+                "description": "",
+                "category": "structural",  
+                "image": "/images/proxy.png"
+        },
+        {
+                "id": 19,
+                "name": "Flyweight Method",  
+                "description": "",
+                "category": "structural",  
+                "image": "/images/flyweight.png"
+        },
+        {
+                "id": 20,
+                "name": "Facade Method",  
+                "description": "",
+                "category": "structural",  
+                "image": "/images/facade.png"
+        },
+        {
+                "id": 21,
+                "name": "Builder Method",  
+                "description": "",
+                "category": "creational",  
+                "image": "/images/builder.png"
+        }
+
+        
+        ]
+}

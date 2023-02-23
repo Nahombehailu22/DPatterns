@@ -26,7 +26,7 @@ Open your web browser and navigate to http://localhost:3000
 Run the following command on a separate terminal 
 
 ```bash
-json-server --watch data/db.json --port 8000
+npx json-server --watch data/db.json --port 8000
 ```
 
 This will run the JSON server on port 8000, which will allow the application to fetch pattern data from the database.

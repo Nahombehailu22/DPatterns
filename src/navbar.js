@@ -23,7 +23,7 @@ const Navbar = () => {
             <button className="nav-button" type="button" onClick={() => handleClick("behavioral")}>Behavioral Patterns</button>
             <button className="nav-button" type="button" onClick={() => handleClick("creational")}>Creational Patterns</button>
             <button className="nav-button" type="button" onClick={() => handleClick("structural")}>Structural Patterns</button>
-            <button className="nav-button" type="button">Learn About Design Patterns</button>
+            {/* <button className="nav-button" type="button">Learn About Design Patterns</button> */}
             <form onSubmit={handleSearch}>
                 <input type="text" placeholder="Search patterns by name" value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />
                 <button type="submit">Search</button>

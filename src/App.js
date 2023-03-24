@@ -2,8 +2,8 @@
 import Navbar from './navbar.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ReactFlowProvider } from 'reactflow';
-import FactoryMethod from './FactoryMethod';
-import FactoryMethodDemo from './FactoryMethodDemo';
+import FactoryMethod from './Factory/FactoryMethod';
+import FactoryMethodDemo from './Factory/FactoryMethodDemo';
 import "./index.css";
 
 

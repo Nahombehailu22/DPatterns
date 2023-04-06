@@ -13,7 +13,7 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'Singleton',
-        attributes: 'instance',
+        attributes: ['instance'],
         methods: ['getInstance'],
         handles: [0, 0, 0, 1],
         title: "Singleton Class",

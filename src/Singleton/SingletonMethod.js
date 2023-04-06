@@ -28,6 +28,7 @@ const SingletonMethod = (props) => {
           class_name: node.data.class_name || "default",
           methods: node.data.methods || ["defaultMethod"],
           nameClass: node.id === '0' ? handleClassNameChange : node.data.nameClass,
+          nameAttribute: node.id === '0' ? handleAttributeNameChange : node.data.nameAttribute,
           nameMethod: node.id === '0' ? handleMethodNameChange : node.data.nameMethod,
           addMethod: node.id === '0' ? handleAddMethod : node.data.addMethod,
           deleteMethod: node.id === '0' ? handleDeleteMethod : node.data.deleteMethod,
@@ -71,6 +72,24 @@ const SingletonMethod = (props) => {
           data: {
             ...node.data,
             methods: newMethods
+          }
+        };
+      }
+      return node;
+    }));
+  };
+
+  const handleAttributeNameChange = (id, index, event) => {
+    setNodes(nodes => nodes.map(node => {
+      if (node.id === id) {
+        const newAtrributes = [...node.data.attributes];
+        newAtrributes[index] = event.target.value;
+        
+        return {
+          ...node,
+          data: {
+            ...node.data,
+            attributes: newAtrributes
           }
         };
       }

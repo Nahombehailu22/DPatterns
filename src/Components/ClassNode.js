@@ -3,7 +3,7 @@ import { Handle, Position } from 'reactflow';
 import InfoPopover from './Popover.js';
 
 function ClassNode({ id, data, color1, color2 }) {
-  const { class_name, methods, handles, title, description, nameClass, nameMethod, onDelete, addMethod, deleteMethod, deletable, pop } = data;
+  const { class_name, attributes, methods, handles, title, description, nameClass, nameAttribute, nameMethod, onDelete, addMethod, deleteMethod, deletable, pop } = data;
   const backColor = color1;
   const backColorMethod = color2;
 
@@ -40,8 +40,23 @@ function ClassNode({ id, data, color1, color2 }) {
         </div>
 
         <div style={{ backgroundColor: backColorMethod, borderBottom: `2px solid ${backColor}` }}> 
-            <label>...</label>
-        </div>
+  {!attributes ? <label style ={{ fontSize: "20px"}}>...</label> :
+    attributes.map((attribute, idx) => (
+      <div key={`method-${idx}`} style={{ margin: 0 }}>
+        <label>-</label>
+        <input
+          type="text"
+          placeholder="instance"
+          value={attribute}
+          onChange={(event) => nameAttribute(id, idx, event)}
+          style={{ backgroundColor: backColorMethod, width: methodWidth }}
+        />
+
+      </div>
+    ))
+  }
+</div>
+
         
 
           <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 

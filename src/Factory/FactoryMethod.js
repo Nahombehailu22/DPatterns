@@ -186,7 +186,7 @@ function addProduct() {
     data: { 
       class_name: `ConcreteProduct${id}`,
       methods: ['doStuff'],
-      handles: [1, 0, 0, 0],
+      handles: [0, 0, 0, 0, 1, 0, 0, 0],
       title: "Concrete Product",
       description: ""
     },
@@ -198,9 +198,9 @@ function addProduct() {
     {
       id: `ea1-${id}a`,
       source: "0a",
-      sourceHandle: "b",
+      sourceHandle: "d",
       target: ida,
-      targetHandle: "u",
+      targetHandle: "n",
       type: "buttonedge",
       animated: true
     }

@@ -18,7 +18,7 @@ const initialNodes = [
     data: { 
         class_name: 'Creator',
         methods: ['createProduct'],
-        handles: [0, 1, 1, 0],
+        handles: [0, 1, 1, 0, 0, 0, 0, 0],
         title: "Creator Class",
         description: creatorDescription,
         deletable: false,
@@ -31,7 +31,7 @@ const initialNodes = [
     data: { 
         class_name: 'ConcreteCreator1',
         methods: ['createProduct', 'method2'],
-        handles: [1, 0, 0, 0],
+        handles: [0, 0, 0, 0, 1, 0, 0, 0],
         title: "Concrete Creator Class",
         description: concreteCreatorDescription,
         deletable: false,
@@ -44,7 +44,7 @@ const initialNodes = [
     data: { 
         class_name: 'ConcreteCreator2',
         methods: ['createProduct', 'method2'],
-        handles: [1, 0, 0, 0],
+        handles: [0, 0, 0, 0, 1, 0, 0, 0],
         title: "Concrete Creator Class",
         description: concreteCreatorDescription,
         deletable: false,
@@ -57,7 +57,7 @@ const initialNodes = [
     data: { 
         class_name: 'Product',
         methods: ['doStuff'],
-        handles: [0, 1, 0, 1],
+        handles: [0, 1, 0, 0, 0, 0, 0, 1],
         title: "Product Interface",
         description: productInterfaceDescription,
         deletable: false,
@@ -70,7 +70,7 @@ const initialNodes = [
     data: { 
         class_name: 'ConcreteProduct1',
         methods: ['doStuff'],
-        handles: [1, 0, 0, 0],
+        handles: [0, 0, 0, 0, 1, 0, 0, 0],
         title: "Concrete Product",
         description: concreteProductDescription,
         deletable: false,
@@ -83,7 +83,7 @@ const initialNodes = [
     data: { 
         class_name: 'ConcreteProduct2',
         methods: ['doStuff'],
-        handles: [1, 0, 0, 0],
+        handles: [0, 0, 0, 0, 1, 0, 0, 0],
         title: "Concrete Product",
         description: concreteProductDescription,
         deletable: false,
@@ -97,18 +97,18 @@ const initialEdges = [
   { 
     id: '0-1', 
     source: '0', 
-    sourceHandle: 'b', 
+    sourceHandle: 'd', 
     target: '1', 
     type: 'buttonedge', 
-    targetHandle: 'u',
+    targetHandle: 'n',
     markerStart: { type: MarkerType.Arrow }       
   },
   { 
     id: '0-2',
     source: '0',
-    sourceHandle: 'b',
+    sourceHandle: 'd',
     target: '2', 
-    targetHandle: 'u', 
+    targetHandle: 'n', 
     type: 'buttonedge' 
   },
   { 
@@ -118,27 +118,27 @@ const initialEdges = [
     sourceHandle: 'r', 
     type: 'straight', 
     animated: 'true', 
-    targetHandle: 'l',
+    targetHandle: 'w',
     markerEnd: { type: MarkerType.Arrow }, 
   },
   { 
     id: 'e1a-2a',
     source: '0a',  
-    sourceHandle: 'b', 
+    sourceHandle: 'd', 
     target: '1a', 
     type: 'buttonedge', 
     animated: 'true', 
-    targetHandle: 'u',   
+    targetHandle: 'n',   
     markerStart: { type: MarkerType.Arrow }
   },
   { 
     id: 'e1a-3a',
     source: '0a',  
-    sourceHandle: 'b', 
+    sourceHandle: 'd', 
     target: '2a', 
     type: 'buttonedge', 
     animated: 'true', 
-    targetHandle: 'u'
+    targetHandle: 'n'
   },
 ];
 

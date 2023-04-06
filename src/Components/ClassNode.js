@@ -2,12 +2,28 @@ import React, {useState, useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
 import InfoPopover from './Popover.js';
 
-function ClassNode({ id, data, color1, color2 }) {
-  const { class_name, attributes, methods, handles, title, description, nameClass, nameAttribute, nameMethod, onDelete, addMethod, deleteMethod, deletable, pop } = data;
-  const backColor = color1;
-  const backColorMethod = color2;
+const ClassNode = ({
+  id,
+  data: {
+    class_name,
+    attributes,
+    methods,
+    handles,
+    title,
+    description,
+    nameClass,
+    nameAttribute,
+    nameMethod,
+    onDelete,
+    addMethod,
+    deleteMethod,
+    deletable,
+    pop,
+  },
+  color1: backColor,
+  color2: backColorMethod,
+}) => {
 
-  // Calculate the width of the class and method names
   const classWidth = class_name.length * 3 + 70;
   const methodWidth = methods.reduce((acc, str) => Math.max(acc, str.length), 0) * 3 + 70;
 
@@ -19,12 +35,7 @@ function ClassNode({ id, data, color1, color2 }) {
             X
           </button>
         )}
-       <InfoPopover 
-          title = {title}
-          description = {description}
-          backColor={backColor} 
-          hide={pop}
-          />
+        <InfoPopover title={title} description={description} backColor={backColor} hide={pop} />
       </div>
       <div>
         <div style={{ backgroundColor: backColor, padding: '10px'}}>
@@ -40,24 +51,21 @@ function ClassNode({ id, data, color1, color2 }) {
         </div>
 
         <div style={{ backgroundColor: backColorMethod, borderBottom: `2px solid ${backColor}` }}> 
-  {!attributes ? <label style ={{ fontSize: "20px"}}>...</label> :
-    attributes.map((attribute, idx) => (
-      <div key={`method-${idx}`} style={{ margin: 0 }}>
-        <label>-</label>
-        <input
-          type="text"
-          placeholder="instance"
-          value={attribute}
-          onChange={(event) => nameAttribute(id, idx, event)}
-          style={{ backgroundColor: backColorMethod, width: methodWidth }}
-        />
-
-      </div>
-    ))
-  }
-</div>
-
-        
+          {!attributes ? <label style ={{ fontSize: "20px"}}>...</label> :
+            attributes.map((attribute, idx) => (
+              <div key={`method-${idx}`} style={{ margin: 0 }}>
+                <label>-</label>
+                <input
+                  type="text"
+                  placeholder="instance"
+                  value={attribute}
+                  onChange={(event) => nameAttribute(id, idx, event)}
+                  style={{ backgroundColor: backColorMethod, width: methodWidth }}
+                />
+              </div>
+            ))
+          }
+        </div>
 
           <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 
             {methods.map((method, idx) => (
@@ -82,10 +90,18 @@ function ClassNode({ id, data, color1, color2 }) {
             + Add method 
           </button>
         </div>
-          {handles[0] === 1 && <Handle type="target" position={Position.Top} id='u'/>}
-          {handles[1] === 1 && <Handle type="source" position={Position.Bottom} id="b" />}
-          {handles[2] === 1 && <Handle type="source" position={Position.Right} id="r" />}
-          {handles[3] === 1 && <Handle type="target" position={Position.Left} id='l'/>}
+          {handles[0] === 1 && <Handle type="source" position={Position.Top} id='u'/>}
+          {handles[1] === 1 && <Handle type="source" position={Position.Bottom} id="d" />}
+          {handles[2] === 1 && <Handle type="source" position={Position.Right} id="r" 
+            style={{ bottom: 60, top: 'auto'}}/>}
+          {handles[3] === 1 && <Handle type="source" position={Position.Left} id='l'/>}
+
+          {handles[4] === 1 && <Handle type="target" position={Position.Top} id='n'/>}
+          {handles[5] === 1 && <Handle type="target" position={Position.Bottom} id="s" />}
+          {handles[6] === 1 && <Handle type="target" position={Position.Right} id="e" 
+            style={{ top: 50}}
+          />}
+          {handles[7] === 1 && <Handle type="target" position={Position.Left} id='w'/>}
         </div>
     </div>
   );

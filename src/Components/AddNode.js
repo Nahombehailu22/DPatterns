@@ -18,7 +18,7 @@ const handleConnectEnd = useCallback((event) => {
         data: { 
           class_name: `ConcreteCreator${id}`,
           methods: ['createProduct', 'method2'],
-          handles: [1, 0, 0, 0],
+          handles: [0, 0, 0, 0, 1, 0, 0, 0],
           title: "Concrete Creator Class",
           description: "",
           deletable: true,
@@ -32,9 +32,9 @@ const handleConnectEnd = useCallback((event) => {
         {
           id,
           source,
-          sourceHandle: 'b',
+          sourceHandle: 'd',
           target: id,
-          targetHandle: 'u',
+          targetHandle: 'n',
           type: 'buttonedge'
         }
       ]);

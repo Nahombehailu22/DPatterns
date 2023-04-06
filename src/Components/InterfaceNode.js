@@ -64,10 +64,15 @@ function InterfaceNode({ id, data, color1, color2 }) {
             + Add method 
           </button>
         </div>
-          {handles[0] === 1 && <Handle type="target" position={Position.Top} id='u'/>}
-          {handles[1] === 1 && <Handle type="source" position={Position.Bottom} id="b" />}
+          {handles[0] === 1 && <Handle type="source" position={Position.Top} id='u'/>}
+          {handles[1] === 1 && <Handle type="source" position={Position.Bottom} id="d" />}
           {handles[2] === 1 && <Handle type="source" position={Position.Right} id="r" />}
-          {handles[3] === 1 && <Handle type="target" position={Position.Left} id='l'/>}
+          {handles[3] === 1 && <Handle type="source" position={Position.Left} id='l'/>}
+
+          {handles[4] === 1 && <Handle type="target" position={Position.Top} id='n'/>}
+          {handles[5] === 1 && <Handle type="target" position={Position.Bottom} id="s" />}
+          {handles[6] === 1 && <Handle type="target" position={Position.Right} id="e" />}
+          {handles[7] === 1 && <Handle type="target" position={Position.Left} id='w'/>}
         </div>
     </div>
   );

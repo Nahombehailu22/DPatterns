@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
 import InfoPopover from './Popover.js';
 
-function ClassNode({ id, data, color1, color2 }) {
+function InterfaceNode({ id, data, color1, color2 }) {
   const { class_name, methods, handles, title, description, nameClass, nameMethod, onDelete, addMethod, deleteMethod, deletable, pop } = data;
   const backColor = color1;
   const backColorMethod = color2;
@@ -27,7 +27,10 @@ function ClassNode({ id, data, color1, color2 }) {
           />
       </div>
       <div>
+        
         <div style={{ backgroundColor: backColor, padding: '10px'}}>
+        <label style= {{ fontSize: "12px" }}> &lt;&lt;interface&gt;&gt; </label>
+        <br></br>
           <input
             type="text"
             placeholder={class_name ? class_name : "Class Name"}
@@ -37,30 +40,24 @@ function ClassNode({ id, data, color1, color2 }) {
             }}
             style={{ backgroundColor: backColor, width: classWidth }}
           />
-        </div>
-
-        <div style={{ backgroundColor: backColorMethod, borderBottom: `2px solid ${backColor}` }}> 
-            <label>...</label>
-        </div>
-        
-
-          <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 
-            {methods.map((method, idx) => (
-              <div key={idx} style={{ margin: 0 }}>
-                <label>+</label>
-                <input
-                  type="text"
-                  placeholder="method"
-                  value={method}
-                  onChange={(event) => nameMethod(id, idx, event)}
-                  style={{ backgroundColor: backColorMethod, width: methodWidth }}
-                />
-                <button type="button" 
-                  style = {{ backgroundColor: backColorMethod }} 
-                  onClick={() => deleteMethod(id, idx)}
-                  > 
-                  - 
-                </button>
+      </div>
+        <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 
+          {methods.map((method, idx) => (
+            <div key={idx} style={{ margin: 0 }}>
+              <label>+</label>
+              <input
+                type="text"
+                placeholder="method"
+                value={method}
+                onChange={(event) => nameMethod(id, idx, event)}
+                style={{ backgroundColor: backColorMethod, width: methodWidth }}
+              />
+              <button type="button" 
+                style = {{ backgroundColor: backColorMethod }} 
+                onClick={() => deleteMethod(id, idx)}
+                > 
+                - 
+              </button>
             </div>
           ))}
           <button type="button" style = {{ backgroundColor: backColor }} onClick={() => addMethod(id)}> 
@@ -77,4 +74,4 @@ function ClassNode({ id, data, color1, color2 }) {
   
 }
 
-export default ClassNode;
+export default InterfaceNode;

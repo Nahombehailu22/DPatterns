@@ -1,6 +1,8 @@
 import { MarkerType } from 'reactflow';
 import ButtonEdge from '../Components/ButtonEdge';
 import ClassNode from '../Components/ClassNode';
+import InterfaceNode from '../Components/InterfaceNode';
+
 
 
 const creatorDescription = `The creator class declares the factory method that returns new product objects. It separates the construction of the product objects from their implementation, allowing for greater flexibility and extensibility in the system. The return type of the factory method must match the product interface. By using the Factory Method design pattern and the creator class, you can easily add new product types to your system without modifying existing code.`;
@@ -148,7 +150,7 @@ const nodeTypes = {
           color2={'#4DB6AC'}
         />),
     interface: (props) => (
-        <ClassNode
+        <InterfaceNode
           {...props}
           color1={'#BF4D4D'}
           color2={'#CD7F7F'}

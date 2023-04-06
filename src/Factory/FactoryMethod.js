@@ -1,7 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge, useReactFlow, Controls } from 'reactflow';
 
-// Import component styles and ReactFlow default styles
 import './index.css';
 import 'reactflow/dist/style.css';
 import '../Buttons.css';
@@ -16,87 +15,15 @@ const getProductPosition = () => `${concretePos+=175}`;
 let id = 3;
 const getId = () => `${id++}`;
 
+const defaultViewport = { x: 0, y: 0, zoom: 1.2 };
 
-// Define the FactoryMethod component
 const FactoryMethod = (props) => {
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
-
-  // Set up state for nodes and edges using ReactFlow hooks
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [hidden, setHidden] = useState([false, true, true, true, true, true]);
   const popHidden = [false, true, false, false, false, true];
-  
-  const handleClassNameChange = (id, event) => {
-    setNodes(nodes => nodes.map(node => {
-      if (node.id === id) {
-        return {
-          ...node,
-          data: {
-            ...node.data,
-            class_name: event.target.value
-          }
-        };
-      }
-      return node;
-    }));
-  };
-  
-  const handleMethodNameChange = (id, index, event) => {
-    setNodes(nodes => nodes.map(node => {
-      if (node.id === id) {
-        const newMethods = [...node.data.methods];
-        newMethods[index] = event.target.value;
-        
-        return {
-          ...node,
-          data: {
-            ...node.data,
-            methods: newMethods
-          }
-        };
-      }
-      return node;
-    }));
-  };
-
-  const handleAddMethod = (id) => {
-    setNodes(nodes => nodes.map(node => {
-      if (node.id === id) {
-        const nextID = node.data.methods.length + 1;
-        const newMethods = [...node.data.methods, `method${nextID}`];
-        
-        return {
-          ...node,
-          data: {
-            ...node.data,
-            methods: newMethods
-          }
-        };
-      }
-      return node;
-    }));
-  };
-
-  const handleDeleteMethod = (id, index) => {
-    setNodes(nodes => nodes.map(node => {
-      if (node.id === id) {
-        const newMethods = [...node.data.methods];
-        newMethods.splice(index, 1);
-  
-        return {
-          ...node,
-          data: {
-            ...node.data,
-            methods: newMethods
-          }
-        };
-      }
-      return node;
-    }));
-  };
-
 
   useEffect(() => {
     setNodes(nds => nds.map((node, i) => {  
@@ -124,15 +51,124 @@ const FactoryMethod = (props) => {
       };
     }));
   });
+  
+  const handleClassNameChange = useCallback((id, event) => {
+    setNodes(nodes => nodes.map(node => {
+      if (node.id === id) {
+        return {
+          ...node,
+          data: {
+            ...node.data,
+            class_name: event.target.value
+          }
+        };
+      }
+      return node;
+    }));
+  }, []);
 
-  function handleNodeDelete (id) {
-    console.log('deleting node with id:', id);
+  const handleMethodNameChange = useCallback((id, index, event) => {
+    setNodes(nodes => {
+        const timeoutId = setTimeout(() => {
+            setNodes(nodes => {
+                return nodes.map(node => {
+                    if (node.id === '1' || node.id === '2') {
+                        return {
+                            ...node,
+                            data: {
+                                ...node.data,
+                                methods: node.data.methods.map((method, i) => {
+                                    if (i === 0) {
+                                        return nodes[0].data.methods[0];
+                                    }
+                                    return method;
+                                }),
+                            },
+                        };
+                    }
+
+                    if (node.id === '1a' || node.id === '2a') {
+                        return {
+                            ...node,
+                            data: {
+                                ...node.data,
+                                methods: node.data.methods.map((method, i) => {
+                                    if (i === 0) {
+                                        return nodes[3].data.methods[0];
+                                    }
+                                    return method;
+                                }),
+                            },
+                        };
+                    }
+
+                    return node;
+                });
+            });
+        }, 250);
+
+        return nodes.map(node => {
+            if (node.id === id) {
+                const newMethods = [...node.data.methods];
+                newMethods[index] = event.target.value;
+                return {
+                    ...node,
+                    data: {
+                        ...node.data,
+                        methods: newMethods,
+                    },
+                };
+            }
+            return node;
+        });
+    });
+}, [setNodes]);
+
+
+  const handleAddMethod = useCallback((id) => {
+    setNodes(nodes => nodes.map(node => {
+      if (node.id === id) {
+        const nextID = node.data.methods.length + 1;
+        const newMethods = [...node.data.methods, `method${nextID}`];
+        
+        return {
+          ...node,
+          data: {
+            ...node.data,
+            methods: newMethods
+          }
+        };
+      }
+      return node;
+    }));
+  }, []);
+
+  const handleDeleteMethod = useCallback((id, index) => {
+    setNodes(nodes => nodes.map(node => {
+      if (node.id === id) {
+        const newMethods = [...node.data.methods];
+        newMethods.splice(index, 1);
+  
+        return {
+          ...node,
+          data: {
+            ...node.data,
+            methods: newMethods
+          }
+        };
+      }
+      return node;
+    }));
+  }, []);
+
+
+  const handleNodeDelete = useCallback((id) => {
     setNodes(nodes => nodes.filter(node => node.id !== id));
     setEdges((edges) => edges.filter((edge) => edge.source !== id && edge.target !== id));
 
     setNodes(nodes => nodes.filter(node => node.id !== id+"a"));
     setEdges((edges) => edges.filter((edge) => edge.source !== id+"a" && edge.target !== id+"a"));
-  };
+  }, []);
 
   const { project } = useReactFlow();
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
@@ -140,6 +176,37 @@ const FactoryMethod = (props) => {
   const onConnectEnd = OnConnectEnd({ reactFlowWrapper, source:"0", project, setNodes, setEdges });
 
   
+function addProduct() {
+  const id = getId();
+  const concretePos = getProductPosition();
+  const ida = id + "a";
+  const newNode = {
+    id: ida,
+    position: project({ x: concretePos, y: 475 }),
+    data: { 
+      class_name: `ConcreteProduct${id}`,
+      methods: ['doStuff'],
+      handles: [1, 0, 0, 0],
+      title: "Concrete Product",
+      description: ""
+    },
+    type: "class"
+  };
+  setNodes(nodes => [...nodes, newNode]);
+  setEdges(edges => [
+    ...edges,
+    {
+      id: `ea1-${id}a`,
+      source: "0a",
+      sourceHandle: "b",
+      target: ida,
+      targetHandle: "u",
+      type: "buttonedge",
+      animated: true
+    }
+  ]);
+}
+
   return (
     <div className="wrapper" ref={reactFlowWrapper} style={{ height: 800 }}>
       <IncrementalHiddenButton hidden={hidden} setHidden={setHidden}/>
@@ -153,40 +220,13 @@ const FactoryMethod = (props) => {
         onConnectStart={onConnectStart}
         onConnectEnd={(event) => {
           onConnectEnd(event);
-          // Create a new node with a new ID
-          const id = getId();
-          const concretePos = getProductPosition();
-          const ida = id + "a";
-          const newNode = {
-            id: ida,
-            position: project({ x: concretePos, y: 475 }),
-            data: { 
-              class_name: `ConcreteProduct${id}`,
-              methods: ['doStuff'],
-              handles: [1, 0, 0, 0],
-              title: "Concrete Product",
-              description: "",
-          },
-            type: "class",
-          };
-          // Add the new node and a corresponding edge to the state
-          setNodes((nodes) => [...nodes, newNode]);
-          setEdges((edges) => [
-            ...edges,
-            {
-              id: "ea1-" + id + "a",
-              source: "0a",
-              sourceHandle: "b",
-              target: ida,
-              targetHandle: "u",
-              type: "buttonedge",
-              animated: true,
-            },
-          ]);
+          addProduct();
         }}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
+        defaultViewport={defaultViewport}
         fitView
+        attributionPosition="bottom-left"
       />
     </div>
   );

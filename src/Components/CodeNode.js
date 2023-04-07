@@ -2,7 +2,6 @@ import React from 'react';
 import { Handle, Position } from 'reactflow';
 
 const CodeNode = ({ id, data: { codeWritten, handles }, color1: backColor }) => {
-  // const code = codeWritten();
 
   return (
     <div>
@@ -13,11 +12,11 @@ const CodeNode = ({ id, data: { codeWritten, handles }, color1: backColor }) => 
           fontSize: '9px',
           paddingRight: '20px',
           position: 'relative',
-          borderTopRightRadius: '15px',
+          borderTopRightRadius: '20px',
           overflow: 'hidden',
         }}
       >
-        {/* {code} */}
+        {codeWritten && codeWritten()}
       </div>
 
       <div>

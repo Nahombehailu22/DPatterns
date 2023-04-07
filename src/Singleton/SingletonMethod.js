@@ -21,18 +21,18 @@ const SingletonMethod = (props) => {
   const popHidden = [false, false];
 
   const writeCode = () => {
-    // const instance = nodes[0].data.attributes[0]
-    // const classSingleton = nodes[0].data.class_name
+    const instance = nodes[0].data.attributes[0]
+    const classSingleton = nodes[0].data.class_name
 
     return (
       <p>
-        if(instance==null) {'{'}
+        if({instance}==null) {'{'}
         <br></br>
-        &nbsp;&nbsp;&nbsp;instance = new Singleton()
+        &nbsp;&nbsp;&nbsp;instance = new {classSingleton}()
         <br></br>
         {'}'}
         <br></br>
-        return instance
+        return {instance}
       </p>
     )
   };

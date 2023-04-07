@@ -5,11 +5,12 @@ import './index.css';
 import 'reactflow/dist/style.css';
 import '../Buttons.css';
 
-// import OnConnectEnd from '../Components/AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './SingletonMethodInit';
 import IncrementalHiddenButton from './HideUnhideNodes.js';
 
-const defaultViewport = { x: 0, y: 0, zoom: 1.2 };
+const fitViewOptions = {
+  padding: 1,
+};
 
 const SingletonMethod = (props) => {
   const reactFlowWrapper = useRef(null);
@@ -18,6 +19,23 @@ const SingletonMethod = (props) => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [hidden, setHidden] = useState([false, true]);
   const popHidden = [false, false];
+
+  const writeCode = () => {
+    // const instance = nodes[0].data.attributes[0]
+    // const classSingleton = nodes[0].data.class_name
+
+    return (
+      <p>
+        if(instance==null) {'{'}
+        <br></br>
+        &nbsp;&nbsp;&nbsp;instance = new Singleton()
+        <br></br>
+        {'}'}
+        <br></br>
+        return instance
+      </p>
+    )
+  };
 
   useEffect(() => {
     setNodes(nds => nds.map((node, i) => {
@@ -32,6 +50,7 @@ const SingletonMethod = (props) => {
           nameMethod: node.id === '0' ? handleMethodNameChange : node.data.nameMethod,
           addMethod: node.id === '0' ? handleAddMethod : node.data.addMethod,
           deleteMethod: node.id === '0' ? handleDeleteMethod : node.data.deleteMethod,
+          codeWritten: node.type === 'code' ? writeCode: node.data.writeCode,
           pop: popHidden[i],
         },
         hidden: hidden[i]
@@ -97,7 +116,6 @@ const SingletonMethod = (props) => {
     }));
   };
 
-
   const handleAddMethod = useCallback((id) => {
     setNodes(nodes => nodes.map(node => {
       if (node.id === id) {
@@ -135,10 +153,11 @@ const SingletonMethod = (props) => {
   }, []);
 
 
+
+
   const { project } = useReactFlow();
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
   const onConnectStart = useCallback((_, { nodeId }) => connectingNodeId.current = nodeId, []);
-
 
 
   return (
@@ -155,9 +174,8 @@ const SingletonMethod = (props) => {
 
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
-        defaultViewport={defaultViewport}
         fitView
-        attributionPosition="bottom-left"
+        fitViewOptions={fitViewOptions}
       />
     </div>
   );

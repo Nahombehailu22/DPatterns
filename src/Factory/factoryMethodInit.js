@@ -36,7 +36,7 @@ const initialNodes = [
         description: concreteCreatorDescription,
         deletable: false,
     },
-    position: { x: -100, y: 200 },
+    position: { x: -100, y: 250 },
   },
   {
     id: '2',
@@ -49,7 +49,7 @@ const initialNodes = [
         description: concreteCreatorDescription,
         deletable: false,
     },
-    position: { x: 100, y: 200 },
+    position: { x: 100, y: 250 },
   },
   {
     id: '0a',

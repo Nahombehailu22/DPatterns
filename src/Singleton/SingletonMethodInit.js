@@ -1,7 +1,8 @@
 import { MarkerType } from 'reactflow';
 import ButtonEdge from '../Components/ButtonEdge';
 import ClassNode from '../Components/ClassNode';
-import ClientClassNode from '../Components/ClientClassNode';
+import GenericClassNode from '../Components/GenericClassNode';
+import CodeNode from '../Components/CodeNode';
 
 
 const singletonDescription = `The Singleton class declares the static method getInstance that returns the same instance of its own class.The Singleton’s constructor should be hidden from the client code. Calling the getInstance method should be the only way of getting the Singleton object.`;
@@ -32,6 +33,15 @@ const initialNodes = [
         description: clientClassDescription,
     },
     position: { x: -300, y: 60 },
+  },
+
+  {
+    id: '2',
+    type: 'code',
+    data: { 
+        handles: [0, 0, 1, 0, 0, 0, 0, 1],
+    },
+    position: { x: 0, y: 200 },
   },
 
 ];
@@ -67,10 +77,17 @@ const nodeTypes = {
         />),
 
     client: (props) => (
-          <ClientClassNode
+          <GenericClassNode
             {...props}
             color1={'#009688'}
             color2={'#4DB6AC'}
+          />),
+
+    code: (props) => (
+          <CodeNode
+            {...props}
+            color1={'#757575'}
+            color2={'#BDBDBD'}
           />),
 };
 

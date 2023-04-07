@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
 import InfoPopover from './Popover.js';
 
-function ClientClassNode({ id, data, color1, color2 }) {
+function GenericClassNode({ id, data, color1, color2 }) {
   const { class_name, handles, title, description, nameClass, pop } = data;
   const backColor = color1;
   const backColorMethod = color2;
@@ -43,4 +43,4 @@ function ClientClassNode({ id, data, color1, color2 }) {
   
 }
 
-export default ClientClassNode;
+export default GenericClassNode;

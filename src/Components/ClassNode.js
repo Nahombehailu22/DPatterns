@@ -93,7 +93,7 @@ const ClassNode = ({
           {handles[0] === 1 && <Handle type="source" position={Position.Top} id='u'/>}
           {handles[1] === 1 && <Handle type="source" position={Position.Bottom} id="d" />}
           {handles[2] === 1 && <Handle type="source" position={Position.Right} id="r" 
-            style={{ bottom: 60, top: 'auto'}}/>}
+            style={{ top: 100}}/>}
           {handles[3] === 1 && <Handle type="source" position={Position.Left} id='l'/>}
 
           {handles[4] === 1 && <Handle type="target" position={Position.Top} id='n'/>}

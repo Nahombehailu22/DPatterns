@@ -15,7 +15,9 @@ const getProductPosition = () => `${concretePos+=175}`;
 let id = 3;
 const getId = () => `${id++}`;
 
-const defaultViewport = { x: 0, y: 0, zoom: 1.2 };
+const fitViewOptions = {
+  padding: 0.5,
+};
 
 const FactoryMethod = (props) => {
   const reactFlowWrapper = useRef(null);
@@ -224,9 +226,8 @@ function addProduct() {
         }}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
-        defaultViewport={defaultViewport}
         fitView
-        attributionPosition="bottom-left"
+        fitViewOptions={fitViewOptions}
       />
     </div>
   );

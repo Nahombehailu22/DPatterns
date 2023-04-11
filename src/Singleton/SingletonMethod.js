@@ -17,7 +17,7 @@ const SingletonMethod = (props) => {
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [hidden, setHidden] = useState([false, true]);
+  const [hidden, setHidden] = useState([false, true, false]);
   const popHidden = [false, false];
 
   const writeCode = () => {

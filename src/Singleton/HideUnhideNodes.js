@@ -1,14 +1,18 @@
 import { useState } from "react";
-export default function IncrementalHiddenButton({ hidden, setHidden }) {
+
+const IncrementalHiddenButton = ({ hidden, setHidden }) => {
     const [step, setStep] = useState(0);
   
     const toggleHidden = () => {
-      if (step === 0) {
-        setHidden([false, false]);
-        setStep(1);
-      } else {
-        setHidden([false, true, true, true, true, true]);
-        setStep(0);
+      switch (step) {
+        case 0:
+          setHidden([false, false, false]);
+          setStep(1);
+          break
+        case 1:
+          setHidden([false, true, false]);
+          setStep(0);
+          break
       }
     };
   
@@ -28,3 +32,4 @@ export default function IncrementalHiddenButton({ hidden, setHidden }) {
     );
   }
   
+  export default IncrementalHiddenButton;

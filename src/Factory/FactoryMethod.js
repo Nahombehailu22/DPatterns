@@ -16,7 +16,7 @@ let id = 3;
 const getId = () => `${id++}`;
 
 const fitViewOptions = {
-  padding: 0.5,
+  padding: 0.4,
 };
 
 const FactoryMethod = (props) => {
@@ -24,7 +24,7 @@ const FactoryMethod = (props) => {
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [hidden, setHidden] = useState([false, true, true, true, true, true]);
+  const [hidden, setHidden] = useState([false, true, true, true, true, true, false, true, true]);
   const popHidden = [false, true, false, false, false, true];
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const FactoryMethod = (props) => {
           onDelete: handleNodeDelete,
           addMethod: handleAddMethod,
           deleteMethod:handleDeleteMethod,
+          codeWritten: node.id === '0b' ? writeCode1 : writeCode2,
           pop: popHidden[i],
         },
         hidden: hidden[i]
@@ -51,8 +52,32 @@ const FactoryMethod = (props) => {
         ...edge,
         hidden: hidden[i + 1]
       };
-    }));
+    }), []);
   });
+
+  const writeCode1 = () => {
+    const factoryMethod = nodes.find(node => node.id === "0").data.methods[1];
+    const interfaceMethod = nodes.find(node => node.id === "0a").data.methods[0];
+    const interfaceClass = nodes.find(node => node.id === "0a").data.class_name;
+
+    return (
+      <p>
+        {interfaceClass} p = {factoryMethod}()
+        <br></br>
+        p.{interfaceMethod}()
+      </p>
+    )
+  };
+  
+  const writeCode2 = (currID) => {
+    const concreteProduct = nodes.find(node => node.id === `${currID}a`).data.class_name;
+    return (
+      <p>
+          <b>return new</b> {concreteProduct}
+      </p>
+    )
+  };
+
   
   const handleClassNameChange = useCallback((id, event) => {
     setNodes(nodes => nodes.map(node => {
@@ -74,14 +99,14 @@ const FactoryMethod = (props) => {
         const timeoutId = setTimeout(() => {
             setNodes(nodes => {
                 return nodes.map(node => {
-                    if (node.id === '1' || node.id === '2') {
+                    if (!isNaN(node.id)) {
                         return {
                             ...node,
                             data: {
                                 ...node.data,
                                 methods: node.data.methods.map((method, i) => {
                                     if (i === 0) {
-                                        return nodes[0].data.methods[0];
+                                        return nodes.find(node => node.id === "0").data.methods[1];
                                     }
                                     return method;
                                 }),
@@ -89,14 +114,14 @@ const FactoryMethod = (props) => {
                         };
                     }
 
-                    if (node.id === '1a' || node.id === '2a') {
+                    if(node.id.includes('a')) {
                         return {
                             ...node,
                             data: {
                                 ...node.data,
                                 methods: node.data.methods.map((method, i) => {
                                     if (i === 0) {
-                                        return nodes[3].data.methods[0];
+                                        return nodes.find(node => node.id === "0a").data.methods[0];
                                     }
                                     return method;
                                 }),
@@ -170,6 +195,9 @@ const FactoryMethod = (props) => {
 
     setNodes(nodes => nodes.filter(node => node.id !== id+"a"));
     setEdges((edges) => edges.filter((edge) => edge.source !== id+"a" && edge.target !== id+"a"));
+
+    setNodes(nodes => nodes.filter(node => node.id !== id+"b"));
+    setEdges((edges) => edges.filter((edge) => edge.source !== id+"b" && edge.target !== id+"b"));
   }, []);
 
   const { project } = useReactFlow();
@@ -178,30 +206,57 @@ const FactoryMethod = (props) => {
   const onConnectEnd = OnConnectEnd({ reactFlowWrapper, source:"0", project, setNodes, setEdges });
 
   
-function addProduct() {
+const addProduct = (event) => {
+  setHidden([false, false, false, false, false, false, false, false]);
+  const { top, left } = reactFlowWrapper.current.getBoundingClientRect();
+
+  console.log(event.clientY)
+  // const targetIsPane = event.target.classList.contains('react-flow__pane');
   const id = getId();
   const concretePos = getProductPosition();
-  const ida = id + "a";
   const newNode = {
-    id: ida,
+    id: `${id}a`,
     position: project({ x: concretePos, y: 475 }),
     data: { 
       class_name: `ConcreteProduct${id}`,
       methods: ['doStuff'],
       handles: [0, 0, 0, 0, 1, 0, 0, 0],
       title: "Concrete Product",
-      description: ""
+      description: "", 
+      pop: true,
     },
     type: "class"
   };
-  setNodes(nodes => [...nodes, newNode]);
+  setNodes((nodes) => [...nodes, newNode]);
+
+  const nodeWithId0 = nodes.find(node => node.id === "0").position;
+  const newNode1 = {
+    id: `${id}b`,
+    type: 'code',
+    position: project({ x: event.clientX - left - 80, y: event.clientY - top + 250 }),
+    data: { 
+      handles: [0, 0, 0, 0, 1, 0, 0, 0],
+      connectedId: id,
+    },
+  };
+  
+  setNodes((nodes) => [...nodes, newNode1]);
   setEdges(edges => [
     ...edges,
     {
       id: `ea1-${id}a`,
       source: "0a",
       sourceHandle: "d",
-      target: ida,
+      target: `${id}a`,
+      targetHandle: "n",
+      type: "buttonedge",
+      animated: true
+    },
+    {
+      id: `eb1-${id}b`,
+      source: id,
+      sourceHandle: "d",
+      target: `${id}b`,
       targetHandle: "n",
       type: "buttonedge",
       animated: true
@@ -222,7 +277,7 @@ function addProduct() {
         onConnectStart={onConnectStart}
         onConnectEnd={(event) => {
           onConnectEnd(event);
-          addProduct();
+          addProduct(event);
         }}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}

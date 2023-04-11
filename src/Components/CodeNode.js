@@ -1,7 +1,7 @@
 import React from 'react';
 import { Handle, Position } from 'reactflow';
 
-const CodeNode = ({ id, data: { codeWritten, handles }, color1: backColor }) => {
+const CodeNode = ({ id, data: { codeWritten, handles, connectedId }, color1: backColor }) => {
 
   return (
     <div>
@@ -9,14 +9,15 @@ const CodeNode = ({ id, data: { codeWritten, handles }, color1: backColor }) => 
         style={{
           backgroundColor: backColor,
           padding: '5px',
-          fontSize: '9px',
+          fontSize: '10px',
           paddingRight: '20px',
           position: 'relative',
           borderTopRightRadius: '20px',
           overflow: 'hidden',
+          border: '1px solid black',
         }}
       >
-        {codeWritten && codeWritten()}
+        {codeWritten && codeWritten(connectedId)}
       </div>
 
       <div>

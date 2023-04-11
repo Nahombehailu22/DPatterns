@@ -18,10 +18,11 @@ const handleConnectEnd = useCallback((event) => {
         data: { 
           class_name: `ConcreteCreator${id}`,
           methods: ['createProduct', 'method2'],
-          handles: [0, 0, 0, 0, 1, 0, 0, 0],
+          handles: [0, 1, 0, 0, 1, 0, 0, 0],
           title: "Concrete Creator Class",
           description: "",
           deletable: true,
+          pop: true,
       },
         type: 'class',
       };

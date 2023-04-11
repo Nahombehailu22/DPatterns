@@ -19,6 +19,7 @@ const ClassNode = ({
     deleteMethod,
     deletable,
     pop,
+    connectable,
   },
   color1: backColor,
   color2: backColorMethod,
@@ -28,7 +29,7 @@ const ClassNode = ({
   const methodWidth = methods.reduce((acc, str) => Math.max(acc, str.length), 0) * 3 + 70;
 
   return (
-    <div className='text-updater-node' style={{background: backColor, color:"white"}}>
+    <div className='text-updater-node' style={{background: backColor, color:"white", border: '1px solid black'}}>
       <div>
         {deletable && (
           <button className="delete-button" onClick={() => onDelete(id)}>
@@ -86,12 +87,13 @@ const ClassNode = ({
                 </button>
             </div>
           ))}
-          <button type="button" style = {{ backgroundColor: backColor }} onClick={() => addMethod(id)}> 
+          <button type="button" style = {{ backgroundColor: backColor , borderRadius: '10px'}} onClick={() => addMethod(id)} > 
             + Add method 
           </button>
         </div>
           {handles[0] === 1 && <Handle type="source" position={Position.Top} id='u'/>}
-          {handles[1] === 1 && <Handle type="source" position={Position.Bottom} id="d" />}
+          {handles[1] === 1 && <Handle type="source" position={Position.Bottom} id="d"
+           style={connectable ? { backgroundColor: '#757575', width: "15px", height: '15px', borderRadius: '10px', bottom: '-5px'}: null}/>}
           {handles[2] === 1 && <Handle type="source" position={Position.Right} id="r" 
             style={{ top: 100}}/>}
           {handles[3] === 1 && <Handle type="source" position={Position.Left} id='l'/>}

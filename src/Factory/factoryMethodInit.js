@@ -2,6 +2,7 @@ import { MarkerType } from 'reactflow';
 import ButtonEdge from '../Components/ButtonEdge';
 import ClassNode from '../Components/ClassNode';
 import InterfaceNode from '../Components/InterfaceNode';
+import CodeNode from '../Components/CodeNode';
 
 
 
@@ -12,16 +13,18 @@ const concreteProductDescription = `The concrete Product class implements the pr
 
 
 const initialNodes = [
+
   {
     id: '0',
     type: 'class',
     data: { 
         class_name: 'Creator',
-        methods: ['createProduct'],
-        handles: [0, 1, 1, 0, 0, 0, 0, 0],
+        methods: ['someOperation','createProduct'],
+        handles: [0, 1, 1, 0, 0, 0, 0, 1],
         title: "Creator Class",
         description: creatorDescription,
         deletable: false,
+        connectable: true,
     },
     position: { x: 0, y: 0 },
   },
@@ -31,7 +34,7 @@ const initialNodes = [
     data: { 
         class_name: 'ConcreteCreator1',
         methods: ['createProduct', 'method2'],
-        handles: [0, 0, 0, 0, 1, 0, 0, 0],
+        handles: [0, 1, 0, 0, 1, 0, 0, 0],
         title: "Concrete Creator Class",
         description: concreteCreatorDescription,
         deletable: false,
@@ -44,7 +47,7 @@ const initialNodes = [
     data: { 
         class_name: 'ConcreteCreator2',
         methods: ['createProduct', 'method2'],
-        handles: [0, 0, 0, 0, 1, 0, 0, 0],
+        handles: [0, 1, 0, 0, 1, 0, 0, 0],
         title: "Concrete Creator Class",
         description: concreteCreatorDescription,
         deletable: false,
@@ -89,6 +92,33 @@ const initialNodes = [
         deletable: false,
     },
     position: { x: 450, y: 250 },
+  },
+  {
+    id: '0b',
+    type: 'code',
+    data: { 
+        handles: [0, 1, 0, 0, 0, 0, 0, 0],
+        connectedId: '0',
+    },
+    position: { x: -200, y: 0 },
+  },
+  {
+    id: '1b',
+    type: 'code',
+    data: { 
+        handles: [0, 0, 0, 0, 1, 0, 0, 0],
+        connectedId: '1',
+    },
+    position: { x: -100, y: 500 },
+  },
+  {
+    id: '2b',
+    type: 'code',
+    data: { 
+        handles: [0, 0, 0, 0, 1, 0, 0, 0],
+        connectedId: '2',
+    },
+    position: { x: 100, y: 500 },
   },
 ];
 
@@ -140,6 +170,33 @@ const initialEdges = [
     animated: 'true', 
     targetHandle: 'n'
   },
+  { 
+    id: '0-0b',
+    source: '0b',  
+    target: '0', 
+    sourceHandle: 'd', 
+    type: 'step', 
+    targetHandle: 'w',
+    animated: true,
+  },
+  { 
+    id: '1-1b',
+    source: '1',  
+    target: '1b', 
+    sourceHandle: 'd', 
+    type: 'straight', 
+    targetHandle: 'n',
+    animated: true,
+  },
+  { 
+    id: '2-2b',
+    source: '2',  
+    target: '2b', 
+    sourceHandle: 'd', 
+    type: 'straight', 
+    targetHandle: 'n',
+    animated: true,
+  },
 ];
 
 const nodeTypes = {
@@ -154,6 +211,12 @@ const nodeTypes = {
           {...props}
           color1={'#BF4D4D'}
           color2={'#CD7F7F'}
+        />),
+    code: (props) => (
+        <CodeNode
+          {...props}
+          color1={'#757575'}
+          color2={'#BDBDBD'}
         />),
 };
 

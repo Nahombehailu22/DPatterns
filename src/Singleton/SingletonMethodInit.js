@@ -16,7 +16,7 @@ const initialNodes = [
         class_name: 'Singleton',
         attributes: ['instance'],
         methods: ['getInstance'],
-        handles: [0, 0, 1, 0, 0, 0, 1, 1],
+        handles: [0, 1, 1, 0, 0, 0, 1, 1],
         title: "Singleton Class",
         description: singletonDescription,
         deletable: false,
@@ -39,7 +39,7 @@ const initialNodes = [
     id: '2',
     type: 'code',
     data: { 
-        handles: [0, 0, 1, 0, 0, 0, 0, 1],
+        handles: [0, 0, 0, 0, 1, 0, 0, 0],
     },
     position: { x: 0, y: 200 },
   },
@@ -64,6 +64,16 @@ const initialEdges = [
     type: 'step', 
     targetHandle: 'e',
     markerEnd: { type: MarkerType.Arrow }, 
+  },
+
+  { 
+    id: '0-2',
+    source: '0',  
+    target: '2', 
+    sourceHandle: 'd', 
+    type: 'straight', 
+    targetHandle: 'n',
+    animated: true,
   },
   
 ];

@@ -5,7 +5,6 @@ import InterfaceNode from '../Components/InterfaceNode';
 import CodeNode from '../Components/CodeNode';
 
 
-
 const creatorDescription = `The creator class declares the factory method that returns new product objects. It separates the construction of the product objects from their implementation, allowing for greater flexibility and extensibility in the system. The return type of the factory method must match the product interface. By using the Factory Method design pattern and the creator class, you can easily add new product types to your system without modifying existing code.`;
 const concreteCreatorDescription = `The concrete creator class implements the factory method to return a specific type of product object. It may have additional methods for configuring the product object before returning it. The concreteCreator class provides the implementation for the factory method declared in the creator class.`;
 const productInterfaceDescription = `The product Interface defines the interface that all product objects must implement. This interface typically includes a set of methods that the client code can use to interact with the product objects. By using an interface, the creator class and concreteCreator classes can create and return different types of product objects that are still compatible with the client code.`;

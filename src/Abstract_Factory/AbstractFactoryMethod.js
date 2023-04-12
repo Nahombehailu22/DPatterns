@@ -6,7 +6,7 @@ import 'reactflow/dist/style.css';
 import '../Buttons.css';
 
 import OnConnectEnd from '../Components/AddNode';
-import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './factoryMethodInit';
+import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
 import IncrementalHiddenButton from './HideUnhideNodes.js';
 
 let concretePos = 1125;
@@ -16,19 +16,18 @@ let id = 3;
 const getId = () => `${id++}`;
 
 const fitViewOptions = {
-  padding: 0.4,
+  padding: 0.2,
 };
 
-const FactoryMethod = (props) => {
+const AbstractFactoryMethod = (props) => {
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [hidden, setHidden] = useState([false, true, true, true, true, true, false, true, true]);
-  const popHidden = [false, true, false, false, false, true];
+  const [hidden, setHidden] = useState([false, false, false, false, false, false, false, false, false]);
+  const popHidden = [true, true, true, true, true, true];
 
   
-
   useEffect(() => {
     setNodes(nds => nds.map((node, i) => {  
       return {
@@ -42,12 +41,12 @@ const FactoryMethod = (props) => {
           onDelete: handleNodeDelete,
           addMethod: handleAddMethod,
           deleteMethod:handleDeleteMethod,
-          codeWritten: node.id === '0b' ? productCode : concreateCreatorCode,
+          // codeWritten: node.id === '0b' ? productCode : concreateCreatorCode,
           pop: popHidden[i],
         },
         hidden: hidden[i]
       };
-    }));
+    }),[]);
   
     setEdges(eds => eds.map((edge, i) => {
       return {
@@ -56,29 +55,6 @@ const FactoryMethod = (props) => {
       };
     }), []);
   });
-
-  const productCode = () => {
-    const factoryMethod = nodes.find(node => node.id === "0").data.methods[1];
-    const interfaceMethod = nodes.find(node => node.id === "0a").data.methods[0];
-    const interfaceClass = nodes.find(node => node.id === "0a").data.class_name;
-
-    return (
-      <p>
-        {interfaceClass} p = {factoryMethod}()
-        <br></br>
-        p.{interfaceMethod}()
-      </p>
-    )
-  };
-  
-  const concreateCreatorCode = (currID) => {
-    const concreteProduct = nodes.find(node => node.id === `${currID}a`).data.class_name;
-    return (
-      <p>
-          <b>return new</b> {concreteProduct}
-      </p>
-    )
-  };
 
   
   const handleClassNameChange = useCallback((id, event) => {
@@ -196,11 +172,11 @@ const FactoryMethod = (props) => {
     setNodes(nodes => nodes.filter(node => node.id !== id));
     setEdges((edges) => edges.filter((edge) => edge.source !== id && edge.target !== id));
 
-    setNodes(nodes => nodes.filter(node => node.id !== id+"a"));
-    setEdges((edges) => edges.filter((edge) => edge.source !== id+"a" && edge.target !== id+"a"));
+    // setNodes(nodes => nodes.filter(node => node.id !== id+"a"));
+    // setEdges((edges) => edges.filter((edge) => edge.source !== id+"a" && edge.target !== id+"a"));
 
-    setNodes(nodes => nodes.filter(node => node.id !== id+"b"));
-    setEdges((edges) => edges.filter((edge) => edge.source !== id+"b" && edge.target !== id+"b"));
+    // setNodes(nodes => nodes.filter(node => node.id !== id+"b"));
+    // setEdges((edges) => edges.filter((edge) => edge.source !== id+"b" && edge.target !== id+"b"));
   }, []);
 
   const { project } = useReactFlow();
@@ -276,7 +252,7 @@ const addProduct = (event) => {
         onConnectStart={onConnectStart}
         onConnectEnd={(event) => {
           onConnectEnd(event);
-          addProduct(event);
+          // addProduct(event);
         }}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
@@ -287,4 +263,4 @@ const addProduct = (event) => {
   );
 };
 
-export default FactoryMethod;
+export default AbstractFactoryMethod;

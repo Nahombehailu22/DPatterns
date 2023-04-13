@@ -11,15 +11,11 @@ const ClassNode = ({
     handles,
     title,
     description,
-    nameClass,
     nameAttribute,
-    nameMethod,
-    onDelete,
-    addMethod,
-    deleteMethod,
     deletable,
     pop,
     connectable,
+    handleChanges,
   },
   color1: backColor,
   color2: backColorMethod,
@@ -32,7 +28,7 @@ const ClassNode = ({
     <div className='text-updater-node' style={{background: backColor, color:"white", border: '1px solid black'}}>
       <div>
         {deletable && (
-          <button className="delete-button" onClick={() => onDelete(id)}>
+          <button className="delete-button" onClick={() => handleChanges("deleteNode", id)}>
             X
           </button>
         )}
@@ -45,7 +41,7 @@ const ClassNode = ({
             placeholder={class_name ? class_name : "Class Name"}
             value={class_name}
             onChange={(e) => {
-              nameClass(id, e);
+              handleChanges("className", id, e);
             }}
             style={{ backgroundColor: backColor, width: classWidth }}
           />
@@ -76,18 +72,18 @@ const ClassNode = ({
                   type="text"
                   placeholder="method"
                   value={method}
-                  onChange={(event) => nameMethod(id, idx, event)}
+                  onChange={(e) => handleChanges("changeMethodName", id, e, idx)}
                   style={{ backgroundColor: backColorMethod, width: methodWidth }}
                 />
                 <button type="button" 
                   style = {{ backgroundColor: backColorMethod }} 
-                  onClick={() => deleteMethod(id, idx)}
+                  onClick={(e) => handleChanges("deleteMethod", id, e, idx)}
                   > 
                   - 
                 </button>
             </div>
           ))}
-          <button type="button" style = {{ backgroundColor: backColor , borderRadius: '10px'}} onClick={() => addMethod(id)} > 
+          <button type="button" style = {{ backgroundColor: backColor , borderRadius: '10px'}} onClick={() => handleChanges("addMethod", id)} > 
             + Add method 
           </button>
         </div>

@@ -1,5 +1,5 @@
 import { MarkerType } from 'reactflow';
-import ButtonEdge from '../Components/ButtonEdge';
+import ButtonEdge from '../Components/DashedEdge';
 import ClassNode from '../Components/ClassNode';
 import GenericClassNode from '../Components/GenericClassNode';
 import CodeNode from '../Components/CodeNode';

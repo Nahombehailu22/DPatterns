@@ -1,5 +1,5 @@
 import { MarkerType } from 'reactflow';
-import ButtonEdge from '../Components/ButtonEdge';
+import ButtonEdge from '../Components/DashedEdge';
 import ClassNode from '../Components/ClassNode';
 import InterfaceNode from '../Components/InterfaceNode';
 import CodeNode from '../Components/CodeNode';
@@ -128,9 +128,10 @@ const initialEdges = [
     source: '0', 
     sourceHandle: 'd', 
     target: '1', 
-    type: 'buttonedge', 
+    type: 'smoothstep', 
     targetHandle: 'n',
-    markerStart: { type: MarkerType.Arrow }       
+    markerStart: { type: MarkerType.ArrowClosed }    
+
   },
   { 
     id: '0-2',
@@ -138,7 +139,7 @@ const initialEdges = [
     sourceHandle: 'd',
     target: '2', 
     targetHandle: 'n', 
-    type: 'buttonedge' 
+    type: 'smoothstep',  
   },
   { 
     id: 'e1-1a',
@@ -157,8 +158,8 @@ const initialEdges = [
     target: '1a', 
     type: 'buttonedge', 
     animated: 'true', 
-    targetHandle: 'n',   
-    markerStart: { type: MarkerType.Arrow }
+    targetHandle: 'n',
+    markerStart: { type: MarkerType.ArrowClosed }
   },
   { 
     id: 'e1a-3a',

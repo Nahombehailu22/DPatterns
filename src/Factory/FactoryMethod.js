@@ -45,7 +45,6 @@ const FactoryMethod = (props) => {
           class_name: node.data.class_name || "default",
           methods: node.data.methods || ["defaultMethod"],
           handleChanges: handleChanges,
-          nameMethod: handleMethodNameChange,
           codeWritten: node.id === '0b' ? productCode : concreteCreatorCode,
           pop: popHidden[i],
           
@@ -101,7 +100,7 @@ const FactoryMethod = (props) => {
         break;
       case "changeMethodName":
         handleMethodNameChange(id, index, event, nodes, setNodes)
-        {updateNodeMethods(nodes,setNodes)}
+        updateNodeMethods(nodes,setNodes)
         break;
 
       default:

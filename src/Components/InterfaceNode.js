@@ -3,7 +3,7 @@ import { Handle, Position } from 'reactflow';
 import InfoPopover from './Popover.js';
 
 function InterfaceNode({ id, data, color1, color2 }) {
-  const { class_name, methods, handles, title, description, nameClass, nameMethod, onDelete, addMethod, deleteMethod, deletable, pop } = data;
+  const { class_name, methods, handles, title, description, handleChanges, nameMethod, onDelete, addMethod, deleteMethod, deletable, pop } = data;
   const backColor = color1;
   const backColorMethod = color2;
 
@@ -36,7 +36,7 @@ function InterfaceNode({ id, data, color1, color2 }) {
             placeholder={class_name ? class_name : "Class Name"}
             value={class_name}
             onChange={(e) => {
-              nameClass(id, e);
+              handleChanges("className", id, e);
             }}
             style={{ backgroundColor: backColor, width: classWidth }}
           />
@@ -49,18 +49,18 @@ function InterfaceNode({ id, data, color1, color2 }) {
                 type="text"
                 placeholder="method"
                 value={method}
-                onChange={(event) => nameMethod(id, idx, event)}
+                onChange={(e) => handleChanges("changeMethodName", id, e, idx)}
                 style={{ backgroundColor: backColorMethod, width: methodWidth }}
               />
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 
-                onClick={() => deleteMethod(id, idx)}
+                onClick={(e) => handleChanges("deleteMethod", id, e, idx)}
                 > 
                 - 
               </button>
             </div>
           ))}
-          <button type="button" style = {{ backgroundColor: backColor }} onClick={() => addMethod(id)}> 
+          <button type="button" style = {{ backgroundColor: backColor }} onClick={() => handleChanges("addMethod", id)}> 
             + Add method 
           </button>
         </div>

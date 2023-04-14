@@ -55,19 +55,37 @@ export const handleDeleteMethod = (id, index, nodes, setNodes) => {
 
 export const handleMethodNameChange = (id, index, event, nodes, setNodes) => {
     setNodes(nodes => nodes.map(node => {
-            if (node.id === id) {
-                const newMethods = [...node.data.methods];
-                newMethods[index] = event.target.value;
-                
-                return {
-                    ...node,
-                    data: {
-                        ...node.data,
-                        methods: newMethods,
-                    },
-                };
+        if (node.id === id) {
+            const newMethods = [...node.data.methods];
+            newMethods[index] = event.target.value;
+            
+            return {
+                ...node,
+                data: {
+                    ...node.data,
+                    methods: newMethods,
+                },
+            };
+        }
+        return node;
+    }));
+  };
+  
+  export const handleAttributeNameChange = (id, index, event, nodes, setNodes) => {
+      setNodes(nodes => nodes.map(node => {
+        if (node.id === id) {
+          const newAtrributes = [...node.data.attributes];
+          newAtrributes[index] = event.target.value;
+          
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              attributes: newAtrributes
             }
-            return node;
-        }));
+          };
+        }
+        return node;
+      }));
     };
   

@@ -3,7 +3,7 @@ import { Handle, Position } from 'reactflow';
 import InfoPopover from './Popover.js';
 
 function GenericClassNode({ id, data, color1, color2 }) {
-  const { class_name, handles, title, description, nameClass, pop } = data;
+  const { class_name, handles, title, description, handleChanges, pop } = data;
   const backColor = color1;
   const backColorMethod = color2;
 
@@ -27,7 +27,7 @@ function GenericClassNode({ id, data, color1, color2 }) {
             placeholder={class_name ? class_name : "Class Name"}
             value={class_name}
             onChange={(e) => {
-              nameClass(id, e);
+              handleChanges("className", id, e);
             }}
             style={{ backgroundColor: backColor, width: classWidth }}
           />

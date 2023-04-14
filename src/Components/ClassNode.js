@@ -11,7 +11,6 @@ const ClassNode = ({
     handles,
     title,
     description,
-    nameAttribute,
     deletable,
     pop,
     connectable,
@@ -50,13 +49,13 @@ const ClassNode = ({
         <div style={{ backgroundColor: backColorMethod, borderBottom: `2px solid ${backColor}` }}> 
           {!attributes ? <label style ={{ fontSize: "20px"}}>...</label> :
             attributes.map((attribute, idx) => (
-              <div key={`method-${idx}`} style={{ margin: 0 }}>
+              <div key={idx} style={{ margin: 0 }}>
                 <label>-</label>
                 <input
                   type="text"
                   placeholder="instance"
                   value={attribute}
-                  onChange={(event) => nameAttribute(id, idx, event)}
+                  onChange={(e) => handleChanges("attributeName", id, e, idx)}
                   style={{ backgroundColor: backColorMethod, width: methodWidth }}
                 />
               </div>

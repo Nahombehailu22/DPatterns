@@ -25,6 +25,21 @@ export const updateNodeMethods = (nodes, setNodes) => {
           },
         }
       }
+      if(node.id.includes('a')) {
+        const newMethods = [...node.data.methods];
+        newMethods[0] = nodes.find(node => node.id === "0a").data.methods[0];
+
+        return {
+          ...node,
+          data: {
+            ...node.data,
+            methods: newMethods,
+          },
+        }
+      }
+
+
+
       return node;
     }))
           

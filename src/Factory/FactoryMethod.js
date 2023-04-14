@@ -5,18 +5,11 @@ import './index.css';
 import 'reactflow/dist/style.css';
 import '../Buttons.css';
 
-import OnConnectEnd from '../Components/AddNode';
+import OnConnectEnd from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './factoryMethodInit';
 import IncrementalHiddenButton from './HideUnhideNodes.js';
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../Interactivity/generalUtilities';
-import { addProduct, handleNodeDelete, updateNodeMethods } from '../Interactivity/factoryMethodUtilities';
-
-
-let concretePos = 1125;
-const getProductPosition = () => `${concretePos+=175}`;
-
-let id = 3;
-const getId = () => `${id++}`;
+import { handleNodeDelete, updateNodeMethods } from '../Interactivity/factoryMethodUtilities';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -122,7 +115,6 @@ const FactoryMethod = (props) => {
         onConnectStart={onConnectStart}
         onConnectEnd={(event) => {
           onConnectEnd(event);
-          addProduct(event, reactFlowWrapper, project, setNodes, setEdges, setHidden);
         }}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}

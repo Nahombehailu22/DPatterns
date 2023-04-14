@@ -32,7 +32,7 @@ const initialNodes = [
     data: { 
         class_name: 'ConcreteFactory1',
         methods: ['createProductA', 'createProductB'],
-        handles: [1, 1, 1, 1, 1, 1, 1, 1],
+        handles: [0, 0, 0, 1, 0, 1, 0, 0],
         title: "Concrete Factory",
         description: concreteFactoryDescription,
         deletable: false,
@@ -45,7 +45,7 @@ const initialNodes = [
     data: { 
         class_name: 'ConcreteFactory2',
         methods: ['createProductA', 'createProductB'],
-        handles: [1, 1, 1, 1, 1, 1, 1, 1],
+        handles: [0, 0, 0, 1, 1, 0, 0, 0],
         title: "Concrete Factory",
         description: concreteFactoryDescription,
         deletable: false,
@@ -59,7 +59,7 @@ const initialNodes = [
         class_name: 'Client',
         attributes: ['factory'],
         methods: ['Client', 'someOperation'],
-        handles: [1, 1, 1, 1, 1, 1, 1, 1],
+        handles: [0, 0, 0, 0, 0, 0, 0, 1],
         title: "Client",
         description: clientDescription,
         deletable: false,
@@ -71,7 +71,7 @@ const initialNodes = [
     type: 'genericInterface',
     data: { 
         class_name: 'AbstractProductA',
-        handles: [1, 1, 1, 1, 1, 1, 1, 1],
+        handles: [1, 1, 0, 0, 0, 0, 0, 0],
         title: "Abstract Product",
         description: abstractProductDescription,
     },
@@ -82,7 +82,7 @@ const initialNodes = [
     type: 'genericClass',
     data: { 
         class_name: 'ConcreteProductA1',
-        handles: [1, 1, 1, 1, 1, 1, 1, 1],
+        handles: [0, 0, 0, 0, 1, 1, 0, 0],
         title: "Concrete Product",
         description: concreteProductDescription,
     },
@@ -93,7 +93,7 @@ const initialNodes = [
     type: 'genericClass',
     data: { 
         class_name: 'ConcreteProductA2',
-        handles: [1, 1, 1, 1, 1, 1, 1, 1],
+        handles: [0, 0, 0, 0, 1, 1, 0, 0],
         title: "Concrete Product",
         description: concreteProductDescription,
     },
@@ -104,7 +104,7 @@ const initialNodes = [
     type: 'genericInterface',
     data: { 
         class_name: 'AbstractProductB',
-        handles: [1, 1, 1, 1, 1, 1, 1, 1],
+        handles: [1, 1, 0, 0, 0, 0, 0, 0],
         title: "Abstract Product",
         description: abstractProductDescription,
     },
@@ -115,7 +115,7 @@ const initialNodes = [
     type: 'genericClass',
     data: { 
         class_name: 'ConcreteProductB1',
-        handles: [1, 1, 1, 1, 1, 1, 1, 1],
+        handles: [0, 0, 0, 0, 1, 1, 0, 0],
         title: "Concrete Product",
         description: concreteProductDescription,
     },
@@ -126,7 +126,7 @@ const initialNodes = [
     type: 'genericClass',
     data: { 
         class_name: 'ConcreteProductB2',
-        handles: [1, 1, 1, 1, 1, 1, 1, 1],
+        handles: [0, 0, 0, 0, 1, 1, 0, 0],
         title: "Concrete Product",
         description: concreteProductDescription,
     },

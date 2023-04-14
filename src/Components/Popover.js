@@ -14,7 +14,7 @@ const InfoPopover = React.memo(props => {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    setHidden(!hidden);
+    // setHidden(!hidden);
   };
 
   const handleClose = () => {
@@ -22,7 +22,8 @@ const InfoPopover = React.memo(props => {
     setHidden(true);
   };
 
-  const open = Boolean(anchorEl) || !hidden
+  // const open = Boolean(anchorEl) || !hidden
+  const open = Boolean(anchorEl)
   const id = open ? 'simple-popover' : undefined;
 
   return (

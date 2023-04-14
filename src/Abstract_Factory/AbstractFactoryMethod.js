@@ -5,10 +5,11 @@ import './index.css';
 import 'reactflow/dist/style.css';
 import '../Buttons.css';
 
-import OnConnectEnd from '../Components/AddNode';
+import OnConnectEnd from '../Factory/AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../Interactivity/generalUtilities';
 import IncrementalHiddenButton from './HideUnhideNodes.js';
+import { updateNodeMethods } from '../Interactivity/abstractFactoryUtilities';
 
 const fitViewOptions = {
   padding: 0.2,
@@ -54,6 +55,10 @@ const AbstractFactoryMethod = (props) => {
         break;
       case "addMethod":
         handleAddMethod(id, nodes, setNodes)
+        if (id == '0'){
+          handleAddMethod("1", nodes, setNodes)
+          handleAddMethod("2", nodes, setNodes)
+        }
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
@@ -63,6 +68,7 @@ const AbstractFactoryMethod = (props) => {
       //   break;
       case "changeMethodName":
         handleMethodNameChange(id, index, event, nodes, setNodes)
+        updateNodeMethods(nodes, setNodes)
         break;
       case "attributeName":
         handleAttributeNameChange(id, index, event, nodes, setNodes)

@@ -26,7 +26,7 @@ const FactoryMethod = (props) => {
   const connectingNodeId = useRef(null);
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
   const onConnectStart = useCallback((_, { nodeId }) => connectingNodeId.current = nodeId, []);
-  const onConnectEnd = OnConnectEnd({ reactFlowWrapper, source:"0", project, setNodes, setEdges, setHidden });
+  const onConnectEnd = OnConnectEnd({ reactFlowWrapper, project, setNodes, setEdges, setHidden });
 
 
   useEffect(() => {

@@ -5,7 +5,7 @@ import './index.css';
 import 'reactflow/dist/style.css';
 import '../Buttons.css';
 
-import OnConnectEnd from '../Factory/AddNode';
+import { AddNodes } from '../Abstract_Factory/AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../Interactivity/generalUtilities';
 import IncrementalHiddenButton from './HideUnhideNodes.js';
@@ -15,6 +15,7 @@ const fitViewOptions = {
   padding: 0.2,
 };
 
+
 const AbstractFactoryMethod = (props) => {
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
@@ -22,6 +23,8 @@ const AbstractFactoryMethod = (props) => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [hidden, setHidden] = useState([false, false, false, false, false, false, false, false, false]);
   const popHidden = [true, true, true, true, true, true];
+
+  // const onConnectEnd = OnConnectEnd({ setNodes, setEdges });
 
   
   useEffect(() => {
@@ -59,13 +62,11 @@ const AbstractFactoryMethod = (props) => {
           handleAddMethod("1", nodes, setNodes)
           handleAddMethod("2", nodes, setNodes)
         }
+        AddNodes({ setNodes, setEdges })
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
         break;
-      // case "deleteNode":
-      //   handleNodeDelete(id, nodes, edges, setNodes, setEdges)
-      //   break;
       case "changeMethodName":
         handleMethodNameChange(id, index, event, nodes, setNodes)
         updateNodeMethods(nodes, setNodes)
@@ -80,10 +81,7 @@ const AbstractFactoryMethod = (props) => {
     }
   }, []);
 
-  const { project } = useReactFlow();
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
-  const onConnectStart = useCallback((_, { nodeId }) => connectingNodeId.current = nodeId, []);
-  const onConnectEnd = OnConnectEnd({ reactFlowWrapper, source:"0", project, setNodes, setEdges });
+
 
   return (
     <div className="wrapper" ref={reactFlowWrapper} style={{ height: 800 }}>
@@ -94,12 +92,6 @@ const AbstractFactoryMethod = (props) => {
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onConnectStart={onConnectStart}
-        onConnectEnd={(event) => {
-          onConnectEnd(event);
-          // addProduct(event);
-        }}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         fitView

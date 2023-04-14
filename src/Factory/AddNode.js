@@ -7,11 +7,12 @@ let id = 3;
 const getId = () => `${id++}`; 
 
 const OnConnectEnd = (props) => {
-  const { reactFlowWrapper, source, project, setNodes, setEdges, setHidden } = props;
+  const { reactFlowWrapper, project, setNodes, setEdges, setHidden } = props;
 
   const handleConnectEnd = useCallback((event) => {
       setHidden([false, false, false, false, false, false, false, false]);
       const targetIsPane = event.target.classList.contains('react-flow__pane');
+      
       if (targetIsPane) {
         const { top, left } = reactFlowWrapper.current.getBoundingClientRect();
         const id = getId();
@@ -60,7 +61,7 @@ const OnConnectEnd = (props) => {
           ...edges,
           {
             id,
-            source,
+            source: '0',
             sourceHandle: 'd',
             target: id,
             targetHandle: 'n',
@@ -93,7 +94,7 @@ const OnConnectEnd = (props) => {
         ]);
       }, 500);
       }
-    }, [project, reactFlowWrapper, setEdges, setNodes, source]);
+    }, [project, reactFlowWrapper, setEdges, setNodes]);
 
     return handleConnectEnd;
 };

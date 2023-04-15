@@ -16,11 +16,12 @@ export const handleClassNameChange = (id, event, nodes, setNodes) => {
   };
 
 
-export const handleAddMethod = (id, nodes, setNodes) => {
+export const handleAddMethod = (id, nodes, setNodes, methodName) => {
     setNodes(nodes => nodes.map(node => {
+      const nameMethod = methodName? methodName: "method";
       if (node.id === id) {
         const nextID = node.data.methods.length + 1;
-        const newMethods = [...node.data.methods, `method${nextID}`];
+        const newMethods = [...node.data.methods, `${nameMethod}${nextID}`];
         
         return {
           ...node,

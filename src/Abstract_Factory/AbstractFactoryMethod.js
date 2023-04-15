@@ -9,7 +9,7 @@ import { AddNodes } from '../Abstract_Factory/AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../Interactivity/generalUtilities';
 import IncrementalHiddenButton from './HideUnhideNodes.js';
-import { updateNodeMethods } from '../Interactivity/abstractFactoryUtilities';
+import { handleNodeDelete, updateNodeMethods } from '../Interactivity/abstractFactoryUtilities';
 
 const fitViewOptions = {
   padding: 0.2,
@@ -54,15 +54,18 @@ const AbstractFactoryMethod = (props) => {
         handleClassNameChange(id, event, nodes, setNodes)
         break;
       case "addMethod":
-        handleAddMethod(id, nodes, setNodes)
+        handleAddMethod(id, nodes, setNodes, "createProduct")
         if (id == '0'){
-          handleAddMethod("1", nodes, setNodes)
-          handleAddMethod("2", nodes, setNodes)
+          handleAddMethod("1", nodes, setNodes, "createProduct")
+          handleAddMethod("2", nodes, setNodes, "createProduct")
         }
         AddNodes({ setNodes, setEdges })
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
+        console.log(index)
+        updateNodeMethods(nodes, setNodes)
+        handleNodeDelete(index, nodes, edges, setNodes, setEdges)
         break;
       case "changeMethodName":
         handleMethodNameChange(id, index, event, nodes, setNodes)
@@ -83,7 +86,7 @@ const AbstractFactoryMethod = (props) => {
   return (
     <div className="wrapper" ref={reactFlowWrapper} style={{ height: 800 }}>
       <IncrementalHiddenButton hidden={hidden} setHidden={setHidden}/>
-      <Controls className="controls" />
+      <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow
         nodes={nodes}
         edges={edges}

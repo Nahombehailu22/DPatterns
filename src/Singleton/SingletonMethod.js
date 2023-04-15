@@ -96,7 +96,7 @@ const SingletonMethod = (props) => {
   return (
     <div className="wrapper" ref={reactFlowWrapper} style={{ height: 800 }}>
       <IncrementalHiddenButton hidden={hidden} setHidden={setHidden}/>
-      <Controls className="controls" />
+      <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -104,7 +104,6 @@ const SingletonMethod = (props) => {
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         onConnectStart={onConnectStart}
-
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         fitView

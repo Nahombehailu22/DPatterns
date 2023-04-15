@@ -24,13 +24,18 @@ const IncrementalHiddenButton = ({ hidden, setHidden }) => {
     }
   };
 
+  const unHideAll = () => {
+    setHidden([false, false, false, false, false, false, false, false, false]);
+    setStep(3);
+  };
+
   return (
     <div className="buttons">
       <button
         className="skip-button"
         type="button"
         onClick={toggleHidden}
-        style={{ zIndex: 10 }}
+        style={{ zIndex: 10, position: 'fixed', right: '90px', bottom: '20px' }}
       >
         {
           step === 0 ? "Next" :
@@ -38,6 +43,15 @@ const IncrementalHiddenButton = ({ hidden, setHidden }) => {
           step === 2 ? "Step 2" :
           "Start"
         }
+      </button>
+
+      <button
+        className="skip-button"
+        type="button"
+        onClick={unHideAll}
+        style={{ zIndex: 10, position: 'fixed', right: '10px', bottom: '20px' }}
+      >
+       Skip
       </button>
     </div>
   );

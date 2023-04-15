@@ -24,9 +24,6 @@ const AbstractFactoryMethod = (props) => {
   const [hidden, setHidden] = useState([false, false, false, false, false, false, false, false, false]);
   const popHidden = [true, true, true, true, true, true];
 
-  // const onConnectEnd = OnConnectEnd({ setNodes, setEdges });
-
-  
   useEffect(() => {
     setNodes(nds => nds.map((node, i) => {  
       return {

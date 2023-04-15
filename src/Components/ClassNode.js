@@ -85,10 +85,20 @@ const ClassNode = ({
           <button type="button" style = {{ backgroundColor: backColor , borderRadius: '10px'}} onClick={() => handleChanges("addMethod", id)} > 
             + Add method 
           </button>
+
         </div>
-          {handles[0] === 1 && <Handle type="source" position={Position.Top} id='u'/>}
-          {handles[1] === 1 && <Handle type="source" position={Position.Bottom} id="d"
-           style={connectable ? { backgroundColor: '#757575', width: "15px", height: '15px', borderRadius: '10px', bottom: '-5px'}: null}/>}
+          {handles[0] === 1 && 
+            <Handle type="source" position={Position.Top} id='u'/>
+            }
+          {handles[1] === 1 && 
+            <div>
+              <Handle type="source" position={Position.Bottom} id="d" />
+              {connectable && 
+              <button type="button" style = {{ backgroundColor: backColorMethod, position: 'relative', left: '50px',height: '20px' }} onClick={() => handleChanges("addClass")} > 
+                Add Class</button>}
+          </div>
+          }
+           
           {handles[2] === 1 && <Handle type="source" position={Position.Right} id="r" 
             style={{ top: 100}}/>}
           {handles[3] === 1 && <Handle type="source" position={Position.Left} id='l'/>}

@@ -1,11 +1,11 @@
-import React, { useCallback, useRef, useState, useEffect } from 'react';
-import ReactFlow, { useNodesState, useEdgesState, addEdge, useReactFlow, Controls } from 'reactflow';
+import React, { useCallback, useState, useEffect } from 'react';
+import ReactFlow, { useNodesState, useEdgesState, Controls } from 'reactflow';
 
 import './index.css';
 import 'reactflow/dist/style.css';
 import '../Buttons.css';
 
-import OnConnectEnd from './AddNode';
+import { AddNodes } from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './factoryMethodInit';
 import IncrementalHiddenButton from './HideUnhideNodes.js';
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../Interactivity/generalUtilities';
@@ -20,14 +20,6 @@ const FactoryMethod = (props) => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [hidden, setHidden] = useState([false, true, true, true, true, true, false, true, true]);
   const popHidden = [false, true, false, false, false, true];
-  
-  const { project } = useReactFlow();
-  const reactFlowWrapper = useRef(null);
-  const connectingNodeId = useRef(null);
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
-  const onConnectStart = useCallback((_, { nodeId }) => connectingNodeId.current = nodeId, []);
-  const onConnectEnd = OnConnectEnd({ reactFlowWrapper, project, setNodes, setEdges, setHidden });
-
 
   useEffect(() => {
     setNodes(nds => nds.map((node, i) => {  
@@ -95,6 +87,9 @@ const FactoryMethod = (props) => {
         handleMethodNameChange(id, index, event, nodes, setNodes)
         updateNodeMethods(nodes,setNodes)
         break;
+      case "addClass":
+        AddNodes({setNodes, setEdges, setHidden})
+        break;
 
       default:
         break;
@@ -103,19 +98,14 @@ const FactoryMethod = (props) => {
   }, []);
   
   return (
-    <div className="wrapper" ref={reactFlowWrapper} style={{ height: 800 }}>
+    <div className="wrapper" style={{ height: 800 }}>
       <IncrementalHiddenButton hidden={hidden} setHidden={setHidden}/>
-      <Controls className="controls" />
+      <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onConnectStart={onConnectStart}
-        onConnectEnd={(event) => {
-          onConnectEnd(event);
-        }}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         fitView

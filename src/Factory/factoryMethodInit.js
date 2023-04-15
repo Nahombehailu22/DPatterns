@@ -38,7 +38,7 @@ const initialNodes = [
         description: concreteCreatorDescription,
         deletable: false,
     },
-    position: { x: -100, y: 250 },
+    position: { x: -100, y: 280 },
   },
   {
     id: '2',
@@ -51,7 +51,7 @@ const initialNodes = [
         description: concreteCreatorDescription,
         deletable: false,
     },
-    position: { x: 100, y: 250 },
+    position: { x: 100, y: 280 },
   },
   {
     id: '0a',
@@ -108,7 +108,7 @@ const initialNodes = [
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
         connectedId: '1',
     },
-    position: { x: -100, y: 500 },
+    position: { x: -100, y: 510 },
   },
   {
     id: '2b',
@@ -117,7 +117,7 @@ const initialNodes = [
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
         connectedId: '2',
     },
-    position: { x: 100, y: 500 },
+    position: { x: 100, y: 510 },
   },
 ];
 

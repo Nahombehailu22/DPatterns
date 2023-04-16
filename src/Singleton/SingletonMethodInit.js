@@ -48,15 +48,6 @@ const initialNodes = [
 
 const initialEdges = [
   { 
-    id: 'e1-1a',
-    source: '1',  
-    target: '0', 
-    sourceHandle: 'r', 
-    type: 'straight', 
-    targetHandle: 'w',
-    markerEnd: { type: MarkerType.Arrow }, 
-  },
-  { 
     id: '1-1a',
     source: '0',  
     target: '0', 
@@ -65,7 +56,15 @@ const initialEdges = [
     targetHandle: 'e',
     markerEnd: { type: MarkerType.Arrow }, 
   },
-
+  { 
+    id: 'e1-1a',
+    source: '1',  
+    target: '0', 
+    sourceHandle: 'r', 
+    type: 'straight', 
+    targetHandle: 'w',
+    markerEnd: { type: MarkerType.Arrow }, 
+  },
   { 
     id: '0-2',
     source: '0',  

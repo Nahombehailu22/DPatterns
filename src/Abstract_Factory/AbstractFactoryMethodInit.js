@@ -59,7 +59,7 @@ const initialNodes = [
         class_name: 'Client',
         attributes: ['factory'],
         methods: ['Client', 'someOperation'],
-        handles: [0, 0, 0, 0, 0, 0, 0, 1],
+        handles: [0, 1, 0, 0, 0, 0, 0, 1],
         title: "Client",
         description: clientDescription,
         deletable: false,
@@ -70,12 +70,12 @@ const initialNodes = [
     id: '0a',
     type: 'genericInterface',
     data: { 
-        class_name: 'AbstractProductA',
+        class_name: 'ProductA',
         handles: [1, 1, 0, 0, 0, 0, 0, 0],
         title: "Abstract Product",
         description: abstractProductDescription,
     },
-    position: { x: -225, y: 60},
+    position: { x: -215, y: 60},
   },
   {
     id: '0a1',
@@ -103,12 +103,12 @@ const initialNodes = [
     id: '0b',
     type: 'genericInterface',
     data: { 
-        class_name: 'AbstractProductB',
+        class_name: 'ProductB',
         handles: [1, 1, 0, 0, 0, 0, 0, 0],
         title: "Abstract Product",
         description: abstractProductDescription,
     },
-    position: { x: -450, y: 60},
+    position: { x: -440, y: 60},
   },
   {
     id: '0b1',
@@ -132,8 +132,25 @@ const initialNodes = [
     },
     position: { x: -450, y: 240},
   },
+  {
+    id: 'c1',
+    type: 'code',
+    data: { 
+        handles: [0, 0, 0, 0, 1, 0, 0, 0],
+        connectedId: '0',
+    },
+    position: { x: 275, y: 250},
+  },
+  {
+    id: '2a',
+    type: 'code',
+    data: { 
+        handles: [0, 0, 0, 0, 0, 0, 1, 0],
+        connectedId: '2',
+    },
+    position: { x: -225, y: 360},
+  },
 ];
-
 
 const initialEdges = [
   { 
@@ -212,7 +229,7 @@ const initialEdges = [
     source: '0a', 
     sourceHandle: 'u', 
     target: '0a1', 
-    type: 'buttonedge', 
+    type: 'straight', 
     targetHandle: 's',
     markerStart: { type: MarkerType.ArrowClosed},
     animated: true,   
@@ -222,7 +239,7 @@ const initialEdges = [
     source: '0a', 
     sourceHandle: 'd', 
     target: '0a2', 
-    type: 'buttonedge', 
+    type: 'straight', 
     targetHandle: 'n',
     markerStart: { type: MarkerType.ArrowClosed},
     animated: true,   
@@ -232,7 +249,7 @@ const initialEdges = [
     source: '0b', 
     sourceHandle: 'u', 
     target: '0b1', 
-    type: 'buttonedge', 
+    type: 'straight',
     targetHandle: 's',
     markerStart: { type: MarkerType.ArrowClosed},
     animated: true,   
@@ -242,10 +259,28 @@ const initialEdges = [
     source: '0b', 
     sourceHandle: 'd', 
     target: '0b2', 
-    type: 'buttonedge', 
+    type: 'straight', 
     targetHandle: 'n',
     markerStart: { type: MarkerType.ArrowClosed},
     animated: true,   
+  },
+  { 
+    id: 'c-c1', 
+    source: 'c', 
+    sourceHandle: 'd', 
+    target: 'c1', 
+    type: 'straight', 
+    targetHandle: 'n',
+    animated: true,
+  },
+  { 
+    id: '2-2a', 
+    source: '2', 
+    sourceHandle: 'l', 
+    target: '2a', 
+    type: 'straight', 
+    targetHandle: 'e',
+    animated: true,
   },
   
 ];

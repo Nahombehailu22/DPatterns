@@ -9,8 +9,9 @@ import '../Patterns_CSS/demo.css';
 import { AddNodes } from '../Abstract_Factory/AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../Interactivity/generalUtilities';
-import IncrementalHiddenButton from './HideUnhideNodes.js';
 import { handleNodeDelete, updateNodeMethods } from '../Interactivity/abstractFactoryUtilities';
+import { edgeValues, stepValues } from './DemoSteps';
+import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 
 const fitViewOptions = {
   padding: 0.2,
@@ -18,12 +19,11 @@ const fitViewOptions = {
 
 
 const AbstractFactoryMethod = (props) => {
-  const reactFlowWrapper = useRef(null);
-  const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [hidden, setHidden] = useState([false,true, true, true, true, true, true, true, true, true]);
-  const [edgeHidden, setEdgeHidden] = useState([true, true, true, true, true, true, true, true, true, true, true]);
+  
+  const [hidden, setHidden] = useState(stepValues[stepValues.length - 1]);
+  const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [true, true, true, true, true, true];
 
   useEffect(() => {
@@ -35,6 +35,7 @@ const AbstractFactoryMethod = (props) => {
           class_name: node.data.class_name || "default",
           methods: node.data.methods || ["defaultMethod"],
           handleChanges: handleChanges,
+          codeWritten: node.id === "c1"? productCode: node.id === "2a" ? concreteFactoryCode: null,
           pop: popHidden[i],
           
         },
@@ -49,6 +50,27 @@ const AbstractFactoryMethod = (props) => {
       };
     }), []);
   });
+
+  const productCode = () => {
+    const productA = nodes.find(node => node.id === "0a").data.class_name;
+    const factory = nodes.find(node => node.id === "c").data.attributes[0];
+    const abstractFactoryA = nodes.find(node => node.id === "0").data.methods[0];
+
+    return (
+      <p>
+        {productA} pa = {factory}.{abstractFactoryA}()
+      </p>
+    )
+  };
+
+  const concreteFactoryCode = (currID) => {
+    const concreteProduct = nodes.find(node => node.id === `0a${currID}`).data.class_name;
+    return (
+      <p>
+          <b>return new</b> {concreteProduct}
+      </p>
+    )
+  };
   
   const handleChanges = useCallback((type, id, event, index) => {
     switch(type){
@@ -61,7 +83,7 @@ const AbstractFactoryMethod = (props) => {
           handleAddMethod("1", nodes, setNodes, "createProduct")
           handleAddMethod("2", nodes, setNodes, "createProduct")
         }
-        AddNodes({ setNodes, setEdges })
+        AddNodes({ setNodes, setEdges, setHidden, setEdgeHidden })
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
@@ -84,10 +106,9 @@ const AbstractFactoryMethod = (props) => {
   }, []);
 
 
-
   return (
-    <div className="wrapper" ref={reactFlowWrapper} style={{ height: 800 }}>
-      <IncrementalHiddenButton setHidden={setHidden} setEdgeHidden={setEdgeHidden}/>
+    <div className="wrapper" style={{ height: 800 }}>
+      <IncrementalHiddenButton stepValues={stepValues} setHidden={setHidden} edgeValues={edgeValues} setEdgeHidden={setEdgeHidden}/>
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow
         nodes={nodes}

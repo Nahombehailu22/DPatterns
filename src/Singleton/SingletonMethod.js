@@ -6,19 +6,20 @@ import 'reactflow/dist/style.css';
 import '../Buttons.css';
 
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './SingletonMethodInit';
-import IncrementalHiddenButton from './HideUnhideNodes.js';
+import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../Interactivity/generalUtilities';
+import { stepValues, edgeValues } from './DemoSteps';
 
 const fitViewOptions = {
   padding: 1,
 };
 
 const SingletonMethod = (props) => {
-  const reactFlowWrapper = useRef(null);
-  const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [hidden, setHidden] = useState([false, true, false]);
+
+  const [hidden, setHidden] = useState(stepValues[stepValues.length - 1]);
+  const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [false, false];
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const SingletonMethod = (props) => {
     setEdges(eds => eds.map((edge, i) => {
       return {
         ...edge,
-        hidden: hidden[i + 1]
+        hidden: edgeHidden[i]
       };
     }));
   });
@@ -88,22 +89,16 @@ const SingletonMethod = (props) => {
   
   }, []);
 
-  const { project } = useReactFlow();
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
-  const onConnectStart = useCallback((_, { nodeId }) => connectingNodeId.current = nodeId, []);
-
-
+ 
   return (
-    <div className="wrapper" ref={reactFlowWrapper} style={{ height: 800 }}>
-      <IncrementalHiddenButton hidden={hidden} setHidden={setHidden}/>
+    <div className="wrapper" style={{ height: 800 }}>
+      <IncrementalHiddenButton stepValues={stepValues} setHidden={setHidden} edgeValues={edgeValues} setEdgeHidden={setEdgeHidden}/>
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow
         nodes={nodes}
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        onConnectStart={onConnectStart}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         fitView

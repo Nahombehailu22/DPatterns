@@ -7,8 +7,9 @@ const getPos = () => (currPos -= 225)
 let id = 67;
 const getId = () => String.fromCharCode(id++);
 
-export const AddNodes = ({setNodes, setEdges, setHidden }) => {
-// setHidden([false, false, false, false, false, false, false, false]);
+export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden }) => {
+  setHidden([false, false, false, false, false, false, false, false, false, false, false]);
+  setEdgeHidden([false, false, false, false, false, false, false, false, false, false, false, false]);
 
   const id = getId();
   const idLower = id.toLowerCase();
@@ -17,11 +18,11 @@ export const AddNodes = ({setNodes, setEdges, setHidden }) => {
       id: `0${idLower}`,
       type: 'genericInterface',
       data: { 
-          class_name: `AbstractProduct${id}`,
+          class_name: `Product${id}`,
           handles: [1, 1, 0, 0, 0, 0, 0, 0],
           title: "Abstract Product",
       },
-      position: { x: currPos, y: 60},
+      position: { x: currPos+10, y: 60},
     };
 
   const newNode1 = {
@@ -75,7 +76,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden }) => {
       source: `0${idLower}`,
       sourceHandle: 'u', 
       target: `0${idLower}1`, 
-      type: 'buttonedge', 
+      type: 'straight', 
       targetHandle: 's',
       markerStart: { type: MarkerType.ArrowClosed},
       animated: true,   
@@ -85,7 +86,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden }) => {
       source: `0${idLower}`,
       sourceHandle: 'd', 
       target: `0${idLower}2`,  
-      type: 'buttonedge', 
+      type: 'straight', 
       targetHandle: 'n',
       markerStart: { type: MarkerType.ArrowClosed},
       animated: true,   

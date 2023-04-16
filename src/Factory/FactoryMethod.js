@@ -7,9 +7,10 @@ import '../Buttons.css';
 
 import { AddNodes } from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './factoryMethodInit';
-import IncrementalHiddenButton from './HideUnhideNodes.js';
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../Interactivity/generalUtilities';
 import { handleNodeDelete, updateNodeMethods } from '../Interactivity/factoryMethodUtilities';
+import { stepValues, edgeValues } from './DemoSteps';
+import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -18,7 +19,9 @@ const fitViewOptions = {
 const FactoryMethod = (props) => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [hidden, setHidden] = useState([false, true, true, true, true, true, false, true, true]);
+
+  const [hidden, setHidden] = useState(stepValues[stepValues.length - 1]);
+  const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [false, true, false, false, false, true];
 
   useEffect(() => {
@@ -41,7 +44,7 @@ const FactoryMethod = (props) => {
     setEdges(eds => eds.map((edge, i) => {
       return {
         ...edge,
-        hidden: hidden[i + 1]
+        hidden: edgeHidden[i]
       };
     }), []);
   });
@@ -99,7 +102,7 @@ const FactoryMethod = (props) => {
   
   return (
     <div className="wrapper" style={{ height: 800 }}>
-      <IncrementalHiddenButton hidden={hidden} setHidden={setHidden}/>
+      <IncrementalHiddenButton stepValues= {stepValues} setHidden={setHidden} edgeValues={edgeValues} setEdgeHidden={setEdgeHidden}/>
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow
         nodes={nodes}

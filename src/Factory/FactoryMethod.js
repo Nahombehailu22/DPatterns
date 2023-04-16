@@ -91,7 +91,7 @@ const FactoryMethod = (props) => {
         updateNodeMethods(nodes,setNodes)
         break;
       case "addClass":
-        AddNodes({setNodes, setEdges, setHidden})
+        AddNodes({setNodes, setEdges, setHidden, setEdgeHidden})
         break;
 
       default:

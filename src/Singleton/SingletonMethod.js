@@ -65,7 +65,7 @@ const SingletonMethod = (props) => {
 
   const handleChanges = useCallback((type, id, event, index) => {
 
-    if (id == "0"){
+    if (id === "0"){
       switch(type){
         case "className":
           handleClassNameChange(id, event, nodes, setNodes)

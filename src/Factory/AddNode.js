@@ -11,9 +11,10 @@ const getProductPosition = () => (concretePos+=175);
 const getCodePos = () => (codePos -= 200);
 
 
-export const AddNodes = ({setNodes, setEdges, setHidden }) => {
-
-      setHidden([false, false, false, false, false, false, false, false]);
+export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden }) => {
+      setHidden([false, false, false, false, false, false, false, false, false]);
+      setEdgeHidden([false, false, false, false, false, false, false, false, false]);
+ 
       const id = getId();
       const creatorPos = getCreatorPos();
       const concretePos = getProductPosition();

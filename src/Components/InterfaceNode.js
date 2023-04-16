@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
 import InfoPopover from './Popover.js';
+import { motion } from 'framer-motion';
 
 function InterfaceNode({ id, data, color1, color2 }) {
   const { class_name, methods, handles, title, description, handleChanges, nameMethod, onDelete, addMethod, deleteMethod, deletable, pop } = data;
@@ -11,8 +12,39 @@ function InterfaceNode({ id, data, color1, color2 }) {
   const classWidth = class_name.length * 3 + 70;
   const methodWidth = methods.reduce((acc, str) => Math.max(acc, str.length), 0) * 3 + 70;
 
+  const container = {
+    hidden: {opacity: 0, scale: 0.5},
+    show: {
+      opacity: 1,
+      scale: 1,
+      transition:{
+        duration: 1.5,
+        ease: [0, 0.71, 0.2, 1.01],
+        scale: {
+          type: "spring",
+          damping: 5,
+          stiffness: 100,
+          restDelta: 0.001
+        }
+      }
+    },
+    whileHover: {
+      scale: 1.2,
+      transition: { duration: 1 },
+    }
+    
+  }
+
   return (
-    <div className='text-updater-node' style={{background: backColor, color:"white"}}>
+    <div className='text-updater-node' >
+    <motion.div
+      variants={container}
+      initial="hidden"
+      animate="show"
+      whileHover="whileHover"
+
+      className='text-updater-node' 
+      style={{background: backColor, color:"white"}}>
       <div>
         {deletable && (
           <button className="delete-button" onClick={() => onDelete(id)}>
@@ -64,6 +96,9 @@ function InterfaceNode({ id, data, color1, color2 }) {
             + Add method 
           </button>
         </div>
+        </div>
+        </motion.div>
+        <div>
             {['u', 'd', 'r', 'l', 'n', 's', 'e', 'w'].map((id, index) => (
               handles[index] === 1 && (
                 <Handle 
@@ -77,7 +112,9 @@ function InterfaceNode({ id, data, color1, color2 }) {
                 />
               )
             ))}
-        </div>
+          </div>
+        
+    
     </div>
   );
   

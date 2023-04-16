@@ -1,7 +1,7 @@
 import React from 'react';
 import { getSmoothStepPath, ReactFlow } from 'reactflow';
 
-const foreignObjectSize = 40;
+
 
 export default function CustomEdge({
   id,

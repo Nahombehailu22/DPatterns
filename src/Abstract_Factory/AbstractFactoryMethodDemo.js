@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import './AbstractFactoryMethodDemo.css';
+// import './AbstractFactoryMethodDemo.css';
 
 const AbstractFactoryMethodDemo = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge, useReactFlow, Controls } from 'reactflow';
 
-import './index.css';
+import '../Patterns_CSS/index.css';
 import 'reactflow/dist/style.css';
 import '../Buttons.css';
 

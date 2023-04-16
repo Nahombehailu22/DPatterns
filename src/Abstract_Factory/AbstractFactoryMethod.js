@@ -1,9 +1,10 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge, useReactFlow, Controls } from 'reactflow';
 
-import './index.css';
+import '../Patterns_CSS/index.css';
 import 'reactflow/dist/style.css';
 import '../Buttons.css';
+import '../Patterns_CSS/demo.css';
 
 import { AddNodes } from '../Abstract_Factory/AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';

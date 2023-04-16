@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Typography from '@mui/material/Typography';
-import './FactoryMethodDemo.css';
 import { Link } from 'react-router-dom';
+
+import '../Patterns_CSS/demo.css';
 
 const FactoryMethodDemo = () => {
   return (

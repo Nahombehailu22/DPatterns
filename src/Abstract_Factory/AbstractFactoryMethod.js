@@ -21,7 +21,8 @@ const AbstractFactoryMethod = (props) => {
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [hidden, setHidden] = useState([false, false, false, false, false, false, false, false, false]);
+  const [hidden, setHidden] = useState([false,true, true, true, true, true, true, true, true, true]);
+  const [edgeHidden, setEdgeHidden] = useState([true, true, true, true, true, true, true, true, true, true, true]);
   const popHidden = [true, true, true, true, true, true];
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const AbstractFactoryMethod = (props) => {
     setEdges(eds => eds.map((edge, i) => {
       return {
         ...edge,
-        hidden: hidden[i + 1]
+        hidden: edgeHidden[i]
       };
     }), []);
   });
@@ -85,7 +86,7 @@ const AbstractFactoryMethod = (props) => {
 
   return (
     <div className="wrapper" ref={reactFlowWrapper} style={{ height: 800 }}>
-      <IncrementalHiddenButton hidden={hidden} setHidden={setHidden}/>
+      <IncrementalHiddenButton setHidden={setHidden} setEdgeHidden={setEdgeHidden}/>
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow
         nodes={nodes}

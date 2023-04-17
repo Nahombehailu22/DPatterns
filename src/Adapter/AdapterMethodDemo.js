@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 import '../Patterns_CSS/demo.css';
 
-const SingletonMethodDemo = () => {
+const AdapterMethodDemo = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -19,27 +19,31 @@ const SingletonMethodDemo = () => {
         className="box"
       >
         <Typography variant="h5" color="white">
-          Welcome to the Singleton Method Design Pattern
+          Welcome to the Adapter Method Design Pattern.
         </Typography>
         <Typography variant="subtitle1" color="white">
           Here's what you need to know:
         </Typography>
-        <ul>
-          <li>The Singleton Method pattern involves creating a single instance of a class that can be used throughout the system.</li>
-          <li>It ensures that only one instance of the class is created and provides a global point of access to it.</li>
-          <li>The Singleton Method pattern allows you to control object creation and ensure that only one instance of the class exists.</li>
-          <li>The Singleton Method pattern is especially useful for objects that are expensive to create or need to be accessed from different parts of the system.</li>
-        </ul>
+        <Typography>
+          <ul>
+          <li>The Adapter Method pattern allows objects with incompatible interfaces to work together.</li>
+          <li>The pattern uses an adapter class as a wrapper to translate requests from one class to another.</li>
+          <li>The Adapter Method pattern is useful when an existing class needs to collaborate with other classes with incompatible interfaces.</li>
+          <li>It is also useful when it's too costly or impossible to modify the interface of an existing class.</li>
+          </ul>
+        </Typography>
         <Typography variant="subtitle1" color="white">
           Here's how it works:
         </Typography>
+        <Typography>
         <ol>
-          <li>Create a Singleton class with a private constructor that ensures no other instance of the class can be created.</li>
-          <li>Create a public static method that returns the single instance of the class.</li>
-          <li>Use the static method to access the single instance of the class throughout your system.</li>
+          <li>Create an adapter class that implements the interface required by the client.</li>
+          <li>Within the adapter class, translate requests from the existing class to be compatible with the client's interface.</li>
+          <li>The existing class sends requests to the adapter class, which in turn forwards them to the client.</li>
         </ol>
-        <Link to="/singletonmethod">
-          <button
+        </Typography>
+        <Link to="/adaptermethod">
+          <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             style={{
@@ -53,11 +57,11 @@ const SingletonMethodDemo = () => {
             }}
           >
             Next
-          </button>
-        </Link>
+          </motion.button> 
+        </Link>       
       </motion.div>
     </motion.div>
   );
 };
 
-export default SingletonMethodDemo;
+export default AdapterMethodDemo;

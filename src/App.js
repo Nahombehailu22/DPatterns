@@ -8,8 +8,10 @@ import AbstractFactoryMethod from './Abstract_Factory/AbstractFactoryMethod.js';
 import AbstractFactoryMethodDemo from './Abstract_Factory/AbstractFactoryMethodDemo.js';
 import SingletonMethod from './Singleton/SingletonMethod';
 import SingletonMethodDemo from './Singleton/SingletonMethodDemo';
-import "./index.css";
+import AdapterMethodDemo from './Adapter/AdapterMethodDemo.js';
 
+import "./index.css";
+import AdapterMethod from './Adapter/AdapterMethod.js';
 
 function App() {
  
@@ -26,6 +28,9 @@ function App() {
           
           <Route path="/singletonmethoddemo" component={SingletonMethodDemo} />
           <Route path="/singletonmethod" component={SingletonMethod} />
+       
+          <Route path="/adaptermethoddemo" component={AdapterMethodDemo} />
+          <Route path="/adaptermethod" component={AdapterMethod} />
         </Switch>
       </Router>
     </ReactFlowProvider>

@@ -12,6 +12,7 @@ import AdapterMethodDemo from './Adapter/AdapterMethodDemo.js';
 
 import "./index.css";
 import AdapterMethod from './Adapter/AdapterMethod.js';
+import ObserverMethod from './Observer/ObserverMethod.js';
 
 function App() {
  
@@ -28,6 +29,9 @@ function App() {
           
           <Route path="/singletonmethoddemo" component={SingletonMethodDemo} />
           <Route path="/singletonmethod" component={SingletonMethod} />
+
+          {/* <Route path="/singletonmethoddemo" component={SingletonMethodDem} /> */}
+          <Route path="/observermethod" component={ObserverMethod} />
        
           <Route path="/adaptermethoddemo" component={AdapterMethodDemo} />
           <Route path="/adaptermethod" component={AdapterMethod} />

@@ -4,7 +4,7 @@ import InfoPopover from './Popover.js';
 import { motion } from 'framer-motion';
 
 function InterfaceNode({ id, data, color1, color2 }) {
-  const { class_name, methods, handles, title, description, handleChanges, nameMethod, onDelete, addMethod, deleteMethod, deletable, pop } = data;
+  const { class_name, methods, handles, title, description, handleChanges, connectable, onDelete, deleteMethod, deletable, pop } = data;
   const backColor = color1;
   const backColorMethod = color2;
 
@@ -95,6 +95,10 @@ function InterfaceNode({ id, data, color1, color2 }) {
           <button type="button" style = {{ backgroundColor: backColor }} onClick={() => handleChanges("addMethod", id)}> 
             + Add method 
           </button>
+          <br></br>
+          {connectable && 
+              <button type="button" style = {{ backgroundColor: backColor, position: 'relative', left: '50px',height: '20px' }} onClick={() => handleChanges("addClass")} > 
+                Add Class</button>}
         </div>
         </div>
         </motion.div>

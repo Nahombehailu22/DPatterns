@@ -21,7 +21,7 @@ const ClassNode = ({
   color2: backColorMethod,
 }) => {
 
-  const classWidth = class_name.length * 3 + 70;
+  const classWidth = class_name.length * 3 + 78;
   const methodWidth = methods.reduce((acc, str) => Math.max(acc, str.length), 0) * 3 + 70;
 
   const container = {

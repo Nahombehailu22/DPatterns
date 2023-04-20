@@ -48,7 +48,7 @@ const ClassNode = ({
       whileHover="whileHover"
 
       className='text-updater-node' 
-      style={{background: backColor, color:"white", border: '1px solid black'}}>
+      style={{background: backColor, color:"white"}}>
       <div>
         {deletable && (
           <button className="delete-button" onClick={() => handleChanges("deleteNode", id)}>

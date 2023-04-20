@@ -20,7 +20,7 @@ const initialNodes = [
             class_name: 'Publisher',
             attributes:['subscribers', 'mainState'],
             methods: ['subscribe','unsubscribe', 'notifySubscribers','mainBusinessLogic'],
-            handles: [0, 1, 1, 0, 0, 0, 0, 0],
+            handles: [0, 1, 1, 1, 0, 0, 0, 0],
             title: "Publisher",
             description: publisherDescription,
             deletable: false,
@@ -74,14 +74,39 @@ const initialNodes = [
       type: 'client',
       data: { 
           class_name: 'Client',
-          handles: [0, 0, 0, 0, 1],
+          handles: [0, 0, 0, 1, 1],
           title: "Client",
           description: clientDescription,
       },
       position: { x: 0, y: 350},
-    }
-    
-
+    },
+    {
+        id: '0c',
+        type: 'code',
+        data: { 
+            handles: [0, 0, 0, 0, 0, 0, 1, 0],
+            connectedId: '0',
+        },
+        position: { x: -250, y: 100 },
+      },
+      {
+        id: '0c2',
+        type: 'code',
+        data: { 
+            handles: [0, 0, 0, 0, 0, 0, 1, 0],
+            connectedId: '0',
+        },
+        position: { x: -250, y: 200 },
+      },
+      {
+        id: 'cc',
+        type: 'code',
+        data: { 
+            handles: [0, 0, 0, 0, 0, 0, 1, 0],
+            connectedId: '0',
+        },
+        position: { x: -250, y: 375 },
+      },
 ]
 
 const initialEdges = [
@@ -127,6 +152,36 @@ const initialEdges = [
         targetHandle: 'n',
         markerStart: { type: MarkerType.Arrow }    
     
+    },
+    { 
+        id: '0-0c', 
+        source: '0', 
+        sourceHandle: 'l', 
+        target: '0c', 
+        type: 'straight',  
+        targetHandle: 'e', 
+        animated: true
+    
+    },
+    { 
+        id: '0-0c2', 
+        source: '0', 
+        sourceHandle: 'l', 
+        target: '0c2', 
+        type: 'straight',  
+        targetHandle: 'e', 
+        animated: true
+    
+    },
+    { 
+        id: 'c-cc', 
+        source: 'c', 
+        sourceHandle: 'l', 
+        target: 'cc', 
+        type: 'straight',  
+        targetHandle: 'e', 
+        animated: true
+    
     }
 ]
 
@@ -149,7 +204,13 @@ const nodeTypes = {
         color1={'#009688'}
         color2={'#4DB6AC'}
         />
-    )
+    ),
+    code: (props) => (
+        <CodeNode
+          {...props}
+          color1={'#757575'}
+          color2={'#BDBDBD'}
+        />),
 }
 
 

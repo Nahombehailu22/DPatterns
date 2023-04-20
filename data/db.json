@@ -156,6 +156,14 @@
                 "description": "",
                 "category": "creational",  
                 "image": "/images/builder.png"
+        },
+        
+        {
+                "id": 22,
+                "name": "Abstract Factory Method",  
+                "description": "",
+                "category": "creational", 
+                "image": "/images/abstract_factory.png"
         }
 
         

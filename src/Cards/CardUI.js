@@ -24,7 +24,8 @@ const Card = ({ category, searchQuery }) => {
                     <div className="card text-center col-md-3 m-3 bg-dark" key={pattern.id}>
                         <Link to={pattern.name === "Factory Method" ? "/factorymethoddemo" :
                                 pattern.name === "Singleton Method" ? "/singletonmethoddemo" :
-                                pattern.name === "Adapter Method" ? "/adaptermethoddemo" : 
+                                pattern.name === "Adapter Method" ? "/adaptermethoddemo" :
+                                pattern.name === "Abstract Factory Method" ? "/abstractfactorymethoddemo" : 
                         '#'} style = {{textDecoration: 'none'}}>
                         <div className="overflow" >
                             <img className='card-img-top' src={pattern.image} />

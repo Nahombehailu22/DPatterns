@@ -97,7 +97,7 @@ function InterfaceNode({ id, data, color1, color2 }) {
           </button>
           <br></br>
           {connectable && 
-              <button type="button" style = {{ backgroundColor: backColor, position: 'relative', left: '50px',height: '20px' }} onClick={() => handleChanges("addClass")} > 
+              <button type="button" style = {{ backgroundColor: backColor, position: 'relative', left: '50px',height: '20px' }} onClick={() => handleChanges("addClass", id)} > 
                 Add Class</button>}
         </div>
         </div>

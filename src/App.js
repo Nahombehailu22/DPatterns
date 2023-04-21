@@ -14,6 +14,8 @@ import "./index.css";
 import AdapterMethod from './Adapter/AdapterMethod.js';
 import ObserverMethod from './Observer/ObserverMethod.js';
 import ObserverMethodDemo from './Observer/ObserverMethodDemo.js';
+import BridgeMethodDemo from './Bridge/BridgeMethodDemo.js';
+import BridgeMethod from './Bridge/BridgeMethod.js';
 
 function App() {
  
@@ -36,6 +38,9 @@ function App() {
        
           <Route path="/adaptermethoddemo" component={AdapterMethodDemo} />
           <Route path="/adaptermethod" component={AdapterMethod} />
+
+          <Route path="/bridgemethoddemo" component={BridgeMethodDemo} />
+          <Route path="/bridgemethod" component={BridgeMethod} />
         </Switch>
       </Router>
     </ReactFlowProvider>

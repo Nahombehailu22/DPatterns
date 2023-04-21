@@ -111,7 +111,7 @@ const ClassNode = ({
           </button>
           <br></br>
           {connectable && 
-              <button type="button" style = {{ backgroundColor: backColor, position: 'relative', left: '50px',height: '20px' }} onClick={() => handleChanges("addClass")} > 
+              <button type="button" style = {{ backgroundColor: backColor, position: 'relative', left: '50px',height: '20px' }} onClick={() => handleChanges("addClass",id)} > 
                 Add Class</button>}
           </div>
         </div>

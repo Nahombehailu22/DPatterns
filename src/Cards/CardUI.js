@@ -26,6 +26,7 @@ const Card = ({ category, searchQuery }) => {
                                 pattern.name === "Singleton Method" ? "/singletonmethoddemo" :
                                 pattern.name === "Adapter Method" ? "/adaptermethoddemo" :
                                 pattern.name === "Abstract Factory Method" ? "/abstractfactorymethoddemo" : 
+                                pattern.name === "Observer Method" ? "/observermethoddemo" :
                         '#'} style = {{textDecoration: 'none'}}>
                         <div className="overflow" >
                             <img className='card-img-top' src={pattern.image} />

@@ -10,7 +10,7 @@ import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './BridgeMethodIn
 import { handleAddMethod, handleAttributeNameChange, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
-import { handleNodeDelete } from '../Interactivity/bridgeMethodUtilities';
+import { handleNodeDelete, updateNodeMethods } from '../Interactivity/bridgeMethodUtilities';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -78,6 +78,7 @@ const BridgeMethod = (props) => {
         break;
       case "addMethod":
         handleAddMethod(id, nodes, setNodes)
+        updateNodeMethods(nodes, setNodes)
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
@@ -87,7 +88,7 @@ const BridgeMethod = (props) => {
         break;
       case "changeMethodName":
         handleMethodNameChange(id, index, event, nodes, setNodes)
-        // updateNodeMethods(nodes,setNodes)
+        updateNodeMethods(nodes, setNodes)
         break;
       case "addClass":
         AddNodes({id, setNodes, setEdges, setHidden, setEdgeHidden})

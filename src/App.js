@@ -16,6 +16,8 @@ import ObserverMethod from './Observer/ObserverMethod.js';
 import ObserverMethodDemo from './Observer/ObserverMethodDemo.js';
 import BridgeMethodDemo from './Bridge/BridgeMethodDemo.js';
 import BridgeMethod from './Bridge/BridgeMethod.js';
+import StrategyMethod from './Strategy/StrategyMethod.js';
+import StrategyMethodDemo from './Strategy/StrategyMethodDemo.js';
 
 function App() {
  
@@ -35,7 +37,10 @@ function App() {
 
           <Route path="/observermethoddemo" component={ObserverMethodDemo} />
           <Route path="/observermethod" component={ObserverMethod} />
-       
+          
+          <Route path="/strategymethoddemo" component={StrategyMethodDemo} />
+          <Route path="/strategymethod" component={StrategyMethod} />
+
           <Route path="/adaptermethoddemo" component={AdapterMethodDemo} />
           <Route path="/adaptermethod" component={AdapterMethod} />
 

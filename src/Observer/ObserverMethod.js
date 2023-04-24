@@ -6,7 +6,7 @@ import 'reactflow/dist/style.css';
 import '../Buttons.css';
 
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './ObserverMethodInit';
-import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../Interactivity/generalUtilities';
+import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
@@ -48,34 +48,6 @@ const ObserverMethod = (props) => {
       };
     }), []);
   });
-
-    const findMissing = (nodes) => {
-      let nums = []
-      nodes.map(node => {
-        if(node.id[node.id.length -1] === "a"){
-          nums.push(node.id.slice(0, node.id.length-1))
-        }
-      })
-
-      for (let i = 0; i < nums.length; i++) {
-          while (nums[i] !== i + 1 && nums[i] > 0) {
-              const idx = nums[i] - 1;
-              if (nums[i] > nums.length || nums[idx] === nums[i]) {
-                  nums[i] = -1;
-              } else {
-                  [nums[nums[i]-1 ], nums[i]] = [nums[i], nums[nums[i]-1]];
-              }
-          }
-      }
-
-      for (let i = 0; i < nums.length; i++) {
-          if (nums[i] <= 0) {
-              return i + 1;
-          }
-      }
-
-      return nums.length + 1;
-  }
 
   const publisherCode1 = () => {
     const publisherNode = nodes.find(node => node.id === "0");
@@ -143,7 +115,11 @@ const ObserverMethod = (props) => {
             handleAttributeNameChange(id, index, event, nodes, setNodes)
             break;
         case "addClass":
-            const newID = findMissing(nodes)
+            const nums = nodes
+            .filter(node => node.id.endsWith('a'))
+            .map(node => parseInt(node.id.slice(0, -1)));
+
+            const newID = findMissingID(nums)
             AddNodes({setNodes, setEdges, setHidden, setEdgeHidden, newID})
             updateNodeMethods(nodes,setNodes)
             break;

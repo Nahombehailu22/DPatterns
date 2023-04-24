@@ -166,3 +166,24 @@ export const handleAttributeNameChange = (id, idAttribute, event, nodes, setNode
   //     }));
   //   };
   
+
+  export const findMissingID = (nums) => {
+    for (let i = 0; i < nums.length; i++) {
+        while (nums[i] !== i + 1 && nums[i] > 0) {
+            const idx = nums[i] - 1;
+            if (nums[i] > nums.length || nums[idx] === nums[i]) {
+                nums[i] = -1;
+            } else {
+                [nums[nums[i]-1 ], nums[i]] = [nums[i], nums[nums[i]-1]];
+            }
+        }
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] <= 0) {
+            return i + 1;
+        }
+    }
+
+    return nums.length + 1;
+}

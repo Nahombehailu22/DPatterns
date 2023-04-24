@@ -8,7 +8,7 @@ import '../Patterns_CSS/demo.css';
 
 import { AddNodes } from '../Abstract_Factory/AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
-import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../Interactivity/generalUtilities';
+import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../Interactivity/generalUtilities';
 import { handleNodeDelete, updateNodeMethods } from '../Interactivity/abstractFactoryUtilities';
 import { edgeValues, stepValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
@@ -26,28 +26,6 @@ const AbstractFactoryMethod = (props) => {
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [true, true, true, true, true, true];
 
-  const findMissing = (methods) => {
-    const nums = methods.map(method => method.id.charCodeAt() - 65);
-
-    for (let i = 0; i < nums.length; i++) {
-        while (nums[i] !== i + 1 && nums[i] > 0) {
-            const idx = nums[i] - 1;
-            if (nums[i] > nums.length || nums[idx] === nums[i]) {
-                nums[i] = -1;
-            } else {
-                [nums[nums[i]-1 ], nums[i]] = [nums[i], nums[nums[i]-1]];
-            }
-        }
-    }
-
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] <= 0) {
-            return i + 1;
-        }
-    }
-
-    return nums.length + 1;
-}
 
   useEffect(() => {
     setNodes(nds => nds.map((node, i) => {  
@@ -107,7 +85,8 @@ const AbstractFactoryMethod = (props) => {
       case "addMethod":
        
         const methods = nodes.find(node => node.id === id).data.methods;
-        const nextID = findMissing(methods) + 65
+        const nums = methods.map(method => method.id.charCodeAt() - 65)
+        const nextID = findMissingID(nums) + 65
         const newID = String.fromCharCode(nextID)
 
         handleAddMethod(id, nodes, setNodes, "createProduct", newID)
@@ -135,8 +114,6 @@ const AbstractFactoryMethod = (props) => {
 
     }
   };
-
-
 
 
   return (

@@ -7,7 +7,7 @@ import '../Buttons.css';
 
 import { AddNodes } from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './factoryMethodInit';
-import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../Interactivity/generalUtilities';
+import { findMissingID, handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../Interactivity/generalUtilities';
 import { handleNodeDelete, updateNodeMethods } from '../Interactivity/factoryMethodUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
@@ -48,34 +48,6 @@ const FactoryMethod = (props) => {
       };
     }), []);
   });
-
-  const findMissing = (nodes) => {
-    let nums = []
-    nodes.map(node => {
-      if(!isNaN(node.id)){
-        nums.push(node.id)
-      }
-    })
-
-    for (let i = 0; i < nums.length; i++) {
-        while (nums[i] !== i + 1 && nums[i] > 0) {
-            const idx = nums[i] - 1;
-            if (nums[i] > nums.length || nums[idx] === nums[i]) {
-                nums[i] = -1;
-            } else {
-                [nums[nums[i]-1 ], nums[i]] = [nums[i], nums[nums[i]-1]];
-            }
-        }
-    }
-
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] <= 0) {
-            return i + 1;
-        }
-    }
-
-    return nums.length + 1;
-}
 
   const productCode = () => {
     const factoryNode = nodes.find(node => node.id === "0");
@@ -122,7 +94,9 @@ const FactoryMethod = (props) => {
         updateNodeMethods(nodes,setNodes)
         break;
       case "addClass":
-        const newID = findMissing(nodes) 
+        const nums = nodes.filter(node => !isNaN(node.id)).map(node => parseInt(node.id));      
+        const newID = findMissingID(nums) 
+
         AddNodes({setNodes, setEdges, setHidden, setEdgeHidden, newID})
         updateNodeMethods(nodes,setNodes)
         break;

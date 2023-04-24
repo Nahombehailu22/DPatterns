@@ -1,7 +1,7 @@
 import { MarkerType } from 'reactflow';
 import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNode';
-import InterfaceNode from '../Components/InterfaceNode';
+import ClassNode from '../Components/ClassNodeCopy';
+import InterfaceNode from '../Components/InterfaceNodeCopy';
 import CodeNode from '../Components/CodeNode';
 
 
@@ -18,8 +18,18 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'Abstraction',
-        attributes: ['imp'],
-        methods: ['operation'],
+        attributes: [
+          {
+            id: '1',
+            name: 'imp',
+          }
+        ],
+        methods: [
+          {
+            id: '1',
+            name: 'operation',
+          }
+        ],
         handles: [0, 1, 1, 0, 0, 0, 0, 1],
         title: "Abstraction",
         description: abstractionDescription,
@@ -33,7 +43,12 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'RefinedAbstraction1',
-        methods: ['featureN'],
+        methods: [
+          {
+            id: '1',
+            name: 'featureN'
+          }
+        ],
         handles: [0, 1, 0, 0, 1, 0, 0, 0],
         title: "Refined Abstraction",
         description: refinedAbstractionDescription,
@@ -47,7 +62,12 @@ const initialNodes = [
     type: 'interface',
     data: { 
         class_name: 'Implementation',
-        methods: ['operationImp1'],
+        methods: [
+          {
+            id: '1',
+            name: 'operationImp1'
+          }
+        ],
         handles: [0, 1, 0, 0, 0, 0, 0, 1],
         title: "Implementer",
         description: implementorInterfaceDescription,
@@ -61,7 +81,12 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'ConcreteImp1',
-        methods: ['operationImp1'],
+        methods: [
+          {
+            id: '1',
+            name: 'operationImp1'
+          }
+        ],
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
         title: "Concrete Implementer",
         description: concreteImplementorDescription,
@@ -74,7 +99,12 @@ const initialNodes = [
     type: 'class',
     data: { 
       class_name: 'ConcreteImp2',
-      methods: ['operationImp1'],
+      methods: [
+        {
+          id: '1',
+          name: 'operationImp1'
+        }
+      ],
       handles: [0, 0, 0, 0, 1, 0, 0, 0],
       title: "Concrete Implementer",
       description: concreteImplementorDescription,

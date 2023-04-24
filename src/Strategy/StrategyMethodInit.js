@@ -1,7 +1,7 @@
 import { MarkerType } from 'reactflow';
 import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNode';
-import InterfaceNode from '../Components/InterfaceNode';
+import ClassNode from '../Components/ClassNodeCopy';
+import InterfaceNode from '../Components/InterfaceNodeCopy';
 import CodeNode from '../Components/CodeNode';
 import GenericClassNode from '../Components/GenericClassNode';
 
@@ -18,8 +18,22 @@ const initialNodes = [
         type: 'class',
         data: { 
             class_name: 'Context',
-            attributes:['strategy'],
-            methods: ['setStrategy','doSomething'],
+            attributes:[
+                {
+                    id:'1',
+                    name: 'strategy'
+                }
+            ],
+            methods: [
+                {
+                    id:'1',
+                    name: 'setStrategy'
+                },
+                {
+                    id: '2',
+                    name: 'doSomething'
+                }
+            ],
             handles: [0, 1, 1, 1, 0, 0, 0, 0],
             title: "Context",
             description: contextDescription,
@@ -33,7 +47,12 @@ const initialNodes = [
         type: 'interface',
         data: { 
             class_name: 'Strategy',
-            methods: ['execute'],
+            methods: [
+                {
+                    id: '1',
+                    name: 'execute'
+                }
+            ],
             handles: [0, 1, 0, 0, 0, 0, 0, 1],
             title: "Strategy interface",
             description: strategyInterfaceDescription,
@@ -48,7 +67,12 @@ const initialNodes = [
         type: 'class',
         data: { 
             class_name: 'ConcreteStrategy1',
-            methods: ['execute'],
+            methods: [
+                {
+                    id: '1',
+                    name: 'execute'
+                }
+            ],
             handles: [0, 0, 0, 0, 1, 0, 0, 0],
             title: "Concrete Strategy",
             description: concreteStrategyDescription,
@@ -61,7 +85,12 @@ const initialNodes = [
         type: 'class',
         data: { 
             class_name: 'ConcreteStrategy2',
-            methods: ['execute'],
+            methods: [
+                {
+                    id: '1',
+                    name: 'execute'
+                }
+            ],
             handles: [0, 0, 0, 0, 1, 0, 0, 0],
             title: "Concrete Strategy",
             description: concreteStrategyDescription,

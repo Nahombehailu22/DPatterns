@@ -1,7 +1,7 @@
 import { MarkerType } from 'reactflow';
 import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNode';
-import InterfaceNode from '../Components/InterfaceNode';
+import ClassNode from '../Components/ClassNodeCopy';
+import InterfaceNode from '../Components/InterfaceNodeCopy';
 import CodeNode from '../Components/CodeNode';
 import GenericClassNode from '../Components/GenericClassNode';
 
@@ -18,7 +18,17 @@ const initialNodes = [
     type: 'interface',
     data: { 
         class_name: 'AbstractFactory',
-        methods: ['createProductA', 'createProductB'],
+        methods: [
+          {
+            id: 'A',
+            name: 'createProductA'
+          },
+          {
+            id: 'B',
+            name: 'createProductB'
+          },
+          
+        ],
         handles: [1, 1, 1, 0, 0, 0, 0, 0],
         title: "Abstract Factory",
         description: abstractFactoryDescription,
@@ -31,7 +41,17 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'ConcreteFactory1',
-        methods: ['createProductA', 'createProductB'],
+        methods: [
+          {
+            id: 'A',
+            name: 'createProductA'
+          },
+          {
+            id: 'B',
+            name: 'createProductB'
+          },
+          
+        ],
         handles: [0, 0, 0, 1, 0, 1, 0, 0],
         title: "Concrete Factory",
         description: concreteFactoryDescription,
@@ -44,7 +64,17 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'ConcreteFactory2',
-        methods: ['createProductA', 'createProductB'],
+        methods: [
+          {
+            id: 'A',
+            name: 'createProductA'
+          },
+          {
+            id: 'B',
+            name: 'createProductB'
+          },
+          
+        ],
         handles: [0, 0, 0, 1, 1, 0, 0, 0],
         title: "Concrete Factory",
         description: concreteFactoryDescription,
@@ -57,8 +87,22 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'Client',
-        attributes: ['factory'],
-        methods: ['Client', 'someOperation'],
+        attributes: [
+          {
+            id: '1',
+            name: 'factory'
+        }
+      ],
+        methods: [
+          {
+            id: "1",
+            name: 'Client'
+          },
+          {
+            id: "2",
+            name: 'someOperation'
+          }
+        ],
         handles: [0, 1, 0, 0, 0, 0, 0, 1],
         title: "Client",
         description: clientDescription,

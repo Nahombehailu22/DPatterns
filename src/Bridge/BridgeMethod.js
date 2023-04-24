@@ -50,8 +50,11 @@ const BridgeMethod = (props) => {
   });
 
   const implementationCode = () => {
-    const imp = nodes.find(node =>(node.id === "0")).data.attributes[0];
-    const operationImp1 = nodes.find(node =>(node.id === "0a")).data.methods[0];
+    const impNode =  nodes.find(node =>(node.id === "0"))
+    const imp = impNode.data.attributes.find(attribute => attribute.id === "1").name;
+
+    const interfaceNode =  nodes.find(node =>(node.id === "0a"))
+    const operationImp1 = interfaceNode.data.methods.find(method => method.id === "1").name;
 
     return (
       <p>
@@ -61,7 +64,9 @@ const BridgeMethod = (props) => {
   };
   
   const refinedAbstractionCode = () => {
-    const imp = nodes.find(node =>(node.id === "0")).data.attributes[0];
+    const impNode =  nodes.find(node =>(node.id === "0"))
+    const imp = impNode.data.attributes.find(attribute => attribute.id === "1").name;
+
     return (
       <p>
           {imp}.methodN()
@@ -92,6 +97,7 @@ const BridgeMethod = (props) => {
         break;
       case "addClass":
         AddNodes({id, setNodes, setEdges, setHidden, setEdgeHidden})
+        updateNodeMethods(nodes, setNodes)
         break;
       case "attributeName":
         handleAttributeNameChange(id, index, event, nodes, setNodes)

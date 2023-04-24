@@ -22,9 +22,9 @@ export const updateNodeMethods = (nodes, setNodes) => {
     }, 150);
 };
 
-export const handleNodeDelete = (id, nodes, edges, setNodes, setEdges) => {
+export const handleNodeDelete = (id, nodes, edges, setNodes, setEdges, methodId) => {
     
-    const deleteId = (String.fromCharCode(id + 65)).toLowerCase()
+    const deleteId = methodId.toLowerCase()
     console.log(`deleteID:  ${deleteId}`)
     setNodes(nodes => nodes.filter(node => node.id !== "0"+deleteId));
     setEdges((edges) => edges.filter((edge) => edge.source !== "0" +deleteId && edge.target !== "0" +deleteId));

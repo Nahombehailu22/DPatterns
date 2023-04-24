@@ -1,31 +1,27 @@
-import { useCallback } from 'react';
-
-let id = 3;
-let creatorPos = -100;
-let concretePos = 450;
-let codePos = -100;
-
-const getId = () => `${id++}`; 
-const getCreatorPos = () => (creatorPos -= 200);
-const getProductPosition = () => (concretePos+=175);
-const getCodePos = () => (codePos -= 200);
-
-
-export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden }) => {
+export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, newID }) => {
       setHidden([false, false, false, false, false, false, false, false, false]);
       setEdgeHidden([false, false, false, false, false, false, false, false, false]);
  
-      const id = getId();
-      const creatorPos = getCreatorPos();
-      const concretePos = getProductPosition();
-      const codePos = getCodePos();
+      const id = newID;
+      const creatorPos = -200 * (newID-2) - 100;
+      const concretePos = 175 * (newID-2) + 450;
+      const codePos = -200 * (newID-2) - 100
 
       const newNode = {
-        id: id,
+        id: `${id}`,
         type: 'class',
         data: { 
           class_name: `ConcreteCreator${id}`,
-          methods: ['createProduct', 'method2'],
+          methods: [
+            {
+              id: '1',
+              name: 'createProduct'
+            },
+            {
+              id: '2',
+              name: 'method2'
+            }
+          ],
           handles: [0, 1, 0, 0, 1, 0, 0, 0],
           title: "Concrete Creator Class",
           description: "",
@@ -40,7 +36,12 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden }) => {
         type: 'class',
         data: { 
           class_name: `ConcreteProduct${id}`,
-          methods: ['doStuff'],
+          methods: [
+            {
+              id: '1',
+              name: 'doStuff'
+            }
+            ],
           handles: [0, 0, 0, 0, 1, 0, 0, 0],
           title: "Concrete Product",
           description: "", 
@@ -66,7 +67,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden }) => {
           id,
           source: '0',
           sourceHandle: 'd',
-          target: id,
+          target: `${id}`,
           targetHandle: 'n',
           type: 'smoothstep'
         },
@@ -87,7 +88,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden }) => {
         },
         {
           id: `eb1-${id}b`,
-          source: id,
+          source: `${id}`,
           sourceHandle: "d",
           target: `${id}b`,
           targetHandle: "n",
@@ -95,6 +96,6 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden }) => {
           animated: true
         }
       ]);
-    }, 500);
+    }, 0);
 };
 

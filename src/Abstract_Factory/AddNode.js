@@ -1,19 +1,19 @@
 import { useCallback } from 'react';
 import { MarkerType } from 'reactflow';
 
-let currPos = -450;
-const getPos = () => (currPos -= 225)
+// let currPos = -450;
+// const getPos = () => (currPos -= 225)
 
-let id = 67;
-const getId = () => String.fromCharCode(id++);
+// let id = 67;
+// const getId = () => String.fromCharCode(id++);
 
-export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden }) => {
+export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }) => {
   setHidden([false, false, false, false, false, false, false, false, false, false, false]);
   setEdgeHidden([false, false, false, false, false, false, false, false, false, false, false, false]);
 
-  const id = getId();
+  const id = String.fromCharCode(nextID);
   const idLower = id.toLowerCase();
-  const currPos = getPos();
+  const currPos = -225 - (nextID-65)*225
   const newNode = {
       id: `0${idLower}`,
       type: 'genericInterface',

@@ -49,10 +49,41 @@ const FactoryMethod = (props) => {
     }), []);
   });
 
+  const findMissing = (nodes) => {
+    let nums = []
+    nodes.map(node => {
+      if(!isNaN(node.id)){
+        nums.push(node.id)
+      }
+    })
+
+    for (let i = 0; i < nums.length; i++) {
+        while (nums[i] !== i + 1 && nums[i] > 0) {
+            const idx = nums[i] - 1;
+            if (nums[i] > nums.length || nums[idx] === nums[i]) {
+                nums[i] = -1;
+            } else {
+                [nums[nums[i]-1 ], nums[i]] = [nums[i], nums[nums[i]-1]];
+            }
+        }
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] <= 0) {
+            return i + 1;
+        }
+    }
+
+    return nums.length + 1;
+}
+
   const productCode = () => {
-    const factoryMethod = nodes.find(node => node.id === "0").data.methods[1];
-    const interfaceMethod = nodes.find(node => node.id === "0a").data.methods[0];
-    const interfaceClass = nodes.find(node => node.id === "0a").data.class_name;
+    const factoryNode = nodes.find(node => node.id === "0");
+    const factoryMethod = factoryNode.data.methods.find(method => method.id === "2").name;
+
+    const interfaceNode = nodes.find(node => node.id === "0a")
+    const interfaceMethod = interfaceNode.data.methods.find(method => method.id === "1").name
+    const interfaceClass = interfaceNode.data.class_name;
 
     return (
       <p>
@@ -72,7 +103,7 @@ const FactoryMethod = (props) => {
     )
   };
 
-  const handleChanges = useCallback((type, id, event, index) => {
+  const handleChanges = (type, id, event, index) => {
     switch(type){
       case "className":
         handleClassNameChange(id, event, nodes, setNodes)
@@ -91,14 +122,16 @@ const FactoryMethod = (props) => {
         updateNodeMethods(nodes,setNodes)
         break;
       case "addClass":
-        AddNodes({setNodes, setEdges, setHidden, setEdgeHidden})
+        const newID = findMissing(nodes) 
+        AddNodes({setNodes, setEdges, setHidden, setEdgeHidden, newID})
+        updateNodeMethods(nodes,setNodes)
         break;
 
       default:
         break;
 
     }
-  }, []);
+  };
   
   return (
     <div className="wrapper" style={{ height: 800 }}>

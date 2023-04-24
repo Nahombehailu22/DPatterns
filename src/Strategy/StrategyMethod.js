@@ -10,7 +10,7 @@ import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMetho
 import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
-import { handleNodeDelete } from '../Interactivity/strategyMethodUtilities';
+import { handleNodeDelete, updateNodeMethods } from '../Interactivity/strategyMethodUtilities';
 
 const fitViewOptions = {
     padding: 0.4,
@@ -50,7 +50,8 @@ const StrategyMethod = (props) => {
     });
   
     const strategyCode1 = () => {
-        const execute = nodes.find(node => node.id === "0a").data.methods[0];
+        const interfaceNode = nodes.find(node => node.id === "0a")
+        const execute = interfaceNode.data.methods.find(method => method.id === "1").name;
     
         return (
           <p>
@@ -60,15 +61,14 @@ const StrategyMethod = (props) => {
       };
     
       
-    
       const clientCode = () => {
         const ConcreteStrategy1 = nodes.find(node => node.id === "1a").data.class_name;
         const ConcreteStrategy2 = nodes.find(node => node.id === "2a").data.class_name;
-
-        const setStrategy = nodes.find(node => node.id === "0").data.methods[0];
-        const doSomething = nodes.find(node => node.id === "0").data.methods[1];
-
         
+        const contextNode = nodes.find(node => node.id === "0");
+        const setStrategy = contextNode.data.methods.find(method => method.id === "1").name;
+        const doSomething = contextNode.data.methods.find(method => method.id === "2").name;
+
         return (
           <p>
             str = <b>new</b> {ConcreteStrategy1}()
@@ -101,12 +101,14 @@ const StrategyMethod = (props) => {
               break;
           case "changeMethodName":
               handleMethodNameChange(id, index, event, nodes, setNodes)
+              updateNodeMethods(nodes,setNodes)
               break;
           case "attributeName":
               handleAttributeNameChange(id, index, event, nodes, setNodes)
               break;
           case "addClass":
               AddNodes({setNodes, setEdges, setHidden, setEdgeHidden})
+              updateNodeMethods(nodes,setNodes)
               break;
           case "deleteNode":
               handleNodeDelete(id, nodes, edges, setNodes, setEdges)

@@ -1,8 +1,6 @@
 import React from 'react';
 import { getSmoothStepPath, ReactFlow } from 'reactflow';
 
-
-
 export default function CustomEdge({
   id,
   sourceX,
@@ -35,7 +33,6 @@ export default function CustomEdge({
         markerEnd={markerEnd}
         markerStart={markerStart}
       />
-
     </>
   );
 }

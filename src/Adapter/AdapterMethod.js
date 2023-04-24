@@ -47,8 +47,11 @@ const AdapterMethod = (props) => {
   });
   
   const writeCode = () => {
-    const adaptee = nodes.find(node => node.id === "1").data.attributes[0];
-    const serviceMethod = nodes.find(node => node.id === "2").data.methods[0];
+    const adapteeNode = nodes.find(node => node.id === "1");
+    const adaptee = adapteeNode.data.attributes.find(attribute => attribute.id == "1").name;
+
+    const serviceNode = nodes.find(node => node.id === "2")
+    const serviceMethod = serviceNode.data.methods.find(method => method.id === "1").name;
 
     return (
       <p>

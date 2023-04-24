@@ -47,8 +47,10 @@ const SingletonMethod = (props) => {
   });
   
   const writeCode = () => {
-    const instance = nodes[0].data.attributes[0]
-    const classSingleton = nodes[0].data.class_name
+    const instanceNode = nodes.find(node => node.id === "0")
+    const instance = instanceNode.data.attributes.find(attribute => attribute.id === "1").name
+    // const instance = nodes[0].data.attributes[0]
+    const classSingleton = nodes.find(node => node.id === "0").data.class_name;
 
     return (
       <p>

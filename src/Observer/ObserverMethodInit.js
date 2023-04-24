@@ -1,7 +1,7 @@
 import { MarkerType } from 'reactflow';
 import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNode';
-import InterfaceNode from '../Components/InterfaceNode';
+import ClassNode from '../Components/ClassNodeCopy';
+import InterfaceNode from '../Components/InterfaceNodeCopy';
 import CodeNode from '../Components/CodeNode';
 import GenericClassNode from '../Components/GenericClassNode';
 
@@ -18,8 +18,35 @@ const initialNodes = [
         type: 'class',
         data: { 
             class_name: 'Publisher',
-            attributes:['subscribers', 'mainState'],
-            methods: ['subscribe','unsubscribe', 'notifySubscribers','mainBusinessLogic'],
+            attributes:[
+                {
+                    id: '1',
+                    name: 'subscribers'
+                },
+                {
+                    id: '2',
+                    name: 'mainState'
+                }
+            ],
+            methods: [
+                {
+                    id: '1',
+                    name: 'subscribe'
+                },
+                {
+                    id: '2',
+                    name: 'unsubscribe'
+                },
+                {
+                    id: '3',
+                    name: 'notifySubscribers'
+                },
+                {
+                    id: '4',
+                    name: 'mainBusinessLogic'
+                },
+            ],
+            
             handles: [0, 1, 1, 1, 0, 0, 0, 0],
             title: "Publisher",
             description: publisherDescription,
@@ -33,7 +60,12 @@ const initialNodes = [
         type: 'interface',
         data: { 
             class_name: 'Subscriber',
-            methods: ['update'],
+            methods: [
+                {
+                    id: '1',
+                    name: 'update',
+                }
+            ],
             handles: [0, 1, 0, 0, 0, 0, 0, 1],
             title: "Subscriber interface",
             description: subscriberInterfaceDescription,
@@ -48,7 +80,12 @@ const initialNodes = [
         type: 'class',
         data: { 
             class_name: 'ConcreteSubscriber1',
-            methods: ['update'],
+            methods: [
+                {
+                    id: '1',
+                    name: 'update',
+                }
+            ],
             handles: [0, 0, 0, 0, 1, 0, 0, 0],
             title: "Concrete Subscriber",
             description: concreteSubscriberDescription,
@@ -61,7 +98,12 @@ const initialNodes = [
         type: 'class',
         data: { 
             class_name: 'ConcreteSubscriber2',
-            methods: ['update'],
+            methods: [
+                {
+                    id: '1',
+                    name: 'update',
+                }
+            ],
             handles: [0, 0, 0, 0, 1, 0, 0, 0],
             title: "Concrete Subscriber",
             description: concreteSubscriberDescription,

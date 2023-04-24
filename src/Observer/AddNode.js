@@ -1,25 +1,21 @@
-import { useCallback } from 'react';
-
-
-let id = 3;
-let subscriberPos = 475;
-
-const getId = () => `${id++}`; 
-const getSubscriberPos = () => (subscriberPos += 200);
-
-export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden }) => {
+export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, newID }) => {
       setHidden([false, false, false, false, false, false, false, false, false]);
       setEdgeHidden([false, false, false, false, false, false, false, false, false]);
  
-      const id = getId();
-      const subscriberPos = getSubscriberPos();
+      const id = newID;
+      const subscriberPos = 200 * (newID - 2) + 475;
 
       const newNode = {
         id: `${id}a`,
         type: 'class',
         data: { 
             class_name: `ConcreteSubscriber${id}`,
-            methods: ['update'],
+            methods: [
+              {
+                  id: '1',
+                  name: 'update',
+              }
+            ],
             handles: [0, 0, 0, 0, 1, 0, 0, 0],
             title: "Concrete Subscriber",
             deletable: true,

@@ -1,7 +1,7 @@
 import { MarkerType } from 'reactflow';
 import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNode';
-import InterfaceNode from '../Components/InterfaceNode';
+import ClassNode from '../Components/ClassNodeCopy';
+import InterfaceNode from '../Components/InterfaceNodeCopy';
 import CodeNode from '../Components/CodeNode';
 
 
@@ -18,7 +18,16 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'Creator',
-        methods: ['someOperation','createProduct'],
+        methods: [
+          { 
+            id: '1',
+            name: 'someOperation'
+          },
+          {
+            id: '2',
+            name: 'createProduct'
+          }
+        ],
         handles: [0, 1, 1, 0, 0, 0, 0, 1],
         title: "Creator Class",
         description: creatorDescription,
@@ -32,7 +41,17 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'ConcreteCreator1',
-        methods: ['createProduct', 'method2'],
+        methods: [
+          {
+            id: '1',
+            name: 'createProduct'
+          },
+          {
+            id: '2',
+            name: 'method2'
+          }
+        ],
+
         handles: [0, 1, 0, 0, 1, 0, 0, 0],
         title: "Concrete Creator Class",
         description: concreteCreatorDescription,
@@ -45,7 +64,16 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'ConcreteCreator2',
-        methods: ['createProduct', 'method2'],
+        methods: [
+          {
+            id: '1',
+            name: 'createProduct'
+          },
+          {
+            id: '2',
+            name: 'method2'
+          }
+        ],
         handles: [0, 1, 0, 0, 1, 0, 0, 0],
         title: "Concrete Creator Class",
         description: concreteCreatorDescription,
@@ -58,7 +86,12 @@ const initialNodes = [
     type: 'interface',
     data: { 
         class_name: 'Product',
-        methods: ['doStuff'],
+        methods: [
+          {
+            id: '1',
+            name: 'doStuff'
+          }
+          ],
         handles: [0, 1, 0, 0, 0, 0, 0, 1],
         title: "Product Interface",
         description: productInterfaceDescription,
@@ -71,7 +104,12 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'ConcreteProduct1',
-        methods: ['doStuff'],
+        methods: [
+          {
+            id: '1',
+            name: 'doStuff'
+          }
+          ],
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
         title: "Concrete Product",
         description: concreteProductDescription,
@@ -84,7 +122,12 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'ConcreteProduct2',
-        methods: ['doStuff'],
+        methods: [
+          {
+            id: '1',
+            name: 'doStuff'
+          }
+          ],
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
         title: "Concrete Product",
         description: concreteProductDescription,
@@ -120,7 +163,6 @@ const initialNodes = [
     position: { x: 100, y: 510 },
   },
 ];
-
 
 const initialEdges = [
   { 

@@ -22,7 +22,12 @@ export const AddNodes = ({id, setNodes, setEdges, setHidden, setEdgeHidden }) =>
           type: 'class',
           data: { 
               class_name: `ConcreteImp${idI}`,
-              methods: ['operationImp1'],
+              methods: [
+                {
+                  id: '1',
+                  name: 'operationImp1'
+                }
+              ],
               handles: [0, 0, 0, 0, 1, 0, 0, 0],
               title: "Concrete Implementer",
               deletable: true,
@@ -56,7 +61,12 @@ export const AddNodes = ({id, setNodes, setEdges, setHidden, setEdgeHidden }) =>
         type: 'class',
         data: { 
             class_name: `RefinedAbstraction${idC}`,
-            methods: ['featureN'],
+            methods: [
+              {
+                id: '1',
+                name: 'featureN'
+              }
+            ],
             handles: [0, 1, 0, 0, 1, 0, 0, 0],
             title: "Refined Abstraction",
             deletable: true,

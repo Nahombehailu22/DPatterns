@@ -1,6 +1,6 @@
 import { MarkerType } from 'reactflow';
 import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNode';
+import ClassNode from '../Components/ClassNodeCopy';
 import GenericClassNode from '../Components/GenericClassNode';
 import CodeNode from '../Components/CodeNode';
 
@@ -14,8 +14,18 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'Singleton',
-        attributes: ['instance'],
-        methods: ['getInstance'],
+        attributes: [
+          {
+            id: '1',
+            name: 'instance'
+          }
+          ],
+        methods: [
+          {
+          id: '1',
+          name: 'getInstance'
+        }
+        ],
         handles: [0, 1, 1, 0, 0, 0, 1, 1],
         title: "Singleton Class",
         description: singletonDescription,

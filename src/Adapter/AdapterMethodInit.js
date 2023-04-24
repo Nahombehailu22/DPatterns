@@ -1,7 +1,7 @@
 import { MarkerType } from 'reactflow';
 import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNode';
-import InterfaceNode from '../Components/InterfaceNode';
+import ClassNode from '../Components/ClassNodeCopy';
+import InterfaceNode from '../Components/InterfaceNodeCopy';
 import CodeNode from '../Components/CodeNode';
 import GenericClassNode from '../Components/GenericClassNode';
 
@@ -28,7 +28,12 @@ const initialNodes = [
     type: 'interface',
     data: { 
         class_name: 'Client_Interface',
-        methods: ['method'],
+        methods: [
+          {
+            id: '1',
+            name: 'method'
+          } 
+        ],
         handles: [0, 1, 0, 0, 0, 0, 0, 1],
         title: "Cleint Interface",
         description: clientInterface,
@@ -41,8 +46,18 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'Adapter',
-        attributes: ['adaptee'],
-        methods: ['method'],
+        attributes: [
+          {
+            id: '1',
+            name: 'adaptee'
+          }
+          ],
+        methods: [
+          {
+            id: '1',
+            name: 'method'
+          } 
+        ],
         handles: [0, 1, 1, 0, 1, 0, 0, 0],
         title: "Adapter",
         description: adapterDescription,
@@ -55,7 +70,12 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'Service',
-        methods: ['serviceMethod'],
+        methods: [
+          {
+            id: '1',
+            name: 'serviceMethod'
+          }
+        ],
         handles: [0, 0, 0, 0, 0, 0, 0, 1],
         title: "Service",
         description: serviceDescription,

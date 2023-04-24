@@ -19,7 +19,12 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden }) => {
         type: 'class',
         data: { 
             class_name: `ConcreteStrategy${id}`,
-            methods: ['execute'],
+            methods: [
+              {
+                  id: '1',
+                  name: 'execute'
+              }
+          ],
             handles: [0, 0, 0, 0, 1, 0, 0, 0],
             title: "Concrete Strategy",
             deletable: true,

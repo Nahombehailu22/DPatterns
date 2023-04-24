@@ -10,7 +10,7 @@ import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMetho
 import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
-import { handleNodeDelete } from '../Interactivity/observerMethodUtilities';
+import { handleNodeDelete, updateNodeMethods } from '../Interactivity/observerMethodUtilities';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -49,9 +49,40 @@ const ObserverMethod = (props) => {
     }), []);
   });
 
+    const findMissing = (nodes) => {
+      let nums = []
+      nodes.map(node => {
+        if(node.id[node.id.length -1] === "a"){
+          nums.push(node.id.slice(0, node.id.length-1))
+        }
+      })
+
+      for (let i = 0; i < nums.length; i++) {
+          while (nums[i] !== i + 1 && nums[i] > 0) {
+              const idx = nums[i] - 1;
+              if (nums[i] > nums.length || nums[idx] === nums[i]) {
+                  nums[i] = -1;
+              } else {
+                  [nums[nums[i]-1 ], nums[i]] = [nums[i], nums[nums[i]-1]];
+              }
+          }
+      }
+
+      for (let i = 0; i < nums.length; i++) {
+          if (nums[i] <= 0) {
+              return i + 1;
+          }
+      }
+
+      return nums.length + 1;
+  }
+
   const publisherCode1 = () => {
-    const subscribers = nodes.find(node => node.id === "0").data.attributes[0];
-    const update = nodes.find(node => node.id === "0a").data.methods[0];
+    const publisherNode = nodes.find(node => node.id === "0");
+    const subscribers = publisherNode.data.attributes.find(attribute => attribute.id === "1").name
+
+    const updateNode = nodes.find(node => node.id === "0a");
+    const update = updateNode.data.methods.find(method => method.id === "1").name;
 
     return (
       <p>
@@ -63,8 +94,9 @@ const ObserverMethod = (props) => {
   };
 
   const publisherCode2 = () => {
-    const mainState = nodes.find(node => node.id === "0").data.attributes[1];
-    const notifySubscribers = nodes.find(node => node.id === "0").data.methods[2];
+    const publisherNode = nodes.find(node => node.id === "0");
+    const mainState = publisherNode.data.attributes.find(attribute => attribute.id === "2").name
+    const notifySubscribers = publisherNode.data.methods.find(method => method.id === "3").name
 
     return (
       <p>
@@ -76,9 +108,12 @@ const ObserverMethod = (props) => {
   };
 
   const clientCode = () => {
+
+    const publisherNode = nodes.find(node => node.id === "0");
+    const subscribe = publisherNode.data.methods.find(method => method.id === "1").name
+
     const ConcreteSubscriber1 = nodes.find(node => node.id === "1a").data.class_name;
-    const subscribe = nodes.find(node => node.id === "0").data.methods[0];
-    
+
     return (
       <p>
         s = <b>new</b> {ConcreteSubscriber1}()
@@ -89,7 +124,7 @@ const ObserverMethod = (props) => {
   };
 
 
-  const handleChanges = useCallback((type, id, event, index) => {
+  const handleChanges = (type, id, event, index) => {
     switch(type){
         case "className":
             handleClassNameChange(id, event, nodes, setNodes)
@@ -102,12 +137,15 @@ const ObserverMethod = (props) => {
             break;
         case "changeMethodName":
             handleMethodNameChange(id, index, event, nodes, setNodes)
+            updateNodeMethods(nodes,setNodes)
             break;
         case "attributeName":
             handleAttributeNameChange(id, index, event, nodes, setNodes)
             break;
         case "addClass":
-            AddNodes({setNodes, setEdges, setHidden, setEdgeHidden})
+            const newID = findMissing(nodes)
+            AddNodes({setNodes, setEdges, setHidden, setEdgeHidden, newID})
+            updateNodeMethods(nodes,setNodes)
             break;
         case "deleteNode":
             handleNodeDelete(id, nodes, edges, setNodes, setEdges)
@@ -117,7 +155,7 @@ const ObserverMethod = (props) => {
         break;
 
     }
-  }, []);
+  };
   
   return (
     <div className="wrapper" style={{ height: 800 }}>

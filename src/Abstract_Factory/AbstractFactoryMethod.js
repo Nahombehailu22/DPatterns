@@ -26,6 +26,29 @@ const AbstractFactoryMethod = (props) => {
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [true, true, true, true, true, true];
 
+  const findMissing = (methods) => {
+    const nums = methods.map(method => method.id.charCodeAt() - 65);
+
+    for (let i = 0; i < nums.length; i++) {
+        while (nums[i] !== i + 1 && nums[i] > 0) {
+            const idx = nums[i] - 1;
+            if (nums[i] > nums.length || nums[idx] === nums[i]) {
+                nums[i] = -1;
+            } else {
+                [nums[nums[i]-1 ], nums[i]] = [nums[i], nums[nums[i]-1]];
+            }
+        }
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] <= 0) {
+            return i + 1;
+        }
+    }
+
+    return nums.length + 1;
+}
+
   useEffect(() => {
     setNodes(nds => nds.map((node, i) => {  
       return {
@@ -53,8 +76,12 @@ const AbstractFactoryMethod = (props) => {
 
   const productCode = () => {
     const productA = nodes.find(node => node.id === "0a").data.class_name;
-    const factory = nodes.find(node => node.id === "c").data.attributes[0];
-    const abstractFactoryA = nodes.find(node => node.id === "0").data.methods[0];
+
+    const factoryNode = nodes.find(node => node.id === "c")
+    const factory = factoryNode.data.attributes.find(attribute => attribute.id === "1").name
+    
+    const node = nodes.find(node => node.id === "0");
+    const abstractFactoryA = node.data.methods.find(method => method.id === "A").name;    
 
     return (
       <p>
@@ -72,24 +99,28 @@ const AbstractFactoryMethod = (props) => {
     )
   };
   
-  const handleChanges = useCallback((type, id, event, index) => {
+  const handleChanges = (type, id, event, index, methodId) => {
     switch(type){
       case "className":
         handleClassNameChange(id, event, nodes, setNodes)
         break;
       case "addMethod":
-        handleAddMethod(id, nodes, setNodes, "createProduct")
+       
+        const methods = nodes.find(node => node.id === id).data.methods;
+        const nextID = findMissing(methods) + 65
+        const newID = String.fromCharCode(nextID)
+
+        handleAddMethod(id, nodes, setNodes, "createProduct", newID)
         if (id == '0'){
-          handleAddMethod("1", nodes, setNodes, "createProduct")
-          handleAddMethod("2", nodes, setNodes, "createProduct")
+          handleAddMethod("1", nodes, setNodes, "createProduct",newID)
+          handleAddMethod("2", nodes, setNodes, "createProduct",newID)
         }
-        AddNodes({ setNodes, setEdges, setHidden, setEdgeHidden })
+        AddNodes({ setNodes, setEdges, setHidden, setEdgeHidden, nextID })
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
-        console.log(index)
         updateNodeMethods(nodes, setNodes)
-        handleNodeDelete(index, nodes, edges, setNodes, setEdges)
+        handleNodeDelete(index, nodes, edges, setNodes, setEdges, methodId)
         break;
       case "changeMethodName":
         handleMethodNameChange(id, index, event, nodes, setNodes)
@@ -103,7 +134,9 @@ const AbstractFactoryMethod = (props) => {
         break;
 
     }
-  }, []);
+  };
+
+
 
 
   return (

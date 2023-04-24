@@ -5,9 +5,9 @@ import '../Patterns_CSS/index.css';
 import 'reactflow/dist/style.css';
 import '../Buttons.css';
 
-import { AddNodes } from './AddNode';
+import { AddNodes, AddNodesAbs, AddNodesImp } from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './BridgeMethodInit';
-import { handleAddMethod, handleAttributeNameChange, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../Interactivity/generalUtilities';
+import { findMissingID, handleAddMethod, handleAttributeNameChange, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 import { handleNodeDelete, updateNodeMethods } from '../Interactivity/bridgeMethodUtilities';
@@ -76,7 +76,7 @@ const BridgeMethod = (props) => {
     )
   };
 
-  const handleChanges = useCallback((type, id, event, index) => {
+  const handleChanges = (type, id, event, index) => {
     switch(type){
       case "className":
         handleClassNameChange(id, event, nodes, setNodes)
@@ -96,7 +96,22 @@ const BridgeMethod = (props) => {
         updateNodeMethods(nodes, setNodes)
         break;
       case "addClass":
-        AddNodes({id, setNodes, setEdges, setHidden, setEdgeHidden})
+        if(id === "0a"){
+          const nums = nodes
+          .filter(node => node.id.endsWith('a'))
+          .map(node => parseInt(node.id.slice(0, -1)));
+
+          const newID = findMissingID(nums)
+          AddNodesImp({setNodes, setEdges, setHidden, setEdgeHidden, newID})
+        }
+        if(id === "0"){
+          const nums = nodes
+          .filter(node => !isNaN(node.id))
+          .map(node => parseInt(node.id)); 
+
+          const newID = findMissingID(nums) 
+          AddNodesAbs({setNodes, setEdges, setHidden, setEdgeHidden, newID})
+        }
         updateNodeMethods(nodes, setNodes)
         break;
       case "attributeName":
@@ -107,7 +122,7 @@ const BridgeMethod = (props) => {
         break;
 
     }
-  }, []);
+  };
   
   return (
     <div className="wrapper" style={{ height: 800 }}>

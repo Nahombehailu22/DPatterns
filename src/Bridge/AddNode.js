@@ -1,21 +1,9 @@
-let idC = 2;
-let idI = 3;
-let implementerPos = 450;
-let refinedClassPos = 0;
-
-const getIdC = () => `${idC++}`; 
-const getImplementerPos = () => (implementerPos += 200);
-
-const getIdI = () => `${idI++}`; 
-const getrefinedClassPos = () => (refinedClassPos -= 200);
-
-export const AddNodes = ({id, setNodes, setEdges, setHidden, setEdgeHidden }) => {
+export const AddNodesImp = ({setNodes, setEdges, setHidden, setEdgeHidden, newID }) => {
       setHidden([false, false, false, false, false, false, false, false, false]);
       setEdgeHidden([false, false, false, false, false, false, false, false, false]);
- 
-      if(id === "0a"){
-        const idI = getIdI();
-        const implementerPos = getImplementerPos();
+
+        const idI = newID;
+        const implementerPos = 200 * (newID - 2) + 450
 
         const newNode = {
           id: `${idI}a`,
@@ -49,46 +37,48 @@ export const AddNodes = ({id, setNodes, setEdges, setHidden, setEdgeHidden }) =>
           },
 
         ]);
-      }
+      };
 
-    if(id === "0"){
-      
-      const idC = getIdC();
-      const refinedClassPos = getrefinedClassPos();
 
-      const newNode = {
-        id: `${idC}`,
-        type: 'class',
-        data: { 
-            class_name: `RefinedAbstraction${idC}`,
-            methods: [
-              {
-                id: '1',
-                name: 'featureN'
-              }
-            ],
-            handles: [0, 1, 0, 0, 1, 0, 0, 0],
-            title: "Refined Abstraction",
-            deletable: true,
-        },
-        position: { x: refinedClassPos, y: 280 },
-
-        };
+export const AddNodesAbs = ({id, setNodes, setEdges, setHidden, setEdgeHidden, newID }) => {
+  setHidden([false, false, false, false, false, false, false, false, false]);
+  setEdgeHidden([false, false, false, false, false, false, false, false, false]);
   
-      setNodes((nodes) => [...nodes, newNode]);
-      setEdges((edges) => [
-        ...edges,
-        { 
-          id: `0-${idC}`, 
-          source: '0', 
-          sourceHandle: 'd', 
-          target: `${idC}`, 
-          type: 'smoothstep', 
-          targetHandle: 'n',
-        },
+  const idC = newID;
+  const refinedClassPos = -200 * (newID - 1)
 
-      ]);
+  const newNode = {
+    id: `${idC}`,
+    type: 'class',
+    data: { 
+        class_name: `RefinedAbstraction${idC}`,
+        methods: [
+          {
+            id: '1',
+            name: 'featureN'
+          }
+        ],
+        handles: [0, 1, 0, 0, 1, 0, 0, 0],
+        title: "Refined Abstraction",
+        deletable: true,
+    },
+    position: { x: refinedClassPos, y: 280 },
 
-    }
+    };
+
+  setNodes((nodes) => [...nodes, newNode]);
+  setEdges((edges) => [
+    ...edges,
+    { 
+      id: `0-${idC}`, 
+      source: '0', 
+      sourceHandle: 'd', 
+      target: `${idC}`, 
+      type: 'smoothstep', 
+      targetHandle: 'n',
+    },
+
+  ]);
+
+
 };
-

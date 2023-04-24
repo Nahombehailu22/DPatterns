@@ -6,7 +6,7 @@ import 'reactflow/dist/style.css';
 import '../Buttons.css';
 
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './StrategyMethodInit';
-import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../Interactivity/generalUtilities';
+import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
@@ -60,7 +60,6 @@ const StrategyMethod = (props) => {
         )
       };
     
-      
       const clientCode = () => {
         const ConcreteStrategy1 = nodes.find(node => node.id === "1a").data.class_name;
         const ConcreteStrategy2 = nodes.find(node => node.id === "2a").data.class_name;
@@ -88,7 +87,7 @@ const StrategyMethod = (props) => {
         )
       };
   
-    const handleChanges = useCallback((type, id, event, index) => {
+    const handleChanges = (type, id, event, index) => {
       switch(type){
           case "className":
               handleClassNameChange(id, event, nodes, setNodes)
@@ -107,7 +106,12 @@ const StrategyMethod = (props) => {
               handleAttributeNameChange(id, index, event, nodes, setNodes)
               break;
           case "addClass":
-              AddNodes({setNodes, setEdges, setHidden, setEdgeHidden})
+              const nums = nodes
+              .filter(node => node.id.endsWith('a'))
+              .map(node => parseInt(node.id.slice(0, -1)));
+
+              const newID = findMissingID(nums)
+              AddNodes({setNodes, setEdges, setHidden, setEdgeHidden, newID})
               updateNodeMethods(nodes,setNodes)
               break;
           case "deleteNode":
@@ -118,7 +122,7 @@ const StrategyMethod = (props) => {
           break;
   
       }
-    }, []);
+    };
     
     return (
       <div className="wrapper" style={{ height: 800 }}>

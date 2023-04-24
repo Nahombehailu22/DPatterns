@@ -1,18 +1,9 @@
-import { useCallback } from 'react';
-
-
-let id = 3;
-let strategyPos = 475;
-
-const getId = () => `${id++}`; 
-const getStrategyPos = () => (strategyPos += 200);
-
-export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden }) => {
+export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, newID }) => {
       setHidden([false, false, false, false, false, false, false, false, false]);
       setEdgeHidden([false, false, false, false, false, false, false, false, false]);
  
-      const id = getId();
-      const strategyPos = getStrategyPos();
+      const id = newID;
+      const strategyPos = 200 * (newID - 2) + 475;
 
       const newNode = {
         id: `${id}a`,

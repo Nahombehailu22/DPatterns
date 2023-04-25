@@ -40,7 +40,7 @@ const CodeNode = ({ id, data: { codeWritten, handles, connectedId }, color1: bac
           border: '1px solid black',
         }}
       >
-        {codeWritten && codeWritten(connectedId)}
+        {codeWritten && codeWritten(connectedId, id)}
       </div>
       </motion.div>
 

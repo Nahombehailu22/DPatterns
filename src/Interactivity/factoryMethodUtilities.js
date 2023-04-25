@@ -14,8 +14,18 @@ export const updateNodeMethods = (nodes, setNodes) => {
     setTimeout(() => {
     setNodes(nodes => nodes.map(node => {
       if (!isNaN(node.id) && node.id!= '0'){
-        const newMethods = [...node.data.methods];
-        newMethods[0] = nodes.find(node => node.id === "0").data.methods[1];
+        const factoryNode = nodes.find(node => node.id ==="0");
+        const factoryMethod = factoryNode.data.methods.find(method => method.id === "2").name;
+
+        const newMethods = node.data.methods.map(method => {
+          if (method.id === "1") {
+            return {
+              ...method,
+              name: factoryMethod
+            };
+          }
+          return method;
+        });
 
         return {
           ...node,
@@ -26,8 +36,19 @@ export const updateNodeMethods = (nodes, setNodes) => {
         }
       }
       if(node.id.includes('a')) {
-        const newMethods = [...node.data.methods];
-        newMethods[0] = nodes.find(node => node.id === "0a").data.methods[0];
+        const productNode = nodes.find(node => node.id ==="0a");
+        const productMethod = productNode.data.methods.find(method => method.id === "1").name;
+
+        const newMethods = node.data.methods.map(method => {
+          if (method.id === "1") {
+            return {
+              ...method,
+              name: productMethod
+            };
+          }
+          return method;
+        });
+
 
         return {
           ...node,

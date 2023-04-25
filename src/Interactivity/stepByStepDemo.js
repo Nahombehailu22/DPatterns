@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 
-const IncrementalHiddenButton = ({ stepValues, setHidden, edgeValues, setEdgeHidden }) => {
+const IncrementalHiddenButton = ({ stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden }) => {
   const [step, setStep] = useState(0);
 
   const toggleHidden = () => {
     setHidden(stepValues[step]);
     setEdgeHidden(edgeValues[step]);
+    if(setPopHidden){
+      setPopHidden(popValues[step])
+    }
     setStep(step + 1 === stepValues.length ? 0 : step + 1);
   };
 
   const unHideAll = () => {
     setHidden(stepValues[stepValues.length - 2]);
     setEdgeHidden(edgeValues[stepValues.length - 2]);
+    if(setPopHidden){
+      setPopHidden(popValues[popValues.length - 2])
+    }
     setStep(stepValues.length - 1);
   };
 

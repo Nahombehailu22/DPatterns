@@ -22,11 +22,8 @@ const ClassNode = ({
 }) => {
 
   const classWidth = class_name.length * 3 + 90;
-  let methodWidth = 45;
-  methods.map(method =>{
-    methodWidth = Math.max(methodWidth, method.name.length)
-  })
-  methodWidth += 80
+  // const methodWidth = methods.reduce((acc, str) => Math.max(acc, str.length), 0) * 3 + 70;
+  const methodWidth = methods.reduce((acc, method) => Math.max(acc, method.name.length), 0) * 3 + 80;
 
   const container = {
     hidden: { opacity: 0, scale: 0.5 },

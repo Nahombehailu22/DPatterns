@@ -1,23 +1,28 @@
 // import './App.css';
+import "./index.css";
+import 'reactflow/dist/style.css';
+import './Buttons.css';
+import './Patterns_CSS/demo.css';
+
 import Navbar from './navbar.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ReactFlowProvider } from 'reactflow';
-import FactoryMethod from './Factory/FactoryMethod';
-import FactoryMethodDemo from './Factory/FactoryMethodDemo';
-import AbstractFactoryMethod from './Abstract_Factory/AbstractFactoryMethod.js';
-import AbstractFactoryMethodDemo from './Abstract_Factory/AbstractFactoryMethodDemo.js';
-import SingletonMethod from './Singleton/SingletonMethod';
-import SingletonMethodDemo from './Singleton/SingletonMethodDemo';
-import AdapterMethodDemo from './Adapter/AdapterMethodDemo.js';
 
-import "./index.css";
-import AdapterMethod from './Adapter/AdapterMethod.js';
-import ObserverMethod from './Observer/ObserverMethod.js';
-import ObserverMethodDemo from './Observer/ObserverMethodDemo.js';
-import BridgeMethodDemo from './Bridge/BridgeMethodDemo.js';
-import BridgeMethod from './Bridge/BridgeMethod.js';
-import StrategyMethod from './Strategy/StrategyMethod.js';
-import StrategyMethodDemo from './Strategy/StrategyMethodDemo.js';
+import FactoryMethod from './Patterns/Factory/FactoryMethod';
+import FactoryMethodDemo from './Patterns/Factory/FactoryMethodDemo';
+import AbstractFactoryMethodDemo from './Patterns/Abstract_Factory/AbstractFactoryMethodDemo.js';
+import AbstractFactoryMethod from './Patterns/Abstract_Factory/AbstractFactoryMethod.js';
+import SingletonMethod from './Patterns/Singleton/SingletonMethod';
+import SingletonMethodDemo from './Patterns/Singleton/SingletonMethodDemo';
+import ObserverMethod from './Patterns/Observer/ObserverMethod.js';
+import ObserverMethodDemo from './Patterns/Observer/ObserverMethodDemo.js';
+import BridgeMethodDemo from './Patterns/Bridge/BridgeMethodDemo.js';
+import BridgeMethod from './Patterns/Bridge/BridgeMethod.js';
+import StrategyMethod from './Patterns/Strategy/StrategyMethod.js';
+import StrategyMethodDemo from './Patterns/Strategy/StrategyMethodDemo.js';
+import AdapterMethod from './Patterns/Adapter/AdapterMethod.js';
+import AdapterMethodDemo from './Patterns/Adapter/AdapterMethodDemo.js';
+import HomePage from "./Homepage";
 
 function App() {
  
@@ -25,7 +30,7 @@ function App() {
     <ReactFlowProvider>
       <Router>
         <Switch>
-          <Route exact path="/" component={Cards} />
+          <Route exact path="/" component={HomePage} />
           <Route path="/factorymethoddemo" component={FactoryMethodDemo} />
           <Route path="/factorymethod" component={FactoryMethod} />
 

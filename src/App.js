@@ -22,8 +22,7 @@ import StrategyMethod from './Patterns/Strategy/StrategyMethod.js';
 import StrategyMethodDemo from './Patterns/Strategy/StrategyMethodDemo.js';
 import AdapterMethod from './Patterns/Adapter/AdapterMethod.js';
 import AdapterMethodDemo from './Patterns/Adapter/AdapterMethodDemo.js';
-import Homepage from "./Homepage";
-
+import HomePage from "./Homepage";
 
 function App() {
  
@@ -31,7 +30,7 @@ function App() {
     <ReactFlowProvider>
       <Router>
         <Switch>
-          <Route exact path="/" component={Homepage} />
+          <Route exact path="/" component={HomePage} />
           <Route path="/adaptermethoddemo" component={AdapterMethodDemo} />
           <Route path="/adaptermethod" component={AdapterMethod} />
 
@@ -49,6 +48,9 @@ function App() {
           
           <Route path="/strategymethoddemo" component={StrategyMethodDemo} />
           <Route path="/strategymethod" component={StrategyMethod} />
+
+          <Route path="/adaptermethoddemo" component={AdapterMethodDemo} />
+          <Route path="/adaptermethod" component={AdapterMethod} />
 
           <Route path="/bridgemethoddemo" component={BridgeMethodDemo} />
           <Route path="/bridgemethod" component={BridgeMethod} />

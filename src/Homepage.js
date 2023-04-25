@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { Navbar } from "react-bootstrap";
-import CardUI from "./Cards/CardUI";
+import Navbar from './navbar.js';
+import Card from './Cards/CardUI.js';
 
-const Homepage = () => {
+
+const HomePage = () => {
     const [category, setCategory] = useState("All Patterns");
     const [searchQuery, setSearchQuery] = useState("");
-    
-    const navProps = {setCategory, setSearchQuery}
+
     return ( 
-        <div>          
-            <Navbar setCategory={setCategory} setSearchQuery={setSearchQuery} />
-            <CardUI category={category} searchQuery={searchQuery} />
+        <div>
+            <Navbar setCategory ={setCategory} setSearchQuery ={setSearchQuery}/>
+            <Card category={category} searchQuery ={searchQuery}/>
         </div>
      );
 }
  
-export default Homepage;
+export default HomePage;

@@ -182,7 +182,7 @@ const initialNodes = [
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
         connectedId: '0',
     },
-    position: { x: 275, y: 250},
+    position: { x: 275, y: 275},
   },
   {
     id: '2a',

@@ -1,8 +1,9 @@
 import { MarkerType } from 'reactflow';
-import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNodeCopy';
-import InterfaceNode from '../Components/InterfaceNodeCopy';
-import CodeNode from '../Components/CodeNode';
+import ButtonEdge from '../../Components/DashedEdge';
+import ClassNode from '../../Components/ClassNodeCopy';
+import InterfaceNode from '../../Components/InterfaceNodeCopy';
+import CodeNode from '../../Components/CodeNode';
+import GenericClassNode from '../../Components/GenericClassNode';
 
 
 const creatorDescription = `The creator class declares the factory method that returns new product objects. It separates the construction of the product objects from their implementation, allowing for greater flexibility and extensibility in the system. The return type of the factory method must match the product interface. By using the Factory Method design pattern and the creator class, you can easily add new product types to your system without modifying existing code.`;

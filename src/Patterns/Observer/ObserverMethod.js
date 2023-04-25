@@ -8,6 +8,7 @@ import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
 import { handleNodeDelete, updateNodeMethods } from '../../Interactivity/observerMethodUtilities';
 import { clientCode, publisherCode1, publisherCode2 } from './nodeCodes';
+import { updateNodes } from '../../Interactivity/updateNodes';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -21,30 +22,7 @@ const ObserverMethod = (props) => {
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [false, true, false, false, false, true];
 
-  useEffect(() => {
-    setNodes(nds => nds.map((node, i) => {  
-      return {
-        ...node,
-        data: {
-          ...node.data,
-          class_name: node.data.class_name || "default",
-          methods: node.data.methods || ["defaultMethod"],
-          handleChanges: handleChanges,
-          codeWritten: codeWritten,
-          pop: popHidden[i],
-          
-        },
-        hidden: hidden[i]
-      };
-    }));
-  
-    setEdges(eds => eds.map((edge, i) => {
-      return {
-        ...edge,
-        hidden: edgeHidden[i]
-      };
-    }), []);
-  });
+  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) });
 
   const handleChanges = (type, id, event, index) => {
     switch(type){

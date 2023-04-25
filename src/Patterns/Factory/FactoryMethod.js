@@ -1,17 +1,14 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, Controls } from 'reactflow';
 
-import '../Patterns_CSS/index.css';
-import 'reactflow/dist/style.css';
-import '../Buttons.css';
-
 import { AddNodes } from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './factoryMethodInit';
-import { findMissingID, handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../Interactivity/generalUtilities';
-import { handleNodeDelete, updateNodeMethods } from '../Interactivity/factoryMethodUtilities';
+import { findMissingID, handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../../Interactivity/generalUtilities';
+import { handleNodeDelete, updateNodeMethods } from '../../Interactivity/factoryMethodUtilities';
 import { stepValues, edgeValues, popValues } from './DemoSteps';
-import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
+import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { concreteCreatorCode, productCode } from './nodeCodes';
+import { updateNodes } from '../../Interactivity/updateNodes';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -26,30 +23,7 @@ const FactoryMethod = (props) => {
   const [popHidden, setPopHidden] = useState(popValues[popValues.length - 1])
   const demoProps = {stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden};
 
-  useEffect(() => {
-    setNodes(nds => nds.map((node, i) => {  
-      return {
-        ...node,
-        data: {
-          ...node.data,
-          class_name: node.data.class_name || "default",
-          methods: node.data.methods || ["defaultMethod"],
-          handleChanges: handleChanges,
-          codeWritten: codeWritten,
-          pop: popHidden[i],
-          
-        },
-        hidden: hidden[i]
-      };
-    }));
-  
-    setEdges(eds => eds.map((edge, i) => {
-      return {
-        ...edge,
-        hidden: edgeHidden[i]
-      };
-    }), []);
-  });
+  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) });
 
   const handleChanges = (type, id, event, index) => {
     switch(type){

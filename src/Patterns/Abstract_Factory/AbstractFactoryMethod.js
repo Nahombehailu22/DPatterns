@@ -15,11 +15,11 @@ import { edgeValues, stepValues } from './DemoSteps';
 import { concreteFactoryCode, productCode } from './nodeCodes';
 import { handleNodeDelete, updateNodeMethods } from '../../Interactivity/abstractFactoryUtilities';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
+import { updateNodes } from '../../Interactivity/updateNodes';
 
 const fitViewOptions = {
   padding: 0.2,
 };
-
 
 const AbstractFactoryMethod = (props) => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -29,31 +29,7 @@ const AbstractFactoryMethod = (props) => {
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [true, true, true, true, true, true];
 
-
-  useEffect(() => {
-    setNodes(nds => nds.map((node, i) => {  
-      return {
-        ...node,
-        data: {
-          ...node.data,
-          class_name: node.data.class_name || "default",
-          methods: node.data.methods || ["defaultMethod"],
-          handleChanges: handleChanges,
-          codeWritten: codeWritten,
-          pop: popHidden[i],
-          
-        },
-        hidden: hidden[i]
-      };
-    }));
-  
-    setEdges(eds => eds.map((edge, i) => {
-      return {
-        ...edge,
-        hidden: edgeHidden[i]
-      };
-    }), []);
-  });
+  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) });
   
   const handleChanges = (type, id, event, index, methodId) => {
     switch(type){

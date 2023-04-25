@@ -8,10 +8,12 @@ function InterfaceNode({ id, data, color1, color2 }) {
   const backColor = color1;
   const backColorMethod = color2;
 
-  // Calculate the width of the class and method names
-  const classWidth = class_name.length * 3 + 70;
-  // const methodWidth = methods.reduce((acc, str) => Math.max(acc, str.length), 0) * 3 + 70;
-  const methodWidth = 100;
+  const classWidth = class_name.length * 3 + 90;
+  let methodWidth = 45;
+  methods.map(method =>{
+    methodWidth = Math.max(methodWidth, method.name.length)
+  })
+  methodWidth += 80
 
   const container = {
     hidden: {opacity: 0, scale: 0.5},

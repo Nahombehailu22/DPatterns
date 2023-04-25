@@ -1,8 +1,9 @@
 import { MarkerType } from 'reactflow';
-import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNodeCopy';
-import GenericClassNode from '../Components/GenericClassNode';
-import CodeNode from '../Components/CodeNode';
+import ButtonEdge from '../../Components/DashedEdge';
+import ClassNode from '../../Components/ClassNodeCopy';
+import InterfaceNode from '../../Components/InterfaceNodeCopy';
+import CodeNode from '../../Components/CodeNode';
+import GenericClassNode from '../../Components/GenericClassNode';
 
 
 const singletonDescription = `The Singleton class declares the static method getInstance that returns the same instance of its own class.The Singleton’s constructor should be hidden from the client code. Calling the getInstance method should be the only way of getting the Singleton object.`;
@@ -51,7 +52,7 @@ const initialNodes = [
     data: { 
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
     },
-    position: { x: 0, y: 200 },
+    position: { x: 0, y: 250 },
   },
 
 ];

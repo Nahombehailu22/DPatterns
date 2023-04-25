@@ -1,7 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge, useReactFlow, Controls } from 'reactflow';
 
-
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../../Interactivity/generalUtilities';
@@ -9,6 +8,7 @@ import { stepValues, edgeValues } from './DemoSteps';
 
 import { adapterCode } from './nodeCodes';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AdapterMethodInit';
+import { updateNodes } from '../../Interactivity/updateNodes';
 
 const fitViewOptions = {
   padding: 0.5,
@@ -22,30 +22,8 @@ const AdapterMethod = (props) => {
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [false, false];
 
-  useEffect(() => {
-    setNodes(nds => nds.map((node, i) => {
-      return {
-        ...node,
-        data: {
-          ...node.data,
-          class_name: node.data.class_name || "default",
-          methods: node.data.methods || ["defaultMethod"],
-          handleChanges: handleChanges,
-          codeWritten: codeWritten,
-          pop: popHidden[i],
-        },
-        hidden: hidden[i]
-      };
-    }));
+  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) });
   
-    setEdges(eds => eds.map((edge, i) => {
-      return {
-        ...edge,
-        hidden: edgeHidden[i]
-      };
-    }));
-  });
-
   const handleChanges = useCallback((type, id, event, index) => {
       switch(type){
         case "className":

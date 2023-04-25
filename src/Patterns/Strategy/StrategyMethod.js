@@ -1,17 +1,14 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, Controls } from 'reactflow';
 
-import '../Patterns_CSS/index.css';
-import 'reactflow/dist/style.css';
-import '../Buttons.css';
-
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './StrategyMethodInit';
-import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../Interactivity/generalUtilities';
+import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
-import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
+import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
-import { handleNodeDelete, updateNodeMethods } from '../Interactivity/strategyMethodUtilities';
+import { handleNodeDelete, updateNodeMethods } from '../../Interactivity/strategyMethodUtilities';
 import { clientCode, strategyCode1 } from './nodeCodes';
+import { updateNodes } from '../../Interactivity/updateNodes';
 
 const fitViewOptions = {
     padding: 0.4,
@@ -25,30 +22,7 @@ const StrategyMethod = (props) => {
     const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
     const popHidden = [false, true, false, false, false, true];
   
-    useEffect(() => {
-      setNodes(nds => nds.map((node, i) => {  
-        return {
-          ...node,
-          data: {
-            ...node.data,
-            class_name: node.data.class_name || "default",
-            methods: node.data.methods || ["defaultMethod"],
-            handleChanges: handleChanges,
-            codeWritten: codeWritten,
-            pop: popHidden[i],
-            
-          },
-          hidden: hidden[i]
-        };
-      }));
-    
-      setEdges(eds => eds.map((edge, i) => {
-        return {
-          ...edge,
-          hidden: edgeHidden[i]
-        };
-      }), []);
-    });
+    useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) });
   
     const handleChanges = (type, id, event, index) => {
       switch(type){

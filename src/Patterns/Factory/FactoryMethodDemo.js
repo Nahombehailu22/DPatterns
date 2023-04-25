@@ -3,8 +3,6 @@ import { motion } from 'framer-motion';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
-import '../Patterns_CSS/demo.css';
-
 const FactoryMethodDemo = () => {
   return (
     <motion.div

@@ -1,9 +1,9 @@
 import { MarkerType } from 'reactflow';
-import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNodeCopy';
-import InterfaceNode from '../Components/InterfaceNodeCopy';
-import CodeNode from '../Components/CodeNode';
-import GenericClassNode from '../Components/GenericClassNode';
+import ButtonEdge from '../../Components/DashedEdge';
+import ClassNode from '../../Components/ClassNodeCopy';
+import InterfaceNode from '../../Components/InterfaceNodeCopy';
+import CodeNode from '../../Components/CodeNode';
+import GenericClassNode from '../../Components/GenericClassNode';
 
 
 const contextDescription = 'The Context maintains a reference to one of the concrete strategies and communicates with this object only via the strategy interface.'

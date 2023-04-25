@@ -3,6 +3,7 @@ import ButtonEdge from '../Components/DashedEdge';
 import ClassNode from '../Components/ClassNodeCopy';
 import InterfaceNode from '../Components/InterfaceNodeCopy';
 import CodeNode from '../Components/CodeNode';
+import GenericClassNode from '../Components/GenericClassNode';
 
 
 const bridgeMethodDescription = `The Bridge Method pattern separates the abstraction of an object from its implementation. It uses an Abstraction class to define the interface for the object and a Implementor interface to specify the implementation details. Implementations of the Implementor interface can be interchanged without affecting the Abstraction class. The Bridge Method pattern allows you to add new implementations to your system without modifying existing code.`;
@@ -10,9 +11,20 @@ const abstractionDescription = `The Abstraction defines the interface that the c
 const implementorInterfaceDescription = `The Implementor Interface defines the interface that the Abstraction class will use to implement the object. This interface typically includes a set of methods that the Abstraction class can use to delegate to the appropriate implementation of the object. By using an interface, the Abstraction class and the RefinedAbstraction class can create and use different implementations of the Implementor interface without affecting the client code.`;
 const concreteImplementorDescription = `The Concrete Implementor class implements the Implementor interface and defines the specific behavior for a particular implementation of the object. Each Concrete Implementor class is responsible for implementing a specific type of behavior for the object.`;
 const refinedAbstractionDescription = `Refined Abstractions provide variants of control logic. Like their parent, they work with different implementations via the general implementation interface.`;
+const clientClassDescription = `The Client is only interested in working with the abstraction. However, it’s the client’s job to link the abstraction object with one of the implementation objects.`;
 
 const initialNodes = [
-
+  {
+    id: 'c',
+    type: 'genericClass',
+    data: { 
+        class_name: 'Client',
+        handles: [0, 1, 1, 0],
+        title: "Client Class",
+        description: clientClassDescription,
+    },
+    position: { x: 0, y: -150 },
+  },
   {
     id: '0',
     type: 'class',
@@ -30,7 +42,7 @@ const initialNodes = [
             name: 'operation',
           }
         ],
-        handles: [0, 1, 1, 0, 0, 0, 0, 1],
+        handles: [0, 1, 1, 0, 1, 0, 0, 1],
         title: "Abstraction",
         description: abstractionDescription,
         deletable: false,
@@ -130,10 +142,29 @@ const initialNodes = [
     },
     position: { x: 0, y: 510 },
   },
+  {
+    id: 'cb',
+    type: 'code',
+    data: { 
+        handles: [0, 0, 0, 0, 0, 0, 0, 1],
+        connectedId: 'c',
+    },
+    position: { x: 200, y: -150 },
+  },
 ];
 
 
 const initialEdges = [
+  { 
+    id: 'c-0', 
+    source: 'c', 
+    sourceHandle: 'd', 
+    target: '0', 
+    type: 'straight', 
+    targetHandle: 'n',
+    markerEnd: { type: MarkerType.Arrow }    
+
+  },
   { 
     id: '0-1', 
     source: '0', 
@@ -191,6 +222,16 @@ const initialEdges = [
     targetHandle: 'n',
     animated: true,
   },
+  { 
+    id: 'c-cb', 
+    source: 'c', 
+    sourceHandle: 'r', 
+    target: 'cb', 
+    type: 'straight', 
+    targetHandle: 'w',
+    animated: true,
+
+  },
 ];
 
 const nodeTypes = {
@@ -211,6 +252,12 @@ const nodeTypes = {
         {...props}
         color1={'#757575'}
         color2={'#BDBDBD'}
+      />),
+  genericClass: (props) => (
+      <GenericClassNode
+        {...props}
+        color1={'#009688'}
+        color2={'#4DB6AC'}
       />),
 };
 

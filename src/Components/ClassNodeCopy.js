@@ -19,6 +19,7 @@ const ClassNode = ({
   },
   color1: backColor,
   color2: backColorMethod,
+  position,
 }) => {
 
   const classWidth = class_name.length * 3 + 78;
@@ -39,7 +40,7 @@ const ClassNode = ({
       transition: { duration: 1 },
     }
   }
-
+  
   return (
     <div className='text-updater-node'>
     <motion.div 

@@ -9,7 +9,7 @@ import { AddNodes } from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './factoryMethodInit';
 import { findMissingID, handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../Interactivity/generalUtilities';
 import { handleNodeDelete, updateNodeMethods } from '../Interactivity/factoryMethodUtilities';
-import { stepValues, edgeValues } from './DemoSteps';
+import { stepValues, edgeValues, popValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 
 const fitViewOptions = {
@@ -22,7 +22,8 @@ const FactoryMethod = (props) => {
 
   const [hidden, setHidden] = useState(stepValues[stepValues.length - 1]);
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
-  const popHidden = [false, true, false, false, false, true];
+  const [popHidden, setPopHidden] = useState(popValues[popValues.length - 1])
+  const demoProps = {stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden};
 
   useEffect(() => {
     setNodes(nds => nds.map((node, i) => {  
@@ -109,7 +110,7 @@ const FactoryMethod = (props) => {
   
   return (
     <div className="wrapper" style={{ height: 800 }}>
-      <IncrementalHiddenButton stepValues= {stepValues} setHidden={setHidden} edgeValues={edgeValues} setEdgeHidden={setEdgeHidden}/>
+      <IncrementalHiddenButton {...demoProps} />
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow
         nodes={nodes}

@@ -33,7 +33,7 @@ const BridgeMethod = (props) => {
           class_name: node.data.class_name || "default",
           methods: node.data.methods || ["defaultMethod"],
           handleChanges: handleChanges,
-          codeWritten: node.id === '0b' ? implementationCode: refinedAbstractionCode,
+          codeWritten: node.id === '0b' ? implementationCode: node.id === 'cb'? clientCode: refinedAbstractionCode,
           pop: popHidden[i],
           
         },
@@ -75,6 +75,16 @@ const BridgeMethod = (props) => {
       </p>
     )
   };
+
+  const clientCode = () => {
+
+    const abstractNode = nodes.find(node => node.id === "0");
+    const operation = abstractNode.data.methods.find(method => method.id === "1").name
+
+    return (
+      <p>abstraction.{operation}()</p>
+    )
+  }
 
   const handleChanges = (type, id, event, index) => {
     switch(type){

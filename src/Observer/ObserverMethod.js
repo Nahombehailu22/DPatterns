@@ -11,6 +11,7 @@ import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
 import { handleNodeDelete, updateNodeMethods } from '../Interactivity/observerMethodUtilities';
+import { clientCode, publisherCode1, publisherCode2 } from './nodeCodes';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -33,7 +34,7 @@ const ObserverMethod = (props) => {
           class_name: node.data.class_name || "default",
           methods: node.data.methods || ["defaultMethod"],
           handleChanges: handleChanges,
-          codeWritten: node.id === '0c' ? publisherCode1 :node.id === '0c2' ? publisherCode2: node.id === 'cc' ? clientCode: null,
+          codeWritten: codeWritten,
           pop: popHidden[i],
           
         },
@@ -48,53 +49,6 @@ const ObserverMethod = (props) => {
       };
     }), []);
   });
-
-  const publisherCode1 = () => {
-    const publisherNode = nodes.find(node => node.id === "0");
-    const subscribers = publisherNode.data.attributes.find(attribute => attribute.id === "1").name
-
-    const updateNode = nodes.find(node => node.id === "0a");
-    const update = updateNode.data.methods.find(method => method.id === "1").name;
-
-    return (
-      <p>
-        foreach (s in {subscribers})
-        <br></br>
-        s.{update}(this)
-      </p>
-    )
-  };
-
-  const publisherCode2 = () => {
-    const publisherNode = nodes.find(node => node.id === "0");
-    const mainState = publisherNode.data.attributes.find(attribute => attribute.id === "2").name
-    const notifySubscribers = publisherNode.data.methods.find(method => method.id === "3").name
-
-    return (
-      <p>
-        {mainState} = newState
-        <br></br>
-        {notifySubscribers}()
-      </p>
-    )
-  };
-
-  const clientCode = () => {
-
-    const publisherNode = nodes.find(node => node.id === "0");
-    const subscribe = publisherNode.data.methods.find(method => method.id === "1").name
-
-    const ConcreteSubscriber1 = nodes.find(node => node.id === "1a").data.class_name;
-
-    return (
-      <p>
-        s = <b>new</b> {ConcreteSubscriber1}()
-        <br></br>
-        publisher.{subscribe}(s)
-      </p>
-    )
-  };
-
 
   const handleChanges = (type, id, event, index) => {
     switch(type){
@@ -127,11 +81,21 @@ const ObserverMethod = (props) => {
             handleNodeDelete(id, nodes, edges, setNodes, setEdges)
             break;
 
-      default:
-        break;
-
+        default:
+            break;
     }
   };
+
+  const codeWritten = (connectingID, id) => {
+    switch(id){
+      case '0c':
+        return (<div>{publisherCode1(nodes)}</div>)
+      case '0c2':
+        return (<div>{publisherCode2(nodes)}</div>)
+      default:
+        return (<div>{clientCode(nodes)}</div>)
+    }
+   }
   
   return (
     <div className="wrapper" style={{ height: 800 }}>

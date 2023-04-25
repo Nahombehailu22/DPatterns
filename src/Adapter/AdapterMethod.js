@@ -9,6 +9,7 @@ import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AdapterMethodI
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
+import { adapterCode } from './nodeCodes';
 
 const fitViewOptions = {
   padding: 0.5,
@@ -31,7 +32,7 @@ const AdapterMethod = (props) => {
           class_name: node.data.class_name || "default",
           methods: node.data.methods || ["defaultMethod"],
           handleChanges: handleChanges,
-          codeWritten: writeCode,
+          codeWritten: codeWritten,
           pop: popHidden[i],
         },
         hidden: hidden[i]
@@ -45,22 +46,6 @@ const AdapterMethod = (props) => {
       };
     }));
   });
-  
-  const writeCode = () => {
-    const adapteeNode = nodes.find(node => node.id === "1");
-    const adaptee = adapteeNode.data.attributes.find(attribute => attribute.id == "1").name;
-
-    const serviceNode = nodes.find(node => node.id === "2")
-    const serviceMethod = serviceNode.data.methods.find(method => method.id === "1").name;
-
-    return (
-      <p>
-        specialData = convertToServiceFormat(data)
-        <br></br>
-        return {adaptee}.{serviceMethod}(specialData)
-      </p>
-    )
-  };
 
   const handleChanges = useCallback((type, id, event, index) => {
       switch(type){
@@ -84,6 +69,10 @@ const AdapterMethod = (props) => {
       }
   
   }, []);
+
+  const codeWritten = (connectingID, id) => {
+    return(<div>{adapterCode(nodes)}</div>)
+  }
 
  
   return (

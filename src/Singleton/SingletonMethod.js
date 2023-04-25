@@ -9,6 +9,7 @@ import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './SingletonMetho
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
+import { singletonCode } from './nodeCodes';
 
 const fitViewOptions = {
   padding: 1,
@@ -31,7 +32,7 @@ const SingletonMethod = (props) => {
           class_name: node.data.class_name || "default",
           methods: node.data.methods || ["defaultMethod"],
           handleChanges: handleChanges,
-          codeWritten: node.type === 'code' ? writeCode: node.data.writeCode,
+          codeWritten: codeWritten,
           pop: popHidden[i],
         },
         hidden: hidden[i]
@@ -46,24 +47,6 @@ const SingletonMethod = (props) => {
     }));
   });
   
-  const writeCode = () => {
-    const instanceNode = nodes.find(node => node.id === "0")
-    const instance = instanceNode.data.attributes.find(attribute => attribute.id === "1").name
-    // const instance = nodes[0].data.attributes[0]
-    const classSingleton = nodes.find(node => node.id === "0").data.class_name;
-
-    return (
-      <p>
-        if({instance}==null) {'{'}
-        <br></br>
-        &nbsp;&nbsp;&nbsp;instance = new {classSingleton}()
-        <br></br>
-        {'}'}
-        <br></br>
-        return {instance}
-      </p>
-    )
-  };
 
   const handleChanges = useCallback((type, id, event, index) => {
 
@@ -91,6 +74,9 @@ const SingletonMethod = (props) => {
   
   }, []);
 
+  const codeWritten = (connectingID, id) => {
+    return (<div>{singletonCode(nodes)}</div>)
+  }
  
   return (
     <div className="wrapper" style={{ height: 800 }}>

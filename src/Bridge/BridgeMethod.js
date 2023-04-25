@@ -11,6 +11,7 @@ import { findMissingID, handleAddMethod, handleAttributeNameChange, handleClassN
 import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 import { handleNodeDelete, updateNodeMethods } from '../Interactivity/bridgeMethodUtilities';
+import { clientCode, implementationCode, refinedAbstractionCode } from './nodeCodes';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -33,7 +34,7 @@ const BridgeMethod = (props) => {
           class_name: node.data.class_name || "default",
           methods: node.data.methods || ["defaultMethod"],
           handleChanges: handleChanges,
-          codeWritten: node.id === '0b' ? implementationCode: node.id === 'cb'? clientCode: refinedAbstractionCode,
+          codeWritten: codeWritten,
           pop: popHidden[i],
           
         },
@@ -48,43 +49,6 @@ const BridgeMethod = (props) => {
       };
     }), []);
   });
-
-  const implementationCode = () => {
-    const impNode =  nodes.find(node =>(node.id === "0"))
-    const imp = impNode.data.attributes.find(attribute => attribute.id === "1").name;
-
-    const interfaceNode =  nodes.find(node =>(node.id === "0a"))
-    const operationImp1 = interfaceNode.data.methods.find(method => method.id === "1").name;
-
-    return (
-      <p>
-        {imp}.{operationImp1}
-      </p>
-    )
-  };
-  
-  const refinedAbstractionCode = () => {
-    const impNode =  nodes.find(node =>(node.id === "0"))
-    const imp = impNode.data.attributes.find(attribute => attribute.id === "1").name;
-
-    return (
-      <p>
-          {imp}.methodN()
-          <br></br>
-          {imp}.methodM()
-      </p>
-    )
-  };
-
-  const clientCode = () => {
-
-    const abstractNode = nodes.find(node => node.id === "0");
-    const operation = abstractNode.data.methods.find(method => method.id === "1").name
-
-    return (
-      <p>abstraction.{operation}()</p>
-    )
-  }
 
   const handleChanges = (type, id, event, index) => {
     switch(type){
@@ -133,6 +97,17 @@ const BridgeMethod = (props) => {
 
     }
   };
+
+  const codeWritten = (connectedId, id) => {
+    switch(id){
+      case '0b':
+        return (<div>{implementationCode(nodes)}</div>);
+      case 'cb':
+        return ( <div>{clientCode(nodes)}</div>)
+      default:
+        return (<div>{refinedAbstractionCode(nodes)}</div>);
+    }
+  }
   
   return (
     <div className="wrapper" style={{ height: 800 }}>

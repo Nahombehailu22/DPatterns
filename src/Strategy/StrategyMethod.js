@@ -11,6 +11,7 @@ import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
 import { handleNodeDelete, updateNodeMethods } from '../Interactivity/strategyMethodUtilities';
+import { clientCode, strategyCode1 } from './nodeCodes';
 
 const fitViewOptions = {
     padding: 0.4,
@@ -33,7 +34,7 @@ const StrategyMethod = (props) => {
             class_name: node.data.class_name || "default",
             methods: node.data.methods || ["defaultMethod"],
             handleChanges: handleChanges,
-            codeWritten: node.id === '0c' ? strategyCode1: node.id === 'cc' ? clientCode: null,
+            codeWritten: codeWritten,
             pop: popHidden[i],
             
           },
@@ -48,44 +49,6 @@ const StrategyMethod = (props) => {
         };
       }), []);
     });
-  
-    const strategyCode1 = () => {
-        const interfaceNode = nodes.find(node => node.id === "0a")
-        const execute = interfaceNode.data.methods.find(method => method.id === "1").name;
-    
-        return (
-          <p>
-            strategy.{execute}()
-          </p>
-        )
-      };
-    
-      const clientCode = () => {
-        const ConcreteStrategy1 = nodes.find(node => node.id === "1a").data.class_name;
-        const ConcreteStrategy2 = nodes.find(node => node.id === "2a").data.class_name;
-        
-        const contextNode = nodes.find(node => node.id === "0");
-        const setStrategy = contextNode.data.methods.find(method => method.id === "1").name;
-        const doSomething = contextNode.data.methods.find(method => method.id === "2").name;
-
-        return (
-          <p>
-            str = <b>new</b> {ConcreteStrategy1}()
-            <br></br>
-            context.{setStrategy}(str)
-            <br></br>
-            context.{doSomething}()
-            <br></br>
-            //...
-            <br></br>
-            other = <b>new</b> {ConcreteStrategy2}()
-            <br></br>
-            context.{setStrategy}(other)
-            <br></br>
-            context.{doSomething}()
-          </p>
-        )
-      };
   
     const handleChanges = (type, id, event, index) => {
       switch(type){
@@ -123,6 +86,15 @@ const StrategyMethod = (props) => {
   
       }
     };
+
+    const codeWritten = (connectingID, id) => {
+      switch(id){
+        case '0c':
+          return (<div>{strategyCode1(nodes)}</div>)
+        default:
+          return (<div>{clientCode(nodes)}</div>)
+      }
+    }
     
     return (
       <div className="wrapper" style={{ height: 800 }}>

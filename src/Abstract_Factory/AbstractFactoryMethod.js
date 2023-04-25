@@ -12,6 +12,7 @@ import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMetho
 import { handleNodeDelete, updateNodeMethods } from '../Interactivity/abstractFactoryUtilities';
 import { edgeValues, stepValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
+import { concreteFactoryCode, productCode } from './nodeCodes';
 
 const fitViewOptions = {
   padding: 0.2,
@@ -36,7 +37,7 @@ const AbstractFactoryMethod = (props) => {
           class_name: node.data.class_name || "default",
           methods: node.data.methods || ["defaultMethod"],
           handleChanges: handleChanges,
-          codeWritten: node.id === "c1"? productCode: node.id === "2a" ? concreteFactoryCode: null,
+          codeWritten: codeWritten,
           pop: popHidden[i],
           
         },
@@ -51,31 +52,6 @@ const AbstractFactoryMethod = (props) => {
       };
     }), []);
   });
-
-  const productCode = () => {
-    const productA = nodes.find(node => node.id === "0a").data.class_name;
-
-    const factoryNode = nodes.find(node => node.id === "c")
-    const factory = factoryNode.data.attributes.find(attribute => attribute.id === "1").name
-    
-    const node = nodes.find(node => node.id === "0");
-    const abstractFactoryA = node.data.methods.find(method => method.id === "A").name;    
-
-    return (
-      <p>
-        {productA} pa = {factory}.{abstractFactoryA}()
-      </p>
-    )
-  };
-
-  const concreteFactoryCode = (currID) => {
-    const concreteProduct = nodes.find(node => node.id === `0a${currID}`).data.class_name;
-    return (
-      <p>
-          <b>return new</b> {concreteProduct}
-      </p>
-    )
-  };
   
   const handleChanges = (type, id, event, index, methodId) => {
     switch(type){
@@ -84,8 +60,9 @@ const AbstractFactoryMethod = (props) => {
         break;
       case "addMethod":
        
-        const methods = nodes.find(node => node.id === id).data.methods;
-        const nums = methods.map(method => method.id.charCodeAt() - 65)
+        const nums = nodes.find(node => node.id === id).data.methods
+        .map(method => method.id.charCodeAt() - 65)
+
         const nextID = findMissingID(nums) + 65
         const newID = String.fromCharCode(nextID)
 
@@ -111,10 +88,17 @@ const AbstractFactoryMethod = (props) => {
 
       default:
         break;
-
     }
   };
 
+  const codeWritten = (connectedID, id) => {
+    switch(id){
+      case "c1":
+        return (<div>{productCode(nodes)}</div>);
+      default:
+        return (<div>{concreteFactoryCode(nodes, connectedID)}</div>);
+    }
+  }
 
   return (
     <div className="wrapper" style={{ height: 800 }}>

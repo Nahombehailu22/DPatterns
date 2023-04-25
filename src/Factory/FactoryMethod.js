@@ -11,6 +11,7 @@ import { findMissingID, handleAddMethod, handleClassNameChange, handleDeleteMeth
 import { handleNodeDelete, updateNodeMethods } from '../Interactivity/factoryMethodUtilities';
 import { stepValues, edgeValues, popValues } from './DemoSteps';
 import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
+import { concreteCreatorCode, productCode } from './nodeCodes';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -34,7 +35,7 @@ const FactoryMethod = (props) => {
           class_name: node.data.class_name || "default",
           methods: node.data.methods || ["defaultMethod"],
           handleChanges: handleChanges,
-          codeWritten: node.id === '0b' ? productCode : concreteCreatorCode,
+          codeWritten: codeWritten,
           pop: popHidden[i],
           
         },
@@ -49,32 +50,6 @@ const FactoryMethod = (props) => {
       };
     }), []);
   });
-
-  const productCode = () => {
-    const factoryNode = nodes.find(node => node.id === "0");
-    const factoryMethod = factoryNode.data.methods.find(method => method.id === "2").name;
-
-    const interfaceNode = nodes.find(node => node.id === "0a")
-    const interfaceMethod = interfaceNode.data.methods.find(method => method.id === "1").name
-    const interfaceClass = interfaceNode.data.class_name;
-
-    return (
-      <p>
-        {interfaceClass} p = {factoryMethod}()
-        <br></br>
-        p.{interfaceMethod}()
-      </p>
-    )
-  };
-  
-  const concreteCreatorCode = (currID) => {
-    const concreteProduct = nodes.find(node => node.id === `${currID}a`).data.class_name;
-    return (
-      <p>
-          <b>return new</b> {concreteProduct}
-      </p>
-    )
-  };
 
   const handleChanges = (type, id, event, index) => {
     switch(type){
@@ -107,6 +82,15 @@ const FactoryMethod = (props) => {
 
     }
   };
+
+  const codeWritten = (connectingID, id) => {
+    switch(id){
+      case '0b':
+        return (<div>{productCode(nodes)}</div>)
+      default:
+        return (<div>{concreteCreatorCode(nodes, connectingID)}</div>)
+    }
+  }
   
   return (
     <div className="wrapper" style={{ height: 800 }}>

@@ -1,10 +1,9 @@
 import { MarkerType } from 'reactflow';
-import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNodeCopy';
-import InterfaceNode from '../Components/InterfaceNodeCopy';
-import CodeNode from '../Components/CodeNode';
-import GenericClassNode from '../Components/GenericClassNode';
-
+import ButtonEdge from '../../Components/DashedEdge';
+import ClassNode from '../../Components/ClassNodeCopy';
+import InterfaceNode from '../../Components/InterfaceNodeCopy';
+import CodeNode from '../../Components/CodeNode';
+import GenericClassNode from '../../Components/GenericClassNode';
 
 const abstractFactoryDescription = `The interface that defines a set of methods for creating abstract product objects. The specific type of product created is not determined until runtime.`;
 const concreteFactoryDescription = 'The implementation of the Abstract Factory interface that creates concrete product objects. Each concrete factory corresponds to a particular variant of the product.';

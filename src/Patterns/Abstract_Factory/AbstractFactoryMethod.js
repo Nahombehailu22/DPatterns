@@ -1,18 +1,20 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge, useReactFlow, Controls } from 'reactflow';
 
-import '../Patterns_CSS/index.css';
-import 'reactflow/dist/style.css';
-import '../Buttons.css';
-import '../Patterns_CSS/demo.css';
+// import '../Patterns_CSS/index.css';
+// import 'reactflow/dist/style.css';
+// import '../Buttons.css';
+// import '../Patterns_CSS/demo.css';
 
-import { AddNodes } from '../Abstract_Factory/AddNode';
-import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
-import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../Interactivity/generalUtilities';
-import { handleNodeDelete, updateNodeMethods } from '../Interactivity/abstractFactoryUtilities';
+import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
+import { AddNodes } from './AddNode';
+
+import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../../Interactivity/generalUtilities';
 import { edgeValues, stepValues } from './DemoSteps';
-import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
+
 import { concreteFactoryCode, productCode } from './nodeCodes';
+import { handleNodeDelete, updateNodeMethods } from '../../Interactivity/abstractFactoryUtilities';
+import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
 
 const fitViewOptions = {
   padding: 0.2,

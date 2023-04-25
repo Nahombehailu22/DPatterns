@@ -1,16 +1,13 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, Controls } from 'reactflow';
 
-import '../Patterns_CSS/index.css';
-import 'reactflow/dist/style.css';
-import '../Buttons.css';
 
 import { AddNodes, AddNodesAbs, AddNodesImp } from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './BridgeMethodInit';
-import { findMissingID, handleAddMethod, handleAttributeNameChange, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../Interactivity/generalUtilities';
+import { findMissingID, handleAddMethod, handleAttributeNameChange, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
-import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
-import { handleNodeDelete, updateNodeMethods } from '../Interactivity/bridgeMethodUtilities';
+import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
+import { handleNodeDelete, updateNodeMethods } from '../../Interactivity/bridgeMethodUtilities';
 import { clientCode, implementationCode, refinedAbstractionCode } from './nodeCodes';
 
 const fitViewOptions = {

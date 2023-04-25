@@ -1,9 +1,9 @@
 import { MarkerType } from 'reactflow';
-import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNodeCopy';
-import InterfaceNode from '../Components/InterfaceNodeCopy';
-import CodeNode from '../Components/CodeNode';
-import GenericClassNode from '../Components/GenericClassNode';
+import ButtonEdge from '../../Components/DashedEdge';
+import ClassNode from '../../Components/ClassNodeCopy';
+import InterfaceNode from '../../Components/InterfaceNodeCopy';
+import CodeNode from '../../Components/CodeNode';
+import GenericClassNode from '../../Components/GenericClassNode';
 
 
 const clientDescription ='The Client is a class that contains the existing business logic of the program.'

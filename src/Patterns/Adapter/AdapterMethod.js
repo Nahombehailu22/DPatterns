@@ -1,15 +1,14 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge, useReactFlow, Controls } from 'reactflow';
 
-import '../Patterns_CSS/index.css';
-import 'reactflow/dist/style.css';
-import '../Buttons.css';
 
-import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AdapterMethodInit';
-import IncrementalHiddenButton from '../Interactivity/stepByStepDemo';
-import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../Interactivity/generalUtilities';
+import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
+
+import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
+
 import { adapterCode } from './nodeCodes';
+import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AdapterMethodInit';
 
 const fitViewOptions = {
   padding: 0.5,

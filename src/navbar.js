@@ -2,10 +2,7 @@ import "./navbar.css";
 import { useState } from 'react';
 import Card from './Cards/CardUI';
 
-const Navbar = () => {
-    const [category, setCategory] = useState("All Patterns");
-    const [searchQuery, setSearchQuery] = useState("");
-
+const Navbar = ({setCategory, searchQuery, setSearchQuery}) => {
 
     const handleClick = (category) => {
         setCategory(category);
@@ -29,7 +26,7 @@ const Navbar = () => {
                 <button type="submit">Search</button>
             </form>
             <br></br><br></br><br></br>
-            <Card category={category} searchQuery={searchQuery} />
+            {/* <Card category={category} searchQuery={searchQuery} /> */}
         </nav>
     );
 }

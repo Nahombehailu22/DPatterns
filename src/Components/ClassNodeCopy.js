@@ -23,7 +23,8 @@ const ClassNode = ({
 
   const classWidth = class_name.length * 3 + 90;
   // const methodWidth = methods.reduce((acc, str) => Math.max(acc, str.length), 0) * 3 + 70;
-  const methodWidth = methods.reduce((acc, method) => Math.max(acc, method.name.length), 0) * 3 + 80;
+  
+  const methodWidth = methods.reduce((acc, method) => Math.max(acc, method.name.length), 0)*3.5 + 80;
 
   const container = {
     hidden: { opacity: 0, scale: 0.5 },
@@ -40,6 +41,7 @@ const ClassNode = ({
     }
   }
   
+  
   return (
     <div className='text-updater-node'>
     <motion.div 
@@ -48,7 +50,6 @@ const ClassNode = ({
       animate="show"
       whileHover="whileHover"
 
-      className='text-updater-node' 
       style={{background: backColor, color:"white"}}>
       <div>
         {deletable && (
@@ -97,8 +98,8 @@ const ClassNode = ({
                 placeholder="method"
                 value={method.name}
                 onChange={(e) => handleChanges("changeMethodName", id, e, method.id)}
-                style={{ backgroundColor: backColorMethod, width: methodWidth }}
-              />
+                style={{ backgroundColor: backColorMethod, width: method.name.length*8 + 25 }}
+              /><label style ={{ fontSize: '20px'}}>()</label>
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 
                 onClick={(e) => handleChanges("deleteMethod", id, e, idx)}

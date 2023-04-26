@@ -85,8 +85,8 @@ function InterfaceNode({ id, data, color1, color2 }) {
                 placeholder="method"
                 value={method.name}
                 onChange={(e) => handleChanges("changeMethodName", id, e, method.id)}
-                style={{ backgroundColor: backColorMethod, width: methodWidth }}
-              />
+                style={{ backgroundColor: backColorMethod, width: method.name.length*8 + 20 }}
+              /><label style ={{ fontSize: '20px'}}>()</label>
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 
                 onClick={(e) => handleChanges("deleteMethod", id, e, idx, method.id)}

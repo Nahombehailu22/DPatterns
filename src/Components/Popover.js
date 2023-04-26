@@ -26,20 +26,22 @@ const InfoPopover = React.memo(props => {
   const open = Boolean(anchorEl)
   const id = open ? 'simple-popover' : undefined;
 
+  const anchorRef = useRef();
+  
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      <Button variant="contained" style={{ backgroundColor: backColor, color: "#fff" }} onClick={handleClick}>
+      <Button variant="contained" style={{ backgroundColor: backColor, color: "#fff" }} onClick={handleClick} ref={anchorRef}>
         <FontAwesomeIcon icon={faInfoCircle} style={{ marginRight: "5px" }} />
         Info
       </Button>
       <Popover
         id={id}
         open={open}
-        anchorEl={anchorEl}
+        anchorEl={anchorRef.current}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 260,
-          horizontal: 100,
+          vertical: 'bottom',
+          horizontal: 'center',
         }}
         sx={{ maxWidth: '1200px'}}
       >

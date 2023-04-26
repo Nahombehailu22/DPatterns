@@ -2,11 +2,11 @@ import React, { useCallback, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, Controls } from 'reactflow';
 
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './ObserverMethodInit';
-import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../../Interactivity/generalUtilities';
+import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID, handleNodeDelete} from '../../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
-import { handleNodeDelete, updateNodeMethods } from '../../Interactivity/observerMethodUtilities';
+import { updateNodeMethods } from '../../Interactivity/observerMethodUtilities';
 import { clientCode, publisherCode1, publisherCode2 } from './nodeCodes';
 import { updateNodes } from '../../Interactivity/updateNodes';
 

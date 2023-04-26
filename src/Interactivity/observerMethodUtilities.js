@@ -1,9 +1,3 @@
-export const handleNodeDelete = (id, nodes, edges, setNodes, setEdges) => {
-    setNodes(nodes => nodes.filter(node => node.id !== id));
-    setEdges((edges) => edges.filter((edge) => edge.source !== id && edge.target !== id));
-
-  };
-
   export const updateNodeMethods = (nodes, setNodes) => {
     setTimeout(() => {
     setNodes(nodes => nodes.map(node => {

@@ -17,26 +17,18 @@ code {
 }
 
 
-
-
-
-
 .react-flow .react-flow__handle {
   width: 5px;
   height: 5px;
   border-radius: 2px;
-  background-color: #121214;
+  background-color: #57578200;
+  /* border-color: #57578200; */
 }
 
 
 .react-flow .react-flow__edge path,
 .react-flow__connectionline path {
   stroke-width: 2.5;
-}
-
-.wrapper {
-  flex-grow: 1;
-  height: 100%;
 }
 
 
@@ -65,7 +57,7 @@ code {
 
 }
 .text-updater-node {
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .text-updater-node div {
@@ -76,7 +68,7 @@ code {
 .text-updater-node input {
   color: white;
   border: none;
-  padding: 5px; 
+  /* padding: 5px;  */
   border-radius: 5px; 
   font-size: 85%;
 }

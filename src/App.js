@@ -1,10 +1,9 @@
-// import './App.css';
+import './App.css';
 import "./index.css";
 import 'reactflow/dist/style.css';
 import './Buttons.css';
 import './Patterns_CSS/demo.css';
 
-import Navbar from './navbar.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ReactFlowProvider } from 'reactflow';
 
@@ -23,6 +22,8 @@ import StrategyMethodDemo from './Patterns/Strategy/StrategyMethodDemo.js';
 import AdapterMethod from './Patterns/Adapter/AdapterMethod.js';
 import AdapterMethodDemo from './Patterns/Adapter/AdapterMethodDemo.js';
 import HomePage from "./Homepage";
+import DecoratorMethodDemo from './Patterns/Decorator/DecoratorMethodDemo';
+import DecoratorMethod from './Patterns/Decorator/DecoratorMethod';
 
 function App() {
  
@@ -54,6 +55,9 @@ function App() {
 
           <Route path="/bridgemethoddemo" component={BridgeMethodDemo} />
           <Route path="/bridgemethod" component={BridgeMethod} />
+
+          <Route path="/decoratormethoddemo" component={DecoratorMethodDemo} />
+          <Route path="/decoratormethod" component={DecoratorMethod} />
         </Switch>
       </Router>
     </ReactFlowProvider>

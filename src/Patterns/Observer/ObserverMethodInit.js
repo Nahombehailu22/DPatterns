@@ -120,7 +120,7 @@ const initialNodes = [
           title: "Client",
           description: clientDescription,
       },
-      position: { x: 0, y: 350},
+      position: { x: 0, y: 400},
     },
     {
         id: '0c',

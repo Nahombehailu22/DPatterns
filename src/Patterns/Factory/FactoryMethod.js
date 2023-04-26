@@ -3,8 +3,8 @@ import ReactFlow, { useNodesState, useEdgesState, Controls } from 'reactflow';
 
 import { AddNodes } from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './factoryMethodInit';
-import { findMissingID, handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../../Interactivity/generalUtilities';
-import { handleNodeDelete, updateNodeMethods } from '../../Interactivity/factoryMethodUtilities';
+import { findMissingID, handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleNodeDelete} from '../../Interactivity/generalUtilities';
+import { updateNodeMethods } from '../../Interactivity/factoryMethodUtilities';
 import { stepValues, edgeValues, popValues } from './DemoSteps';
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { concreteCreatorCode, productCode } from './nodeCodes';
@@ -38,6 +38,8 @@ const FactoryMethod = (props) => {
         break;
       case "deleteNode":
         handleNodeDelete(id, nodes, edges, setNodes, setEdges)
+        handleNodeDelete(id+"a", nodes, edges, setNodes, setEdges)
+        handleNodeDelete(id+"b", nodes, edges, setNodes, setEdges)
         break;
       case "changeMethodName":
         handleMethodNameChange(id, index, event, nodes, setNodes)

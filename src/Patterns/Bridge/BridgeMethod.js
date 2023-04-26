@@ -4,10 +4,10 @@ import ReactFlow, { useNodesState, useEdgesState, Controls } from 'reactflow';
 
 import { AddNodes, AddNodesAbs, AddNodesImp } from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './BridgeMethodInit';
-import { findMissingID, handleAddMethod, handleAttributeNameChange, handleClassNameChange, handleDeleteMethod, handleMethodNameChange} from '../../Interactivity/generalUtilities';
+import { findMissingID, handleAddMethod, handleAttributeNameChange, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleNodeDelete} from '../../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
-import { handleNodeDelete, updateNodeMethods } from '../../Interactivity/bridgeMethodUtilities';
+import { updateNodeMethods } from '../../Interactivity/bridgeMethodUtilities';
 import { clientCode, implementationCode, refinedAbstractionCode } from './nodeCodes';
 import { updateNodes } from '../../Interactivity/updateNodes';
 

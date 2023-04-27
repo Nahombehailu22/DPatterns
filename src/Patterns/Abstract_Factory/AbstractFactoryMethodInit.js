@@ -40,7 +40,8 @@ const initialNodes = [
         attributes: [
           {
             id: '1',
-            name: 'factory'
+            name: 'factory',
+            status: 'private',
         }
       ],
         handles: [0, 1, 0, 0, 0, 0, 0, 1],

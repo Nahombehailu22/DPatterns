@@ -8,8 +8,6 @@ function GenericClassNode({ id, data, color1, color2 }) {
   const backColor = color1;
   const backColorMethod = color2;
 
-  // Calculate the width of the class and method names
-  const classWidth = class_name.length * 3 + 95;
 
   const container = {
     hidden: {opacity: 0, x: -1000},
@@ -57,7 +55,7 @@ function GenericClassNode({ id, data, color1, color2 }) {
             onChange={(e) => {
               handleChanges("className", id, e);
             }}
-            style={{ backgroundColor: backColor, width: classWidth }}
+            style={{ backgroundColor: backColor, width: class_name ? class_name.length * 3 + 95: 100 }}
           />
         </div>
         </div>

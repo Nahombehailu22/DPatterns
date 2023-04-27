@@ -30,7 +30,7 @@ The Concrete Product is the component of the system that the client code is prim
 
 const defaultClasses = ["Creator", "ConcCreator1", "ConcCreator2", "Product", "ConcProduct1", "ConcProduct2"];
 const defaultMethods = [
-    [{ id: "1", name: "someOperation" }, { id: "2", name: "createProduct"}], 
+    [{ id: "1", name: "someOperation"}, { id: "2", name: "createProduct"}], 
     [{ id: "1", name: "createProduct"}], 
     [{ id: "1", name: "createProduct"}], 
     [{ id: "1", name: "doStuff"}],

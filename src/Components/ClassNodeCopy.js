@@ -37,6 +37,11 @@ const ClassNode = ({
       transition: { duration: 1 },
     }
   }
+
+  const statusMap = new Map([
+    ["protected", "#"],
+    ["private", "-"]
+  ])
   
   
   return (
@@ -73,7 +78,7 @@ const ClassNode = ({
           {!attributes ? <label style ={{ fontSize: "20px"}}>...</label> :
             attributes.map((attribute, idx) => (
               <div key={idx} style={{ margin: 0 }}>
-                <label>-</label>
+                <label>{attribute.status ? statusMap.get(attribute.status) : "+"}</label>
                 <input
                   type="text"
                   placeholder="instance"
@@ -89,14 +94,14 @@ const ClassNode = ({
         <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 
           {methods && methods.map((method, idx) => (
             <div key={idx} style={{ margin: 0 }}>
-              <label>+</label>
+              <label>{method.status ? statusMap.get(method.status) : "+"}</label>
               <input
                 type="text"
                 placeholder="method"
                 value={method.name}
                 onChange={(e) => handleChanges("changeMethodName", id, e, method.id)}
                 style={{ backgroundColor: backColorMethod, width: method.name? method.name.length*8 + 25: 70 }}
-              /><label style ={{ fontSize: '20px'}}>()</label>
+              /><label >() {method.return? ":"+method.return: ""}</label>
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 
                 onClick={(e) => handleChanges("deleteMethod", id, e, idx)}

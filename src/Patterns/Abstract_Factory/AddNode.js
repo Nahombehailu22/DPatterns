@@ -1,12 +1,6 @@
 import { useCallback } from 'react';
 import { MarkerType } from 'reactflow';
 
-// let currPos = -450;
-// const getPos = () => (currPos -= 225)
-
-// let id = 67;
-// const getId = () => String.fromCharCode(id++);
-
 export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }) => {
   setHidden([false, false, false, false, false, false, false, false, false, false, false]);
   setEdgeHidden([false, false, false, false, false, false, false, false, false, false, false, false]);

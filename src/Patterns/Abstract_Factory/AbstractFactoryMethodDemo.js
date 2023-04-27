@@ -46,7 +46,7 @@ const AbstractFactoryMethodDemo = () => {
           <li>Create one or more concrete subclasses of the Factory class that implement the factory method to create specific families of related or dependent product objects.</li>
           <li>Use the factory method to create families of related or dependent product objects, without having to know their specific classes or concrete implementations.</li>
         </ol>
-        <Link to="/abstractfactorymethod">
+        <Link to="/abstractfactorymethod/demonstration">
           <button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}

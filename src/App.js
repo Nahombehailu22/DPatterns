@@ -39,7 +39,7 @@ function App() {
           <Route path="/factorymethod/:type" component={FactoryMethod} />
 
           <Route path="/abstractfactorymethoddemo" component={AbstractFactoryMethodDemo} />
-          <Route path="/abstractfactorymethod" component={AbstractFactoryMethod} />
+          <Route path="/abstractfactorymethod/:type" component={AbstractFactoryMethod} />
           
           <Route path="/singletonmethoddemo" component={SingletonMethodDemo} />
           <Route path="/singletonmethod" component={SingletonMethod} />

@@ -1,27 +1,26 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge, useReactFlow, Controls } from 'reactflow';
-
-// import '../Patterns_CSS/index.css';
-// import 'reactflow/dist/style.css';
-// import '../Buttons.css';
-// import '../Patterns_CSS/demo.css';
+import { useParams, Link  } from "react-router-dom";
 
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
-
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../../Interactivity/generalUtilities';
 import { edgeValues, stepValues } from './DemoSteps';
-
 import { concreteFactoryCode, productCode } from './nodeCodes';
 import { handleNodeDelete, updateNodeMethods } from '../../Interactivity/abstractFactoryUtilities';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
 import { updateNodes } from '../../Interactivity/updateNodes';
 
+import initialize from './initializeValues';
+import { Button } from '@mui/material';
+
 const fitViewOptions = {
   padding: 0.2,
 };
 
-const AbstractFactoryMethod = (props) => {
+const AbstractFactoryMethod = () => {
+  const {type} = useParams();
+  const [pageType, setPageType] = useState("example");
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   
@@ -29,7 +28,11 @@ const AbstractFactoryMethod = (props) => {
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [true, true, true, true, true, true];
 
-  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) });
+  useEffect(() => { 
+    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type)
+    updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) 
+  },[type]);
+  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
   
   const handleChanges = (type, id, event, index, methodId) => {
     switch(type){
@@ -80,6 +83,22 @@ const AbstractFactoryMethod = (props) => {
 
   return (
     <div className="wrapper" style={{ height: 800 }}>
+      <Link to={`/abstractfactorymethod/${pageType}`}>
+        <Button
+          style={{
+            padding: '10px 20px',
+            background: '#1565c0',
+            color: 'white',
+            borderRadius: '5px',
+          }}
+          onClick={() => {
+            if(pageType === "demonstration"){ setPageType("example")}
+            else{setPageType("demonstration")}
+          }}
+        >
+          {type === "demonstration" ? "Example" : "Demo"}
+        </Button>
+      </Link>
       <IncrementalHiddenButton stepValues={stepValues} setHidden={setHidden} edgeValues={edgeValues} setEdgeHidden={setEdgeHidden}/>
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow

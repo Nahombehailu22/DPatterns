@@ -5,32 +5,12 @@ import InterfaceNode from '../../Components/InterfaceNodeCopy';
 import CodeNode from '../../Components/CodeNode';
 import GenericClassNode from '../../Components/GenericClassNode';
 
-const abstractFactoryDescription = `The interface that defines a set of methods for creating abstract product objects. The specific type of product created is not determined until runtime.`;
-const concreteFactoryDescription = 'The implementation of the Abstract Factory interface that creates concrete product objects. Each concrete factory corresponds to a particular variant of the product.';
-const abstractProductDescription = 'The interface that defines a set of methods that are common to all variants of a product. Each concrete product implements this interface.'
-const concreteProductDescription = 'The implementation of the Abstract Product interface that represents a specific variant of the product.'
-const clientDescription = 'The class that uses the Abstract Factory interface and the Abstract Product interface to create and use product objects. The client code does not know the specific classes of the objects it creates, only their common interfaces.'
-
 const initialNodes = [
   {
     id: '0',
     type: 'interface',
     data: { 
-        class_name: 'AbstractFactory',
-        methods: [
-          {
-            id: 'A',
-            name: 'createProductA'
-          },
-          {
-            id: 'B',
-            name: 'createProductB'
-          },
-          
-        ],
         handles: [1, 1, 1, 0, 0, 0, 0, 0],
-        title: "Abstract Factory",
-        description: abstractFactoryDescription,
         deletable: false,
     },
     position: { x: 0, y: 0 },
@@ -39,21 +19,7 @@ const initialNodes = [
     id: '1',
     type: 'class',
     data: { 
-        class_name: 'ConcreteFactory1',
-        methods: [
-          {
-            id: 'A',
-            name: 'createProductA'
-          },
-          {
-            id: 'B',
-            name: 'createProductB'
-          },
-          
-        ],
         handles: [0, 0, 0, 1, 0, 1, 0, 0],
-        title: "Concrete Factory",
-        description: concreteFactoryDescription,
         deletable: false,
     },
     position: { x: 0, y: -250},
@@ -62,21 +28,7 @@ const initialNodes = [
     id: '2',
     type: 'class',
     data: { 
-        class_name: 'ConcreteFactory2',
-        methods: [
-          {
-            id: 'A',
-            name: 'createProductA'
-          },
-          {
-            id: 'B',
-            name: 'createProductB'
-          },
-          
-        ],
         handles: [0, 0, 0, 1, 1, 0, 0, 0],
-        title: "Concrete Factory",
-        description: concreteFactoryDescription,
         deletable: false,
     },
     position: { x: 0, y: 250},
@@ -85,26 +37,13 @@ const initialNodes = [
     id: 'c',
     type: 'class',
     data: { 
-        class_name: 'Client',
         attributes: [
           {
             id: '1',
             name: 'factory'
         }
       ],
-        methods: [
-          {
-            id: "1",
-            name: 'Client'
-          },
-          {
-            id: "2",
-            name: 'someOperation'
-          }
-        ],
         handles: [0, 1, 0, 0, 0, 0, 0, 1],
-        title: "Client",
-        description: clientDescription,
         deletable: false,
     },
     position: { x: 300, y: 0},
@@ -113,10 +52,7 @@ const initialNodes = [
     id: '0a',
     type: 'genericInterface',
     data: { 
-        class_name: 'ProductA',
         handles: [1, 1, 0, 0, 0, 0, 0, 0],
-        title: "Abstract Product",
-        description: abstractProductDescription,
     },
     position: { x: -215, y: 60},
   },
@@ -124,10 +60,7 @@ const initialNodes = [
     id: '0a1',
     type: 'genericClass',
     data: { 
-        class_name: 'ConcreteProductA1',
         handles: [0, 0, 0, 0, 1, 1, 0, 0],
-        title: "Concrete Product",
-        description: concreteProductDescription,
     },
     position: { x: -225, y: -125},
   },
@@ -135,10 +68,7 @@ const initialNodes = [
     id: '0a2',
     type: 'genericClass',
     data: { 
-        class_name: 'ConcreteProductA2',
         handles: [0, 0, 0, 0, 1, 1, 0, 0],
-        title: "Concrete Product",
-        description: concreteProductDescription,
     },
     position: { x: -225, y: 240},
   },
@@ -146,10 +76,7 @@ const initialNodes = [
     id: '0b',
     type: 'genericInterface',
     data: { 
-        class_name: 'ProductB',
         handles: [1, 1, 0, 0, 0, 0, 0, 0],
-        title: "Abstract Product",
-        description: abstractProductDescription,
     },
     position: { x: -440, y: 60},
   },
@@ -157,10 +84,7 @@ const initialNodes = [
     id: '0b1',
     type: 'genericClass',
     data: { 
-        class_name: 'ConcreteProductB1',
         handles: [0, 0, 0, 0, 1, 1, 0, 0],
-        title: "Concrete Product",
-        description: concreteProductDescription,
     },
     position: { x: -450, y: -125},
   },
@@ -168,10 +92,7 @@ const initialNodes = [
     id: '0b2',
     type: 'genericClass',
     data: { 
-        class_name: 'ConcreteProductB2',
         handles: [0, 0, 0, 0, 1, 1, 0, 0],
-        title: "Concrete Product",
-        description: concreteProductDescription,
     },
     position: { x: -450, y: 240},
   },

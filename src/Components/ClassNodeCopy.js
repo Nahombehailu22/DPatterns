@@ -95,7 +95,7 @@ const ClassNode = ({
                 placeholder="method"
                 value={method.name}
                 onChange={(e) => handleChanges("changeMethodName", id, e, method.id)}
-                style={{ backgroundColor: backColorMethod, width: method.name.length*8 + 25 }}
+                style={{ backgroundColor: backColorMethod, width: method.name? method.name.length*8 + 25: 70 }}
               /><label style ={{ fontSize: '20px'}}>()</label>
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 

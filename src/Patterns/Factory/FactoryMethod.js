@@ -9,6 +9,7 @@ import { stepValues, edgeValues, popValues } from './DemoSteps';
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { concreteCreatorCode, productCode } from './nodeCodes';
 import { updateNodes } from '../../Interactivity/updateNodes';
+import initialize from './initializeValues';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -23,7 +24,8 @@ const FactoryMethod = (props) => {
   const [popHidden, setPopHidden] = useState(popValues[popValues.length - 1])
   const demoProps = {stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden};
 
-  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) });
+  useEffect(() => { initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, "default") },[]);
+  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
 
   const handleChanges = (type, id, event, index) => {
     switch(type){

@@ -2,7 +2,9 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import { Handle, Position } from 'reactflow';
 
-const CodeNode = ({ id, data: { codeWritten, handles, connectedId }, color1: backColor }) => {
+const CodeNode = ({ id, data: { codeWritten, handles, connectedId }, color1 }) => {
+  const backColor = color1? color1: '#757575';
+
   const container = {
     hidden: {opactity: 0, y: -1000},
     show: {

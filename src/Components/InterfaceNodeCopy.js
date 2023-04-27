@@ -5,15 +5,8 @@ import { motion } from 'framer-motion';
 
 function InterfaceNode({ id, data, color1, color2 }) {
   const { class_name, methods, handles, title, description, handleChanges, connectable, onDelete, deleteMethod, deletable, pop } = data;
-  const backColor = color1;
-  const backColorMethod = color2;
-
-  const classWidth = class_name.length * 3 + 90;
-  let methodWidth = 45;
-  methods.map(method =>{
-    methodWidth = Math.max(methodWidth, method.name.length)
-  })
-  methodWidth += 80
+  const backColor = color1? color1: '#BF4D4D';
+  const backColorMethod = color2? color2: '#CD7F7F';
 
   const container = {
     hidden: {opacity: 0, scale: 0.5},
@@ -64,7 +57,7 @@ function InterfaceNode({ id, data, color1, color2 }) {
       <div>
         
         <div style={{ backgroundColor: backColor, padding: '10px'}}>
-        <label style= {{ fontSize: "12px" }}> &lt;&lt;interface&gt;&gt; </label>
+        <label style= {{ fontSize: "12px" }}> {"<<"}interface{">>"} </label>
         <br></br>
           <input
             type="text"
@@ -73,7 +66,7 @@ function InterfaceNode({ id, data, color1, color2 }) {
             onChange={(e) => {
               handleChanges("className", id, e);
             }}
-            style={{ backgroundColor: backColor, width: classWidth }}
+            style={{ backgroundColor: backColor, width: class_name.length * 3 + 90 }}
           />
       </div>
         <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 

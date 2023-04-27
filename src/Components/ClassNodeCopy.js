@@ -17,14 +17,11 @@ const ClassNode = ({
     connectable,
     handleChanges,
   },
-  color1: backColor,
-  color2: backColorMethod,
+  color1,
+  color2
 }) => {
-
-  const classWidth = class_name.length * 3 + 90;
-  // const methodWidth = methods.reduce((acc, str) => Math.max(acc, str.length), 0) * 3 + 70;
-  
-  const methodWidth = methods.reduce((acc, method) => Math.max(acc, method.name.length), 0)*3.5 + 80;
+  const backColor = color1? color1: '#009688';
+  const backColorMethod = color2? color2: '#4DB6AC';
 
   const container = {
     hidden: { opacity: 0, scale: 0.5 },
@@ -68,7 +65,7 @@ const ClassNode = ({
               onChange={(e) => {
                 handleChanges("className", id, e);
               }}
-              style={{ backgroundColor: backColor, width: classWidth }}
+              style={{ backgroundColor: backColor, width: class_name? class_name.length *3 + 90: 70 }}
             />
         </div>
 
@@ -82,7 +79,7 @@ const ClassNode = ({
                   placeholder="instance"
                   value={attribute.name}
                   onChange={(e) => handleChanges("attributeName", id, e, attribute.id)}
-                  style={{ backgroundColor: backColorMethod, width: methodWidth }}
+                  style={{ backgroundColor: backColorMethod, width: attribute.name.length*8 + 25 }}
                 />
               </div>
             ))
@@ -90,7 +87,7 @@ const ClassNode = ({
         </div>
 
         <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 
-          {methods.map((method, idx) => (
+          {methods && methods.map((method, idx) => (
             <div key={idx} style={{ margin: 0 }}>
               <label>+</label>
               <input

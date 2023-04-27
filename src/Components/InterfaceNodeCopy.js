@@ -66,11 +66,11 @@ function InterfaceNode({ id, data, color1, color2 }) {
             onChange={(e) => {
               handleChanges("className", id, e);
             }}
-            style={{ backgroundColor: backColor, width: class_name.length * 3 + 90 }}
+            style={{ backgroundColor: backColor, width: class_name? class_name.length * 3 + 90: 50 }}
           />
       </div>
         <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 
-          {methods.map((method, idx) => (
+          {methods && methods.map((method, idx) => (
             <div key={idx} style={{ margin: 0 }}>
               <label>+</label>
               <input

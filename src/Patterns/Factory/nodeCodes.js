@@ -1,6 +1,6 @@
 export const productCode = (nodes) => {
-    const factoryNode = nodes.find(node => node.id === "0");
-    const factoryMethod = factoryNode.data.methods.find(method => method.id === "2").name;
+    const factoryMethod = nodes.find(node => node.id === "0").data.methods.
+    find(method => method.id === "2").name;
 
     const interfaceNode = nodes.find(node => node.id === "0a")
     const interfaceMethod = interfaceNode.data.methods.find(method => method.id === "1").name

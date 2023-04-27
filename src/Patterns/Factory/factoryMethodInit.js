@@ -19,16 +19,6 @@ const initialNodes = [
     type: 'class',
     data: { 
         class_name: 'Creator',
-        methods: [
-          { 
-            id: '1',
-            name: 'someOperation'
-          },
-          {
-            id: '2',
-            name: 'createProduct'
-          }
-        ],
         handles: [0, 1, 1, 0, 0, 0, 0, 1],
         title: "Creator Class",
         description: creatorDescription,
@@ -41,18 +31,6 @@ const initialNodes = [
     id: '1',
     type: 'class',
     data: { 
-        class_name: 'ConcreteCreator1',
-        methods: [
-          {
-            id: '1',
-            name: 'createProduct'
-          },
-          {
-            id: '2',
-            name: 'method2'
-          }
-        ],
-
         handles: [0, 1, 0, 0, 1, 0, 0, 0],
         title: "Concrete Creator Class",
         description: concreteCreatorDescription,
@@ -64,17 +42,6 @@ const initialNodes = [
     id: '2',
     type: 'class',
     data: { 
-        class_name: 'ConcreteCreator2',
-        methods: [
-          {
-            id: '1',
-            name: 'createProduct'
-          },
-          {
-            id: '2',
-            name: 'method2'
-          }
-        ],
         handles: [0, 1, 0, 0, 1, 0, 0, 0],
         title: "Concrete Creator Class",
         description: concreteCreatorDescription,
@@ -86,13 +53,6 @@ const initialNodes = [
     id: '0a',
     type: 'interface',
     data: { 
-        class_name: 'Product',
-        methods: [
-          {
-            id: '1',
-            name: 'doStuff'
-          }
-          ],
         handles: [0, 1, 0, 0, 0, 0, 0, 1],
         title: "Product Interface",
         description: productInterfaceDescription,
@@ -104,13 +64,6 @@ const initialNodes = [
     id: '1a',
     type: 'class',
     data: { 
-        class_name: 'ConcreteProduct1',
-        methods: [
-          {
-            id: '1',
-            name: 'doStuff'
-          }
-          ],
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
         title: "Concrete Product",
         description: concreteProductDescription,
@@ -122,13 +75,6 @@ const initialNodes = [
     id: '2a',
     type: 'class',
     data: { 
-        class_name: 'ConcreteProduct2',
-        methods: [
-          {
-            id: '1',
-            name: 'doStuff'
-          }
-          ],
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
         title: "Concrete Product",
         description: concreteProductDescription,

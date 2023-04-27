@@ -1,5 +1,6 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useLocation, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, Controls } from 'reactflow';
+import { useParams, Link  } from "react-router-dom";
 
 import { AddNodes } from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './factoryMethodInit';
@@ -10,12 +11,15 @@ import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { concreteCreatorCode, productCode } from './nodeCodes';
 import { updateNodes } from '../../Interactivity/updateNodes';
 import initialize from './initializeValues';
+import { Button } from '@mui/material';
 
 const fitViewOptions = {
   padding: 0.4,
 };
 
-const FactoryMethod = (props) => {
+const FactoryMethod = () => {
+  const {type} = useParams();
+  const [pageType, setPageType] = useState("example");
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -24,7 +28,10 @@ const FactoryMethod = (props) => {
   const [popHidden, setPopHidden] = useState(popValues[popValues.length - 1])
   const demoProps = {stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden};
 
-  useEffect(() => { initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, "default") },[]);
+  useEffect(() => { 
+    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type)
+    updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) 
+  },[type]);
   useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
 
   const handleChanges = (type, id, event, index) => {
@@ -72,6 +79,22 @@ const FactoryMethod = (props) => {
   
   return (
     <div className="wrapper" style={{ height: 800 }}>
+        <Link to={`/factorymethod/${pageType}`} style={{   top: '100', right: '100' }}>
+          <Button
+            style={{
+              padding: '10px 20px',
+              background: '#1565c0',
+              color: 'white',
+              borderRadius: '5px',
+            }}
+            onClick={() => {
+              if(pageType === "demonstration"){ setPageType("example")}
+              else{setPageType("demonstration")}
+            }}
+          >
+            {type === "demonstration" ? "Example" : "Demo"}
+          </Button>
+        </Link>
       <IncrementalHiddenButton {...demoProps} />
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow

@@ -36,7 +36,7 @@ function App() {
           <Route path="/adaptermethod" component={AdapterMethod} />
 
           <Route path="/factorymethoddemo" component={FactoryMethodDemo} />
-          <Route path="/factorymethod" component={FactoryMethod} />
+          <Route path="/factorymethod/:type" component={FactoryMethod} />
 
           <Route path="/abstractfactorymethoddemo" component={AbstractFactoryMethodDemo} />
           <Route path="/abstractfactorymethod" component={AbstractFactoryMethod} />

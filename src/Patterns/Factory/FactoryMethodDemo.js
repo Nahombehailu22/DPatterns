@@ -38,10 +38,8 @@ const FactoryMethodDemo = () => {
           <li>Create one or more concrete subclasses of the Creator class that implement the factory method to create specific types of product objects.</li>
           <li>Use the factory method to create product objects, without having to know their specific class or implementation details.</li>
         </ol>
-        <Link to="/factorymethod">
+        <Link to="/factorymethod/demonstration">
           <button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
             style={{
               bottom: '20px',
               right: '20px',

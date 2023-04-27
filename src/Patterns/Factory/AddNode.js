@@ -17,10 +17,6 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, newID })
               id: '1',
               name: 'createProduct'
             },
-            {
-              id: '2',
-              name: 'method2'
-            }
           ],
           handles: [0, 1, 0, 0, 1, 0, 0, 0],
           title: "Concrete Creator Class",

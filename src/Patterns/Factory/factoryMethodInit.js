@@ -6,22 +6,13 @@ import CodeNode from '../../Components/CodeNode';
 import GenericClassNode from '../../Components/GenericClassNode';
 
 
-const creatorDescription = `The creator class declares the factory method that returns new product objects. It separates the construction of the product objects from their implementation, allowing for greater flexibility and extensibility in the system. The return type of the factory method must match the product interface. By using the Factory Method design pattern and the creator class, you can easily add new product types to your system without modifying existing code.`;
-const concreteCreatorDescription = `The concrete creator class implements the factory method to return a specific type of product object. It may have additional methods for configuring the product object before returning it. The concreteCreator class provides the implementation for the factory method declared in the creator class.`;
-const productInterfaceDescription = `The product Interface defines the interface that all product objects must implement. This interface typically includes a set of methods that the client code can use to interact with the product objects. By using an interface, the creator class and concreteCreator classes can create and return different types of product objects that are still compatible with the client code.`;
-const concreteProductDescription = `The concrete Product class implements the productInterface and defines the specific behavior for a particular type of product object. Each concreteCreator class is responsible for creating and returning a specific type of concreteProduct. This separation of concerns allows for greater flexibility and modularity in the system.`;
-
-
 const initialNodes = [
-
   {
     id: '0',
     type: 'class',
     data: { 
         class_name: 'Creator',
         handles: [0, 1, 1, 0, 0, 0, 0, 1],
-        title: "Creator Class",
-        description: creatorDescription,
         deletable: false,
         connectable: true,
     },
@@ -32,8 +23,6 @@ const initialNodes = [
     type: 'class',
     data: { 
         handles: [0, 1, 0, 0, 1, 0, 0, 0],
-        title: "Concrete Creator Class",
-        description: concreteCreatorDescription,
         deletable: false,
     },
     position: { x: -100, y: 280 },
@@ -43,8 +32,6 @@ const initialNodes = [
     type: 'class',
     data: { 
         handles: [0, 1, 0, 0, 1, 0, 0, 0],
-        title: "Concrete Creator Class",
-        description: concreteCreatorDescription,
         deletable: false,
     },
     position: { x: 100, y: 280 },
@@ -54,8 +41,6 @@ const initialNodes = [
     type: 'interface',
     data: { 
         handles: [0, 1, 0, 0, 0, 0, 0, 1],
-        title: "Product Interface",
-        description: productInterfaceDescription,
         deletable: false,
     },
     position: { x: 350, y: 0 },
@@ -65,8 +50,6 @@ const initialNodes = [
     type: 'class',
     data: { 
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
-        title: "Concrete Product",
-        description: concreteProductDescription,
         deletable: false,
     },
     position: { x: 275, y: 250 },
@@ -76,8 +59,6 @@ const initialNodes = [
     type: 'class',
     data: { 
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
-        title: "Concrete Product",
-        description: concreteProductDescription,
         deletable: false,
     },
     position: { x: 450, y: 250 },

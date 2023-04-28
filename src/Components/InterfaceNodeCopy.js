@@ -60,7 +60,7 @@ function InterfaceNode({ id, data, color1, color2 }) {
         <label style= {{ fontSize: "12px" }}> {"<<"}interface{">>"} </label>
         <br></br>
           <input
-            type="text"
+            // type="text"
             placeholder={class_name ? class_name : "Class Name"}
             value={class_name}
             onChange={(e) => {
@@ -74,7 +74,7 @@ function InterfaceNode({ id, data, color1, color2 }) {
             <div key={idx} style={{ margin: 0 }}>
               <label>+</label>
               <input
-                type="text"
+                // type="text"
                 placeholder="method"
                 value={method.name}
                 onChange={(e) => handleChanges("changeMethodName", id, e, method.id)}

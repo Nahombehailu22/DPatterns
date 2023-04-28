@@ -3,6 +3,21 @@ import { Handle, Position } from 'reactflow';
 import InfoPopover from './Popover.js';
 import { motion } from 'framer-motion';
 
+const container = {
+  hidden: { opacity: 0, scale: 0.5 },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1.5
+    }
+  },
+  whileHover: {
+    scale: 1.2,
+    transition: { duration: 1 },
+  }
+}
+
 const ClassNode = ({
   id,
   data: {
@@ -22,30 +37,11 @@ const ClassNode = ({
 }) => {
   const backColor = color1? color1: '#009688';
   const backColorMethod = color2? color2: '#4DB6AC';
-
-  const container = {
-    hidden: { opacity: 0, scale: 0.5 },
-    show: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 1.5
-      }
-    },
-    whileHover: {
-      scale: 1.2,
-      transition: { duration: 1 },
-    }
-  }
-
-  const statusMap = new Map([
-    ["protected", "#"],
-    ["private", "-"]
-  ])
   
+  const statusMap = new Map([["protected", "#"],["private", "-"]])
   
   return (
-    <div className='text-updater-node'>
+    <div className='text-updater-node' >
     <motion.div 
       variants={container}
       initial="hidden"
@@ -64,13 +60,13 @@ const ClassNode = ({
         <div>
           <div style={{ backgroundColor: backColor, padding: '10px'}}>
             <input
-              type="text"
+              // type="text"
               placeholder={class_name ? class_name : "Class Name"}
               value={class_name}
               onChange={(e) => {
                 handleChanges("className", id, e);
               }}
-              style={{ backgroundColor: backColor, width: class_name? class_name.length *3 + 90: 70 }}
+              style={{ backgroundColor: backColor, width: class_name? class_name.length *6 + 20: 70 }}
             />
         </div>
 
@@ -80,11 +76,11 @@ const ClassNode = ({
               <div key={idx} style={{ margin: 0 }}>
                 <label>{attribute.status ? statusMap.get(attribute.status) : "+"}</label>
                 <input
-                  type="text"
+                  // type="text"
                   placeholder="instance"
                   value={attribute.name}
                   onChange={(e) => handleChanges("attributeName", id, e, attribute.id)}
-                  style={{ backgroundColor: backColorMethod, width: attribute.name.length*8 + 25 }}
+                  style={{ backgroundColor: backColorMethod, width: attribute.name.length*6 + 20 }}
                 />
               </div>
             ))
@@ -96,11 +92,11 @@ const ClassNode = ({
             <div key={idx} style={{ margin: 0 }}>
               <label>{method.status ? statusMap.get(method.status) : "+"}</label>
               <input
-                type="text"
+                // type="text"
                 placeholder="method"
                 value={method.name}
                 onChange={(e) => handleChanges("changeMethodName", id, e, method.id)}
-                style={{ backgroundColor: backColorMethod, width: method.name? method.name.length*8 + 25: 70 }}
+                style={{ backgroundColor: backColorMethod, width: method.name? method.name.length*6 + 20: 70 }}
               /><label >() {method.return? ":"+method.return: ""}</label>
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 

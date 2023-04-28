@@ -30,7 +30,7 @@ const FactoryMethod = () => {
 
   useEffect(() => { 
     initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type)
-    updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) 
+    // updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) 
   },[type]);
   useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
 
@@ -79,14 +79,8 @@ const FactoryMethod = () => {
   
   return (
     <div className="wrapper" style={{ height: 800 }}>
-        <Link to={`/factorymethod/${pageType}`} style={{   top: '100', right: '100' }}>
-          <Button
-            style={{
-              padding: '10px 20px',
-              background: '#1565c0',
-              color: 'white',
-              borderRadius: '5px',
-            }}
+        <Link to={`/factorymethod/${pageType}`} >
+          <Button variant="contained" style={{ position:"fixed",  right:"20px"}}
             onClick={() => {
               if(pageType === "demonstration"){ setPageType("example")}
               else{setPageType("demonstration")}

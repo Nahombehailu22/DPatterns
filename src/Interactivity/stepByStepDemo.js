@@ -1,3 +1,4 @@
+import { Button, ButtonGroup } from "@mui/material";
 import React, { useState } from "react";
 
 const IncrementalHiddenButton = ({ stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden }) => {
@@ -22,14 +23,15 @@ const IncrementalHiddenButton = ({ stepValues, setHidden, edgeValues, setEdgeHid
   };
 
   return (
-    <div className="buttons">
-      <button className="next-button" type="button" onClick={toggleHidden}>
-        { step === 0 ? "Next" : step < stepValues.length - 1? `Step ${step}`: "Start" }
-      </button>
+    <div >
+      <ButtonGroup variant="contained"
+      style = {{ position: "fixed", bottom: "20px", right: "20px", zIndex: 10}}>
+        <Button onClick={toggleHidden} >
+          { step === 0 ? "Next" : step < stepValues.length - 1? `Step ${step}`: "Start" }
+        </Button>
+        <Button onClick={unHideAll}>Skip</Button>
+      </ButtonGroup>
 
-      <button className="skip-button" type="button" onClick={unHideAll}>
-       Skip
-      </button>
     </div>
   );
 }

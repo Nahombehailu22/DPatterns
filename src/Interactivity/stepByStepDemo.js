@@ -25,7 +25,7 @@ const IncrementalHiddenButton = ({ stepValues, setHidden, edgeValues, setEdgeHid
   return (
     <div >
       <ButtonGroup variant="contained"
-      style = {{ position: "fixed", bottom: "20px", right: "20px", zIndex: 10}}>
+        style = {{ position: "fixed", bottom: "20px", right: "20px", zIndex: 10}}>
         <Button onClick={toggleHidden} >
           { step === 0 ? "Next" : step < stepValues.length - 1? `Step ${step}`: "Start" }
         </Button>

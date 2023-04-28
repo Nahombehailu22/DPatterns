@@ -56,13 +56,27 @@ const expMethods = [
     [{ id: "1", name: "doStuff"}],
 ]
 
+const defaultValues = { 
+    classes: defaultClasses, 
+    methods: defaultMethods, 
+    titles: defaultTitles, 
+    descriptions: defaultDescriptions
+};
 
-const initialize = (setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type) => {
+const expValues = { 
+    classes: expClasses, 
+    methods: expMethods, 
+    titles: defaultTitles, 
+    descriptions: defaultDescriptions
+};
+
+
+const initialize = (setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type, initialValues) => {
     if (type === "example"){
-        updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, expClasses, expMethods, defaultTitles, defaultDescriptions);
+        updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, expValues, initialValues);
     }
     else{
-        updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, defaultClasses, defaultMethods, defaultTitles, defaultDescriptions);
+        updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, defaultValues, initialValues);
     }
     
 }

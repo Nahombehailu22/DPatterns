@@ -27,7 +27,6 @@ It is much easier to add new product types and modify the behavior of existing p
 The Concrete Product is the component of the system that the client code is primarily interested in, even though it's created by the Creator and Concrete Creator.`;
 
 
-
 const defaultClasses = ["Creator", "ConcCreator1", "ConcCreator2", "Product", "ConcProduct1", "ConcProduct2"];
 const defaultMethods = [
     [{ id: "1", name: "someOperation"}, { id: "2", name: "createProduct"}], 
@@ -54,13 +53,26 @@ const expMethods = [
     [{ id: "1", name: "deliver"}],
 ]
 
+const defaultValues = { 
+    classes: defaultClasses, 
+    methods: defaultMethods, 
+    titles: defaultTitles, 
+    descriptions: defaultDescriptions
+};
 
-const initialize = (setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type) => {
+const expValues = { 
+    classes: expClasses, 
+    methods: expMethods, 
+    titles: defaultTitles, 
+    descriptions: defaultDescriptions
+};
+
+const initialize = (setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type, initialValues) => {
     if (type === "example"){
-        updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, expClasses, expMethods, defaultTitles, defaultDescriptions);
+        updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, expValues, initialValues);
     }
     else{
-        updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, defaultClasses, defaultMethods, defaultTitles, defaultDescriptions);
+        updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, defaultValues, initialValues);
     }
     
 }

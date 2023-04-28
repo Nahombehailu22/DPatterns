@@ -20,6 +20,7 @@ const fitViewOptions = {
 const FactoryMethod = () => {
   const {type} = useParams();
   const [pageType, setPageType] = useState("example");
+  const initialValues = {initialNodes, initialEdges}
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -29,8 +30,7 @@ const FactoryMethod = () => {
   const demoProps = {stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden};
 
   useEffect(() => { 
-    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type)
-    // updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) 
+    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
   },[type]);
   useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
 
@@ -80,7 +80,7 @@ const FactoryMethod = () => {
   return (
     <div className="wrapper" style={{ height: 800 }}>
         <Link to={`/factorymethod/${pageType}`} >
-          <Button variant="contained" style={{ position:"fixed",  right:"20px"}}
+          <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}
             onClick={() => {
               if(pageType === "demonstration"){ setPageType("example")}
               else{setPageType("demonstration")}

@@ -2,6 +2,7 @@ import React, {useState, useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
 import InfoPopover from './Popover.js';
 import { motion } from 'framer-motion';
+import { TextField } from '@mui/material';
 
 const container = {
   hidden: { opacity: 0, scale: 0.5 },
@@ -17,6 +18,7 @@ const container = {
     transition: { duration: 1 },
   }
 }
+
 
 const ClassNode = ({
   id,
@@ -47,27 +49,22 @@ const ClassNode = ({
       initial="hidden"
       animate="show"
       whileHover="whileHover"
-
       style={{background: backColor, color:"white"}}>
+      {deletable && (
+        <button className="delete-button" onClick={() => handleChanges("deleteNode", id)}>
+          X
+        </button>
+      )}
+      <InfoPopover title={title} description={description} backColor={backColor} hide={pop} />
       <div>
-        {deletable && (
-          <button className="delete-button" onClick={() => handleChanges("deleteNode", id)}>
-            X
-          </button>
-        )}
-        <InfoPopover title={title} description={description} backColor={backColor} hide={pop} />
-      </div>
-        <div>
-          <div style={{ backgroundColor: backColor, padding: '10px'}}>
-            <input
-              // type="text"
-              placeholder={class_name ? class_name : "Class Name"}
-              value={class_name}
-              onChange={(e) => {
-                handleChanges("className", id, e);
-              }}
-              style={{ backgroundColor: backColor, width: class_name? class_name.length *6 + 20: 70 }}
-            />
+        <div style={{ backgroundColor: backColor, padding: '10px'}}>
+          <input
+            // type="text"
+            placeholder={class_name ? class_name : "Class Name"}
+            value={class_name}
+            onChange={(e) => { handleChanges("className", id, e); }}
+            style={{ backgroundColor: backColor, width: class_name? class_name.length *6 + 20: 70 }}
+          />
         </div>
 
         <div style={{ backgroundColor: backColorMethod, borderBottom: `2px solid ${backColor}` }}> 
@@ -87,7 +84,7 @@ const ClassNode = ({
           }
         </div>
 
-        <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 
+        <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px', padding:"5px" }}> 
           {methods && methods.map((method, idx) => (
             <div key={idx} style={{ margin: 0 }}>
               <label>{method.status ? statusMap.get(method.status) : "+"}</label>
@@ -97,7 +94,7 @@ const ClassNode = ({
                 value={method.name}
                 onChange={(e) => handleChanges("changeMethodName", id, e, method.id)}
                 style={{ backgroundColor: backColorMethod, width: method.name? method.name.length*6 + 20: 70 }}
-              /><label >() {method.return? ":"+method.return: ""}</label>
+              /><span>()</span>
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 
                 onClick={(e) => handleChanges("deleteMethod", id, e, idx)}

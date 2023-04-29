@@ -79,7 +79,7 @@ const FactoryMethod = () => {
   
   return (
     <div className="wrapper" style={{ height: 800 }}>
-        <Link to={`/factorymethod/${pageType}`} >
+        <Link to={`/factorymethod/${pageType}`} target="_blank">
           <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}
             onClick={() => {
               if(pageType === "demonstration"){ setPageType("example")}

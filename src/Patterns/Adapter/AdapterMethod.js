@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, addEdge, useReactFlow, Controls } from 'reactflow';
+import { useParams, Link  } from "react-router-dom";
 
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 
@@ -9,12 +10,18 @@ import { stepValues, edgeValues } from './DemoSteps';
 import { adapterCode } from './nodeCodes';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AdapterMethodInit';
 import { updateNodes } from '../../Interactivity/updateNodes';
+import initialize from './initializeValues';
+import { Button } from '@mui/material';
+import { updateNodeMethods } from '../../Interactivity/adapterMethodUtilities';
 
 const fitViewOptions = {
   padding: 0.5,
 };
 
 const AdapterMethod = (props) => {
+  const {type} = useParams();
+  const [pageType, setPageType] = useState(type === "demonstration"? "demonstration": "example");
+  const initialValues = {initialNodes, initialEdges}
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -22,7 +29,10 @@ const AdapterMethod = (props) => {
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [false, false];
 
-  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) });
+  useEffect(() => { 
+    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
+  },[type]);
+  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
   
   const handleChanges = useCallback((type, id, event, index) => {
       switch(type){
@@ -37,6 +47,7 @@ const AdapterMethod = (props) => {
           break;
         case "changeMethodName":
           handleMethodNameChange(id, index, event, nodes, setNodes)
+          updateNodeMethods(nodes,setNodes)  
           break;
         case "attributeName":
           handleAttributeNameChange(id, index, event, nodes, setNodes)
@@ -54,6 +65,16 @@ const AdapterMethod = (props) => {
  
   return (
     <div className="wrapper" style={{ height: 800 }}>
+      <Link to={`/adaptermethod/${pageType}`} target="_blank">
+        <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}
+          onClick={() => {
+            if(pageType === "demonstration"){ setPageType("example")}
+            else{setPageType("demonstration")}
+          }}
+        >
+          {type === "demonstration" ? "Example" : "Demo"}
+        </Button>
+      </Link>
       <IncrementalHiddenButton stepValues={stepValues} setHidden={setHidden} edgeValues={edgeValues} setEdgeHidden={setEdgeHidden}/>
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow

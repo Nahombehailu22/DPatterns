@@ -41,7 +41,7 @@ const AdapterMethodDemo = () => {
           <li>The existing class sends requests to the adapter class, which in turn forwards them to the client.</li>
         </ol>
         </Typography>
-        <Link to="/adaptermethod">
+        <Link to="/adaptermethod/demonstration">
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}

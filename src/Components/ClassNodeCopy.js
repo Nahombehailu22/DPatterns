@@ -84,7 +84,7 @@ const ClassNode = ({
           }
         </div>
 
-        <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px', padding:"5px" }}> 
+        <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 
           {methods && methods.map((method, idx) => (
             <div key={idx} style={{ margin: 0 }}>
               <label>{method.status ? statusMap.get(method.status) : "+"}</label>
@@ -93,7 +93,7 @@ const ClassNode = ({
                 placeholder="method"
                 value={method.name}
                 onChange={(e) => handleChanges("changeMethodName", id, e, method.id)}
-                style={{ backgroundColor: backColorMethod, width: method.name? method.name.length*6 + 20: 70 }}
+                style={{backgroundColor: backColorMethod, width: method.name? method.name.length*6 + 20: 70 }}
               /><span>()</span>
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 
@@ -103,12 +103,12 @@ const ClassNode = ({
               </button>
           </div>
           ))}
-          <button type="button" style = {{ backgroundColor: backColor , borderRadius: '10px'}} onClick={() => handleChanges("addMethod", id)} > 
+          <button type="button" style = {{ backgroundColor: backColor}} onClick={() => handleChanges("addMethod", id)} > 
             + Add method 
           </button>
-          <br></br>
+          <br/>
           {connectable && 
-              <button type="button" style = {{ backgroundColor: backColor, position: 'relative', left: '50px',height: '20px' }} onClick={() => handleChanges("addClass",id)} > 
+              <button type="button" style = {{ backgroundColor: backColor, position: 'relative', left: '40px' }} onClick={() => handleChanges("addClass",id)} > 
                 Add Class</button>}
           </div>
         </div>

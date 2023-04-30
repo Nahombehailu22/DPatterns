@@ -17,11 +17,11 @@ const defaultDescriptions = [  clientDescription,  clientInterface,  adapterDesc
 
 
 //Example
-const expClasses = ['Client', 'Client_Interface', 'Adapter', 'Service'];
+const expClasses = ['DrawingEditor', 'Shape', 'TextShape', 'TextView'];
 const expMethods = [  [], // no methods for Client class
-  [{ id: '1', name: 'method' }], // method for Client_Interface
-  [{ id: '1', name: 'method' }], // method for Adapter
-  [{ id: '1', name: 'serviceMethod' }], // method for Service
+  [{ id: '1', name: 'boundingBox' }, { id: '2', name: 'createManipulator' }], // method for Client_Interface
+  [{ id: '1', name: 'boundingBox' }, { id: '2', name: 'createManipulator' }], // method for Adapter
+  [{ id: '1', name: 'getExtent' }], // method for Service
 ];
 
 const defaultValues = { 

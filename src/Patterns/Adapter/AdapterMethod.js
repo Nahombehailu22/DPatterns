@@ -4,7 +4,7 @@ import { useParams, Link  } from "react-router-dom";
 
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 
-import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange} from '../../Interactivity/generalUtilities';
+import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, handleParameterChange} from '../../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
 
 import { adapterCode } from './nodeCodes';
@@ -34,16 +34,18 @@ const AdapterMethod = (props) => {
   },[type]);
   useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
   
-  const handleChanges = useCallback((type, id, event, index) => {
+  const handleChanges = useCallback((type, id, event, index, idParam) => {
       switch(type){
         case "className":
           handleClassNameChange(id, event, nodes, setNodes)
           break;
         case "addMethod":
           handleAddMethod(id, nodes, setNodes)
+          updateNodeMethods(nodes,setNodes)
           break;
         case "deleteMethod":
           handleDeleteMethod(id, index, nodes, setNodes)
+          updateNodeMethods(nodes,setNodes)
           break;
         case "changeMethodName":
           handleMethodNameChange(id, index, event, nodes, setNodes)
@@ -51,6 +53,10 @@ const AdapterMethod = (props) => {
           break;
         case "attributeName":
           handleAttributeNameChange(id, index, event, nodes, setNodes)
+          break;
+        case "changeParameter":
+          handleParameterChange(id, index, idParam, event, nodes, setNodes)
+          updateNodeMethods(nodes,setNodes)
           break;
         default:
           break;

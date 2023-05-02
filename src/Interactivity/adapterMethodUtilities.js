@@ -4,11 +4,10 @@ export const updateNodeMethods = (nodes, setNodes) => {
         nodes.map(node => {
           if (node.id === "1") {
             const interfaceMethods = nodes.find(node => node.id === "0").data.methods
-            const newMethods = interfaceMethods
   
             return {
               ...node,
-              data: {...node.data, methods: newMethods}
+              data: {...node.data, methods: interfaceMethods}
             };
           }  
           return node;

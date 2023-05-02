@@ -79,7 +79,19 @@ function InterfaceNode({ id, data, color1, color2 }) {
                 value={method.name}
                 onChange={(e) => handleChanges("changeMethodName", id, e, method.id)}
                 style={{ backgroundColor: backColorMethod, width: method.name? method.name.length*6 + 20: 70 }}
-              /><span>()</span>
+              /><span>(
+                {method.parameters && method.parameters.map((param, pId) => (
+                <div style={{ display: "inline-block" }}>
+                <input
+                // type="text"
+                placeholder="method"
+                value={param}
+                onChange={(e) => handleChanges("changeParameter", id, e, method.id, pId)}
+                style={{backgroundColor: backColorMethod, width: param? param.length*5+15: 70 }}
+                />{pId < method.parameters.length - 1 ? ",":"" }
+                </div>
+                ))}
+              )</span>
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 
                 onClick={(e) => handleChanges("deleteMethod", id, e, idx, method.id)}

@@ -7,10 +7,10 @@ const serviceDescription = 'The Service is some useful class (usually 3rd-party 
 
 
 const defaultClasses = ['Client', 'Client_Interface', 'Adapter', 'Service'];
-const defaultMethods = [  [], // no methods for Client class
-  [{ id: '1', name: 'method' }], // method for Client_Interface
-  [{ id: '1', name: 'method' }], // method for Adapter
-  [{ id: '1', name: 'serviceMethod' }], // method for Service
+const defaultMethods = [  [], 
+  [{ id: '1', name: 'method' , parameters: ["data"]}], 
+  [{ id: '1', name: 'method' , parameters: ["data"]}], 
+  [{ id: '1', name: 'serviceMethod' }], 
 ];
 const defaultTitles = [  'Client Class',  'Cleint Interface',  'Adapter',  'Service',];
 const defaultDescriptions = [  clientDescription,  clientInterface,  adapterDescription,  serviceDescription,];
@@ -18,10 +18,10 @@ const defaultDescriptions = [  clientDescription,  clientInterface,  adapterDesc
 
 //Example
 const expClasses = ['DrawingEditor', 'Shape', 'TextShape', 'TextView'];
-const expMethods = [  [], // no methods for Client class
-  [{ id: '1', name: 'boundingBox' }, { id: '2', name: 'createManipulator' }], // method for Client_Interface
-  [{ id: '1', name: 'boundingBox' }, { id: '2', name: 'createManipulator' }], // method for Adapter
-  [{ id: '1', name: 'getExtent' }], // method for Service
+const expMethods = [  [], 
+  [{ id: '1', name: 'boundingBox' }, { id: '2', name: 'createManipulator' }], 
+  [{ id: '1', name: 'boundingBox' }, { id: '2', name: 'createManipulator' }],
+  [{ id: '1', name: 'getExtent' }],
 ];
 
 const defaultValues = { 

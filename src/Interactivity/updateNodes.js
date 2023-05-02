@@ -12,7 +12,7 @@ export const updateNodes = (setNodes, setEdges, handleChanges, codeWritten, popH
         ...node,
         data: {
           ...node.data,
-          class_name: values? classes[i]: node.data.class_name || "default",
+          class_name: values? classes[i]: node.data.class_name,
           methods: values? methods[i]: node.data.methods || ["defaultMethod"],
           title: values? titles[i]: node.data.title || "default",
           description: values? descriptions[i]: node.data.description || "default",

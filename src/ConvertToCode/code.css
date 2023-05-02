@@ -1,0 +1,58 @@
+.code-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .code-container {
+    position: relative;
+    background-color: #272822;
+    color: #f8f8f2;
+    border-radius: 5px;
+    padding: 20px;
+    overflow-x: auto;
+    width: "200px";
+  }
+  
+  .copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #75715e;
+    color: #f8f8f2;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .copy-button:hover {
+    background-color: #f8f8f2;
+    color: #272822;
+  }
+  
+  .code-block {
+    counter-reset: line-number;
+  }
+  
+  .code-block code {
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  .code-block pre {
+    counter-increment: line-number;
+    padding-left: 40px;
+  }
+  
+  .code-block pre::before {
+    content: counter(line-number);
+    display: inline-block;
+    width: 30px;
+    padding-right: 10px;
+    text-align: right;
+    color: #75715e;
+    user-select: none;
+  }
+  

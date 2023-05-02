@@ -6,8 +6,7 @@ export const adapterCode = (nodes) => {
     const serviceMethod = serviceNode.data.methods.find(method => method.id === "1").name;
     const dataMethod = nodes.find(node => node.id === "0").data.methods
     .find(method => method.id === "1")
-    const data = dataMethod.parameters? dataMethod.parameters[0]:""
-    
+    const data = dataMethod.parameters? dataMethod.parameters[0]:""  
 
     return (
       <p>

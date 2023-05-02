@@ -12,6 +12,7 @@ import { concreteCreatorCode, productCode } from './nodeCodes';
 import { updateNodes } from '../../Interactivity/updateNodes';
 import initialize from './initializeValues';
 import { Button } from '@mui/material';
+import ConvertToJava from '../../ConvertToCode/ConvertToJava';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -29,8 +30,11 @@ const FactoryMethod = () => {
   const [popHidden, setPopHidden] = useState(popValues[popValues.length - 1])
   const demoProps = {stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden};
 
+  const [convert,setConvert] = useState(false)
+
   useEffect(() => { 
     initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
+    setConvert(true)
   },[type]);
   useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
 
@@ -101,6 +105,9 @@ const FactoryMethod = () => {
         fitView
         fitViewOptions={fitViewOptions}
       />
+      {convert && (
+        <ConvertToJava nodes={nodes} />
+      )}
     </div>
   );
 };

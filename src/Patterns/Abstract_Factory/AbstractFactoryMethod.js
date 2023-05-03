@@ -21,6 +21,7 @@ const fitViewOptions = {
 const AbstractFactoryMethod = () => {
   const {type} = useParams();
   const [pageType, setPageType] = useState("example");
+  const initialValues = {initialNodes, initialEdges}
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   
@@ -29,8 +30,7 @@ const AbstractFactoryMethod = () => {
   const popHidden = [true, true, true, true, true, true];
 
   useEffect(() => { 
-    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type)
-    updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) 
+    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
   },[type]);
   useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
   
@@ -83,14 +83,8 @@ const AbstractFactoryMethod = () => {
 
   return (
     <div className="wrapper" style={{ height: 800 }}>
-      <Link to={`/abstractfactorymethod/${pageType}`}>
-        <Button
-          style={{
-            padding: '10px 20px',
-            background: '#1565c0',
-            color: 'white',
-            borderRadius: '5px',
-          }}
+      <Link to={`/abstractfactorymethod/${pageType}`} >
+        <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}
           onClick={() => {
             if(pageType === "demonstration"){ setPageType("example")}
             else{setPageType("demonstration")}

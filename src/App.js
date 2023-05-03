@@ -38,7 +38,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/adaptermethoddemo" component={AdapterMethodDemo} />
-          <Route path="/adaptermethod" component={AdapterMethod} />
+          <Route path="/adaptermethod/:type" component={AdapterMethod} />
 
           <Route path="/factorymethoddemo" component={FactoryMethodDemo} />
           <Route path="/factorymethod/:type" component={FactoryMethod} />

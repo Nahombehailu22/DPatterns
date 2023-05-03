@@ -12,6 +12,7 @@ import { concreteCreatorCode, productCode } from './nodeCodes';
 import { updateNodes } from '../../Interactivity/updateNodes';
 import initialize from './initializeValues';
 import { Button } from '@mui/material';
+import ConvertToJava from '../../ConvertToCode/ConvertToJava';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -20,6 +21,7 @@ const fitViewOptions = {
 const FactoryMethod = () => {
   const {type} = useParams();
   const [pageType, setPageType] = useState("example");
+  const initialValues = {initialNodes, initialEdges}
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -28,9 +30,11 @@ const FactoryMethod = () => {
   const [popHidden, setPopHidden] = useState(popValues[popValues.length - 1])
   const demoProps = {stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden};
 
+  const [convert,setConvert] = useState(false)
+
   useEffect(() => { 
-    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type)
-    updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) 
+    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
+    setConvert(true)
   },[type]);
   useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
 
@@ -79,14 +83,8 @@ const FactoryMethod = () => {
   
   return (
     <div className="wrapper" style={{ height: 800 }}>
-        <Link to={`/factorymethod/${pageType}`} style={{   top: '100', right: '100' }}>
-          <Button
-            style={{
-              padding: '10px 20px',
-              background: '#1565c0',
-              color: 'white',
-              borderRadius: '5px',
-            }}
+        <Link to={`/factorymethod/${pageType}`} target="_blank">
+          <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}
             onClick={() => {
               if(pageType === "demonstration"){ setPageType("example")}
               else{setPageType("demonstration")}
@@ -107,6 +105,9 @@ const FactoryMethod = () => {
         fitView
         fitViewOptions={fitViewOptions}
       />
+      {convert && (
+        <ConvertToJava nodes={nodes} />
+      )}
     </div>
   );
 };

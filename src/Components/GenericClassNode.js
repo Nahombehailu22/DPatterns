@@ -49,7 +49,7 @@ function GenericClassNode({ id, data, color1, color2 }) {
       <div>
         <div style={{ backgroundColor: backColor, padding: '10px'}}>
           <input
-            type="text"
+            // type="text"
             placeholder={class_name ? class_name : "Class Name"}
             value={class_name}
             onChange={(e) => {

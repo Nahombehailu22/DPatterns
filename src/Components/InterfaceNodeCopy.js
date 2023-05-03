@@ -60,13 +60,13 @@ function InterfaceNode({ id, data, color1, color2 }) {
         <label style= {{ fontSize: "12px" }}> {"<<"}interface{">>"} </label>
         <br></br>
           <input
-            type="text"
+            // type="text"
             placeholder={class_name ? class_name : "Class Name"}
             value={class_name}
             onChange={(e) => {
               handleChanges("className", id, e);
             }}
-            style={{ backgroundColor: backColor, width: class_name? class_name.length * 3 + 90: 50 }}
+            style={{ backgroundColor: backColor, width: class_name? class_name.length *6 + 20: 70 }}
           />
       </div>
         <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 
@@ -74,12 +74,24 @@ function InterfaceNode({ id, data, color1, color2 }) {
             <div key={idx} style={{ margin: 0 }}>
               <label>+</label>
               <input
-                type="text"
+                // type="text"
                 placeholder="method"
                 value={method.name}
                 onChange={(e) => handleChanges("changeMethodName", id, e, method.id)}
-                style={{ backgroundColor: backColorMethod, width: method.name.length*8 + 20 }}
-              /><label style ={{ fontSize: '20px'}}>()</label>
+                style={{ backgroundColor: backColorMethod, width: method.name? method.name.length*6 + 20: 70 }}
+              /><span>(
+                {method.parameters && method.parameters.map((param, pId) => (
+                <div style={{ display: "inline-block" }}>
+                <input
+                // type="text"
+                placeholder="method"
+                value={param}
+                onChange={(e) => handleChanges("changeParameter", id, e, method.id, pId)}
+                style={{backgroundColor: backColorMethod, width: param? param.length*5+15: 70 }}
+                />{pId < method.parameters.length - 1 ? ",":"" }
+                </div>
+                ))}
+              )</span>
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 
                 onClick={(e) => handleChanges("deleteMethod", id, e, idx, method.id)}

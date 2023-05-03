@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./code.css"
 
 const ConvertToJava = ({ nodes }) => {
@@ -23,47 +24,22 @@ const ConvertToJava = ({ nodes }) => {
       javaCode += `}\n\n`;
     }
     }
+    const [copySuccess, setCopySuccess] = useState(false);
+
+    const copyCodeToClipboard = () => {
+      navigator.clipboard.writeText(javaCode);
+      setCopySuccess(true);
+    };
+  
     return (
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          width: '50%',
-          margin: '0 auto',
-          backgroundColor: '#292929',
-          padding: '20px',
-          borderRadius: '5px',
-          color: '#f8f8f2',
-          fontFamily: 'monospace',
-          fontSize: '16px'
-        }}>
-          <button
-            style={{
-              position: 'relative',
-              top: '0px',
-              right: '-600px',
-              
-              backgroundColor: '#f8f8f2',
-              color: '#292929',
-              padding: '8px 12px',
-              borderRadius: '5px',
-              border: 'none',
-              cursor: 'pointer'
-            }}
-            onClick={() => {
-              navigator.clipboard.writeText(javaCode);
-            }}
-          >
-            Copy Code
-          </button>
-          <pre style={{
-            overflowX: 'scroll',
-            margin: '0',
-            padding: '0',
-            whiteSpace: 'pre-wrap'
-          }}>{javaCode}</pre>
-        </div>
-      );    
+      <div className="container" style={{width:"40%"}}>
+        <button className="copy-button" onClick={copyCodeToClipboard}>
+          {copySuccess ? "Copied!" : "Copy Code"}
+        </button>
+        <pre className="code-block">{javaCode}</pre>
+      </div>
+    );
+    
   };
   
   export default ConvertToJava;

@@ -1,58 +1,41 @@
-.code-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .code-container {
-    position: relative;
-    background-color: #272822;
-    color: #f8f8f2;
-    border-radius: 5px;
-    padding: 20px;
-    overflow-x: auto;
-    width: "200px";
-  }
-  
-  .copy-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #75715e;
-    color: #f8f8f2;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .copy-button:hover {
-    background-color: #f8f8f2;
-    color: #272822;
-  }
-  
-  .code-block {
-    counter-reset: line-number;
-  }
-  
-  .code-block code {
-    font-family: 'Courier New', Courier, monospace;
-  }
-  
-  .code-block pre {
-    counter-increment: line-number;
-    padding-left: 40px;
-  }
-  
-  .code-block pre::before {
-    content: counter(line-number);
-    display: inline-block;
-    width: 30px;
-    padding-right: 10px;
-    text-align: right;
-    color: #75715e;
-    user-select: none;
-  }
-  
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 70%;
+  margin: 0 auto;
+  background-color: #282c34;
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+  font-family: monospace;
+  font-size: 16px;
+  position: relative;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #61dafb;
+  color: #282c34;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.2s ease-in-out;
+}
+
+.copy-button:hover {
+  transform: scale(1.1);
+}
+
+.code-block {
+  overflow-x: scroll;
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+}

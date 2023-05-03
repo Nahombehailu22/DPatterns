@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import ReactFlow, { useNodesState, useEdgesState, Controls } from 'reactflow';
 
-import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './StrategyMethodInit';
+import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './StateMethodInit';
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID, handleNodeDelete} from '../../Interactivity/generalUtilities';
 import { stepValues, edgeValues } from './DemoSteps';
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
-import { updateNodeMethods } from '../../Interactivity/strategyMethodUtilities';
-import { clientCode, strategyCode1 } from './nodeCodes';
+import { updateNodeMethods } from '../../Interactivity/stateMethodUtilities';
+import { clientCode, StateCode1,StateCode2 } from './nodeCodes';
 import { updateNodes } from '../../Interactivity/updateNodes';
 
 const fitViewOptions = {
     padding: 0.4,
   };
 
-const StrategyMethod = (props) => {
+const StateMethod = (props) => {
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   
     const [hidden, setHidden] = useState(stepValues[stepValues.length - 1]);
     const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
     const popHidden = [false, true, false, false, false, true];
-  
+    
     useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) });
+  
+  
   
     const handleChanges = (type, id, event, index) => {
       switch(type){
@@ -43,14 +45,15 @@ const StrategyMethod = (props) => {
               handleAttributeNameChange(id, index, event, nodes, setNodes)
               break;
           case "addClass":
-              const nums = nodes
-              .filter(node => node.id.endsWith('a'))
-              .map(node => parseInt(node.id.slice(0, -1)));
+            const nums = nodes
+            .filter(node => node.id.endsWith('a'))
+            .map(node => parseInt(node.id.slice(0, -1)));
 
-              const newID = findMissingID(nums)
-              AddNodes({setNodes, setEdges, setHidden, setEdgeHidden, newID})
-              updateNodeMethods(nodes,setNodes)
-              break;
+            const newID = findMissingID(nums)
+            AddNodes({setNodes, setEdges, setHidden, setEdgeHidden, newID})
+            updateNodeMethods(nodes,setNodes)
+            break;
+
           case "deleteNode":
               handleNodeDelete(id, nodes, edges, setNodes, setEdges)
               break;
@@ -64,11 +67,15 @@ const StrategyMethod = (props) => {
     const codeWritten = (connectingID, id) => {
       switch(id){
         case '0c':
-          return (<div>{strategyCode1(nodes)}</div>)
+          return (<div>{StateCode1(nodes)}</div>)
+        case '0c2':
+          return (<div>{StateCode2(nodes)}</div>)
+    
         default:
           return (<div>{clientCode(nodes)}</div>)
       }
-    }
+     }
+    
     
     return (
       <div className="wrapper" style={{ height: 800 }}>
@@ -88,5 +95,5 @@ const StrategyMethod = (props) => {
     );
   };
   
-  export default StrategyMethod;
+  export default StateMethod;
   

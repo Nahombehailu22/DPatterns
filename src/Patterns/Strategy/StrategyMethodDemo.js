@@ -31,17 +31,17 @@ const StrategyMethodDemo = () => {
             <li>This way the context becomes independent of concrete strategies, so you can add new algorithms or modify existing ones without changing the code of the context or other strategies.</li>
         </ul>
         </Typography>
-        {/* <Typography variant="subtitle1" color="white">
+        <Typography variant="subtitle1" color="white">
           Here's how it works:
-        </Typography> */}
-        {/* <Typography>
+        </Typography> 
+        <Typography>
         <ol>
           <li>Create a Subject class that maintains a list of its dependents (observers) and provides methods for adding and removing observers.</li>
           <li>Create an Observer interface that defines the method(s) that the subject calls when notifying the observer of state changes.</li>
           <li>Create one or more concrete Observer classes that implement the Observer interface and provide methods for updating their state in response to notifications.</li>
           <li>In your application, create an instance of the Subject class and the concrete Observer classes, register the observers with the subject, and call the appropriate methods to trigger notifications and updates.</li>
         </ol>
-        </Typography> */}
+        </Typography>
         <Link to="/strategymethod" style={{ textDecoration: 'none' }}>
           <motion.button
             whileHover={{ scale: 1.1 }}

@@ -27,7 +27,7 @@ const Navbar = ({setCategory, setSearchQuery} ) => {
                 <button type="submit">Search</button>
             </form>
             <br></br><br></br><br></br>
-            {/* <Card category={category} searchQuery={searchQuery} /> */}
+            
         </nav>
     );
 }

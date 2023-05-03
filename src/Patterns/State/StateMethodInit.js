@@ -1,9 +1,8 @@
 import { MarkerType } from 'reactflow';
-import ButtonEdge from '../Components/DashedEdge';
-import ClassNode from '../Components/ClassNode';
-import InterfaceNode from '../Components/InterfaceNode';
-import CodeNode from '../Components/CodeNode';
-import GenericClassNode from '../Components/GenericClassNode';
+import ClassNode from '../../Components/ClassNodeCopy';
+import InterfaceNode from '../../Components/InterfaceNodeCopy';
+import CodeNode from '../../Components/CodeNode';
+import GenericClassNode from '../../Components/GenericClassNode';
 
 
 const contextDescription = 'Context stores a reference to one of the concrete state objects and delegates to it all state-specific work. The context communicates with the state object via the state interface. The context exposes a setter for passing it a new state object.'
@@ -17,29 +16,62 @@ const initialNodes = [
         type: 'class',
         data: { 
             class_name: 'Context',
-            attributes:['state'],
-            methods: ['Context','changeState','doThis','doThat'],
+            attributes:[
+                {
+                    id: '1',
+                    name: 'state'
+                }
+            ],
+            methods: [
+                {
+                    id: '1',
+                    name:'Context'
+                },
+                {
+                    id: '2',
+                    name: 'changeState'
+                },
+                {
+                    id: '3',
+                    name: 'doThis'
+                },
+                
+                {
+                    id: '4',
+                    name: 'doThat'
+                }
+            ],
             handles: [0, 1, 1, 1, 0, 0, 0, 0],
             title: "Context",
             description: contextDescription,
             deletable: false,
         },
-        position: { x: 0, y: 0 },
+        position: { x: 0, y: -25 },
     },
 
     {
         id: '0a',
         type: 'interface',
         data: { 
-            class_name: 'Strategy',
-            methods: ['doThis', 'doThat'],
+            class_name: 'State',
+            methods: [
+                {
+                    id: '1',
+                    name: 'doThis'
+                },
+            
+                {
+                    id: '2',
+                    name: 'doThat'
+                }
+            ],
             handles: [0, 1, 0, 0, 0, 0, 0, 1],
             title: "State interface",
             description: stateInterfaceDescription,
             deletable: false,
             connectable: true
         },
-        position: { x: 385, y: 0 },
+        position: { x: 385, y: -50 },
       },
 
       {
@@ -47,9 +79,28 @@ const initialNodes = [
         type: 'class',
         data: { 
             class_name: 'ConcreteState1',
-            attributes: ['context'],
-            methods: ['setContext', 'doThis', 'doThat'],
-            handles: [0, 0, 0, 1, 1, 0, 0, 0],
+            attributes: [
+                {
+                    id: '1',
+                    name: 'context'
+                }
+            ],
+            methods: [
+                {
+                    id: 'a',
+                    name: 'setContext',
+                },
+                {
+                    id: '1',
+                    name: 'doThis'
+                },
+                
+                {
+                    id: '2',
+                    name: 'doThat'
+                }
+            ],
+            handles: [0, 0, 0, 0, 1, 0, 0, 0],
             title: "Concrete State",
             description: concreteStateDescription,
             deletable: false,
@@ -61,9 +112,28 @@ const initialNodes = [
         type: 'class',
         data: { 
             class_name: 'ConcreteState2',
-            attributes: ['context'],
-            methods: ['setContext', 'doThis', 'doThat'],
-            handles: [0, 0, 0, 1, 1, 0, 0, 0],
+            attributes: [
+                {
+                    id: '1',
+                    name: 'context'
+                }
+            ],
+            methods: [
+                {
+                    id: 'a',
+                    name: 'setContext'
+                },
+                {
+                    id: '1',
+                    name: 'doThis'
+                },
+                
+                {
+                    id: '2',
+                    name: 'doThat'
+                }
+            ],
+            handles: [0, 0, 0, 0, 1, 0, 0, 0],
             title: "Concrete State",
             description: concreteStateDescription,
             deletable: false,
@@ -75,7 +145,7 @@ const initialNodes = [
       type: 'client',
       data: { 
           class_name: 'Client',
-          handles: [0, 1, 1, 0, 1],
+          handles: [0, 0, 0, 1, 1],
           title: "Client",
           description: clientDescription,
       },
@@ -90,7 +160,6 @@ const initialNodes = [
         },
         position: { x: -250, y: 80 },
       },
-
       {
         id: '0c2',
         type: 'code',
@@ -98,16 +167,7 @@ const initialNodes = [
             handles: [0, 0, 0, 0, 0, 0, 1, 0],
             connectedId: '0',
         },
-        position: { x: -250, y: 200 },
-      },
-      {
-        id: 'sc',
-        type: 'code',
-        data: { 
-            handles: [0, 0, 0, 0, 0, 0, 1, 0],
-            connectedId: '0',
-        },
-        position: { x: -250, y: 325 },
+        position: { x: -250, y: 175 },
       },
 
       {
@@ -117,8 +177,9 @@ const initialNodes = [
             handles: [0, 0, 0, 0, 0, 0, 1, 0],
             connectedId: '0',
         },
-        position: { x: -250, y: 325 },
+        position: { x: -250, y: 375 },
       },
+      
 ]
 
 const initialEdges = [
@@ -176,6 +237,16 @@ const initialEdges = [
     
     },
     { 
+        id: '0-0c2', 
+        source: '0', 
+        sourceHandle: 'l', 
+        target: '0c2', 
+        type: 'straight',  
+        targetHandle: 'e', 
+        animated: true
+    
+    },
+    { 
         id: 'c-cc', 
         source: 'c', 
         sourceHandle: 'l', 
@@ -185,6 +256,7 @@ const initialEdges = [
         animated: true
     
     }
+    
 ]
 
 const nodeTypes = {
@@ -219,6 +291,5 @@ const nodeTypes = {
 const edgeTypes = {
 
 }
-
 
 export { initialNodes, initialEdges, nodeTypes, edgeTypes }

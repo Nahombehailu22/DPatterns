@@ -24,6 +24,11 @@ import AdapterMethodDemo from './Patterns/Adapter/AdapterMethodDemo.js';
 import HomePage from "./Homepage";
 import DecoratorMethodDemo from './Patterns/Decorator/DecoratorMethodDemo';
 import DecoratorMethod from './Patterns/Decorator/DecoratorMethod';
+import StateMethodDemo from './Patterns/State/StateMethodDemo';
+import StateMethod from './Patterns/State/StateMethod';
+import TemplateMethod from './Patterns/Template/TemplateMethod';
+import TemplateMethodDemo from './Patterns/Template/TemplateMethodDemo';
+
 
 function App() {
  
@@ -50,11 +55,17 @@ function App() {
           <Route path="/strategymethoddemo" component={StrategyMethodDemo} />
           <Route path="/strategymethod" component={StrategyMethod} />
 
+          <Route path="/statemethoddemo" component={StateMethodDemo} />
+          <Route path="/statemethod" component={StateMethod} />
+
           <Route path="/adaptermethoddemo" component={AdapterMethodDemo} />
           <Route path="/adaptermethod" component={AdapterMethod} />
 
           <Route path="/bridgemethoddemo" component={BridgeMethodDemo} />
           <Route path="/bridgemethod" component={BridgeMethod} />
+         
+          <Route path="/templatemethoddemo" component={TemplateMethodDemo} />
+          <Route path="/templatemethod" component={TemplateMethod} />
 
           <Route path="/decoratormethoddemo" component={DecoratorMethodDemo} />
           <Route path="/decoratormethod" component={DecoratorMethod} />

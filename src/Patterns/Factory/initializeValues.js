@@ -27,14 +27,14 @@ It is much easier to add new product types and modify the behavior of existing p
 The Concrete Product is the component of the system that the client code is primarily interested in, even though it's created by the Creator and Concrete Creator.`;
 
 
-const defaultClasses = ["Creator", "ConcCreator1", "ConcCreator2", "Product", "ConcProduct1", "ConcProduct2"];
+const defaultClasses = ["Creator", "ConcreteCreator1", "ConcreteCreator2", "Product", "ConcreteProduct1", "ConcreteProduct2"];
 const defaultMethods = [
-    [{ id: "1", name: "someOperation"}, { id: "2", name: "createProduct"}], 
-    [{ id: "1", name: "createProduct"}], 
-    [{ id: "1", name: "createProduct"}], 
-    [{ id: "1", name: "doStuff"}],
-    [{ id: "1", name: "doStuff"}],
-    [{ id: "1", name: "doStuff"}],
+    [{ id: "1", name: "someOperation"}, { id: "2", name: "createProduct", abstract: true}], 
+    [{ id: "1", name: "createProduct", overRide: true}], 
+    [{ id: "1", name: "createProduct", overRide: true}], 
+    [{ id: "1", name: "displayProductInfo", interfaceMethod: true}],
+    [{ id: "1", name: "displayProductInfo", overRide: true}],
+    [{ id: "1", name: "displayProductInfo", overRide: true}],
 ]
 const defaultTitles = ["Creator Class", "Concrete Creator Class", "Concrete Creator Class", 
                         "Product Interface", "Concrete Product", "Concrete Product"];

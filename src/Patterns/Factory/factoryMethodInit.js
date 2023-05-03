@@ -9,7 +9,7 @@ import GenericClassNode from '../../Components/GenericClassNode';
 const initialNodes = [
   {
     id: '0',
-    type: 'class',
+    type: 'abstract',
     data: { 
         class_name: 'Creator',
         handles: [0, 1, 1, 0, 0, 0, 0, 1],
@@ -170,6 +170,7 @@ const initialEdges = [
 ];
 
 const nodeTypes = {
+    abstract: ClassNode,
     class: ClassNode,
     interface: InterfaceNode,
     code: CodeNode,

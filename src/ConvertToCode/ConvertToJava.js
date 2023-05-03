@@ -4,25 +4,31 @@ import "./code.css"
 const ConvertToJava = ({ nodes }) => {
     let javaCode = '';
     for (let node of nodes) {
-      const { class_name, attributes, methods } = node.data;
-      if (class_name){;
-      javaCode += `public class ${class_name} {\n`;
-      for (let method of methods) {
-        const { name, parameters } = method;
-        javaCode += `\tpublic void ${name}(`;
-        if (parameters && parameters.length) {
-          javaCode += `String ${parameters.join(', String ')}`;
+      const { type } = node;
+      const { class_name, attributes, methods, title, empty } = node.data;
+      if (class_name){
+        javaCode += `// ${title} \n`
+        javaCode += `public${type === "abstract"? " abstract": type === "interface"? " interface":  ""} class ${class_name} {\n`;
+
+        for (let method of methods) {
+          const { name, parameters, abstract, interfaceMethod, overRide} = method;
+          if(overRide) {
+            javaCode += "\t@Override\n";
+          }
+          javaCode += `\tpublic ${abstract? "abstract": "void"} ${name}(`;
+          if (parameters && parameters.length) {
+            javaCode += `String ${parameters.join(', String ')}`;
+          }
+          javaCode += `)${abstract || interfaceMethod? ";\n\n" :" {\n\t\t// Method body\n\t}\n\n"}`;
         }
-        javaCode += `) {\n\t\t// Method body\n\t}\n`;
+      //   if (attributes.length) {
+      //     javaCode += `\n\t// Attributes\n`;
+      //     for (let attribute of attributes) {
+      //       javaCode += `\tpublic String ${attribute};\n`;
+      //     }
+      //   }
+        javaCode += `}\n\n`;
       }
-    //   if (attributes.length) {
-    //     javaCode += `\n\t// Attributes\n`;
-    //     for (let attribute of attributes) {
-    //       javaCode += `\tpublic String ${attribute};\n`;
-    //     }
-    //   }
-      javaCode += `}\n\n`;
-    }
     }
     const [copySuccess, setCopySuccess] = useState(false);
 

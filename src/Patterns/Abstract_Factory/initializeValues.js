@@ -60,14 +60,16 @@ const defaultValues = {
     classes: defaultClasses, 
     methods: defaultMethods, 
     titles: defaultTitles, 
-    descriptions: defaultDescriptions
+    descriptions: defaultDescriptions,
+    relations:[],
 };
 
 const expValues = { 
     classes: expClasses, 
     methods: expMethods, 
     titles: defaultTitles, 
-    descriptions: defaultDescriptions
+    descriptions: defaultDescriptions,
+    relations:[],
 };
 
 

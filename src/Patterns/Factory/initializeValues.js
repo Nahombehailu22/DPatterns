@@ -29,9 +29,9 @@ The Concrete Product is the component of the system that the client code is prim
 
 const defaultClasses = ["Creator", "ConcreteCreator1", "ConcreteCreator2", "Product", "ConcreteProduct1", "ConcreteProduct2"];
 const defaultMethods = [
-    [{ id: "1", name: "someOperation"}, { id: "2", name: "createProduct", abstract: true}], 
-    [{ id: "1", name: "createProduct", overRide: true}], 
-    [{ id: "1", name: "createProduct", overRide: true}], 
+    [{ id: "1", name: "someOperation"}, { id: "2", name: "createProduct", abstract: true, returnType: "0a"}], 
+    [{ id: "1", name: "createProduct", overRide: true, returnType: "0a"}], 
+    [{ id: "1", name: "createProduct", overRide: true, returnType: "0a"}], 
     [{ id: "1", name: "displayProductInfo", interfaceMethod: true}],
     [{ id: "1", name: "displayProductInfo", overRide: true}],
     [{ id: "1", name: "displayProductInfo", overRide: true}],
@@ -41,30 +41,34 @@ const defaultTitles = ["Creator Class", "Concrete Creator Class", "Concrete Crea
 const defaultDescriptions = [creatorDescription, concreteCreatorDescription, concreteCreatorDescription, 
                             productInterfaceDescription, concreteProductDescription, concreteProductDescription]
 
+const defaultRelations = [[], ["extends", "0"], ["extends", "0"], [], ["implements", "0a"], ["implements", "0a"]]
+
 
 //Example
 const expClasses = ["Logistics", "RoadLogistics", "SeaLogistics", "Transport", "Truck", "Ship"]
 const expMethods = [
-    [{ id: "1", name: "planDelivery" }, { id: "2", name: "createTransport"}], 
-    [{ id: "1", name: "createTransport"}], 
-    [{ id: "1", name: "createTransport"}], 
-    [{ id: "1", name: "deliver"}],
-    [{ id: "1", name: "deliver"}],
-    [{ id: "1", name: "deliver"}],
+    [{ id: "1", name: "planDelivery" }, { id: "2", name: "createTransport", abstract: true, returnType: "0a"}], 
+    [{ id: "1", name: "createTransport", overRide: true, returnType: "0a"}], 
+    [{ id: "1", name: "createTransport", overRide: true, returnType: "0a"}], 
+    [{ id: "1", name: "deliver", interfaceMethod: true}],
+    [{ id: "1", name: "deliver", overRide: true}],
+    [{ id: "1", name: "deliver", overRide: true}],
 ]
 
 const defaultValues = { 
     classes: defaultClasses, 
     methods: defaultMethods, 
     titles: defaultTitles, 
-    descriptions: defaultDescriptions
+    descriptions: defaultDescriptions,
+    relations: defaultRelations
 };
 
 const expValues = { 
     classes: expClasses, 
     methods: expMethods, 
     titles: defaultTitles, 
-    descriptions: defaultDescriptions
+    descriptions: defaultDescriptions,
+    relations: defaultRelations
 };
 
 const initialize = (setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type, initialValues) => {

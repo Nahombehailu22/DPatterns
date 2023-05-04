@@ -18,6 +18,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, newID })
               name: 'createProduct'
             },
           ],
+          relation: ["extends", "0"],
           handles: [0, 1, 0, 0, 1, 0, 0, 0],
           title: "Concrete Creator Class",
           description: "",
@@ -38,6 +39,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, newID })
               name: 'doStuff'
             }
             ],
+          relation: ["implements", "0a"],
           handles: [0, 0, 0, 0, 1, 0, 0, 0],
           title: "Concrete Product",
           description: "", 

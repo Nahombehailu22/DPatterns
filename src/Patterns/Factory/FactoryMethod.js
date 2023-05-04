@@ -34,7 +34,7 @@ const FactoryMethod = () => {
 
   useEffect(() => { 
     initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
-    setConvert(true)
+    // setConvert(true)
   },[type]);
   useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
 
@@ -105,9 +105,16 @@ const FactoryMethod = () => {
         fitView
         fitViewOptions={fitViewOptions}
       />
-      {convert && (
-        <ConvertToJava nodes={nodes} />
-      )}
+          <Button variant="contained" 
+          style={{ position:"absolute", bottom:"-70px", right:"800px", zIndex: 10}}
+          onClick={() => {
+            setConvert(!convert)}
+            }> 
+            {!convert? "Show Code":"Hide Code"}
+          </Button>
+          {convert && (
+            <ConvertToJava nodes={nodes} />
+          )}
     </div>
   );
 };

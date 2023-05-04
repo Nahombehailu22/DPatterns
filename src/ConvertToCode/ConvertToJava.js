@@ -2,20 +2,30 @@ import { useState } from "react";
 import "./code.css"
 
 const ConvertToJava = ({ nodes }) => {
+    const nodeMap = new Map();
+    nodes.map(node => {
+      if (node.data.class_name){
+      nodeMap.set(node.id, node.data.class_name)
+      }
+    })
+
     let javaCode = '';
     for (let node of nodes) {
       const { type } = node;
-      const { class_name, attributes, methods, title, empty } = node.data;
+      const { class_name, attribute, methods, title, relation} = node.data;
       if (class_name){
         javaCode += `// ${title} \n`
-        javaCode += `public${type === "abstract"? " abstract": type === "interface"? " interface":  ""} class ${class_name} {\n`;
+        javaCode += `public ${type === "abstract"? "abstract ": type === "interface"? "interface ":  ""}`
+        javaCode += `class ${class_name}`
+        javaCode += ` ${relation[0] ? relation[0] + " " + nodeMap.get(relation[1]) : ""}{\n`;
 
         for (let method of methods) {
-          const { name, parameters, abstract, interfaceMethod, overRide} = method;
+          const { name, parameters, abstract, interfaceMethod, overRide, returnType} = method;
           if(overRide) {
             javaCode += "\t@Override\n";
           }
-          javaCode += `\tpublic ${abstract? "abstract": "void"} ${name}(`;
+          console.log(name, returnType)
+          javaCode += `\tpublic ${abstract? "abstract ": ""}${returnType? nodeMap.get(returnType) + " ": "void "}${name}(`;
           if (parameters && parameters.length) {
             javaCode += `String ${parameters.join(', String ')}`;
           }

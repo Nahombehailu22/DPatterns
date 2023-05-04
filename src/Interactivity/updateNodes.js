@@ -1,7 +1,7 @@
 export const updateNodes = (setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, values, initialValues) => {
-  let classes = [], methods = [], titles = [], descriptions = [];
+  let classes = [], methods = [], titles = [], descriptions = [], relations = [];
   if (values) {
-    ({ classes, methods, titles, descriptions } = values); 
+    ({ classes, methods, titles, descriptions, relations } = values); 
     const {initialNodes, initialEdges} = initialValues;
     setNodes(initialNodes)
     setEdges(initialEdges)
@@ -16,6 +16,7 @@ export const updateNodes = (setNodes, setEdges, handleChanges, codeWritten, popH
           methods: values? methods[i]: node.data.methods || ["defaultMethod"],
           title: values? titles[i]: node.data.title || "default",
           description: values? descriptions[i]: node.data.description || "default",
+          relation: values && relations? relations[i]: node.data.relation || "",
           handleChanges: handleChanges,
           codeWritten: codeWritten,
           pop: popHidden[i],

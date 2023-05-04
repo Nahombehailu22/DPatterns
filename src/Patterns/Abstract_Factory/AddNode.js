@@ -15,6 +15,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }
           class_name: `Product${id}`,
           handles: [1, 1, 0, 0, 0, 0, 0, 0],
           title: "Abstract Product",
+          relation:[]
       },
       position: { x: currPos+10, y: 60},
     };
@@ -26,6 +27,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }
           class_name: `ConcreteProduct${id}1`,
           handles: [0, 0, 0, 0, 1, 1, 0, 0],
           title: "Concrete Product",
+          relation:[]
       },
       position: { x: currPos, y: -125},
   };
@@ -37,6 +39,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }
         class_name: `ConcreteProduct${id}1`,
           handles: [0, 0, 0, 0, 1, 1, 0, 0],
           title: "Concrete Product",
+          relation:[]
       },
       position: { x: currPos, y: 240},
   };

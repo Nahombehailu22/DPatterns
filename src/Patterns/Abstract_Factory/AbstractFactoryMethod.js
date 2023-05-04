@@ -13,6 +13,7 @@ import { updateNodes } from '../../Interactivity/updateNodes';
 
 import initialize from './initializeValues';
 import { Button } from '@mui/material';
+import ConvertToJava from '../../ConvertToCode/ConvertToJava';
 
 const fitViewOptions = {
   padding: 0.2,
@@ -28,6 +29,8 @@ const AbstractFactoryMethod = () => {
   const [hidden, setHidden] = useState(stepValues[stepValues.length - 1]);
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [true, true, true, true, true, true];
+
+  const [convert,setConvert] = useState(false)
 
   useEffect(() => { 
     initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
@@ -105,6 +108,16 @@ const AbstractFactoryMethod = () => {
         fitView
         fitViewOptions={fitViewOptions}
       />
+        <Button variant="contained" 
+          style={{ position:"absolute", bottom:"-70px", right:"800px", zIndex: 10}}
+          onClick={() => {
+            setConvert(!convert)}
+            }> 
+            {!convert? "Show Code":"Hide Code"}
+        </Button>
+        {convert && (
+          <ConvertToJava nodes={nodes} />
+        )}
     </div>
   );
 };

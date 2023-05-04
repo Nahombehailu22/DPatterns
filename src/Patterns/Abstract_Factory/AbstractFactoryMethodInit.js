@@ -35,7 +35,7 @@ const initialNodes = [
   },
   {
     id: 'c',
-    type: 'class',
+    type: 'client',
     data: { 
         attributes: [
           {
@@ -251,24 +251,10 @@ const initialEdges = [
 ];
 
 const nodeTypes = {
-    class: (props) => (
-        <ClassNode
-          {...props}
-          color1={'#009688'}
-          color2={'#4DB6AC'}
-        />),
-    interface: (props) => (
-        <InterfaceNode
-          {...props}
-          color1={'#BF4D4D'}
-          color2={'#CD7F7F'}
-        />),
-    code: (props) => (
-        <CodeNode
-          {...props}
-          color1={'#757575'}
-          color2={'#BDBDBD'}
-        />),
+    client: ClassNode,
+    class: ClassNode, 
+    interface: InterfaceNode,
+    code: CodeNode, 
     genericClass: (props) => (
         <GenericClassNode
           {...props}

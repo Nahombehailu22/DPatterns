@@ -13,23 +13,23 @@ const ConvertToJava = ({ nodes }) => {
     for (let node of nodes) {
       const { type } = node;
       const { class_name, attribute, methods, title, relation} = node.data;
-      if (class_name){
+      if (class_name && type != "client"){
         javaCode += `// ${title} \n`
-        javaCode += `public ${type === "abstract"? "abstract ": type === "interface"? "interface ":  ""}`
-        javaCode += `class ${class_name}`
+        javaCode += `public ${type === "abstract"? "abstract class ": type === "interface"? "interface ": type === "class"? "class ": ""}`
+        javaCode += `${class_name}`
         javaCode += ` ${relation[0] ? relation[0] + " " + nodeMap.get(relation[1]) : ""}{\n`;
 
+        if (methods){
         for (let method of methods) {
           const { name, parameters, abstract, interfaceMethod, overRide, returnType} = method;
           if(overRide) {
             javaCode += "\t@Override\n";
           }
-          console.log(name, returnType)
           javaCode += `\tpublic ${abstract? "abstract ": ""}${returnType? nodeMap.get(returnType) + " ": "void "}${name}(`;
           if (parameters && parameters.length) {
             javaCode += `String ${parameters.join(', String ')}`;
           }
-          javaCode += `)${abstract || interfaceMethod? ";\n\n" :" {\n\t\t// Method body\n\t}\n\n"}`;
+          javaCode += `)${abstract || interfaceMethod? ";\n" :" {\n\t\t// Method body\n\t}\n\n"}`;
         }
       //   if (attributes.length) {
       //     javaCode += `\n\t// Attributes\n`;
@@ -38,6 +38,7 @@ const ConvertToJava = ({ nodes }) => {
       //     }
       //   }
         javaCode += `}\n\n`;
+      }
       }
     }
     const [copySuccess, setCopySuccess] = useState(false);

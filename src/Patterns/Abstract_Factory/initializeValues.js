@@ -20,16 +20,20 @@ The class that uses the Abstract Factory interface and the Abstract Product inte
 The client code does not know the specific classes of the objects it creates, only their common interfaces.`
 
 
-
 const defaultClasses = ['AbstractFactory', 'ConcreteFactory1', 'ConcreteFactory2', "Client", 
-                        'ProductA','ConcreteProductA1', 'ConcreteProductA2',
-                        'ProductB','ConcreteProductB1', 'ConcreteProductB2'];
+                        'AbstractProductA','ConcreteProductA1', 'ConcreteProductA2',
+                        'AbstractProductB','ConcreteProductB1', 'ConcreteProductB2'];
 const defaultMethods = [
-    [{ id: 'A', name: 'createProductA'}, { id: 'B', name: 'createProductB' }],
-    [{ id: 'A', name: 'createProductA'}, { id: 'B', name: 'createProductB' }],
-    [{ id: 'A', name: 'createProductA'}, { id: 'B', name: 'createProductB' }],
+    [{ id: 'A', name: 'createProductA', interfaceMethod: true, returnType: "0a"}, { id: 'B', name: 'createProductB', interfaceMethod: true, returnType: "0b" }],
+    [{ id: 'A', name: 'createProductA', overRide: true, returnType: "0a"}, { id: 'B', name: 'createProductB', overRide: true, returnType: "0b" }],
+    [{ id: 'A', name: 'createProductA', overRide: true, returnType: "0a"}, { id: 'B', name: 'createProductB', overRide: true, returnType: "0b" }],
     [{ id: "1", name: 'Client'}, { id: "2", name: 'someOperation'}],
-    [],[],[],[],[],[],
+    [{ id: "1", name: 'operationA', interfaceMethod: true}],
+    [{ id: "1", name: 'operationA', overRide: true}],
+    [{ id: "1", name: 'operationA', overRide: true}],
+    [{ id: "1", name: 'operationB', interfaceMethod: true}],
+    [{ id: "1", name: 'operationB', overRide: true}],
+    [{ id: "1", name: 'operationB', overRide: true}],
     [{ id: "1", name: "doStuff"}],
     [{ id: "1", name: "doStuff"}],
 ]
@@ -41,6 +45,7 @@ const defaultDescriptions = [abstractFactoryDescription, concreteFactoryDescript
                             abstractProductDescription, concreteProductDescription, concreteProductDescription,
                             abstractProductDescription, concreteProductDescription, concreteProductDescription]
 
+const defaultRelations = [[], ["implements", "0"], ["implements", "0"], [], [], ["implements","0a"], ["implements","0a"], [], ["implements","0b"],["implements","0b"]]
 
 //Example
 const expClasses = ['FurnitureFactory', 'VictorianFurniture', 'ModernFurniture', "Client", 
@@ -61,7 +66,7 @@ const defaultValues = {
     methods: defaultMethods, 
     titles: defaultTitles, 
     descriptions: defaultDescriptions,
-    relations:[],
+    relations:defaultRelations,
 };
 
 const expValues = { 
@@ -69,7 +74,7 @@ const expValues = {
     methods: expMethods, 
     titles: defaultTitles, 
     descriptions: defaultDescriptions,
-    relations:[],
+    relations:defaultRelations,
 };
 
 

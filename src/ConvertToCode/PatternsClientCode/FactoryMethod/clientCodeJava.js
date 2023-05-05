@@ -1,4 +1,5 @@
-export const clientCodeJava = (nodes) => {
+export const ClientCodeJava = (nodes, setNodes) => {
+
     const nodeMap = new Map();
     nodes.map(node => {
       if (node.data.class_name && !isNaN(node.id)){
@@ -9,7 +10,7 @@ export const clientCodeJava = (nodes) => {
     let clientCode = ""
 
     clientCode += `//Client Code`
-    clientCode += "\npublic class FactoryMethodDemo {"
+    clientCode += "\nclass FactoryMethodDemo {"
     clientCode += "\n\tpublic static void main(String[] args) {"
 
     for(let i = 1; i < nodeMap.size; i++){

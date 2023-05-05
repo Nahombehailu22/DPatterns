@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./code.css"
 import { useEffect } from "react";
 
-const ConvertToJava = ({ nodes, clientCode }) => {
+const ConvertToJava = ({ nodes, setNodes, clientCode }) => {
     const nodeMap = new Map();
     nodes.map(node => {
       if (node.data.class_name){
@@ -16,13 +16,13 @@ const ConvertToJava = ({ nodes, clientCode }) => {
       const { class_name, attribute, methods, title, relation} = node.data;
       if (class_name && type != "client"){
         javaCode += `// ${title} \n`
-        javaCode += `public ${type === "abstract"? "abstract class ": type === "interface"? "interface ": type === "class"? "class ": ""}`
+        javaCode += `${type === "abstract"? "abstract class ": type === "interface"? "interface ": type === "class"? "class ": ""}`
         javaCode += `${class_name}`
         javaCode += ` ${relation[0] ? relation[0] + " " + nodeMap.get(relation[1]) : ""}{\n`;
 
         if (methods){
         for (let method of methods) {
-          const { name, parameters, abstract, interfaceMethod, overRide, returnType, print, returnM} = method;
+          const { name, parameters, abstract, interfaceMethod, overRide, returnType, print, returnM, methodBody} = method;
           if(overRide) {
             javaCode += "\t@Override\n";
           }
@@ -31,8 +31,16 @@ const ConvertToJava = ({ nodes, clientCode }) => {
             javaCode += `String ${parameters.join(', String ')}`;
           }
           javaCode += `)${abstract || interfaceMethod? ";\n" : " {"}`;
+          
+          if(methodBody){
+            for(let i = 0; i < methodBody.length; i++){
+              javaCode += `\n\t\t${methodBody[i]};`;
+            }
+          
+          }
           javaCode += `${print? ` \n\t\tSystem.out.println("${print}");`: ""}`;
-          javaCode += `${returnM? `\n\t\treturn ${returnM};`: ""}`;
+          
+          javaCode += `${returnM? `\n\t\treturn ${returnM}();`: ""}`;
           javaCode += `${abstract || interfaceMethod? "" : "\n\t}\n"}`;         
         }
       //   if (attributes.length) {
@@ -46,7 +54,7 @@ const ConvertToJava = ({ nodes, clientCode }) => {
       }
     }
 
-    javaCode += clientCode(nodes)
+    javaCode += clientCode(nodes, setNodes)
     
 
     
@@ -59,7 +67,7 @@ const ConvertToJava = ({ nodes, clientCode }) => {
     };
   
     return (
-      <div className="container" style={{width:"40%"}}>
+      <div className="container" style={{width:"45%"}}>
         <button className="copy-button" onClick={copyCodeToClipboard}>
           {copySuccess ? "Copied!" : "Copy Code"}
         </button>

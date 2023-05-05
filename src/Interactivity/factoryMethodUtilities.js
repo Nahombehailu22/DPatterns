@@ -2,6 +2,29 @@ export const updateNodeMethods = (nodes, setNodes) => {
   setTimeout(() => {
     setNodes(nodes => 
       nodes.map(node => {
+        if (node.id === '0') {
+          const productNode = nodes.find(node => node.id === "0a");
+          const Product = productNode.data.class_name;
+          const productMethod = productNode.data.methods.find(method => method.id === "1").name;
+
+          const factoryMethod = node.data.methods.find(method => method.id === "2").name;
+
+          const methodB = [[`${Product} product = ${factoryMethod}()`], [`product.${productMethod}()`] ]
+          const newMethods = node.data.methods.map(method => 
+            method.id === '1' ? {
+              ...method, 
+              notDeletable:true,
+              methodBody: methodB,
+              
+            } : method
+          );
+
+          return {
+            ...node,
+            data: {...node.data, methods: newMethods}
+          };
+        }
+
         if (!isNaN(node.id) && node.id !== '0') {
           const factoryNode = nodes.find(n => n.id === '0');
           const factoryMethod = factoryNode.data.methods.find(m => m.id === '2').name;
@@ -10,13 +33,13 @@ export const updateNodeMethods = (nodes, setNodes) => {
           if (nodes.find(n=> n.id === `${node.id+'a'}`)){
             concreteProduct = nodes.find(n=> n.id === `${node.id+'a'}`).data.class_name;
           }
-          // const concreteProduct = nodes.find(n=> n.id === `${node.id+'a'}`).data.class_name;
 
           const newMethods = node.data.methods.map(method => 
             method.id === '1' ? {
               ...method, 
               name: factoryMethod, 
               notDeletable:true,
+              returnType: "0a",
               returnM: `new ${concreteProduct}`,
               
             } : method

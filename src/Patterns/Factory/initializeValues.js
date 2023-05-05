@@ -47,7 +47,7 @@ const defaultRelations = [[], ["extends", "0"], ["extends", "0"], [], ["implemen
 //Example
 const expClasses = ["Logistics", "RoadLogistics", "SeaLogistics", "Transport", "Truck", "Ship"]
 const expMethods = [
-    [{ id: "1", name: "planDelivery" }, { id: "2", name: "createTransport", abstract: true, returnType: "0a"}], 
+    [{ id: "1", name: "planDelivery", notDeletable: 'true' }, { id: "2", name: "createTransport", abstract: true, returnType: "0a", notDeletable: 'true'}], 
     [{ id: "1", name: "createTransport", overRide: true, returnType: "0a"}], 
     [{ id: "1", name: "createTransport", overRide: true, returnType: "0a"}], 
     [{ id: "1", name: "deliver", interfaceMethod: true, notDeletable: true}],

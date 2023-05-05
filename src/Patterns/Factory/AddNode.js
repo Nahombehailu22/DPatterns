@@ -15,7 +15,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, newID })
           methods: [
             {
               id: '1',
-              name: 'createProduct'
+              name: 'createProduct',
             },
           ],
           relation: ["extends", "0"],
@@ -33,12 +33,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, newID })
         type: 'class',
         data: { 
           class_name: `ConcreteProduct${id}`,
-          methods: [
-            {
-              id: '1',
-              name: 'doStuff'
-            }
-            ],
+          methods: [],
           relation: ["implements", "0a"],
           handles: [0, 0, 0, 0, 1, 0, 0, 0],
           title: "Concrete Product",

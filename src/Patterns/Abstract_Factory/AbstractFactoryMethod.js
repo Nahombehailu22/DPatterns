@@ -56,6 +56,8 @@ const AbstractFactoryMethod = () => {
           handleAddMethod("2", nodes, setNodes, "createProduct",newID)
         }
         AddNodes({ setNodes, setEdges, setHidden, setEdgeHidden, nextID })
+        updateNodeMethods(nodes, setNodes)
+        updateNodeMethods(nodes, setNodes)
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)

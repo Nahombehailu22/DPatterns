@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./code.css"
+import { useEffect } from "react";
 
-const ConvertToJava = ({ nodes }) => {
+const ConvertToJava = ({ nodes, clientCode }) => {
     const nodeMap = new Map();
     nodes.map(node => {
       if (node.data.class_name){
@@ -21,7 +22,7 @@ const ConvertToJava = ({ nodes }) => {
 
         if (methods){
         for (let method of methods) {
-          const { name, parameters, abstract, interfaceMethod, overRide, returnType} = method;
+          const { name, parameters, abstract, interfaceMethod, overRide, returnType, print, returnM} = method;
           if(overRide) {
             javaCode += "\t@Override\n";
           }
@@ -29,7 +30,10 @@ const ConvertToJava = ({ nodes }) => {
           if (parameters && parameters.length) {
             javaCode += `String ${parameters.join(', String ')}`;
           }
-          javaCode += `)${abstract || interfaceMethod? ";\n" :" {\n\t\t// Method body\n\t}\n\n"}`;
+          javaCode += `)${abstract || interfaceMethod? ";\n" : " {"}`;
+          javaCode += `${print? ` \n\t\tSystem.out.println("${print}");`: ""}`;
+          javaCode += `${returnM? `\n\t\treturn ${returnM};`: ""}`;
+          javaCode += `${abstract || interfaceMethod? "" : "\n\t}\n"}`;         
         }
       //   if (attributes.length) {
       //     javaCode += `\n\t// Attributes\n`;
@@ -41,6 +45,12 @@ const ConvertToJava = ({ nodes }) => {
       }
       }
     }
+
+    javaCode += clientCode(nodes)
+    
+
+    
+
     const [copySuccess, setCopySuccess] = useState(false);
 
     const copyCodeToClipboard = () => {

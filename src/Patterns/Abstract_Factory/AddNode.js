@@ -12,10 +12,17 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }
       id: `0${idLower}`,
       type: 'genericInterface',
       data: { 
-          class_name: `Product${id}`,
+          class_name: `AbstractProduct${id}`,
           handles: [1, 1, 0, 0, 0, 0, 0, 0],
           title: "Abstract Product",
-          relation:[]
+          relation:[],
+          methods: [
+            {
+              id: "1",
+              name: `operation${id}`,
+              interfaceMethod: true,
+            }
+          ]
       },
       position: { x: currPos+10, y: 60},
     };
@@ -27,7 +34,14 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }
           class_name: `ConcreteProduct${id}1`,
           handles: [0, 0, 0, 0, 1, 1, 0, 0],
           title: "Concrete Product",
-          relation:[]
+          relation: ["implements", `0${idLower}`],
+          methods: [
+            {
+              id: "1",
+              name: `operation${id}`,
+              overRide:true
+            }
+          ]
       },
       position: { x: currPos, y: -125},
   };
@@ -36,10 +50,17 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }
     id: `0${idLower}2`,
       type: 'genericClass',
       data: { 
-        class_name: `ConcreteProduct${id}1`,
+        class_name: `ConcreteProduct${id}2`,
           handles: [0, 0, 0, 0, 1, 1, 0, 0],
           title: "Concrete Product",
-          relation:[]
+          relation:["implements", `0${idLower}`],
+          methods: [
+            {
+              id: "1",
+              name: `operation${id}`,
+              overRide: true,
+            }
+          ]
       },
       position: { x: currPos, y: 240},
   };

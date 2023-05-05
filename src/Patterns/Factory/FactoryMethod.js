@@ -13,6 +13,7 @@ import { updateNodes } from '../../Interactivity/updateNodes';
 import initialize from './initializeValues';
 import { Button } from '@mui/material';
 import ConvertToJava from '../../ConvertToCode/ConvertToJava';
+import { clientCodeJava } from '../../ConvertToCode/PatternsClientCode/FactoryMethod/clientCodeJava';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -34,8 +35,12 @@ const FactoryMethod = () => {
 
   useEffect(() => { 
     initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
+    updateNodeMethods(nodes,setNodes)
   },[type]);
-  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
+  useEffect(() => { 
+    updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)
+    updateNodeMethods(nodes,setNodes)
+  });
 
   const handleChanges = (type, id, event, index) => {
     switch(type){
@@ -43,10 +48,14 @@ const FactoryMethod = () => {
         handleClassNameChange(id, event, nodes, setNodes)
         break;
       case "addMethod":
-        handleAddMethod(id, nodes, setNodes)
+        if (id === "0a"){ handleAddMethod(id, nodes, setNodes, "interfaceMethod")}
+        else{ handleAddMethod(id, nodes, setNodes, "newMethod")}
+
+        // updateNodeMethods(nodes,setNodes)
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
+        // updateNodeMethods(nodes,setNodes)
         break;
       case "deleteNode":
         handleNodeDelete(id, nodes, edges, setNodes, setEdges)
@@ -55,14 +64,14 @@ const FactoryMethod = () => {
         break;
       case "changeMethodName":
         handleMethodNameChange(id, index, event, nodes, setNodes)
-        updateNodeMethods(nodes,setNodes)
+        // updateNodeMethods(nodes,setNodes)
         break;
       case "addClass":
         const nums = nodes.filter(node => !isNaN(node.id)).map(node => parseInt(node.id));      
         const newID = findMissingID(nums) 
 
         AddNodes({setNodes, setEdges, setHidden, setEdgeHidden, newID})
-        updateNodeMethods(nodes,setNodes)
+        // updateNodeMethods(nodes,setNodes)
         break;
 
       default:
@@ -112,7 +121,7 @@ const FactoryMethod = () => {
             {!convert? "Show Code":"Hide Code"}
         </Button>
         {convert && (
-          <ConvertToJava nodes={nodes} />
+          <ConvertToJava nodes={nodes} clientCode={clientCodeJava} />
         )}
     </div>
   );

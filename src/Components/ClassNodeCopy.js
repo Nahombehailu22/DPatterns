@@ -85,7 +85,7 @@ const ClassNode = ({
           }
         </div>
 
-        <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 
+        <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px', paddingRight:'5px' }}> 
           {methods && methods.map((method, idx) => (
             <div key={idx} style={{ margin: 0 }}>
               <label>{method.status ? statusMap.get(method.status) : "+"}</label>
@@ -94,7 +94,7 @@ const ClassNode = ({
                 placeholder="method"
                 value={method.name}
                 onChange={(e) => handleChanges("changeMethodName", id, e, method.id)}
-                style={{backgroundColor: backColorMethod, width: method.name? method.name.length*6 + 20: 70 }}
+                style={{backgroundColor: backColorMethod, width: method.name? method.name.length*5 + 35: 70 }}
               /><span>(
                 {method.parameters && method.parameters.map((param, pId) => (
                 <div style={{ display: "inline-block" }}>
@@ -108,12 +108,15 @@ const ClassNode = ({
                 </div>
                 ))}
               )</span>
-              <button type="button" 
-                style = {{ backgroundColor: backColorMethod }} 
-                onClick={(e) => handleChanges("deleteMethod", id, e, idx)}
-                > 
-                - 
-              </button>
+              {!method.notDeletable &&
+                <button type="button" 
+                  style = {{ backgroundColor: backColorMethod }} 
+                  onClick={(e) => handleChanges("deleteMethod", id, e, idx)}
+                  > 
+                  - 
+                </button>
+              }         
+              
           </div>
           ))}
           <button type="button" style = {{ backgroundColor: backColor}} onClick={() => handleChanges("addMethod", id)} > 

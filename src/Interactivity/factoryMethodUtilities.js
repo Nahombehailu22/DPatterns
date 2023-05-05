@@ -6,8 +6,20 @@ export const updateNodeMethods = (nodes, setNodes) => {
           const factoryNode = nodes.find(n => n.id === '0');
           const factoryMethod = factoryNode.data.methods.find(m => m.id === '2').name;
 
-          const newMethods = node.data.methods.map(m => 
-            m.id === '1' ? {...m, name: factoryMethod} : m
+          let concreteProduct = ""
+          if (nodes.find(n=> n.id === `${node.id+'a'}`)){
+            concreteProduct = nodes.find(n=> n.id === `${node.id+'a'}`).data.class_name;
+          }
+          // const concreteProduct = nodes.find(n=> n.id === `${node.id+'a'}`).data.class_name;
+
+          const newMethods = node.data.methods.map(method => 
+            method.id === '1' ? {
+              ...method, 
+              name: factoryMethod, 
+              notDeletable:true,
+              returnM: `new ${concreteProduct}`,
+              
+            } : method
           );
 
           return {
@@ -17,18 +29,36 @@ export const updateNodeMethods = (nodes, setNodes) => {
         }
 
         if (node.id.includes('a')) {
-          const productNode = nodes.find(n => n.id === '0a');
-          const productMethod = productNode.data.methods.find(m => m.id === '1').name;
-
-          const newMethods = node.data.methods.map(m => 
-            m.id === '1' ? {...m, name: productMethod} : m
-          );
-
-          return {
-            ...node,
-            data: {...node.data, methods: newMethods}
-          };
+          if (node.id === "0a"){
+            const newMethods = node.data.methods.map(method =>  ({ ...method, interfaceMethod: true}));
+            return {
+              ...node,
+              data: {
+                  ...node.data,
+                  methods: newMethods,
+              },
+          }
         }
+          else{
+            const orgMethods = node.data.methods.filter(method => !method.overRide)
+            const implementedMethods = nodes.find(n => n.id === '0a').data.methods
+            .map(method =>  ({ 
+              ...method, 
+              interfaceMethod: false, 
+              overRide:true, 
+              notDeletable:true,
+              print: `This is ${node.data.class_name}`
+            
+            }));
+
+            const newMethods = [...implementedMethods, ...orgMethods]
+            return {
+              ...node,
+              data: {...node.data, methods: newMethods}
+            };
+        }
+      }
+      
 
         return node;
       })

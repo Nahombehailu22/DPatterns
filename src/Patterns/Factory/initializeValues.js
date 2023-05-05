@@ -29,10 +29,10 @@ The Concrete Product is the component of the system that the client code is prim
 
 const defaultClasses = ["Creator", "ConcreteCreator1", "ConcreteCreator2", "Product", "ConcreteProduct1", "ConcreteProduct2"];
 const defaultMethods = [
-    [{ id: "1", name: "someOperation"}, { id: "2", name: "createProduct", abstract: true, returnType: "0a"}], 
+    [{ id: "1", name: "someOperation", notDeletable: 'true'}, { id: "2", name: "createProduct", abstract: true, returnType: "0a", notDeletable: true}], 
     [{ id: "1", name: "createProduct", overRide: true, returnType: "0a"}], 
     [{ id: "1", name: "createProduct", overRide: true, returnType: "0a"}], 
-    [{ id: "1", name: "displayProductInfo", interfaceMethod: true}],
+    [{ id: "1", name: "displayProductInfo", interfaceMethod: true, notDeletable: true}],
     [{ id: "1", name: "displayProductInfo", overRide: true}],
     [{ id: "1", name: "displayProductInfo", overRide: true}],
 ]
@@ -50,7 +50,7 @@ const expMethods = [
     [{ id: "1", name: "planDelivery" }, { id: "2", name: "createTransport", abstract: true, returnType: "0a"}], 
     [{ id: "1", name: "createTransport", overRide: true, returnType: "0a"}], 
     [{ id: "1", name: "createTransport", overRide: true, returnType: "0a"}], 
-    [{ id: "1", name: "deliver", interfaceMethod: true}],
+    [{ id: "1", name: "deliver", interfaceMethod: true, notDeletable: true}],
     [{ id: "1", name: "deliver", overRide: true}],
     [{ id: "1", name: "deliver", overRide: true}],
 ]

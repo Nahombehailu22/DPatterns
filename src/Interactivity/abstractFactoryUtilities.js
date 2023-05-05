@@ -1,20 +1,33 @@
 export const updateNodeMethods = (nodes, setNodes) => {
     setTimeout(() => {
         setNodes(nodes => nodes.map(node => {
-            if (!isNaN(node.id) && node.id != '0') {
-                // const newMethods = [...node.data.methods];
-                const newMethods = nodes.find(node => node.id === "0").data.methods;
-                // for (let i = 0; i < (nodes.find(node => node.id === "0").data.methods).length; i++) {
-                //     newMethods[i] = nodes.find(node => node.id === "0").data.methods[i];
-                //   }
+            if (node.id === '0'){
+                const interfaceMethods = nodes.find(node => node.id === "0").data.methods;
+                const newMethods = interfaceMethods.map(method => {
+                    const idLower = method.id.toLowerCase()
+                    return {
+                        ...method,
+                        interfaceMethod: true,
+                        returnType: `0${idLower}`
+                      };
+                });          
 
                 return {
                     ...node,
-                    data: {
-                        ...node.data,
-                        methods: newMethods,
+                    data: {...node.data, methods: newMethods,
                     },
                 }
+            }
+            if (!isNaN(node.id) && node.id != '0') {
+                const interfaceMethods = nodes.find(node => node.id === "0").data.methods;
+                const newMethods = interfaceMethods.map(method => ({ ...method, interfaceMethod: false, overRide: true }));             
+
+                return {
+                    ...node,
+                    data: { ...node.data, methods: newMethods,
+                    },
+                }
+                
             }
             return node;
         }))

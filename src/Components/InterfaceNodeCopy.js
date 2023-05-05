@@ -69,7 +69,7 @@ function InterfaceNode({ id, data, color1, color2 }) {
             style={{ backgroundColor: backColor, width: class_name? class_name.length *6 + 20: 70 }}
           />
       </div>
-        <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px' }}> 
+        <div style={{ backgroundColor: backColorMethod, borderRadius: '0 0 10px 10px', paddingRight:'5px' }}> 
           {methods && methods.map((method, idx) => (
             <div key={idx} style={{ margin: 0 }}>
               <label>+</label>
@@ -92,12 +92,14 @@ function InterfaceNode({ id, data, color1, color2 }) {
                 </div>
                 ))}
               )</span>
+              {!method.notDeletable &&
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 
-                onClick={(e) => handleChanges("deleteMethod", id, e, idx, method.id)}
+                onClick={(e) => handleChanges("deleteMethod", id, e, idx)}
                 > 
-                - 
+                -
               </button>
+              }
             </div>
           ))}
           <button type="button" style = {{ backgroundColor: backColor }} onClick={() => handleChanges("addMethod", id)}> 

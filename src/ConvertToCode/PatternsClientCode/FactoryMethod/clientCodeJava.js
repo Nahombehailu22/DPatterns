@@ -26,14 +26,6 @@ export const ClientCodeJava = (nodes, setNodes) => {
         
     }
     
-    // for(let i = 1; i < nodeMap.size; i++){
-    //     clientCode += `\n\t\t${nodeMap.get(0).class_name +" "+ `creator${i}` + " = new" + " " + nodeMap.get(i).class_name + "();"}`
-    // }
-    // clientCode += "\n\t"
-    // for(let i = 1; i < nodeMap.size; i++){
-    //     clientCode += `\n\t\t${`creator${i}` + "." + nodeMap.get(0).methods.find(method => method.id === "1").name + "();"}`
-    // }
     clientCode += `\n\t}\n}`
-    
     return clientCode
 }

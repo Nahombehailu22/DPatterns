@@ -14,6 +14,8 @@ import initialize from './initializeValues';
 import { Button } from '@mui/material';
 import ConvertToJava from '../../ConvertToCode/ConvertToJava';
 import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/FactoryMethod/clientCodeJava';
+import ConvertToPython from '../../ConvertToCode/ConvertToPython';
+import { ClientCodePython } from '../../ConvertToCode/PatternsClientCode/FactoryMethod/clientCodePython';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -121,7 +123,7 @@ const FactoryMethod = () => {
             {!convert? "Show Code":"Hide Code"}
         </Button>
         {convert && (
-          <ConvertToJava nodes={nodes} setNodes={setNodes} clientCode={ClientCodeJava} />
+          <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />
         )}
     </div>
   );

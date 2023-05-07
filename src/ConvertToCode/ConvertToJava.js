@@ -22,7 +22,7 @@ const ConvertToJava = ({ nodes, setNodes, clientCode }) => {
 
         if (methods){
         for (let method of methods) {
-          const { name, parameters, abstract, interfaceMethod, overRide, returnType, print, returnM, methodBody} = method;
+          const { name, parameters, abstract, interfaceMethod, overRide, returnType, print, methodBody} = method;
           if(overRide) {
             javaCode += "\t@Override\n";
           }
@@ -33,14 +33,12 @@ const ConvertToJava = ({ nodes, setNodes, clientCode }) => {
           javaCode += `)${abstract || interfaceMethod? ";\n" : " {"}`;
           
           if(methodBody){
-            for(let i = 0; i < methodBody.length; i++){
-              javaCode += `\n\t\t${methodBody[i]};`;
+            for(let i = 0; i < methodBody[0].length; i++){
+              javaCode += `\n\t\t${methodBody[0][i]};`;
             }
           
           }
           javaCode += `${print? ` \n\t\tSystem.out.println("${print}");`: ""}`;
-          
-          javaCode += `${returnM? `\n\t\treturn ${returnM}();`: ""}`;
           javaCode += `${abstract || interfaceMethod? "" : "\n\t}\n"}`;         
         }
       //   if (attributes.length) {

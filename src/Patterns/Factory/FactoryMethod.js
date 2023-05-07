@@ -123,7 +123,10 @@ const FactoryMethod = () => {
             {!convert? "Show Code":"Hide Code"}
         </Button>
         {convert && (
+          <div>
           <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />
+          <ConvertToJava nodes={nodes} setNodes={setNodes} clientCode={ClientCodeJava} />
+          </div>
         )}
     </div>
   );

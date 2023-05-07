@@ -10,7 +10,7 @@ export const ClientCodePython = (nodes, setNodes) => {
     let clientCode = ""
 
     clientCode += `# Client Code\n`;
-    clientCode += "if __name__ == `__main__`:";
+    clientCode += "if __name__ == \"__main__\":";
 
     for (let key of nodeMap.keys()) {
         if (key != 0){

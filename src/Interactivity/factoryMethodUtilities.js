@@ -8,13 +8,15 @@ export const updateNodeMethods = (nodes, setNodes) => {
           const productMethod = productNode.data.methods.find(method => method.id === "1").name;
 
           const factoryMethod = node.data.methods.find(method => method.id === "2").name;
+          
+          const methodBodyPython = [[`product = self.${factoryMethod}()`], [`product.${productMethod}()`] ]
+          const methodBodyJava = [[`${Product} product = ${factoryMethod}()`], [`product.${productMethod}()`] ]
 
-          const methodB = [[`${Product} product = ${factoryMethod}()`], [`product.${productMethod}()`] ]
           const newMethods = node.data.methods.map(method => 
             method.id === '1' ? {
               ...method, 
               notDeletable:true,
-              methodBody: methodB,
+              methodBody: [methodBodyJava, methodBodyPython],
               
             } : method
           );
@@ -34,13 +36,17 @@ export const updateNodeMethods = (nodes, setNodes) => {
             concreteProduct = nodes.find(n=> n.id === `${node.id+'a'}`).data.class_name;
           }
 
+          const methodBodyPython = [`return ${concreteProduct}()`]
+          const methodBodyJava = [`return new ${concreteProduct}()`]
+          
           const newMethods = node.data.methods.map(method => 
             method.id === '1' ? {
               ...method, 
               name: factoryMethod, 
               notDeletable:true,
               returnType: "0a",
-              returnM: `new ${concreteProduct}`,
+              methodBody: [methodBodyJava, methodBodyPython]
+              // returnM: `new ${concreteProduct}`,
               
             } : method
           );

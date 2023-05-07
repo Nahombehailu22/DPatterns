@@ -6,7 +6,6 @@ export const updateNodeMethods = (nodes, setNodes) => {
           const productNode = nodes.find(node => node.id === "0a");
           const Product = productNode.data.class_name;
           const productMethod = productNode.data.methods.find(method => method.id === "1").name;
-
           const factoryMethod = node.data.methods.find(method => method.id === "2").name;
           
           const methodBodyPython = [[`product = self.${factoryMethod}()`], [`product.${productMethod}()`] ]
@@ -36,8 +35,8 @@ export const updateNodeMethods = (nodes, setNodes) => {
             concreteProduct = nodes.find(n=> n.id === `${node.id+'a'}`).data.class_name;
           }
 
-          const methodBodyPython = [`return ${concreteProduct}()`]
-          const methodBodyJava = [`return new ${concreteProduct}()`]
+          const methodBodyPython = [[`return ${concreteProduct}()`]]
+          const methodBodyJava = [[`return new ${concreteProduct}()`]]
           
           const newMethods = node.data.methods.map(method => 
             method.id === '1' ? {
@@ -46,7 +45,6 @@ export const updateNodeMethods = (nodes, setNodes) => {
               notDeletable:true,
               returnType: "0a",
               methodBody: [methodBodyJava, methodBodyPython]
-              // returnM: `new ${concreteProduct}`,
               
             } : method
           );
@@ -69,6 +67,9 @@ export const updateNodeMethods = (nodes, setNodes) => {
           }
         }
           else{
+            const methodBodyPython = [[`print("This is ${node.data.class_name}")`]]
+            const methodBodyJava = [[`System.out.println("This is ${node.data.class_name}")`]]
+
             const orgMethods = node.data.methods.filter(method => !method.overRide)
             const implementedMethods = nodes.find(n => n.id === '0a').data.methods
             .map(method =>  ({ 
@@ -76,7 +77,7 @@ export const updateNodeMethods = (nodes, setNodes) => {
               interfaceMethod: false, 
               overRide:true, 
               notDeletable:true,
-              print: `This is ${node.data.class_name}`
+              methodBody: [methodBodyJava, methodBodyPython]
             
             }));
 

@@ -24,7 +24,7 @@ const ConvertToPython = ({ nodes, setNodes, clientCode }) => {
 
         if (methods){
         for (let method of methods) {
-          const { name, parameters, abstract, interfaceMethod, print, methodBody} = method;
+          const { name, parameters, abstract, interfaceMethod, methodBody} = method;
           if(abstract) {
             pythonCode += "\n\t@abstractmethod\n";
           }
@@ -37,11 +37,8 @@ const ConvertToPython = ({ nodes, setNodes, clientCode }) => {
           if(methodBody){
             for(let i = 0; i < methodBody[1].length; i++){
                 pythonCode += `\n\t\t${methodBody[1][i]}`;
-            }
-          
+            } 
           }
-          pythonCode += `${print? ` \n\t\tprint("${print}")`: ""}`;
-          
           pythonCode += `${ (abstract || interfaceMethod) ? "\n\t\tpass\n": "\n"}`;   
         }
       //   if (attributes.length) {

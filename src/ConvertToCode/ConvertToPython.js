@@ -39,7 +39,7 @@ const ConvertToPython = ({ nodes, setNodes, clientCode }) => {
                 pythonCode += `\n\t\t${methodBody[1][i]}`;
             } 
           }
-          pythonCode += `${ (abstract || interfaceMethod) ? "\n\t\tpass\n": "\n"}`;   
+          pythonCode += `${ (abstract || interfaceMethod || !methodBody) ? "\n\t\tpass\n": "\n"}`;   
         }
       //   if (attributes.length) {
       //     javaCode += `\n\t// Attributes\n`;

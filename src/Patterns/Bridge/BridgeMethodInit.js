@@ -1,9 +1,9 @@
 import { MarkerType } from 'reactflow';
 import ButtonEdge from '../../Components/DashedEdge';
-import ClassNode from '../../Components/ClassNodeCopy';
-import InterfaceNode from '../../Components/InterfaceNodeCopy';
-import CodeNode from '../../Components/CodeNode';
-import GenericClassNode from '../../Components/GenericClassNode';
+import ClassNode from '../../Components/Nodes/ClassNode';
+import InterfaceNode from '../../Components/Nodes/InterfaceNode';
+import CodeNode from '../../Components/Nodes/CodeNode';
+import GenericClassNode from '../../Components/Nodes/GenericClassNode';
 
 
 const bridgeMethodDescription = `The Bridge Method pattern separates the abstraction of an object from its implementation. It uses an Abstraction class to define the interface for the object and a Implementor interface to specify the implementation details. Implementations of the Implementor interface can be interchanged without affecting the Abstraction class. The Bridge Method pattern allows you to add new implementations to your system without modifying existing code.`;

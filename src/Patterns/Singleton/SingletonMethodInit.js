@@ -1,10 +1,9 @@
 import { MarkerType } from 'reactflow';
 import ButtonEdge from '../../Components/DashedEdge';
-import ClassNode from '../../Components/ClassNodeCopy';
-import InterfaceNode from '../../Components/InterfaceNodeCopy';
-import CodeNode from '../../Components/CodeNode';
-import GenericClassNode from '../../Components/GenericClassNode';
-
+import ClassNode from '../../Components/Nodes/ClassNode';
+import InterfaceNode from '../../Components/Nodes/InterfaceNode';
+import CodeNode from '../../Components/Nodes/CodeNode';
+import GenericClassNode from '../../Components/Nodes/GenericClassNode';
 
 const singletonDescription = `The Singleton class declares the static method getInstance that returns the same instance of its own class.The Singleton’s constructor should be hidden from the client code. Calling the getInstance method should be the only way of getting the Singleton object.`;
 const clientClassDescription = `The Client class accesses the Singleton instance through a static method or property, which creates the instance if it does not already exist, and returns it. The Client can then use the Singleton instance to access its methods and properties.`;

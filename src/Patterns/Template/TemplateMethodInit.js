@@ -1,8 +1,8 @@
 import { MarkerType } from 'reactflow';
-import ClassNode from '../../Components/ClassNodeCopy';
-import InterfaceNode from '../../Components/InterfaceNodeCopy';
-import CodeNode from '../../Components/CodeNode';
-import GenericClassNode from '../../Components/GenericClassNode';
+import ClassNode from '../../Components/Nodes/ClassNode';
+import InterfaceNode from '../../Components/Nodes/InterfaceNode';
+import CodeNode from '../../Components/Nodes/CodeNode';
+import GenericClassNode from '../../Components/Nodes/GenericClassNode';
 
 
 const abstractClassDescription = 'The Abstract Class declares methods that act as steps of an algorithm, as well as the actual template method which calls these methods in a specific order. The steps may either be declared abstract or have some default implementation.'

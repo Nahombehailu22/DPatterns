@@ -1,8 +1,8 @@
 import { MarkerType } from 'reactflow';
-import ClassNode from '../../Components/ClassNodeCopy';
-import InterfaceNode from '../../Components/InterfaceNodeCopy';
-import CodeNode from '../../Components/CodeNode';
-import GenericClassNode from '../../Components/GenericClassNode';
+import ClassNode from '../../Components/Nodes/ClassNode';
+import InterfaceNode from '../../Components/Nodes/InterfaceNode';
+import CodeNode from '../../Components/Nodes/CodeNode';
+import GenericClassNode from '../../Components/Nodes/GenericClassNode';
 
 
 const contextDescription = 'The Context maintains a reference to one of the concrete strategies and communicates with this object only via the strategy interface.'

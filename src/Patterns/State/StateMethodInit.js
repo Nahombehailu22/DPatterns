@@ -1,8 +1,8 @@
 import { MarkerType } from 'reactflow';
-import ClassNode from '../../Components/ClassNodeCopy';
-import InterfaceNode from '../../Components/InterfaceNodeCopy';
-import CodeNode from '../../Components/CodeNode';
-import GenericClassNode from '../../Components/GenericClassNode';
+import ClassNode from '../../Components/Nodes/ClassNode';
+import InterfaceNode from '../../Components/Nodes/InterfaceNode';
+import CodeNode from '../../Components/Nodes/CodeNode';
+import GenericClassNode from '../../Components/Nodes/GenericClassNode';
 
 
 const contextDescription = 'Context stores a reference to one of the concrete state objects and delegates to it all state-specific work. The context communicates with the state object via the state interface. The context exposes a setter for passing it a new state object.'

@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
-import InfoPopover from './Popover.js';
+import InfoPopover from '../Popover.js';
 import { motion } from 'framer-motion';
 
 function GenericClassNode({ id, data, color1, color2 }) {

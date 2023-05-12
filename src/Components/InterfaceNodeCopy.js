@@ -95,7 +95,7 @@ function InterfaceNode({ id, data, color1, color2 }) {
               {!method.notDeletable &&
               <button type="button" 
                 style = {{ backgroundColor: backColorMethod }} 
-                onClick={(e) => handleChanges("deleteMethod", id, e, idx)}
+                onClick={(e) => handleChanges("deleteMethod", id, e, idx, method.id)}
                 > 
                 -
               </button>

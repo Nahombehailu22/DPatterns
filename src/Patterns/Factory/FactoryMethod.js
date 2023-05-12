@@ -115,19 +115,20 @@ const FactoryMethod = () => {
         fitView
         fitViewOptions={fitViewOptions}
       />
-        <Button variant="contained" 
-          style={{ position:"absolute", bottom:"-70px", right:"800px", zIndex: 10}}
-          onClick={() => {
-            setConvert(!convert)}
-            }> 
-            {!convert? "Show Code":"Hide Code"}
-        </Button>
-        {convert && (
-          <div>
-          <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />
-          <ConvertToJava nodes={nodes} setNodes={setNodes} clientCode={ClientCodeJava} />
-          </div>
-        )}
+      <Button variant="contained" 
+        style={{ position:"absolute", bottom:"-70px", right:"800px", zIndex: 10}}
+        onClick={() => {
+          setConvert(!convert)}
+          }> 
+          {!convert? "Show Code":"Hide Code"}
+      </Button>
+      {convert && (
+        <div>
+        <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />
+        <br/>
+        <ConvertToJava nodes={nodes} setNodes={setNodes} clientCode={ClientCodeJava} />
+        </div>
+      )}
     </div>
   );
 };

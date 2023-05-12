@@ -36,7 +36,6 @@ export const updateNodeMethods = (nodes, setNodes) => {
 };
 
 export const handleNodeDelete = (id, nodes, edges, setNodes, setEdges, methodId) => {
-    
     const deleteId = methodId.toLowerCase()
     setNodes(nodes => nodes.filter(node => node.id !== "0"+deleteId));
     setEdges((edges) => edges.filter((edge) => edge.source !== "0" +deleteId && edge.target !== "0" +deleteId));

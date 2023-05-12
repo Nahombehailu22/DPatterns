@@ -111,7 +111,7 @@ const ClassNode = ({
               {!method.notDeletable &&
                 <button type="button" 
                   style = {{ backgroundColor: backColorMethod }} 
-                  onClick={(e) => handleChanges("deleteMethod", id, e, idx)}
+                  onClick={(e) => handleChanges("deleteMethod", id, e, idx, method.id)}
                   > 
                   - 
                 </button>

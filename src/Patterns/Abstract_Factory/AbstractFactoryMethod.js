@@ -14,6 +14,9 @@ import { updateNodes } from '../../Interactivity/updateNodes';
 import initialize from './initializeValues';
 import { Button } from '@mui/material';
 import ConvertToJava from '../../ConvertToCode/ConvertToJava';
+import { ClientCodePython } from '../../ConvertToCode/PatternsClientCode/AbstractFactoryMethod/clientCodePython';
+import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/AbstractFactoryMethod/clientCodeJava';
+import ConvertToPython from '../../ConvertToCode/ConvertToPython';
 
 const fitViewOptions = {
   padding: 0.2,
@@ -34,8 +37,11 @@ const AbstractFactoryMethod = () => {
 
   useEffect(() => { 
     initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
+    updateNodeMethods(nodes, setNodes)
   },[type]);
-  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
+  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)
+    updateNodeMethods(nodes, setNodes)
+  });
   
   const handleChanges = (type, id, event, index, methodId) => {
     switch(type){
@@ -61,7 +67,6 @@ const AbstractFactoryMethod = () => {
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
-        updateNodeMethods(nodes, setNodes)
         handleNodeDelete(index, nodes, edges, setNodes, setEdges, methodId)
         break;
       case "changeMethodName":
@@ -110,16 +115,20 @@ const AbstractFactoryMethod = () => {
         fitView
         fitViewOptions={fitViewOptions}
       />
-        <Button variant="contained" 
-          style={{ position:"absolute", bottom:"-70px", right:"800px", zIndex: 10}}
-          onClick={() => {
-            setConvert(!convert)}
-            }> 
-            {!convert? "Show Code":"Hide Code"}
-        </Button>
-        {convert && (
-          <ConvertToJava nodes={nodes} />
-        )}
+      <Button variant="contained" 
+        style={{ position:"absolute", bottom:"-70px", right:"800px", zIndex: 10}}
+        onClick={() => {
+          setConvert(!convert)}
+          }> 
+          {!convert? "Show Code":"Hide Code"}
+      </Button>
+      {convert && (
+        <div>
+        <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />
+        <br/>
+        <ConvertToJava nodes={nodes} setNodes={setNodes} clientCode={ClientCodeJava} />
+        </div>
+      )}
     </div>
   );
 };

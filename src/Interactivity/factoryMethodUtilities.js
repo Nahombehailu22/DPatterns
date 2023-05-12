@@ -85,8 +85,8 @@ const updateProductMethods = (node, nodes) => {
           ...node.data,
           methods: newMethods,
       },
+    }
   }
-}
   else{
     const methodBodyPython = [[`print("This is ${node.data.class_name}")`]]
     const methodBodyJava = [[`System.out.println("This is ${node.data.class_name}")`]]

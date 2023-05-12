@@ -18,7 +18,7 @@ export const updateNodeMethods = (nodes, setNodes) => {
                     },
                 }
             }
-            if (!isNaN(node.id) && node.id != '0') {
+            if (!isNaN(node.id) && node.id != '0' && node.id != '0b1') {
                 const interfaceMethods = nodes.find(node => node.id === "0").data.methods;
                 const newMethods = interfaceMethods.map(method => ({ ...method, interfaceMethod: false, overRide: true }));             
 

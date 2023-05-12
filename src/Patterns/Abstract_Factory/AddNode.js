@@ -10,7 +10,7 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }
   const currPos = -225 - (nextID-65)*225
   const newNode = {
       id: `0${idLower}`,
-      type: 'genericInterface',
+      type: 'interface',
       data: { 
           class_name: `AbstractProduct${id}`,
           handles: [1, 1, 0, 0, 0, 0, 0, 0],
@@ -24,12 +24,12 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }
             }
           ]
       },
-      position: { x: currPos+10, y: 60},
+      position: { x: currPos+10, y: 30},
     };
 
   const newNode1 = {
     id: `0${idLower}1`,
-      type: 'genericClass',
+      type: 'class',
       data: { 
           class_name: `ConcreteProduct${id}1`,
           handles: [0, 0, 0, 0, 1, 1, 0, 0],
@@ -43,12 +43,12 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }
             }
           ]
       },
-      position: { x: currPos, y: -125},
+      position: { x: currPos, y: -175},
   };
 
   const newNode2 = {
     id: `0${idLower}2`,
-      type: 'genericClass',
+      type: 'class',
       data: { 
         class_name: `ConcreteProduct${id}2`,
           handles: [0, 0, 0, 0, 1, 1, 0, 0],

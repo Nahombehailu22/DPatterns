@@ -22,13 +22,13 @@ const initialNodes = [
         handles: [0, 0, 0, 1, 0, 1, 0, 0],
         deletable: false,
     },
-    position: { x: 0, y: -250},
+    position: { x: 0, y: -275},
   },
   {
     id: '2',
     type: 'class',
     data: { 
-        handles: [0, 0, 0, 1, 1, 0, 0, 0],
+        handles: [0, 0, 1, 1, 1, 0, 0, 0],
         deletable: false,
     },
     position: { x: 0, y: 250},
@@ -51,23 +51,23 @@ const initialNodes = [
   },
   {
     id: '0a',
-    type: 'genericInterface',
+    type: 'interface',
     data: { 
         handles: [1, 1, 0, 0, 0, 0, 0, 0],
     },
-    position: { x: -215, y: 60},
+    position: { x: -215, y: 30},
   },
   {
     id: '0a1',
-    type: 'genericClass',
+    type: 'class',
     data: { 
         handles: [0, 0, 0, 0, 1, 1, 0, 0],
     },
-    position: { x: -225, y: -125},
+    position: { x: -225, y: -175},
   },
   {
     id: '0a2',
-    type: 'genericClass',
+    type: 'class',
     data: { 
         handles: [0, 0, 0, 0, 1, 1, 0, 0],
     },
@@ -75,23 +75,23 @@ const initialNodes = [
   },
   {
     id: '0b',
-    type: 'genericInterface',
+    type: 'interface',
     data: { 
         handles: [1, 1, 0, 0, 0, 0, 0, 0],
     },
-    position: { x: -440, y: 60},
+    position: { x: -440, y: 30},
   },
   {
     id: '0b1',
-    type: 'genericClass',
+    type: 'class',
     data: { 
         handles: [0, 0, 0, 0, 1, 1, 0, 0],
     },
-    position: { x: -450, y: -125},
+    position: { x: -450, y: -175},
   },
   {
     id: '0b2',
-    type: 'genericClass',
+    type: 'class',
     data: { 
         handles: [0, 0, 0, 0, 1, 1, 0, 0],
     },
@@ -110,10 +110,10 @@ const initialNodes = [
     id: '2a',
     type: 'code',
     data: { 
-        handles: [0, 0, 0, 0, 0, 0, 1, 0],
+        handles: [0, 0, 0, 0, 0, 0, 0, 1],
         connectedId: '2',
     },
-    position: { x: -225, y: 360},
+    position: { x: 225, y: 360},
   },
 ];
 
@@ -241,10 +241,10 @@ const initialEdges = [
   { 
     id: '2-2a', 
     source: '2', 
-    sourceHandle: 'l', 
+    sourceHandle: 'r', 
     target: '2a', 
     type: 'straight', 
-    targetHandle: 'e',
+    targetHandle: 'w',
     animated: true,
   },
   
@@ -255,18 +255,6 @@ const nodeTypes = {
     class: ClassNode, 
     interface: InterfaceNode,
     code: CodeNode, 
-    genericClass: (props) => (
-        <GenericClassNode
-          {...props}
-          color1={'#009688'}
-          color2={'#4DB6AC'}
-        />),
-    genericInterface: (props) => (
-        <GenericClassNode
-          {...props}
-          color1={'#BF4D4D'}
-          color2={'#CD7F7F'}
-        />),
 };
 
 const edgeTypes = {

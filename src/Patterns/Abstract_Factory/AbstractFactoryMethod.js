@@ -19,7 +19,7 @@ import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/AbstractF
 import ConvertToPython from '../../ConvertToCode/ConvertToPython';
 
 const fitViewOptions = {
-  padding: 0.2,
+  padding: 0.3,
 };
 
 const AbstractFactoryMethod = () => {
@@ -49,29 +49,34 @@ const AbstractFactoryMethod = () => {
         handleClassNameChange(id, event, nodes, setNodes)
         break;
       case "addMethod":
-       
-        const nums = nodes.find(node => node.id === id).data.methods
-        .map(method => method.id.charCodeAt() - 65)
-
-        const nextID = findMissingID(nums) + 65
-        const newID = String.fromCharCode(nextID)
-
-        handleAddMethod(id, nodes, setNodes, "createProduct", newID)
+      
         if (id == '0'){
-          handleAddMethod("1", nodes, setNodes, "createProduct",newID)
-          handleAddMethod("2", nodes, setNodes, "createProduct",newID)
+          const nums = nodes.find(node => node.id === id).data.methods
+          .map(method => method.id.charCodeAt() - 65)
+  
+          const nextID = findMissingID(nums) + 65
+          const newID = String.fromCharCode(nextID)
+
+          handleAddMethod(id, nodes, setNodes, "createProduct", newID)
+          handleAddMethod("1", nodes, setNodes, "createProduct", newID)
+          handleAddMethod("2", nodes, setNodes, "createProduct", newID)
+
+          AddNodes({ setNodes, setEdges, setHidden, setEdgeHidden, nextID })
         }
-        AddNodes({ setNodes, setEdges, setHidden, setEdgeHidden, nextID })
-        updateNodeMethods(nodes, setNodes)
-        updateNodeMethods(nodes, setNodes)
+        else {
+          handleAddMethod(id, nodes, setNodes, "newMethod")
+        }
+        
+ 
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
+        if (id == '0'){
         handleNodeDelete(index, nodes, edges, setNodes, setEdges, methodId)
+        }
         break;
       case "changeMethodName":
         handleMethodNameChange(id, index, event, nodes, setNodes)
-        updateNodeMethods(nodes, setNodes)
         break;
       case "attributeName":
         handleAttributeNameChange(id, index, event, nodes, setNodes)
@@ -124,8 +129,8 @@ const AbstractFactoryMethod = () => {
       </Button>
       {convert && (
         <div>
-        <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />
-        <br/>
+        {/* <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />
+        <br/> */}
         <ConvertToJava nodes={nodes} setNodes={setNodes} clientCode={ClientCodeJava} />
         </div>
       )}

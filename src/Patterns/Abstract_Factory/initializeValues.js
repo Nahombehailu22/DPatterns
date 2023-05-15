@@ -28,7 +28,7 @@ const defaultMethods = [
     [{ id: 'A', name: 'createProductA', overRide: true, returnType: "0a"}, { id: 'B', name: 'createProductB', overRide: true, returnType: "0b" }],
     [{ id: 'A', name: 'createProductA', overRide: true, returnType: "0a"}, { id: 'B', name: 'createProductB', overRide: true, returnType: "0b" }],
     [{ id: "1", name: 'Client'}, { id: "2", name: 'someOperation'}],
-    [{ id: "1", name: 'operationA', interfaceMethod: true}],
+    [{ id: "1", name: 'operationA', interfaceMethod: true, notDeletable: true}],
     [{ id: "1", name: 'operationA', overRide: true}],
     [{ id: "1", name: 'operationA', overRide: true}],
     [{ id: "1", name: 'operationB', interfaceMethod: true}],

@@ -10,7 +10,7 @@ export const updateNodeMethods = (nodes, setNodes) => {
     setNodes(nodes => 
       nodes.map(node => {
         if (node.id === '0') { return updateFactoryMethod(node, nodes) }
-        else if (!isNaN(node.id)) { return updateConcreteFactoryMethod(node, nodes) }
+        else if (!isNaN(node.id)) { return updateConcreteCreatorMethod(node, nodes) }
         else if (node.id.includes('a')) { return updateProductMethods(node, nodes) }
         
         return node;
@@ -45,7 +45,7 @@ const updateFactoryMethod = (node, nodes) => {
 }
 
 // Updates the factory method of concrete creator classes
-const updateConcreteFactoryMethod = (node, nodes) => {
+const updateConcreteCreatorMethod = (node, nodes) => {
   const factoryNode = nodes.find(n => n.id === '0');
   const factoryMethod = factoryNode.data.methods.find(m => m.id === '2').name;
 

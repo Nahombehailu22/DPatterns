@@ -129,8 +129,8 @@ const AbstractFactoryMethod = () => {
       </Button>
       {convert && (
         <div>
-        {/* <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />
-        <br/> */}
+        <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />
+        <br/>
         <ConvertToJava nodes={nodes} setNodes={setNodes} clientCode={ClientCodeJava} />
         </div>
       )}

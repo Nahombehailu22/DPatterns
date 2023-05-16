@@ -11,7 +11,7 @@ import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { concreteCreatorCode, productCode } from './nodeCodes';
 import { updateNodes } from '../../Interactivity/updateNodes';
 import initialize from './initializeValues';
-import { Button } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import ConvertToJava from '../../ConvertToCode/ConvertToJava';
 import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/FactoryMethod/clientCodeJava';
 import ConvertToPython from '../../ConvertToCode/ConvertToPython';
@@ -23,7 +23,7 @@ const fitViewOptions = {
 
 const FactoryMethod = () => {
   const {type} = useParams();
-  const [pageType, setPageType] = useState("example");
+  const [pageType, setPageType] = useState(type === "demonstration"? "demonstration": "example");
   const initialValues = {initialNodes, initialEdges}
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -90,6 +90,12 @@ const FactoryMethod = () => {
         return (<div>{concreteCreatorCode(nodes, connectingID)}</div>)
     }
   }
+
+  const [code, setCode] = React.useState('');
+
+  const handleChange = (event) => {
+    setCode(event.target.value);
+  };
   
   return (
     <div className="wrapper" style={{ height: 800 }} >
@@ -115,20 +121,28 @@ const FactoryMethod = () => {
         fitView
         fitViewOptions={fitViewOptions}
       />
-      <Button variant="contained" 
-        style={{ position:"absolute", bottom:"-70px", right:"800px", zIndex: 10}}
-        onClick={() => {
-          setConvert(!convert)}
-          }> 
-          {!convert? "Show Code":"Hide Code"}
-      </Button>
-      {convert && (
-        <div>
-        <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />
-        <br/>
-        <ConvertToJava nodes={nodes} setNodes={setNodes} clientCode={ClientCodeJava} />
-        </div>
-      )}
+      
+      <FormControl sx={{ m: 1, minWidth: 50}}  style={{ position:"absolute", left: "1100px", right:"170px", zIndex: 10, backgroundColor: "lightblue"}}>
+        <InputLabel id="demo-simple-select-label">Code</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={code}
+          label="Code"
+          onChange={handleChange}
+        >
+          <MenuItem value={"python"}>Python</MenuItem>
+          <MenuItem value={"java"}>Java</MenuItem>
+        </Select>
+      </FormControl>
+  
+      {code === "python"? 
+        <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />: 
+        code === "java" ? 
+          <ConvertToJava nodes={nodes} setNodes={setNodes} clientCode={ClientCodeJava} />
+            : null
+      }
+
     </div>
   );
 };

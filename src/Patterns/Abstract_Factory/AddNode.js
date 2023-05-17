@@ -76,26 +76,5 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID, 
   }
 
 
-  //   { 
-  //     id: `0a-${idLower}1`, 
-  //     source: `0${idLower}`,
-  //     sourceHandle: 'u', 
-  //     target: `0${idLower}1`, 
-  //     type: 'straight', 
-  //     targetHandle: 's',
-  //     markerStart: { type: MarkerType.ArrowClosed},
-  //     animated: true,   
-  //   },
-  //   { 
-  //     id: `0a-${idLower}2`, 
-  //     source: `0${idLower}`,
-  //     sourceHandle: 'd', 
-  //     target: `0${idLower}2`,  
-  //     type: 'straight', 
-  //     targetHandle: 'n',
-  //     markerStart: { type: MarkerType.ArrowClosed},
-  //     animated: true,   
-  //   },
-  // ]);
 };
 

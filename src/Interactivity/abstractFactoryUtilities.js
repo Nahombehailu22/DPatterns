@@ -4,7 +4,7 @@ export const updateNodeMethods = (nodes, setNodes) => {
             if (node.id === '0'){ 
                 return updateAbstractFactoryMethods(node, nodes)
             }
-            else if (!isNaN(node.id) && node.id != '0' && node.id != '0b1') {
+            else if (!isNaN(node.id) && node.id != '0' && node.id != '0b1' && !node.id.includes('e')) {
                 return updateConcreteFactoryMethods(node, nodes)
             }
 

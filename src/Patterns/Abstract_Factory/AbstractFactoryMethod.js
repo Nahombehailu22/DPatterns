@@ -67,14 +67,13 @@ const AbstractFactoryMethod = () => {
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
         if (id == '0'){
-        const methodIDs = nodes.find(node => node.id === "0").data.methods
-        .map(method => method.id.toLowerCase())
+          const methodIDs = nodes.find(node => node.id === "0").data.methods
+          .map(method => method.id.toLowerCase())
 
-        handleNodeDelete("0" + methodId.toLowerCase(), nodes, edges, setNodes, setEdges)
-        for (let i = 0; i < methodIDs.length; i++){
-          handleNodeDelete("0" + methodId.toLowerCase()+i, nodes, edges, setNodes, setEdges)
-          
-        }
+          handleNodeDelete("0" + methodId.toLowerCase(), nodes, edges, setNodes, setEdges)
+          for (let i = 0; i < methodIDs.length; i++){
+            handleNodeDelete("0" + methodId.toLowerCase()+i, nodes, edges, setNodes, setEdges)     
+          }
         }
         break;
       case "changeMethodName":
@@ -104,8 +103,7 @@ const AbstractFactoryMethod = () => {
           handleNodeDelete("0"+methodIDs_delete[i]+id, nodes, edges, setNodes, setEdges)
         }
         break;
-      
-
+    
       default:
         break;
     }

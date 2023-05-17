@@ -17,6 +17,7 @@ import ConvertToJava from '../../ConvertToCode/ConvertToJava';
 import { ClientCodePython } from '../../ConvertToCode/PatternsClientCode/AbstractFactoryMethod/clientCodePython';
 import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/AbstractFactoryMethod/clientCodeJava';
 import ConvertToPython from '../../ConvertToCode/ConvertToPython';
+import ChooseCodeLanguage from '../../ConvertToCode/ChooseCodeLanguage';
 
 const fitViewOptions = {
   padding: 0.3,
@@ -120,20 +121,12 @@ const AbstractFactoryMethod = () => {
         fitView
         fitViewOptions={fitViewOptions}
       />
-      <Button variant="contained" 
-        style={{ position:"absolute", bottom:"-70px", right:"800px", zIndex: 10}}
-        onClick={() => {
-          setConvert(!convert)}
-          }> 
-          {!convert? "Show Code":"Hide Code"}
-      </Button>
-      {convert && (
-        <div>
-        <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />
-        <br/>
-        <ConvertToJava nodes={nodes} setNodes={setNodes} clientCode={ClientCodeJava} />
-        </div>
-      )}
+      <ChooseCodeLanguage 
+        nodes={nodes} 
+        setNodes ={setNodes} 
+        ClientCodePython={ClientCodePython}
+        ClientCodeJava={ClientCodeJava} 
+      />
     </div>
   );
 };

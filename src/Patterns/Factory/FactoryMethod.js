@@ -12,10 +12,10 @@ import { concreteCreatorCode, productCode } from './nodeCodes';
 import { updateNodes } from '../../Interactivity/updateNodes';
 import initialize from './initializeValues';
 import { Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import ConvertToJava from '../../ConvertToCode/ConvertToJava';
+
 import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/FactoryMethod/clientCodeJava';
-import ConvertToPython from '../../ConvertToCode/ConvertToPython';
 import { ClientCodePython } from '../../ConvertToCode/PatternsClientCode/FactoryMethod/clientCodePython';
+import ChooseCodeLanguage from '../../ConvertToCode/ChooseCodeLanguage';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -91,11 +91,7 @@ const FactoryMethod = () => {
     }
   }
 
-  const [code, setCode] = React.useState('');
-
-  const handleChange = (event) => {
-    setCode(event.target.value);
-  };
+ 
   
   return (
     <div className="wrapper" style={{ height: 800 }} >
@@ -121,28 +117,12 @@ const FactoryMethod = () => {
         fitView
         fitViewOptions={fitViewOptions}
       />
-      
-      <FormControl sx={{ m: 1, minWidth: 50}}  style={{ position:"absolute", left: "1100px", right:"170px", zIndex: 10, backgroundColor: "lightblue"}}>
-        <InputLabel id="demo-simple-select-label">Code</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={code}
-          label="Code"
-          onChange={handleChange}
-        >
-          <MenuItem value={"python"}>Python</MenuItem>
-          <MenuItem value={"java"}>Java</MenuItem>
-        </Select>
-      </FormControl>
-  
-      {code === "python"? 
-        <ConvertToPython nodes={nodes} setNodes={setNodes} clientCode={ClientCodePython} />: 
-        code === "java" ? 
-          <ConvertToJava nodes={nodes} setNodes={setNodes} clientCode={ClientCodeJava} />
-            : null
-      }
-
+      <ChooseCodeLanguage 
+        nodes={nodes} 
+        setNodes ={setNodes} 
+        ClientCodePython={ClientCodePython}
+        ClientCodeJava={ClientCodeJava} 
+      />
     </div>
   );
 };

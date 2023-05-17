@@ -12,6 +12,7 @@ const initialNodes = [
     data: { 
         handles: [1, 1, 1, 0, 0, 0, 0, 0],
         deletable: false,
+        connectable: true,
     },
     position: { x: 0, y: 0 },
   },

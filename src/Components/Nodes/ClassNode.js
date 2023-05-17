@@ -17,7 +17,7 @@ const container = {
   },
   whileHover: {
     scale: 1.2,
-    transition: { duration: 1 },
+    transition: { duration: 0.5 },
   }
 }
 

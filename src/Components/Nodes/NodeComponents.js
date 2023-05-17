@@ -33,11 +33,11 @@ export const DeleteButton = ({id, deletable, handleChanges}) => {
      );
   }
   
-export const AddClassButton = ({id, connectable, backColor, handleChanges}) => {
+export const AddClassButton = ({id, connectable, backColorMethod, handleChanges}) => {
     return ( 
       <div>
         {connectable && 
-          <button type="button" style = {{ backgroundColor: backColor, position: 'relative', left: '40px' }} onClick={() => handleChanges("addClass",id)} > 
+          <button type="button" style = {{ backgroundColor: backColorMethod, position: 'relative', left: '40px' }} onClick={() => handleChanges("addClass",id)} > 
             Add Class
           </button>
         }

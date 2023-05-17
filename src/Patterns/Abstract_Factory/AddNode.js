@@ -1,13 +1,12 @@
-import { useCallback } from 'react';
 import { MarkerType } from 'reactflow';
 
-export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }) => {
+export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID, factoryNodes }) => {
   setHidden([false, false, false, false, false, false, false, false, false, false, false]);
   setEdgeHidden([false, false, false, false, false, false, false, false, false, false, false, false]);
 
   const id = String.fromCharCode(nextID);
   const idLower = id.toLowerCase();
-  const currPos = -225 - (nextID-65)*225
+  const currPos = (nextID-64) * -225
   const newNode = {
       id: `0${idLower}`,
       type: 'interface',
@@ -24,91 +23,79 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID }
             }
           ]
       },
-      position: { x: currPos+10, y: 30},
+      position: { x: currPos + 10, y: 30},
     };
 
-  const newNode1 = {
-    id: `0${idLower}1`,
-      type: 'class',
-      data: { 
-          class_name: `ConcreteProduct${id}1`,
-          handles: [0, 0, 0, 0, 1, 1, 0, 0],
-          title: "Concrete Product",
-          relation: ["implements", `0${idLower}`],
-          methods: [
-            {
-              id: "1",
-              name: `operation${id}`,
-              overRide:true
-            }
-          ]
-      },
-      position: { x: currPos, y: -175},
-  };
+  setNodes((nodes) => [...nodes, newNode]);
 
-  const newNode2 = {
-    id: `0${idLower}2`,
-      type: 'class',
-      data: { 
-        class_name: `ConcreteProduct${id}2`,
-          handles: [0, 0, 0, 0, 1, 1, 0, 0],
-          title: "Concrete Product",
-          relation:["implements", `0${idLower}`],
-          methods: [
-            {
-              id: "1",
-              name: `operation${id}`,
-              overRide: true,
-            }
-          ]
+  for (let i = 0; i < factoryNodes.length; i++){
+    const nodeId = factoryNodes[i]
+    const yPos = nodeId % 2 === 1? (nodeId + 1) /2*(-275) + 100: 240 + (nodeId/2-1) * 275
+    const newNode = {
+      id: `0${idLower}${nodeId}`,
+        type: 'class',
+        data: { 
+            class_name: `ConcreteProduct${id}${nodeId}`,
+            handles: [0, 0, 0, 0, 1, 1, 0, 0],
+            title: "Concrete Product",
+            relation: ["implements", `0${idLower}`],
+            methods: [
+              {
+                id: "1",
+                name: `operation${id}`,
+                overRide:true
+              }
+            ]
+        },
+        position: { x: currPos, y: yPos},
+    };
+    setNodes((nodes) => [...nodes, newNode]);
+    setEdges((edges) => [
+      ...edges,
+      { 
+        id: `${nodeId}-0${idLower}${nodeId}`, 
+        source: `${nodeId}`, 
+        sourceHandle: 'l', 
+        target:  `0${idLower}${nodeId}`,  
+        type: 'buttonedge', 
+        targetHandle: nodeId % 2 === 1? 'n': 's',
+        markerEnd: { type: MarkerType.Arrow },
+        animated: true,   
       },
-      position: { x: currPos, y: 240},
-  };
+      { 
+        id: `0${idLower}-${idLower}${nodeId}`, 
+        source: `0${idLower}`,
+        sourceHandle: nodeId % 2 === 1?'u':'d', 
+        target: `0${idLower}${nodeId}`, 
+        type: 'straight', 
+        targetHandle: nodeId % 2 === 1?'s':'n',
+        markerStart: { type: MarkerType.ArrowClosed},
+        animated: true,   
+      },
+    ]);
+  }
 
-  setNodes((nodes) => [...nodes, newNode, newNode1, newNode2]);
-  setEdges((edges) => [
-    ...edges,
-    { 
-      id: `1-0${idLower}1`, 
-      source: '1', 
-      sourceHandle: 'l', 
-      target: `0${idLower}1`, 
-      type: 'buttonedge', 
-      targetHandle: 'n',
-      markerEnd: { type: MarkerType.Arrow },
-      animated: true,   
-    },
-    { 
-      id: `2-0${idLower}2`, 
-      source: '2', 
-      sourceHandle: 'l', 
-      target: `0${idLower}2`, 
-      type: 'buttonedge', 
-      targetHandle: 's',
-      markerEnd: { type: MarkerType.Arrow },
-      animated: true,   
-    },
-    
-    { 
-      id: `0a-${idLower}1`, 
-      source: `0${idLower}`,
-      sourceHandle: 'u', 
-      target: `0${idLower}1`, 
-      type: 'straight', 
-      targetHandle: 's',
-      markerStart: { type: MarkerType.ArrowClosed},
-      animated: true,   
-    },
-    { 
-      id: `0a-${idLower}2`, 
-      source: `0${idLower}`,
-      sourceHandle: 'd', 
-      target: `0${idLower}2`,  
-      type: 'straight', 
-      targetHandle: 'n',
-      markerStart: { type: MarkerType.ArrowClosed},
-      animated: true,   
-    },
-  ]);
+
+  //   { 
+  //     id: `0a-${idLower}1`, 
+  //     source: `0${idLower}`,
+  //     sourceHandle: 'u', 
+  //     target: `0${idLower}1`, 
+  //     type: 'straight', 
+  //     targetHandle: 's',
+  //     markerStart: { type: MarkerType.ArrowClosed},
+  //     animated: true,   
+  //   },
+  //   { 
+  //     id: `0a-${idLower}2`, 
+  //     source: `0${idLower}`,
+  //     sourceHandle: 'd', 
+  //     target: `0${idLower}2`,  
+  //     type: 'straight', 
+  //     targetHandle: 'n',
+  //     markerStart: { type: MarkerType.ArrowClosed},
+  //     animated: true,   
+  //   },
+  // ]);
 };
 

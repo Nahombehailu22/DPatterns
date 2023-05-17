@@ -13,11 +13,10 @@ import { updateNodes } from '../../Interactivity/updateNodes';
 
 import initialize from './initializeValues';
 import { Button } from '@mui/material';
-import ConvertToJava from '../../ConvertToCode/ConvertToJava';
 import { ClientCodePython } from '../../ConvertToCode/PatternsClientCode/AbstractFactoryMethod/clientCodePython';
 import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/AbstractFactoryMethod/clientCodeJava';
-import ConvertToPython from '../../ConvertToCode/ConvertToPython';
 import ChooseCodeLanguage from '../../ConvertToCode/ChooseCodeLanguage';
+import { AddNodeFactory } from './AddNodeFactory';
 
 const fitViewOptions = {
   padding: 0.3,
@@ -34,15 +33,13 @@ const AbstractFactoryMethod = () => {
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [true, true, true, true, true, true];
 
-  const [convert,setConvert] = useState(false)
-
   useEffect(() => { 
-    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
+    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type, initialValues)
     updateNodeMethods(nodes, setNodes)
   },[type]);
   useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)
     updateNodeMethods(nodes, setNodes)
-  });
+  },[nodes]);
   
   const handleChanges = (type, id, event, index, methodId) => {
     switch(type){
@@ -50,25 +47,22 @@ const AbstractFactoryMethod = () => {
         handleClassNameChange(id, event, nodes, setNodes)
         break;
       case "addMethod":
-      
+
         if (id == '0'){
           const nums = nodes.find(node => node.id === id).data.methods
           .map(method => method.id.charCodeAt() - 65)
   
           const nextID = findMissingID(nums) + 65
           const newID = String.fromCharCode(nextID)
+          const factoryNodes = nodes.filter(node => !isNaN(node.id) && node.id != "0b1" && node.id != "0").map(node => parseInt(node.id));
 
           handleAddMethod(id, nodes, setNodes, "createProduct", newID)
-          handleAddMethod("1", nodes, setNodes, "createProduct", newID)
-          handleAddMethod("2", nodes, setNodes, "createProduct", newID)
-
-          AddNodes({ setNodes, setEdges, setHidden, setEdgeHidden, nextID })
+          AddNodes({ setNodes, setEdges, setHidden, setEdgeHidden, nextID, factoryNodes })
         }
         else {
           handleAddMethod(id, nodes, setNodes, "newMethod")
         }
-        
- 
+  
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
@@ -81,6 +75,15 @@ const AbstractFactoryMethod = () => {
         break;
       case "attributeName":
         handleAttributeNameChange(id, index, event, nodes, setNodes)
+        break;
+      case "addClass":
+        const nums = nodes.filter(node => !isNaN(node.id) && node.id != "0b1").map(node => parseInt(node.id));      
+        const newID = findMissingID(nums) 
+        
+        const methodIDs = nodes.find(node => node.id === "0").data.methods
+        .map(method => method.id)
+
+        AddNodeFactory({setNodes, setEdges, setHidden, setEdgeHidden, newID, methodIDs})
         break;
 
       default:

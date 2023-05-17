@@ -22,7 +22,7 @@ const container = {
   },
   whileHover: {
     scale: 1.2,
-    transition: { duration: 0.5 },
+    transition: { duration: 1 },
   }
   
 }
@@ -39,7 +39,6 @@ const InterfaceNode = ({
     pop,
     connectable,
     handleChanges,
-    onDelete
   },
   color1,
   color2
@@ -52,7 +51,7 @@ const InterfaceNode = ({
   const methodsProps = {id, methods, backColor, backColorMethod, handleChanges, statusMap}
 
   const deleteProps = {id, deletable, handleChanges}
-  const addClassProps = {id, connectable, backColor, handleChanges}
+  const addClassProps = {id, connectable, backColorMethod, handleChanges}
 
   return (
     <div className='text-updater-node' >

@@ -108,19 +108,3 @@ const updateProductMethods = (methID, node, nodes) => {
 }
 
  
-
- 
-
-
-export const handleNodeDelete = (id, nodes, edges, setNodes, setEdges, methodId) => {
-    const deleteId = methodId.toLowerCase()
-    setNodes(nodes => nodes.filter(node => node.id !== "0"+deleteId));
-    setEdges((edges) => edges.filter((edge) => edge.source !== "0" +deleteId && edge.target !== "0" +deleteId));
-
-    setNodes(nodes => nodes.filter(node => node.id !== "0"+deleteId+"1"));
-    setEdges((edges) => edges.filter((edge) => edge.source !== "0" +deleteId +"1" && edge.target !== "0" +deleteId + "1"));
-
-    setNodes(nodes => nodes.filter(node => node.id !== "0"+deleteId+"2"));
-    setEdges((edges) => edges.filter((edge) => edge.source !== "0" +deleteId +"2" && edge.target !== "0" +deleteId + "2"));
-
-  };

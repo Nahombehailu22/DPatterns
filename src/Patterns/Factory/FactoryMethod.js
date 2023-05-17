@@ -53,11 +53,9 @@ const FactoryMethod = () => {
         if (id === "0a"){ handleAddMethod(id, nodes, setNodes, "interfaceMethod")}
         else{ handleAddMethod(id, nodes, setNodes, "newMethod")}
 
-        // updateNodeMethods(nodes,setNodes)
         break;
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
-        // updateNodeMethods(nodes,setNodes)
         break;
       case "deleteNode":
         handleNodeDelete(id, nodes, edges, setNodes, setEdges)
@@ -66,14 +64,12 @@ const FactoryMethod = () => {
         break;
       case "changeMethodName":
         handleMethodNameChange(id, index, event, nodes, setNodes)
-        // updateNodeMethods(nodes,setNodes)
         break;
       case "addClass":
         const nums = nodes.filter(node => !isNaN(node.id)).map(node => parseInt(node.id));      
         const newID = findMissingID(nums) 
 
         AddNodes({setNodes, setEdges, setHidden, setEdgeHidden, newID})
-        // updateNodeMethods(nodes,setNodes)
         break;
 
       default:

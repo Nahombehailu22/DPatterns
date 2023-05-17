@@ -4,10 +4,10 @@ import { useParams, Link  } from "react-router-dom";
 
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
-import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../../Interactivity/generalUtilities';
+import { handleAddMethod, handleNodeDelete, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../../Interactivity/generalUtilities';
 import { edgeValues, stepValues } from './DemoSteps';
 import { concreteFactoryCode, productCode } from './nodeCodes';
-import { handleNodeDelete, updateNodeMethods } from '../../Interactivity/abstractFactoryUtilities';
+import { updateNodeMethods } from '../../Interactivity/abstractFactoryUtilities';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
 import { updateNodes } from '../../Interactivity/updateNodes';
 
@@ -67,7 +67,14 @@ const AbstractFactoryMethod = () => {
       case "deleteMethod":
         handleDeleteMethod(id, index, nodes, setNodes)
         if (id == '0'){
-        handleNodeDelete(index, nodes, edges, setNodes, setEdges, methodId)
+        const methodIDs = nodes.find(node => node.id === "0").data.methods
+        .map(method => method.id.toLowerCase())
+
+        handleNodeDelete("0" + methodId.toLowerCase(), nodes, edges, setNodes, setEdges)
+        for (let i = 0; i < methodIDs.length; i++){
+          handleNodeDelete("0" + methodId.toLowerCase()+i, nodes, edges, setNodes, setEdges)
+          
+        }
         }
         break;
       case "changeMethodName":
@@ -85,6 +92,21 @@ const AbstractFactoryMethod = () => {
 
         AddNodeFactory({setNodes, setEdges, setHidden, setEdgeHidden, newID, methodIDs})
         break;
+
+      case "deleteNode":
+        handleNodeDelete(id, nodes, edges, setNodes, setEdges)
+
+        const methodIDs_delete = nodes.find(node => node.id === "0").data.methods
+        .map(method => method.id.toLowerCase())
+      
+        for(let i = 0; i < methodIDs_delete.length; i++){
+          console.log(methodIDs_delete[i])
+          handleNodeDelete("0"+methodIDs_delete[i]+id, nodes, edges, setNodes, setEdges)
+        }
+          
+
+          break;
+      
 
       default:
         break;

@@ -103,9 +103,7 @@ const AbstractFactoryMethod = () => {
           console.log(methodIDs_delete[i])
           handleNodeDelete("0"+methodIDs_delete[i]+id, nodes, edges, setNodes, setEdges)
         }
-          
-
-          break;
+        break;
       
 
       default:

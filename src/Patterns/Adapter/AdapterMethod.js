@@ -13,6 +13,9 @@ import { updateNodes } from '../../Interactivity/updateNodes';
 import initialize from './initializeValues';
 import { Button } from '@mui/material';
 import { updateNodeMethods } from '../../Interactivity/adapterMethodUtilities';
+import ChooseCodeLanguage from '../../ConvertToCode/ChooseCodeLanguage';
+import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/AdapterMethod/clientCodeJava';
+import { ClientCodePython } from '../../ConvertToCode/PatternsClientCode/AdapterMethod/clientCodePython';
 
 const fitViewOptions = {
   padding: 0.5,
@@ -20,7 +23,6 @@ const fitViewOptions = {
 
 const AdapterMethod = (props) => {
   const {type} = useParams();
-  const [pageType, setPageType] = useState(type === "demonstration"? "demonstration": "example");
   const initialValues = {initialNodes, initialEdges}
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -30,9 +32,11 @@ const AdapterMethod = (props) => {
   const popHidden = [false, false];
 
   useEffect(() => { 
-    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
+    initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type, initialValues)
   },[type]);
-  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)});
+  useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden)
+    updateNodeMethods(nodes,setNodes)
+  },[nodes]);
   
   const handleChanges = useCallback((type, id, event, index, idParam) => {
       switch(type){
@@ -71,13 +75,8 @@ const AdapterMethod = (props) => {
  
   return (
     <div className="wrapper" style={{ height: 800 }}>
-      <Link to={`/adaptermethod/${pageType}`} target="_blank">
-        <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}
-          onClick={() => {
-            if(pageType === "demonstration"){ setPageType("example")}
-            else{setPageType("demonstration")}
-          }}
-        >
+      <Link to={`/adaptermethod/${type === "demonstration"? "example": "demonstration"}` } target="_blank" >
+        <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}>
           {type === "demonstration" ? "Example" : "Demo"}
         </Button>
       </Link>
@@ -92,6 +91,12 @@ const AdapterMethod = (props) => {
         edgeTypes={edgeTypes}
         fitView
         fitViewOptions={fitViewOptions}
+      />
+      <ChooseCodeLanguage 
+        nodes={nodes} 
+        setNodes ={setNodes} 
+        ClientCodePython={ClientCodePython}
+        ClientCodeJava={ClientCodeJava} 
       />
     </div>
   );

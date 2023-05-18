@@ -14,7 +14,7 @@ const serviceDescription = 'The Service is some useful class (usually 3rd-party 
 const initialNodes = [
   {
     id: 'c',
-    type: 'genericClass',
+    type: 'client',
     data: { 
         class_name: 'Client',
         handles: [0, 0, 1, 0],
@@ -71,10 +71,7 @@ const initialNodes = [
     data: { 
         class_name: 'Service',
         methods: [
-          {
-            id: '1',
-            name: 'serviceMethod'
-          }
+
         ],
         handles: [0, 0, 0, 0, 0, 0, 0, 1],
         title: "Service",
@@ -137,26 +134,15 @@ const initialEdges = [
 ];
 
 const nodeTypes = {
-    class: (props) => (
-        <ClassNode
+    class: ClassNode,
+    interface: InterfaceNode,
+    code: (props) => (
+        <CodeNode
           {...props}
-          color1={'#009688'}
-          color2={'#4DB6AC'}
+          color1={'#757575'}
+          color2={'#BDBDBD'}
         />),
-
-    interface: (props) => (
-          <InterfaceNode
-            {...props}
-            color1={'#BF4D4D'}
-            color2={'#CD7F7F'}
-          />),
-      code: (props) => (
-          <CodeNode
-            {...props}
-            color1={'#757575'}
-            color2={'#BDBDBD'}
-          />),
-      genericClass: (props) => (
+    client: (props) => (
           <GenericClassNode
             {...props}
             color1={'#009688'}

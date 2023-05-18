@@ -6,15 +6,16 @@ const adapterDescription = 'The Adapter is a class that’s able to work with bo
 const serviceDescription = 'The Service is some useful class (usually 3rd-party or legacy). The client can’t use this class directly because it has an incompatible interface.'
 
 
-const defaultClasses = ['Client', 'Client_Interface', 'Adapter', 'Service'];
-const defaultAttributes = [[], [], [{id: '1', name:'adaptee'}], []]
+const defaultClasses = ['Client', 'Target', 'ObjectAdapter', 'Adaptee'];
+const defaultAttributes = [[], [], [{id: '1', name:'adaptee', status:'private', returnType:"2"}], []]
 const defaultMethods = [  [], 
-  [{ id: '1', name: 'method' , parameters: ["data"]}], 
-  [{ id: '1', name: 'method' , parameters: ["data"]}], 
-  [{ id: '1', name: 'serviceMethod' }], 
+  [{ id: '1', name: 'request', interfaceMethod: true, notDeletable: 'true'}], 
+  [{ id: '1', name: 'request', overRide: true}], 
+  [{ id: '1', name: 'specificRequest' }], 
 ];
-const defaultTitles = [  'Client Class',  'Cleint Interface',  'Adapter',  'Service',];
-const defaultDescriptions = [  clientDescription,  clientInterface,  adapterDescription,  serviceDescription,];
+const defaultTitles = [  'Client Class',  'Client Interface',  'Adapter',  'Service',];
+const defaultDescriptions = [  clientDescription,  clientInterface,  adapterDescription,  serviceDescription];
+const defaultRelations = [[], [], ["implements", "0"], []]
 
 
 //Example
@@ -32,7 +33,7 @@ const defaultValues = {
     methods: defaultMethods, 
     titles: defaultTitles, 
     descriptions: defaultDescriptions,
-    relations: []
+    relations: defaultRelations
 };
 
 const expValues = { 
@@ -41,7 +42,7 @@ const expValues = {
     methods: expMethods, 
     titles: defaultTitles, 
     descriptions: defaultDescriptions,
-    relations: []
+    relations: defaultRelations
 };
 
 const initialize = (setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type, initialValues) => {

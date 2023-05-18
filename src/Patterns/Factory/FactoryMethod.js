@@ -17,6 +17,7 @@ import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/FactoryMe
 import { ClientCodePython } from '../../ConvertToCode/PatternsClientCode/FactoryMethod/clientCodePython';
 import ChooseCodeLanguage from '../../ConvertToCode/ChooseCodeLanguage';
 import { AdditionalInfoPop } from '../../Interactivity/additionalInfo';
+import LogisticsFactoryModal from './ExampleDescription';
 
 const fitViewOptions = {
   padding: 0.4,
@@ -24,7 +25,6 @@ const fitViewOptions = {
 
 const FactoryMethod = () => {
   const {type} = useParams();
-  const [pageType, setPageType] = useState(type === "demonstration"? "demonstration": "example");
   const initialValues = {initialNodes, initialEdges}
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -104,17 +104,13 @@ const FactoryMethod = () => {
  
   return (
     <div className="wrapper" style={{ height: 800 }} >
+      {type === "example" && <LogisticsFactoryModal/>}
       {infoDisplayed && <AdditionalInfoPop infoDisplayed={infoDisplayed} setInfoDisplayed= {setInfoDisplayed} setShowAgain={setShowAgain} info={displayInfo}/>}
-        <Link to={`/factorymethod/${pageType}`} target="_blank">
-          <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}
-            onClick={() => {
-              if(pageType === "demonstration"){ setPageType("example")}
-              else{setPageType("demonstration")}
-            }}
-          >
-            {type === "demonstration" ? "Example" : "Demo"}
-          </Button>
-        </Link>
+      <Link to={`/factorymethod/${type === "demonstration"? "example": "demonstration"}` } target="_blank" >
+        <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}>
+          {type === "demonstration" ? "Example" : "Demo"}
+        </Button>
+      </Link>
       <IncrementalHiddenButton {...demoProps} />
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow

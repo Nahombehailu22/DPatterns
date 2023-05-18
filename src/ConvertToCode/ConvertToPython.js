@@ -14,13 +14,20 @@ const ConvertToPython = ({ nodes, setNodes, clientCode }) => {
 
     for (let node of nodes) {
       const { type } = node;
-      const { class_name, attribute, methods, title, relation} = node.data;
+      const { class_name, constructor, attribute, methods, title, relation} = node.data;
       if (class_name && type != "client"){
         pythonCode += `# ${title} \n`
         pythonCode += `class ${class_name}`
-        pythonCode += `${type === "abstract"? "(ABC):": type === "interface"? "(ABC):": ""}`
+        pythonCode += `${type === "abstract"? "(ABC):": type === "interface"? "(ABC):": !relation[0]? ":":""}`
         pythonCode += `${relation[0] ? "(" + nodeMap.get(relation[1])+"):" : ""}`;
         pythonCode += `\n`;
+
+        if(constructor && constructor[1]){
+          for(let line of constructor[1]){
+            pythonCode += "\t"+ line + "\n"
+          }
+          pythonCode += "\n"
+        }
 
         if (methods){
         for (let method of methods) {
@@ -41,12 +48,7 @@ const ConvertToPython = ({ nodes, setNodes, clientCode }) => {
           }
           pythonCode += `${ (abstract || interfaceMethod || !methodBody) ? "\n\t\tpass\n": "\n"}`;   
         }
-      //   if (attributes.length) {
-      //     javaCode += `\n\t// Attributes\n`;
-      //     for (let attribute of attributes) {
-      //       javaCode += `\tpublic String ${attribute};\n`;
-      //     }
-      //   }
+
       pythonCode += "\n\n"
       }
       }

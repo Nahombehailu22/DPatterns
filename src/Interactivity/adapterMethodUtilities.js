@@ -3,7 +3,9 @@ export const updateNodeMethods = (nodes, setNodes) => {
       setNodes(nodes => 
         nodes.map(node => {
           if (node.id === "0") { return updateTargetMethods(node, nodes)}
-          else if (node.id === "1") { return updateAdapterMethods(node, nodes)}
+          else if (node.id === "1") { 
+            return updateAdapterMethods(node, nodes)
+          }
           else if (node.id === "2"){ return updateAdapteeMethod(node, nodes)}
           return node;
         })
@@ -23,11 +25,16 @@ const updateTargetMethods = (node, nodes) => {
 
  
 const updateAdapterMethods = (node, nodes) => {
+  const Adaptee = nodes.find(node => node.id === "2").data.class_name;
+
+  const javaConstructor = [`ObjectAdapter(${Adaptee} adaptee) {`, "\tthis.adaptee = adaptee;", "}"]
+  const pythonConstructor = ["def __init__(self, adaptee):", "\tself.adaptee = adaptee", ]
+
   const orgMethods = node.data.methods.filter(method => !method.overRide);
   const implementedMethods = nodes.find(n => n.id === '0').data.methods.map(method => {
     let methodBody;
     if (method.id === "1") {
-      const methodBodyPython = [[`adaptee.specificRequest()`]];
+      const methodBodyPython = [[`self.adaptee.specificRequest()`]];
       const methodBodyJava = [[`adaptee.specificRequest()`]];
       methodBody = [[methodBodyJava], [methodBodyPython]];
     } else {
@@ -45,7 +52,7 @@ const updateAdapterMethods = (node, nodes) => {
   const newMethods = orgMethods.concat(implementedMethods);
   return {
     ...node,
-    data: {...node.data, methods: newMethods}
+    data: {...node.data, constructor: [javaConstructor, pythonConstructor], methods: newMethods}
   };
 };
 

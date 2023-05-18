@@ -13,12 +13,13 @@ const ConvertToJava = ({ nodes, setNodes, clientCode }) => {
     let javaCode = '';
     for (let node of nodes) {
       const { type } = node;
-      const { class_name, attributes, methods, title, relation} = node.data;
+      const { class_name, attributes, constructor, methods, title, relation} = node.data;
       if (class_name && type != "client"){
         javaCode += `// ${title} \n`
         javaCode += `${type === "abstract"? "abstract class ": type === "interface"? "interface ": type === "class"? "class ": ""}`
         javaCode += `${class_name}`
         javaCode += ` ${relation[0] ? relation[0] + " " + nodeMap.get(relation[1]) : ""}{\n`;
+        
 
         if (attributes) {
           for (let attribute of attributes) {
@@ -26,6 +27,13 @@ const ConvertToJava = ({ nodes, setNodes, clientCode }) => {
             javaCode += `\t${status? status: "public"} ${returnType? nodeMap.get(returnType): "String"} ${name};\n`;
           }
           if (attributes[0]) javaCode += `\n`;
+        }
+
+        if(constructor && constructor[0]){
+          for(let line of constructor[0]){
+            javaCode += "\t"+ line + "\n"
+          }
+          javaCode += "\n"
         }
 
         if (methods){

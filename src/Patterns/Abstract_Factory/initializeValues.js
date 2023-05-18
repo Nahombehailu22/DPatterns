@@ -23,6 +23,9 @@ The client code does not know the specific classes of the objects it creates, on
 const defaultClasses = ['AbstractFactory', 'ConcreteFactory1', 'ConcreteFactory2', "Client", 
                         'AbstractProductA','ConcreteProductA1', 'ConcreteProductA2',
                         'AbstractProductB','ConcreteProductB1', 'ConcreteProductB2'];
+
+const defaultAttributes = [[] * defaultClasses.length]
+defaultAttributes[3] =   [{ id: '1',name: 'factory', status: 'private' }]
 const defaultMethods = [
     [{ id: 'A', name: 'createProductA', interfaceMethod: true, returnType: "0a", notDeletable: true}, { id: 'B', name: 'createProductB', interfaceMethod: true, returnType: "0b" }],
     [{ id: 'A', name: 'createProductA', overRide: true, returnType: "0a"}, { id: 'B', name: 'createProductB', overRide: true, returnType: "0b" }],
@@ -67,6 +70,7 @@ const expMethods = [
 
 const defaultValues = { 
     classes: defaultClasses, 
+    attributes: defaultAttributes,
     methods: defaultMethods, 
     titles: defaultTitles, 
     descriptions: defaultDescriptions,
@@ -75,6 +79,7 @@ const defaultValues = {
 
 const expValues = { 
     classes: expClasses, 
+    attributes: defaultAttributes,
     methods: expMethods, 
     titles: defaultTitles, 
     descriptions: defaultDescriptions,

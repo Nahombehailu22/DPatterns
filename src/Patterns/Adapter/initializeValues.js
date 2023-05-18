@@ -7,6 +7,7 @@ const serviceDescription = 'The Service is some useful class (usually 3rd-party 
 
 
 const defaultClasses = ['Client', 'Client_Interface', 'Adapter', 'Service'];
+const defaultAttributes = [[], [], [{id: '1', name:'adaptee'}], []]
 const defaultMethods = [  [], 
   [{ id: '1', name: 'method' , parameters: ["data"]}], 
   [{ id: '1', name: 'method' , parameters: ["data"]}], 
@@ -18,6 +19,7 @@ const defaultDescriptions = [  clientDescription,  clientInterface,  adapterDesc
 
 //Example
 const expClasses = ['DrawingEditor', 'Shape', 'TextShape', 'TextView'];
+const expAttributes = [[], [], [{id: '1', name:'text'}], []]
 const expMethods = [  [], 
   [{ id: '1', name: 'boundingBox' }, { id: '2', name: 'createManipulator' }], 
   [{ id: '1', name: 'boundingBox' }, { id: '2', name: 'createManipulator' }],
@@ -26,6 +28,7 @@ const expMethods = [  [],
 
 const defaultValues = { 
     classes: defaultClasses, 
+    attributes:defaultAttributes,
     methods: defaultMethods, 
     titles: defaultTitles, 
     descriptions: defaultDescriptions,
@@ -33,7 +36,8 @@ const defaultValues = {
 };
 
 const expValues = { 
-    classes: expClasses, 
+    classes: expClasses,
+    attributes:expAttributes,
     methods: expMethods, 
     titles: defaultTitles, 
     descriptions: defaultDescriptions,

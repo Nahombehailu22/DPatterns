@@ -28,6 +28,7 @@ The Concrete Product is the component of the system that the client code is prim
 
 
 const defaultClasses = ["Creator", "ConcreteCreator1", "ConcreteCreator2", "Product", "ConcreteProduct1", "ConcreteProduct2"];
+const defaultAttributes = [] * defaultClasses.length
 const defaultMethods = [
     [{ id: "1", name: "someOperation", notDeletable: 'true'}, { id: "2", name: "createProduct", abstract: true, returnType: "0a", notDeletable: true}], 
     [{ id: "1", name: "createProduct", overRide: true, returnType: "0a"}], 
@@ -57,6 +58,7 @@ const expMethods = [
 
 const defaultValues = { 
     classes: defaultClasses, 
+    attributes: defaultAttributes,
     methods: defaultMethods, 
     titles: defaultTitles, 
     descriptions: defaultDescriptions,
@@ -65,6 +67,7 @@ const defaultValues = {
 
 const expValues = { 
     classes: expClasses, 
+    attributes: defaultAttributes,
     methods: expMethods, 
     titles: defaultTitles, 
     descriptions: defaultDescriptions,

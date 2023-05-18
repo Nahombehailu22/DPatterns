@@ -28,7 +28,7 @@ const FurnitureFactoryModal = () => {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleOpen}>Furniture Factory Description</Button>
+      <Button variant="outlined" style={{ position:"fixed",  left:"10px", zIndex: 10}} onClick={handleOpen}>Furniture Factory Description</Button>
       <Modal open={open} onClose={handleClose}>
         <Box sx={modalStyle}>
           <Typography variant="h6">Furniture Factory and Abstract Factory Pattern</Typography>

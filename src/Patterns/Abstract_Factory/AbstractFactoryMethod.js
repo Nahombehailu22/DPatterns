@@ -26,7 +26,6 @@ const fitViewOptions = {
 
 const AbstractFactoryMethod = () => {
   const {type} = useParams();
-  const [pageType, setPageType] = useState(type === "demonstration"? "demonstration": "example");
   const initialValues = {initialNodes, initialEdges}
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -161,15 +160,10 @@ const AbstractFactoryMethod = () => {
 
   return (
     <div className="wrapper" style={{ height: 800 }}>
-      {pageType === "example" && <FurnitureFactoryModal/>}
+      {type === "example" && <FurnitureFactoryModal/>}
       {infoDisplayed && <AdditionalInfoPop infoDisplayed={infoDisplayed} setInfoDisplayed= {setInfoDisplayed} setShowAgain={setShowAgain} info={displayInfo}/>}
-      <Link to={`/abstractfactorymethod/${pageType}` } target="_blank" >
-        <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}
-          onClick={() => {
-            if(pageType === "demonstration"){ setPageType("example")}
-            else{setPageType("demonstration")}
-          }}
-        >
+      <Link to={`/abstractfactorymethod/${type === "demonstration"? "example": "demonstration"}` } target="_blank" >
+        <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}>
           {type === "demonstration" ? "Example" : "Demo"}
         </Button>
       </Link>

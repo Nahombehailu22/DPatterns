@@ -20,11 +20,11 @@ const defaultRelations = [[], [], ["implements", "0"], []]
 
 //Example
 const expClasses = ['DrawingEditor', 'Shape', 'TextShape', 'TextView'];
-const expAttributes = [[], [], [{id: '1', name:'text', status:'private', returnType:"2"}], [], []]
+const expAttributes = [[], [], [{id: '1', name:'textview', status:'private', returnType:"2"}], [], []]
 const expMethods = [  [], 
-  [{ id: '1', name: 'boundingBox', interfaceMethod: true, notDeletable: 'true' }, { id: '2', name: 'createManipulator' }], 
-  [{ id: '1', name: 'boundingBox', overRide: true }, { id: '2', name: 'createManipulator', overRide: true }],
-  [{ id: '1', name: 'getExtent' }],
+  [{ id: '1', name: 'draw', interfaceMethod: true, notDeletable: 'true' }, { id: '2', name: 'resize' }], 
+  [{ id: '1', name: 'draw', overRide: true }, { id: '2', name: 'resize', overRide: true }],
+  [{ id: '1', name: 'displayText' }, { id: '2', name: 'adjustTextSize' }],
 ];
 
 const defaultValues = { 

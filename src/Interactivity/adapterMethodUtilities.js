@@ -25,27 +25,30 @@ const updateTargetMethods = (node, nodes) => {
 
  
 const updateAdapterMethods = (node, nodes) => {
+  const ObjectAdapter = node.data.class_name;
   const Adaptee = nodes.find(node => node.id === "2").data.class_name;
+  const adaptee = node.data.attributes.find(attribute => attribute.id === "1").name
 
-  const javaConstructor = [`ObjectAdapter(${Adaptee} adaptee) {`, "\tthis.adaptee = adaptee;", "}"]
-  const pythonConstructor = ["def __init__(self, adaptee):", "\tself.adaptee = adaptee", ]
+  const javaConstructor = [`${ObjectAdapter}(${Adaptee} ${adaptee}) {`, `\tthis.${adaptee} = ${adaptee};`, "}"]
+  const pythonConstructor = [`def __init__(self, ${adaptee}):`, `\tself.${adaptee} = ${adaptee}` ]
 
   const orgMethods = node.data.methods.filter(method => !method.overRide);
   const implementedMethods = nodes.find(n => n.id === '0').data.methods.map(method => {
-    let methodBody;
-    if (method.id === "1") {
-      const methodBodyPython = [[`self.adaptee.specificRequest()`]];
-      const methodBodyJava = [[`adaptee.specificRequest()`]];
-      methodBody = [[methodBodyJava], [methodBodyPython]];
-    } else {
-      methodBody = method.methodBody;
-    }
+    const specificRequest = nodes.find(n => n.id === '2').data.methods.find(
+      m => m.id.toString() === method.id.toString()
+    ).name;
+
+    const methodBodyPython = [[`self.${adaptee}.${specificRequest}()`]];
+    const methodBodyJava = [[`this.${adaptee}.${specificRequest}()`]];
+
+    const methodBody = [[methodBodyJava], [methodBodyPython]];
+
     return {
-      ...method, 
-      interfaceMethod: false, 
-      overRide: true, 
+      ...method,
+      interfaceMethod: false,
+      overRide: true,
       notDeletable: true,
-      methodBody: methodBody
+      methodBody
     };
   });
 
@@ -62,9 +65,11 @@ const updateAdapteeMethod = (node, nodes) => {
   const adapterClass = nodes.find(node => node.id === "2").data.class_name;
   const adapterMethods = nodes.find(node => node.id === "2").data.methods;
   const newMethods = adapterMethods.map(method => {
+    const Adaptee = node.data.class_name
+    const specificRequest = method.name
 
-    const methodBodyPython = [`print("Adaptee's specific request")`];
-    const methodBodyJava = [`System.out.println("${adapterClass}'s specific request")`];
+    const methodBodyPython = [`print("${Adaptee}'s ${specificRequest}")`];
+    const methodBodyJava = [`System.out.println("${adapterClass}'s ${specificRequest}")`];
     return {
         ...method,
         methodBody: [methodBodyJava, methodBodyPython],

@@ -16,6 +16,7 @@ import { updateNodeMethods } from '../../Interactivity/adapterMethodUtilities';
 import ChooseCodeLanguage from '../../ConvertToCode/ChooseCodeLanguage';
 import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/AdapterMethod/clientCodeJava';
 import { ClientCodePython } from '../../ConvertToCode/PatternsClientCode/AdapterMethod/clientCodePython';
+import DrawingEditorModal from './ExampleDescription';
 
 const fitViewOptions = {
   padding: 0.5,
@@ -75,6 +76,7 @@ const AdapterMethod = (props) => {
  
   return (
     <div className="wrapper" style={{ height: 800 }}>
+      {type === "example" && <DrawingEditorModal /> }
       <Link to={`/adaptermethod/${type === "demonstration"? "example": "demonstration"}` } target="_blank" >
         <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}>
           {type === "demonstration" ? "Example" : "Demo"}

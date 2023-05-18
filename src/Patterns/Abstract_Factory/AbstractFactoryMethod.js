@@ -25,7 +25,7 @@ const fitViewOptions = {
 
 const AbstractFactoryMethod = () => {
   const {type} = useParams();
-  const [pageType, setPageType] = useState("example");
+  const [pageType, setPageType] = useState(type === "demonstration"? "demonstration": "example");
   const initialValues = {initialNodes, initialEdges}
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);

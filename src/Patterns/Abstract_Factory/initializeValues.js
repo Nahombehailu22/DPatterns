@@ -34,9 +34,8 @@ const defaultMethods = [
     [{ id: "1", name: 'operationB', interfaceMethod: true}],
     [{ id: "1", name: 'operationB', overRide: true}],
     [{ id: "1", name: 'operationB', overRide: true}],
-    [{ id: "1", name: "doStuff"}],
-    [{ id: "1", name: "doStuff"}],
 ]
+
 const defaultTitles = ["Abstract Factory", "Concrete Factory", "Concrete Factory", "Client", 
                        "Abstract Product", "Concrete Product", "Concrete Product",
                        "Abstract Product", "Concrete Product", "Concrete Product",
@@ -50,15 +49,20 @@ const defaultRelations = [[], ["implements", "0"], ["implements", "0"], [], [], 
 //Example
 const expClasses = ['FurnitureFactory', 'VictorianFurniture', 'ModernFurniture', "Client", 
                         'Chair','VictorianChair', 'ModernChair',
-                        'Sofa','VictorianSofa', 'ModernSofa'];
+                        'Bed','VictorianBed', 'ModernBed'];
+
+
 const expMethods = [
-    [{ id: 'A', name: 'createChair'}, { id: 'B', name: 'createSofa' }],
-    [{ id: 'A', name: 'createChair'}, { id: 'B', name: 'createSofa' }],
-    [{ id: 'A', name: 'createChair'}, { id: 'B', name: 'createSofa' }],
+    [{ id: 'A', name: 'createChair', interfaceMethod: true, returnType: "0a", notDeletable: true}, { id: 'B', name: 'createBed', interfaceMethod: true, returnType: "0b"  }],
+    [{ id: 'A', name: 'createChair', overRide: true, returnType: "0a"}, { id: 'B', name: 'createBed', overRide: true, returnType: "0b" }],
+    [{ id: 'A', name: 'createChair', overRide: true, returnType: "0a"}, { id: 'B', name: 'createBed', overRide: true, returnType: "0b"  }],
     [{ id: "1", name: 'Client'}, { id: "2", name: 'someOperation'}],
-    [],[],[],[],[],[],
-    [{ id: "1", name: "doStuff"}],
-    [{ id: "1", name: "doStuff"}],
+    [{ id: "1", name: 'sitOn', interfaceMethod: true, notDeletable: true}],
+    [{ id: "1", name: 'sitOn', overRide: true}],
+    [{ id: "1", name: 'sitOn', overRide: true}],
+    [{ id: "1", name: 'sleepOn', interfaceMethod: true}],
+    [{ id: "1", name: 'sleepOn', overRide: true}],
+    [{ id: "1", name: 'sleepOn', overRide: true}],
 ]
 
 const defaultValues = { 

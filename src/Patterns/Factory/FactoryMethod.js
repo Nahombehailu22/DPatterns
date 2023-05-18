@@ -35,6 +35,8 @@ const FactoryMethod = () => {
   const demoProps = {stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden};
 
   const [infoDisplayed, setInfoDisplayed] = useState(false)
+  const [displayInfo, setDisplayInfo] = useState(null)
+  const [showAgain, setShowAgain] = useState(true)
   
 
   const createConcreteInfo = 
@@ -44,7 +46,7 @@ const FactoryMethod = () => {
   By associating a product with a class, the Factory design pattern encapsulates the creation process within the factory, 
   allowing the client code to interact with the abstract factory or factory method without being aware of the specific product creation details.`;
 
-const [displayInfo, setDisplayInfo] = useState(null)
+
 
   useEffect(() => { 
     initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type,initialValues)
@@ -80,8 +82,10 @@ const [displayInfo, setDisplayInfo] = useState(null)
         const nums = nodes.filter(node => !isNaN(node.id)).map(node => parseInt(node.id));      
         const newID = findMissingID(nums);
         AddNodes({setNodes, setEdges, setHidden, setEdgeHidden, newID});
+        if (showAgain){
         setInfoDisplayed(true)
         setDisplayInfo(createConcreteInfo)
+        }
       }
       default:
         break;
@@ -100,7 +104,7 @@ const [displayInfo, setDisplayInfo] = useState(null)
  
   return (
     <div className="wrapper" style={{ height: 800 }} >
-      {infoDisplayed && <AdditionalInfoPop info={displayInfo}/>}
+      {infoDisplayed && <AdditionalInfoPop infoDisplayed={infoDisplayed} setInfoDisplayed= {setInfoDisplayed} setShowAgain={setShowAgain} info={displayInfo}/>}
         <Link to={`/factorymethod/${pageType}`} target="_blank">
           <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}
             onClick={() => {

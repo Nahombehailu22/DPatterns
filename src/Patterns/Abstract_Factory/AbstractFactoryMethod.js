@@ -17,6 +17,7 @@ import { ClientCodePython } from '../../ConvertToCode/PatternsClientCode/Abstrac
 import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/AbstractFactoryMethod/clientCodeJava';
 import ChooseCodeLanguage from '../../ConvertToCode/ChooseCodeLanguage';
 import { AddNodeFactory } from './AddNodeFactory';
+import { AdditionalInfoPop } from '../../Interactivity/additionalInfo';
 
 const fitViewOptions = {
   padding: 0.3,
@@ -32,6 +33,10 @@ const AbstractFactoryMethod = () => {
   const [hidden, setHidden] = useState(stepValues[stepValues.length - 1]);
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
   const popHidden = [true, true, true, true, true, true];
+
+  const [infoDisplayed, setInfoDisplayed] = useState(false)
+  const [displayInfo, setDisplayInfo] = useState(null)
+  const [showAgain, setShowAgain] = useState(true)
 
   useEffect(() => { 
     initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type, initialValues)
@@ -58,6 +63,11 @@ const AbstractFactoryMethod = () => {
 
           handleAddMethod(id, nodes, setNodes, "createProduct", newID)
           AddNodes({ setNodes, setEdges, setHidden, setEdgeHidden, nextID, factoryNodes })
+
+          if(showAgain){
+          setInfoDisplayed(true)
+          setDisplayInfo(addAbstractMethod)
+          }
         }
         else {
           handleAddMethod(id, nodes, setNodes, "newMethod")
@@ -90,6 +100,10 @@ const AbstractFactoryMethod = () => {
         .map(method => method.id)
 
         AddNodeFactory({setNodes, setEdges, setHidden, setEdgeHidden, newID, methodIDs})
+        if(showAgain){
+        setInfoDisplayed(true)
+        setDisplayInfo(addConcreteFactory)
+        }
         break;
 
       case "deleteNode":
@@ -118,8 +132,35 @@ const AbstractFactoryMethod = () => {
     }
   }
 
+
+
+  const addConcreteFactory =
+  `
+  When a new concrete factory class is added in the Abstract Factory design pattern, concrete classes implementing the existing abstract product interfaces are created. 
+  The concrete factories are responsible for instantiating the concrete product classes that implement these interfaces. 
+  By adding a new concrete factory, it must implement all the methods defined in the abstract factory interface. 
+  This implementation includes creating instances of the existing abstract product interfaces, ensuring that the new factory produces products that adhere to the predefined interface. 
+  The creation of concrete classes associated with the preexisting abstract product interfaces enables the new factory to produce compatible products within the designated family. 
+  This allows clients to interact with the products through the abstract factory interface, promoting flexibility and avoiding direct dependencies on concrete implementations.
+  `
+
+  const addAbstractMethod = 
+  `
+  When a new method is added to the AbstractFactory class, 
+  it triggers the creation of a new abstract product along with its implementations by the Concrete Factories.
+  The reason behind creating an abstract product when a new method is added to the AbstractFactory is to extend the range of products that can be created by the factory. 
+  The Abstract Factory pattern provides an interface for creating families of related objects, where each family corresponds to a specific implementation or variation. 
+  Each method in the AbstractFactory represents a different family or category of products.
+
+  By adding a new method to the AbstractFactory, a new abstract product is defined, 
+  representing a new type of product that can be created within the factory. 
+  This abstract product serves as a blueprint or contract that any concrete product within that family must adhere to. 
+  It defines the common interface or set of operations that the concrete products associated with the Concrete Factories must implement.
+  `
+
   return (
     <div className="wrapper" style={{ height: 800 }}>
+      {infoDisplayed && <AdditionalInfoPop infoDisplayed={infoDisplayed} setInfoDisplayed= {setInfoDisplayed} setShowAgain={setShowAgain} info={displayInfo}/>}
       <Link to={`/abstractfactorymethod/${pageType}`} >
         <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}
           onClick={() => {

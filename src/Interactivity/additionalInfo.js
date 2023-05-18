@@ -20,14 +20,17 @@ const style = {
 };
 
 
-export const AdditionalInfoPop = ({info}) => {
-  const [open, setOpen] = useState(true);
-  const handleClose = () => setOpen(false);
+export const AdditionalInfoPop = ({infoDisplayed, setInfoDisplayed, setShowAgain, info}) => {
+  const handleClose = () => setInfoDisplayed(false);
+  const handleShow = () => {
+    setInfoDisplayed(false);
+    setShowAgain(false);
+  }
 
   return (
     <div>
       <Modal
-        open={open}
+        open={infoDisplayed}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -40,9 +43,13 @@ export const AdditionalInfoPop = ({info}) => {
           <Typography variant="body1" >
             {info}
           </Typography>
-          <Button sx={{ mt: 2 }} onClick={handleClose}>
+          <Button variant="outlined" sx={{ mt: 2 }} onClick={handleClose}>
             Close
           </Button>
+          <Button variant="outlined" color="error" sx={{ mt: 2 }} style = {{position: "relative", left: "80px"}} onClick={handleShow}>
+            Don't Show Again
+          </Button>
+
         </Box>
       </Modal>
     </div>

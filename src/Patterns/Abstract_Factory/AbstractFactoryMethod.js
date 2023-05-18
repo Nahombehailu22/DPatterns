@@ -18,6 +18,7 @@ import { ClientCodeJava } from '../../ConvertToCode/PatternsClientCode/AbstractF
 import ChooseCodeLanguage from '../../ConvertToCode/ChooseCodeLanguage';
 import { AddNodeFactory } from './AddNodeFactory';
 import { AdditionalInfoPop } from '../../Interactivity/additionalInfo';
+import FurnitureFactoryModal from './ExampleDescription';
 
 const fitViewOptions = {
   padding: 0.3,
@@ -160,8 +161,9 @@ const AbstractFactoryMethod = () => {
 
   return (
     <div className="wrapper" style={{ height: 800 }}>
+      {pageType === "example" && <FurnitureFactoryModal/>}
       {infoDisplayed && <AdditionalInfoPop infoDisplayed={infoDisplayed} setInfoDisplayed= {setInfoDisplayed} setShowAgain={setShowAgain} info={displayInfo}/>}
-      <Link to={`/abstractfactorymethod/${pageType}`} >
+      <Link to={`/abstractfactorymethod/${pageType}` } target="_blank" >
         <Button variant="contained" style={{ position:"fixed",  right:"20px", zIndex: 10}}
           onClick={() => {
             if(pageType === "demonstration"){ setPageType("example")}

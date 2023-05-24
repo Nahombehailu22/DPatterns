@@ -21,13 +21,15 @@ import StrategyMethod from './Patterns/Strategy/StrategyMethod.js';
 import StrategyMethodDemo from './Patterns/Strategy/StrategyMethodDemo.js';
 import AdapterMethod from './Patterns/Adapter/AdapterMethod.js';
 import AdapterMethodDemo from './Patterns/Adapter/AdapterMethodDemo.js';
-import HomePage from "./Homepage";
 import DecoratorMethodDemo from './Patterns/Decorator/DecoratorMethodDemo';
 import DecoratorMethod from './Patterns/Decorator/DecoratorMethod';
 import StateMethodDemo from './Patterns/State/StateMethodDemo';
 import StateMethod from './Patterns/State/StateMethod';
 import TemplateMethod from './Patterns/Template/TemplateMethod';
 import TemplateMethodDemo from './Patterns/Template/TemplateMethodDemo';
+import CategoriesPage from "./Categoriespage";
+import Assistant from './Assistant';
+import HomePage from './Homepage';
 
 
 function App() {
@@ -37,6 +39,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route path ="/categories" component={CategoriesPage} />
+          <Route path ="/assistant" component={Assistant} />
+
           <Route path="/adaptermethoddemo" component={AdapterMethodDemo} />
           <Route path="/adaptermethod/:type" component={AdapterMethod} />
 

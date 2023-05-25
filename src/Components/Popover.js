@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import './Popover.css';
+import { Modal } from '@mui/material';
 
 const InfoPopover = React.memo(props => {
   const {title, description, backColor, hide} = props;
@@ -14,35 +15,35 @@ const InfoPopover = React.memo(props => {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    // setHidden(!hidden);
+    setHidden(!hidden);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
-    setHidden(true);
+    setHidden(!hidden);
   };
 
-  // const open = Boolean(anchorEl) || !hidden
-  const open = Boolean(anchorEl)
+  const open = Boolean(anchorEl) || !hidden
+  // const open = Boolean(anchorEl)
   const id = open ? 'simple-popover' : undefined;
 
   const anchorRef = useRef();
   
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
+    <div style={{ display: "flex" }}>
       <Button variant="contained" style={{ backgroundColor: backColor, color: "#fff" }} onClick={handleClick} ref={anchorRef}>
         <FontAwesomeIcon icon={faInfoCircle} style={{ marginRight: "5px" }} />
         Info
       </Button>
-      <Popover
+      <Modal
         id={id}
         open={open}
         anchorEl={anchorRef.current}
         onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
+        // anchorOrigin={{
+        //   vertical: 'center',
+        //   horizontal: 'center',
+        // }}
         sx={{ maxWidth: '1200px'}}
       >
         <div className="info-popover-content">
@@ -51,7 +52,7 @@ const InfoPopover = React.memo(props => {
                 {description}
             </Typography>
         </div>
-      </Popover>
+      </Modal>
     </div>
   );
 });

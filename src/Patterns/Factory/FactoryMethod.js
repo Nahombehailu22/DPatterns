@@ -101,7 +101,6 @@ const FactoryMethod = () => {
         return (<div>{concreteCreatorCode(nodes, connectingID)}</div>)
     }
   }
-
  
   return (
     <div className="wrapper" style={{ height: 800 }} >

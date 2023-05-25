@@ -5,7 +5,7 @@ import { useParams, Link  } from "react-router-dom";
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { AddNodes } from './AddNode';
 import { handleAddMethod, handleNodeDelete, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, findMissingID} from '../../Interactivity/generalUtilities';
-import { edgeValues, stepValues } from './DemoSteps';
+import { edgeValues, popValues, stepValues } from './DemoSteps';
 import { concreteFactoryCode, productCode } from './nodeCodes';
 import { updateNodeMethods } from '../../Interactivity/abstractFactoryUtilities';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AbstractFactoryMethodInit';
@@ -32,7 +32,8 @@ const AbstractFactoryMethod = () => {
   
   const [hidden, setHidden] = useState(stepValues[stepValues.length - 1]);
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
-  const popHidden = [true, true, true, true, true, true];
+  const [popHidden, setPopHidden] = useState(popValues[popValues.length - 1])
+  const demoProps = {stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden};
 
   const [infoDisplayed, setInfoDisplayed] = useState(false)
   const [displayInfo, setDisplayInfo] = useState(null)
@@ -167,7 +168,7 @@ const AbstractFactoryMethod = () => {
           {type === "demonstration" ? "Example" : "Demo"}
         </Button>
       </Link>
-      <IncrementalHiddenButton stepValues={stepValues} setHidden={setHidden} edgeValues={edgeValues} setEdgeHidden={setEdgeHidden}/>
+      <IncrementalHiddenButton {...demoProps} />
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow
         nodes={nodes}

@@ -43,8 +43,12 @@ const InterfaceNode = ({
   color1,
   color2
 }) => {
-  const backColor = color1? color1: '#BF4D4D';
-  const backColorMethod = color2? color2: '#CD7F7F';
+  const backColor = color1 ? color1 : '#C75353';  // Lighter Red
+  const backColorMethod = color2 ? color2 : '#D88F8F';  // Lighter Pink
+  
+
+  // const backColor = color1? color1: '#BF4D4D';
+  // const backColorMethod = color2? color2: '#CD7F7F';
 
   const statusMap = new Map([["protected", "#"],["private", "-"]])
   const classProps = {id, class_name, backColor, handleChanges}

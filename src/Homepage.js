@@ -34,11 +34,11 @@ const HomePage = () => {
             &copy; 2023 Design Insights. All rights reserved.
           </Typography>
           <Typography variant="body2" component="p" style={{ color: "#999", marginTop: "10px" }}>
-            <Link href="/terms" color="inherit" style={{ marginRight: "10px" }}>
+            <Link href="#" color="inherit" style={{ marginRight: "10px" }}>
               Terms of Service
             </Link>
             |
-            <Link href="/privacy" color="inherit" style={{ marginLeft: "10px" }}>
+            <Link href="#" color="inherit" style={{ marginLeft: "10px" }}>
               Privacy Policy
             </Link>
           </Typography>

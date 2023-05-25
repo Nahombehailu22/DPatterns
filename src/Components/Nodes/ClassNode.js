@@ -38,7 +38,8 @@ const ClassNode = ({
   color1,
   color2
 }) => {
-  const backColor = color1? color1: '#009688';
+
+  const backColor = color1 ? color1 : '#008080';  // Dark Teal
   const backColorMethod = color2? color2: '#4DB6AC';
   
   const statusMap = new Map([["protected", "#"],["private", "-"]])

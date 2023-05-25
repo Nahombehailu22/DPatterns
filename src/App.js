@@ -28,8 +28,8 @@ import StateMethod from './Patterns/State/StateMethod';
 import TemplateMethod from './Patterns/Template/TemplateMethod';
 import TemplateMethodDemo from './Patterns/Template/TemplateMethodDemo';
 import CategoriesPage from "./Categoriespage";
-import Assistant from './Assistant';
 import HomePage from './Homepage';
+import Assistant from './Assistant/Assistant';
 
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path ="/categories" component={CategoriesPage} />
-          <Route path ="/assistant" component={Assistant} />
+          <Route path ="/assistant" component={Assistant} />     
 
           <Route path="/adaptermethoddemo" component={AdapterMethodDemo} />
           <Route path="/adaptermethod/:type" component={AdapterMethod} />

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Navbar from './navbar.js';
 import Card from './Cards/CardUI.js';
-import Assistant from "./Assistant.js";
 
 
 const CategoriesPage = () => {

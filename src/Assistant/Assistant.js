@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Button, CircularProgress, Container, TextField, Typography } from '@mui/material';
+import processMessageToGPTModel from './CallOpenAIAPI';
 
-const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 const systemMessage = {
   "role": "system", "content":
     `
@@ -39,46 +39,10 @@ function Assistant() {
 
     setMessages(newMessages);
     setIsTyping(true);
-    await processMessageToChatGPT(newMessages);
+    await processMessageToGPTModel(newMessages, systemMessage, setMessages, setIsTyping);
   };
 
-  async function processMessageToChatGPT(chatMessages) {
-    let apiMessages = chatMessages.map((messageObject) => {
-      let role = "";
-      if (messageObject.sender === "Assistant") {
-        role = "assistant";
-      } else {
-        role = "user";
-      }
-      return { role: role, content: messageObject.message }
-    });
 
-    const apiRequestBody = {
-      "model": "gpt-3.5-turbo",
-      "messages": [
-        systemMessage,
-        ...apiMessages
-      ]
-    };
-
-    await fetch("https://api.openai.com/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Authorization": "Bearer " + API_KEY,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(apiRequestBody)
-      }).then((data) => {
-        return data.json();
-      }).then((data) => {
-        setMessages([...chatMessages, {
-          message: data.choices[0].message.content,
-          sender: "Assistant"
-        }]);
-        setIsTyping(false);
-      });
-  }
 
   return (
     <div style={{ minHeight: "100vh", background: "#F5F7FA", display: "flex", justifyContent: "center", alignItems: "center" }}>

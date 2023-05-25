@@ -44,7 +44,7 @@ const InfoPopover = React.memo(props => {
         //   vertical: 'center',
         //   horizontal: 'center',
         // }}
-        sx={{ maxWidth: '1200px'}}
+        sx={{ maxWidth: '300px'}}
       >
         <div className="info-popover-content">
             <Typography variant="h5">{title} </Typography>

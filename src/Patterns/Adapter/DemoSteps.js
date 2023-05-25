@@ -12,4 +12,11 @@ const stepValues = [
     [true, true, true, true]
   ]
 
-export {stepValues, edgeValues};
+  const popValues = [
+    [true, false, true, true],
+    [true, true, false, true],
+    [true, true, true, false],
+    [false, true, true, true]
+  ]
+
+export {stepValues, edgeValues, popValues};

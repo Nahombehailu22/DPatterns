@@ -34,9 +34,12 @@ const updateAdapterMethods = (node, nodes) => {
 
   const orgMethods = node.data.methods.filter(method => !method.overRide);
   const implementedMethods = nodes.find(n => n.id === '0').data.methods.map(method => {
-    const specificRequest = nodes.find(n => n.id === '2').data.methods.find(
-      m => m.id.toString() === method.id.toString()
-    ).name;
+    const adapteeMethods = nodes.find(n => n.id === '2').data.methods
+    let specificRequest = adapteeMethods.find( m => m.id.toString() === "1").name;
+    if (method.id <= adapteeMethods.length)
+    {
+      specificRequest = adapteeMethods.find( m => m.id.toString() === method.id.toString()).name;
+    }
 
     const methodBodyPython = [[`self.${adaptee}.${specificRequest}()`]];
     const methodBodyJava = [[`this.${adaptee}.${specificRequest}()`]];

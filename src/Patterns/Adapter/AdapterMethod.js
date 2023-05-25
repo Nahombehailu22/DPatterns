@@ -5,7 +5,7 @@ import { useParams, Link  } from "react-router-dom";
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 
 import { handleAddMethod, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleAttributeNameChange, handleParameterChange} from '../../Interactivity/generalUtilities';
-import { stepValues, edgeValues } from './DemoSteps';
+import { stepValues, edgeValues, popValues } from './DemoSteps';
 
 import { adapterCode } from './nodeCodes';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './AdapterMethodInit';
@@ -30,7 +30,8 @@ const AdapterMethod = (props) => {
 
   const [hidden, setHidden] = useState(stepValues[stepValues.length - 1]);
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
-  const popHidden = [false, false];
+  const [popHidden, setPopHidden] = useState(popValues[popValues.length - 1])
+  const demoProps = {stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden};
 
   useEffect(() => { 
     initialize(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden, type, initialValues)
@@ -82,7 +83,7 @@ const AdapterMethod = (props) => {
           {type === "demonstration" ? "Example" : "Demo"}
         </Button>
       </Link>
-      <IncrementalHiddenButton stepValues={stepValues} setHidden={setHidden} edgeValues={edgeValues} setEdgeHidden={setEdgeHidden}/>
+      <IncrementalHiddenButton {...demoProps} />
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow
         nodes={nodes}

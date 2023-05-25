@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./code.css"
 import { useEffect } from "react";
+import sendCodeToGPTModel from "../Assistant/ConvertLanguageAPI";
+import DisplayCode from "./Display";
 
-const ConvertToJava = ({ nodes, setNodes, clientCode }) => {
+const ConvertToJava = (nodes, setNodes, clientCode) => {
     const nodeMap = new Map();
     nodes.map(node => {
       if (node.data.class_name){
@@ -64,24 +66,16 @@ const ConvertToJava = ({ nodes, setNodes, clientCode }) => {
 
     javaCode += clientCode(nodes, setNodes)
     
+    return javaCode
 
+
+    // const handleSend = async () => {
+    //   await sendCodeToGPTModel(javaCode, setResponse, "javascript")
+    //   console.log(response)
+    // };
+  
     
 
-    const [copySuccess, setCopySuccess] = useState(false);
-
-    const copyCodeToClipboard = () => {
-      navigator.clipboard.writeText(javaCode);
-      setCopySuccess(true);
-    };
-  
-    return (
-      <div className="container" style={{width:"45%"}}>
-        <button className="copy-button" onClick={copyCodeToClipboard}>
-          {copySuccess ? "Copied!" : "Copy Code"}
-        </button>
-        <pre className="code-block">{javaCode}</pre>
-      </div>
-    );
     
   };
   

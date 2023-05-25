@@ -17,7 +17,8 @@ export default async function processMessageToGPTModel(chatMessages, systemMessa
         systemMessage,
         ...apiMessages
       ],
-      "temperature": 0
+      "temperature": 0,
+      "max_tokens": 150,
     };
 
     await fetch("https://api.openai.com/v1/chat/completions",

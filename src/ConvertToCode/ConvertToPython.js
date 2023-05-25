@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./code.css"
 import { useEffect } from "react";
+import DisplayCode from "./Display";
 
-const ConvertToPython = ({ nodes, setNodes, clientCode }) => {
+const ConvertToPython = (nodes, setNodes, clientCode) => {
     const nodeMap = new Map();
     nodes.map(node => {
       if (node.data.class_name){
@@ -56,24 +57,7 @@ const ConvertToPython = ({ nodes, setNodes, clientCode }) => {
 
     pythonCode += clientCode(nodes, setNodes)
     
-
-    
-
-    const [copySuccess, setCopySuccess] = useState(false);
-
-    const copyCodeToClipboard = () => {
-      navigator.clipboard.writeText(pythonCode);
-      setCopySuccess(true);
-    };
-  
-    return (
-      <div className="container" style={{width:"45%"}}>
-        <button className="copy-button" onClick={copyCodeToClipboard}>
-          {copySuccess ? "Copied!" : "Copy Code"}
-        </button>
-        <pre className="code-block">{pythonCode}</pre>
-      </div>
-    );
+    return pythonCode
     
   };
   

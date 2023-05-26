@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Box, Button, CircularProgress, Container, Link, TextField, Typography } from '@mui/material';
 import processMessageToGPTModel from './CallOpenAIAPI';
-import GenerateLink from './GenerateLinkAPI';
 
 const systemMessage = {
   "role": "system", "content":
@@ -48,8 +47,8 @@ function Assistant() {
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
-  const [isGettingLinks, setIsGettingLinks] = useState(false);
   const [links, setLinks]  = useState([])
+
 
   const handleSend = async (message) => {
     const newMessage = {
@@ -63,11 +62,16 @@ function Assistant() {
     setMessages(newMessages);
     setIsTyping(true);
     const sentMessage = await processMessageToGPTModel(newMessages, systemMessage, setMessages, setIsTyping);
+    const newStr = sentMessage.trim().split(" ");
+    const newLinks = new Set();
 
-    setIsGettingLinks(true);
-    await GenerateLink(sentMessage, prompt, setLinks)
-    console.log(links)
-    
+    for(let i=0; i < newStr.length; i++){
+      if (patterns.has(newStr[i].toLowerCase())){
+        newLinks.add(newStr[i].toLowerCase())
+      }
+    }
+
+    setLinks([...newLinks])
   };
 
 

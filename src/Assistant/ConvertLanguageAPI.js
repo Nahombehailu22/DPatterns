@@ -1,6 +1,10 @@
+import ConvertToJava from "../ConvertToCode/ConvertToJava";
+
 const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
-export default async function sendCodeToGPTModel(javaCode, setResponse, targetLanguage) {
+export default async function sendCodeToGPTModel(setResponse, targetLanguage, javaProps, setIsGeneratingCode) {
+    const {nodes, setNodes, ClientCodeJava } = javaProps
+    const javaCode = ConvertToJava(nodes, setNodes, ClientCodeJava)
 
     const apiRequestBody = {
       "model": "text-davinci-003",
@@ -26,6 +30,7 @@ export default async function sendCodeToGPTModel(javaCode, setResponse, targetLa
       }).then((data) => {
         console.log(data)
         setResponse(data.choices[0].text.trim())
+        setIsGeneratingCode(false)
       });
   }
 

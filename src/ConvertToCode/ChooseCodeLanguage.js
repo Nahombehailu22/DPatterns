@@ -59,9 +59,9 @@ const ChooseCodeLanguage = ({nodes, setNodes, ClientCodePython, ClientCodeJava})
               >
               <MenuItem value={"python"}>Python</MenuItem>
               <MenuItem value={"java"}>Java</MenuItem>
-              <MenuItem value={"javascript"}>Javascript</MenuItem>
+              {/* <MenuItem value={"javascript"}>Javascript</MenuItem>
               <MenuItem value={"c++"}>C++</MenuItem>
-              <MenuItem value={"c#"}>C#</MenuItem>
+              <MenuItem value={"c#"}>C#</MenuItem> */}
 
               </Select>
           </FormControl>

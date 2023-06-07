@@ -2,7 +2,7 @@ const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
 export default async function processMessageToGPTModel(chatMessages, systemMessage, setMessages, setIsTyping) {
 
-    let lastMessage = "Heya"
+    let lastMessage = ""
     let apiMessages = chatMessages.map((messageObject) => {
       let role = "";
       if (messageObject.sender === "Assistant") {

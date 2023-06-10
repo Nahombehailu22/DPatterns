@@ -1,7 +1,7 @@
 .info-popover-content {
-    background-color: #1b1b1b;
-    color: #ffffff;
+    background-color: #ffffff;;
     padding: 30px;
+    border-radius: 5%;
   }
   
   .info-popover-content h5 {

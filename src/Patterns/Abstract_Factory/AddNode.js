@@ -21,7 +21,8 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID, 
               name: `operation${id}`,
               interfaceMethod: true,
             }
-          ]
+          ],
+          pop: true,
       },
       position: { x: currPos + 10, y: 30},
     };
@@ -45,7 +46,8 @@ export const AddNodes = ({setNodes, setEdges, setHidden, setEdgeHidden, nextID, 
                 name: `operation${id}`,
                 overRide:true
               }
-            ]
+            ],
+            pop: true,
         },
         position: { x: currPos, y: yPos},
     };

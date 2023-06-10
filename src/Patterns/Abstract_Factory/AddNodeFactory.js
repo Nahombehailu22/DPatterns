@@ -47,7 +47,8 @@ export const AddNodeFactory = ({setNodes, setEdges, setHidden, setEdgeHidden, ne
               handles: [0, 0, 0, 0, 1, 1, 0, 0],
               title: "Concrete Product",
               relation: ["implements", `0${idLower}`],
-              methods: []
+              methods: [],
+              pop: true,
           },
           position: { x: (i+1)*-225, y: id % 2 === 1? factoryPosition+ 100: factoryPosition - 10},
       };

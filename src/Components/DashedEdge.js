@@ -27,7 +27,12 @@ export default function CustomEdge({
     <>
       <path
         id={id}
-        style={{...style, strokeDasharray: "5, 5"}}
+        style={{
+          ...style,
+          stroke: 'black', 
+          strokeWidth: 2, 
+          strokeDasharray: '5, 5',
+        }}
         className="react-flow__edge-path"
         d={edgePath}
         markerEnd={markerEnd}

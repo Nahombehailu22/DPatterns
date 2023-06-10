@@ -43,8 +43,8 @@ const InterfaceNode = ({
   color1,
   color2
 }) => {
-  const backColor = color1 ? color1 :  '#FF4422';
-  const backColorMethod = color2? color2: '#FF6347';
+  const backColor = color1 ? color1 :  '#d32f2f';
+  const backColorMethod = color2? color2: '#f44336';
   
 
   // const backColor = color1? color1: '#BF4D4D';

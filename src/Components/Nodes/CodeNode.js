@@ -4,7 +4,7 @@ import { Handle, Position } from 'reactflow';
 import { SetHandles } from './NodeComponents';
 
 const CodeNode = ({ id, data: { codeWritten, handles, connectedId }, color1 }) => {
-  const backColor = color1? color1: '#757575';
+  const backColor = color1? color1: '#333333';
 
   const container = {
     hidden: {opactity: 0, y: -1000},

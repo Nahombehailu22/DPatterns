@@ -10,8 +10,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 	'#1A1110',
+  width: 450,
+  bgcolor: 	'white',
   border: '2px solid #000',
   boxShadow: 24,
   pt: 2,
@@ -36,17 +36,17 @@ export const AdditionalInfoPop = ({infoDisplayed, setInfoDisplayed, setShowAgain
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography variant="h6">
+          <Typography variant="h6" color="black">
             Additional Information
           </Typography>
           <br/>
-          <Typography variant="body1" >
+          <Typography variant="body1" color="black">
             {info}
           </Typography>
-          <Button variant="outlined" sx={{ mt: 2 }} onClick={handleClose}>
+          <Button variant="contained" sx={{ mt: 2 }} onClick={handleClose}>
             Close
           </Button>
-          <Button variant="outlined" color="error" sx={{ mt: 2 }} style = {{position: "relative", left: "80px"}} onClick={handleShow}>
+          <Button variant="contained" color="error" sx={{ mt: 2 }} style = {{position: "relative", left: "120px"}} onClick={handleShow}>
             Don't Show Again
           </Button>
 

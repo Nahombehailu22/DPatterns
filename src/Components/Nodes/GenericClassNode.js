@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 function GenericClassNode({ id, data, color1, color2 }) {
   const { class_name, handles, title, description, handleChanges, pop } = data;
-  const backColor = color1;
+  const backColor = color1 ? color1 : '#00796b';
   const backColorMethod = color2;
 
 

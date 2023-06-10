@@ -136,18 +136,8 @@ const initialEdges = [
 const nodeTypes = {
     class: ClassNode,
     interface: InterfaceNode,
-    code: (props) => (
-        <CodeNode
-          {...props}
-          color1={'#757575'}
-          color2={'#BDBDBD'}
-        />),
-    client: (props) => (
-          <GenericClassNode
-            {...props}
-            color1={'#009688'}
-            color2={'#4DB6AC'}
-          />),
+    code: CodeNode,
+    client: GenericClassNode,
 };
 
 const edgeTypes = {

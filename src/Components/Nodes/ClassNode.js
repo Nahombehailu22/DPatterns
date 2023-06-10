@@ -39,9 +39,9 @@ const ClassNode = ({
   color2
 }) => {
 
-  const backColor = color1 ? color1 : '#0f51b5';
-  const backColorMethod = color2 ? color2 : '#1976d2';
-  
+  const backColor = color1 ? color1 : '#00796b';
+  const backColorMethod = color2 ? color2 : '#3fb094';
+
   const statusMap = new Map([["protected", "#"],["private", "-"]])
   const classProps = {id, class_name, backColor, handleChanges}
   const attributesProps = {id, attributes, backColor, backColorMethod, handleChanges, statusMap}

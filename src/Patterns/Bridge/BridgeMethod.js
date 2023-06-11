@@ -5,7 +5,7 @@ import ReactFlow, { useNodesState, useEdgesState, Controls } from 'reactflow';
 import { AddNodes, AddNodesAbs, AddNodesImp } from './AddNode';
 import {initialNodes, initialEdges, nodeTypes, edgeTypes} from './BridgeMethodInit';
 import { findMissingID, handleAddMethod, handleAttributeNameChange, handleClassNameChange, handleDeleteMethod, handleMethodNameChange, handleNodeDelete} from '../../Interactivity/generalUtilities';
-import { stepValues, edgeValues } from './DemoSteps';
+import { stepValues, edgeValues, popValues } from './DemoSteps';
 import IncrementalHiddenButton from '../../Interactivity/stepByStepDemo';
 import { updateNodeMethods } from '../../Interactivity/bridgeMethodUtilities';
 import { clientCode, implementationCode, refinedAbstractionCode } from './nodeCodes';
@@ -21,7 +21,8 @@ const BridgeMethod = (props) => {
 
   const [hidden, setHidden] = useState(stepValues[stepValues.length - 1]);
   const [edgeHidden, setEdgeHidden] = useState(edgeValues[edgeValues.length - 1]);
-  const popHidden = [false, true, false, false, false, true];
+  const [popHidden, setPopHidden] = useState(popValues[popValues.length - 1])
+  const demoProps = {stepValues, setHidden, edgeValues, setEdgeHidden, popValues, setPopHidden};
 
   useEffect(() => { updateNodes(setNodes, setEdges, handleChanges, codeWritten, popHidden, hidden, edgeHidden) });
 
@@ -86,7 +87,7 @@ const BridgeMethod = (props) => {
   
   return (
     <div className="wrapper" style={{ height: 800 }}>
-      <IncrementalHiddenButton stepValues= {stepValues} setHidden={setHidden} edgeValues={edgeValues} setEdgeHidden={setEdgeHidden}/>
+      <IncrementalHiddenButton {...demoProps} />
       <Controls className="controls" style={{position: "fixed", bottom: "0", left: "0"}} />
       <ReactFlow
         nodes={nodes}

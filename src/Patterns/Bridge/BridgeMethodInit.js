@@ -140,7 +140,7 @@ const initialNodes = [
         handles: [0, 0, 0, 0, 1, 0, 0, 0],
         connectedId: '1',
     },
-    position: { x: 0, y: 510 },
+    position: { x: 0, y: 475 },
   },
   {
     id: 'cb',
@@ -235,30 +235,11 @@ const initialEdges = [
 ];
 
 const nodeTypes = {
-  class: (props) => (
-      <ClassNode
-        {...props}
-        color1={'#009688'}
-        color2={'#4DB6AC'}
-      />),
-  interface: (props) => (
-      <InterfaceNode
-        {...props}
-        color1={'#BF4D4D'}
-        color2={'#CD7F7F'}
-      />),
-  code: (props) => (
-      <CodeNode
-        {...props}
-        color1={'#757575'}
-        color2={'#BDBDBD'}
-      />),
-  genericClass: (props) => (
-      <GenericClassNode
-        {...props}
-        color1={'#009688'}
-        color2={'#4DB6AC'}
-      />),
+  class: ClassNode,
+  interface: InterfaceNode,
+  code: CodeNode,
+  genericClass: GenericClassNode
+
 };
 
 

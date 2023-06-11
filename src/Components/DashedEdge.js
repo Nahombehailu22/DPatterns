@@ -29,7 +29,7 @@ export default function CustomEdge({
         id={id}
         style={{
           ...style,
-          stroke: 'black', 
+          // stroke: 'black', 
           strokeWidth: 2, 
           strokeDasharray: '5, 5',
         }}

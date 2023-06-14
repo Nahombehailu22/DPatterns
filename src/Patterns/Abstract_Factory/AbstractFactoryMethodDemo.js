@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const AbstractFactoryMethodDemo = () => {
   return (
@@ -17,10 +18,10 @@ const AbstractFactoryMethodDemo = () => {
         transition={{ duration: 1, delay: 0.5 }}
         className="box"
       >
-        <Typography variant="h5" color="white">
+        <Typography variant="h5">
           Welcome to the Abstract Factory Design Pattern
         </Typography>
-        <Typography variant="subtitle1" color="white">
+        <Typography variant="subtitle1">
           Here's what you need to know:
         </Typography>
         <ul>
@@ -37,7 +38,7 @@ const AbstractFactoryMethodDemo = () => {
             The Abstract Factory pattern allows you to add new families of related or dependent product objects to your system without modifying existing code.
           </li>
         </ul>
-        <Typography variant="subtitle1" color="white">
+        <Typography variant="subtitle1">
           Here's how it works:
         </Typography>
         <ol>
@@ -47,21 +48,7 @@ const AbstractFactoryMethodDemo = () => {
           <li>Use the factory method to create families of related or dependent product objects, without having to know their specific classes or concrete implementations.</li>
         </ol>
         <Link to="/abstractfactorymethod/demonstration">
-          <button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            style={{
-              bottom: '20px',
-              right: '20px',
-              padding: '10px 20px',
-              background: '#4a4a4a',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '5px',
-            }}
-          >
-            Next
-          </button>
+        <Button variant="outlined" size="large" style ={{color:"black", borderColor:"black"}}> Next </Button>
         </Link>
       </motion.div>
     </motion.div>

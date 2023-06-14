@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const AdapterMethodDemo = () => {
   return (
@@ -17,10 +18,10 @@ const AdapterMethodDemo = () => {
         transition={{ duration: 1, delay: 0.5 }}
         className="box"
       >
-        <Typography variant="h5" color="white">
+        <Typography variant="h5">
           Welcome to the Adapter Method Design Pattern.
         </Typography>
-        <Typography variant="subtitle1" color="white">
+        <Typography variant="subtitle1">
           Here's what you need to know:
         </Typography>
         <Typography>
@@ -31,7 +32,7 @@ const AdapterMethodDemo = () => {
           <li>It is also useful when it's too costly or impossible to modify the interface of an existing class.</li>
           </ul>
         </Typography>
-        <Typography variant="subtitle1" color="white">
+        <Typography variant="subtitle1">
           Here's how it works:
         </Typography>
         <Typography>
@@ -42,21 +43,7 @@ const AdapterMethodDemo = () => {
         </ol>
         </Typography>
         <Link to="/adaptermethod/demonstration">
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            style={{
-              bottom: '20px',
-              right: '20px',
-              padding: '10px 20px',
-              background: '#4a4a4a',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '5px',
-            }}
-          >
-            Next
-          </motion.button> 
+          <Button variant="outlined" size="large" style ={{color:"black", borderColor:"black"}}> Next </Button>
         </Link>       
       </motion.div>
     </motion.div>

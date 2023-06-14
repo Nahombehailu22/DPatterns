@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const DecoratorMethodDemo = () => {
   return (
@@ -17,10 +18,10 @@ const DecoratorMethodDemo = () => {
         transition={{ duration: 1, delay: 0.5 }}
         className="box"
       >
-        <Typography variant="h5" color="white">
+        <Typography variant="h5" >
           Welcome to the Decorator Method Design Pattern
         </Typography>
-        <Typography variant="subtitle1" color="white">
+        <Typography variant="subtitle1" >
           Here's what you need to know:
         </Typography>
         <ul>
@@ -29,7 +30,7 @@ const DecoratorMethodDemo = () => {
           <li>The decorator method should return an object that has the same interface as the original object.</li>
           <li>The Decorator Method pattern allows you to add new functionality to an object without modifying the object's original code.</li>
         </ul>
-        <Typography variant="subtitle1" color="white">
+        <Typography variant="subtitle1" >
           Here's how it works:
         </Typography>
         <ol>
@@ -39,21 +40,7 @@ const DecoratorMethodDemo = () => {
           <li>Use the decorator method to add new functionality to objects, without having to know their specific class or implementation details.</li>
         </ol>
         <Link to="/decoratormethod">
-          <button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            style={{
-              bottom: '20px',
-              right: '20px',
-              padding: '10px 20px',
-              background: '#4a4a4a',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '5px',
-            }}
-          >
-            Next
-          </button>
+          <Button variant="outlined" size="large" style ={{color:"black", borderColor:"black"}}> Next </Button>
         </Link>
       </motion.div>
     </motion.div>

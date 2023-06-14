@@ -7,7 +7,7 @@ export default async function sendCodeToGPTModel(setResponse, targetLanguage, ja
     const javaCode = ConvertToJava(nodes, setNodes, ClientCodeJava)
 
     const apiRequestBody = {
-      "model": "gpt-3.5-turbo",
+      "model": "text-davinci-003",
       "prompt": `##### Translate this code ${javaCode} from Java into ${targetLanguage} #####${targetLanguage}`,
       "temperature": 0,
       "max_tokens": 500,

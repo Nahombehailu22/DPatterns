@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const SingletonMethodDemo = () => {
   return (
@@ -17,10 +18,10 @@ const SingletonMethodDemo = () => {
         transition={{ duration: 1, delay: 0.5 }}
         className="box"
       >
-        <Typography variant="h5" color="white">
+        <Typography variant="h5" >
           Welcome to the Singleton Method Design Pattern
         </Typography>
-        <Typography variant="subtitle1" color="white">
+        <Typography variant="subtitle1" >
           Here's what you need to know:
         </Typography>
         <ul>
@@ -29,7 +30,7 @@ const SingletonMethodDemo = () => {
           <li>The Singleton Method pattern allows you to control object creation and ensure that only one instance of the class exists.</li>
           <li>The Singleton Method pattern is especially useful for objects that are expensive to create or need to be accessed from different parts of the system.</li>
         </ul>
-        <Typography variant="subtitle1" color="white">
+        <Typography variant="subtitle1" >
           Here's how it works:
         </Typography>
         <ol>
@@ -38,21 +39,7 @@ const SingletonMethodDemo = () => {
           <li>Use the static method to access the single instance of the class throughout your system.</li>
         </ol>
         <Link to="/singletonmethod">
-          <button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            style={{
-              bottom: '20px',
-              right: '20px',
-              padding: '10px 20px',
-              background: '#4a4a4a',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '5px',
-            }}
-          >
-            Next
-          </button>
+          <Button variant="outlined" size="large" style ={{color:"black", borderColor:"black"}}> Next </Button>
         </Link>
       </motion.div>
     </motion.div>

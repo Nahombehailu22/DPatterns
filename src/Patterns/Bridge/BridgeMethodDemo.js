@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const BridgeMethodDemo = () => {
   return (
@@ -17,10 +18,10 @@ const BridgeMethodDemo = () => {
         transition={{ duration: 1, delay: 0.5 }}
         className="box"
       >
-        <Typography variant="h5" color="white">
+        <Typography variant="h5">
           Welcome to the Bridge Method Design Pattern
         </Typography>
-        <Typography variant="subtitle1" color="white\">
+        <Typography variant="subtitle1">
             Here's what you need to know:
         </Typography>
         <ul>
@@ -29,7 +30,7 @@ const BridgeMethodDemo = () => {
           <li>Implementations of the Implementor interface can be interchanged without affecting the Abstraction class.</li>
           <li>The Bridge Method pattern allows you to add new implementations to your system without modifying existing code.</li>
         </ul>
-        <Typography variant="subtitle1" color="white">
+        <Typography variant="subtitle1">
           Here's how it works:
         </Typography>
         <ol>
@@ -40,21 +41,7 @@ const BridgeMethodDemo = () => {
           <li>Use the refined abstraction to access the object, which will delegate to the appropriate implementation of the implementor interface.</li>
         </ol>
         <Link to="/bridgemethod">
-          <button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            style={{
-              bottom: '20px',
-              right: '20px',
-              padding: '10px 20px',
-              background: '#4a4a4a',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '5px',
-            }}
-          >
-            Next
-          </button>
+          <Button variant="outlined" size="large" style ={{color:"black", borderColor:"black"}}> Next </Button>
         </Link>
       </motion.div>
     </motion.div>

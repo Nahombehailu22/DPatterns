@@ -66,7 +66,7 @@ function Assistant() {
       <Container maxWidth="md">
         <Box sx={{ p: 4, background: "#FFF", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", borderRadius: "8px" }}>
           <Typography variant="h4" component="h2" gutterBottom style={{ color: "#333", fontWeight: "bold", textAlign: "center" }}>
-          System Design Pattern Teaching Assistant 
+          Design Pattern Assistant 
           <br/>
 
             {links.map((link, idx) => {

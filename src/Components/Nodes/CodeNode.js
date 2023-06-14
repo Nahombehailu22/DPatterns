@@ -33,7 +33,7 @@ const CodeNode = ({ id, data: { codeWritten, handles, connectedId }, color1 }) =
       >
         <div
           style={{
-            backgroundColor: backColor,
+            // backgroundColor: backColor,
             padding: '5px',
             fontSize: '10px',
             paddingRight: '20px',

@@ -64,9 +64,13 @@ The demonstration showcases the implementation and inheritance functionalities o
 Upon completion of the demonstration, you can click the "Example" button to explore a practical implementation of the pattern.
 
 ## 5. Modifying UML Diagram
-Within the example view, you have the option to modify the UML diagram according to your specific requirements. You can add classes, rename them, add or delete methods, and rename existing methods. Any changes made to the UML diagram will be automatically reflected.
+Within the example view, you have the option to modify the UML diagram according to your specific requirements. The UML diagram displayed here is specific and characteristic of the design pattern you have selected.
 
-When working with interfaces, adding a method to the interface will automatically update the classes that implement it. Similarly, modifying an inherited method in the superclass will propagate the changes to the subclasses.
+You can add classes, rename them, add or delete methods, and rename existing methods as needed. Any changes made to the UML diagram will be automatically reflected and tailored to the selected design pattern.
+
+When working with interfaces, adding a method to the interface will automatically update the classes that implement it. Similarly, modifying an inherited method in the superclass will propagate the changes to the subclasses, ensuring that the UML diagram accurately represents the relationships and interactions unique to the chosen pattern.
+
+Experimenting with the UML diagram allows you to visualize and fine-tune the design pattern to suit your specific application or project requirements. It empowers you to explore different variations and understand how changes impact the overall structure of the pattern.
 
 ## 6. Converting to Code
 Once you have reviewed the example and made any desired modifications to the UML diagram, you can convert the diagram into code.

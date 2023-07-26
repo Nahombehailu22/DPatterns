@@ -1,4 +1,4 @@
-# DPatterns - Interactive Design Pattern Learning Platform
+# DPatterns - Interactive UML-Guided Design Patterns Learning & Code Conversion
 
 System Design Teaching Platform is a web-based platform designed to help users learn about various design patterns used in software engineering. This platform contains interactive diagrams and explanations for different design patterns that can be used to develop and maintain software systems.
 

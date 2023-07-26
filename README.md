@@ -1,4 +1,4 @@
-# DPatterns - System Design Patterns Teaching Website
+# DPatterns - Interactive Design Pattern Learning Platform
 
 System Design Teaching Platform is a web-based platform designed to help users learn about various design patterns used in software engineering. This platform contains interactive diagrams and explanations for different design patterns that can be used to develop and maintain software systems.
 

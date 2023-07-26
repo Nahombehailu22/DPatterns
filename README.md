@@ -5,39 +5,38 @@ System Design Teaching Platform is a web-based platform designed to help users l
 ## Getting Started(Guide to Running the Website)
 
 The instructions below provide a guide to running the DPatterns website on your local machine. Follow these steps to set up the website:
-**Clone the Repository**: Open your terminal and execute the following command to clone the DPatterns repository from GitHub to your local machine:
+
+**1. Clone the Repository**: Open your terminal and execute the following command to clone the DPatterns repository from GitHub to your local machine:
 
 ```bash
 git clone https://github.com/Nahombehailu22/DPatterns.git
 ```
 
-**Navigate to Project Directory**: Change the current directory in the terminal to the DPatterns directory that was created when you cloned the repository. Use the following command:
+**2. Navigate to Project Directory**: Change the current directory in the terminal to the DPatterns directory that was created when you cloned the repository. Use the following command:
 
 ```bash
 cd DPatterns
 ```
 
-**Install Dependencies**: Install the necessary dependencies for the DPatterns website to run on your local machine using the following command:
+**3. Install Dependencies**: Install the necessary dependencies for the DPatterns website to run on your local machine using the following command:
 
 ```bash
 npm install
 ```
 
-**Start the Development Server**: Launch the development server for the DPatterns website with the following command:
+**4. Start the Development Server**: Launch the development server for the DPatterns website with the following command:
 
 ```bash
 npm start
 ```
 
-**Access the Website**: Open your web browser and navigate to http://localhost:3000 to view and interact with the DPatterns website.
+**5. Access the Website**: Open your web browser and navigate to http://localhost:3000 to view and interact with the DPatterns website.
 
-Run the following command on a separate terminal 
+**6. Run the JSON server**: Run the JSON server on port 8000, which will allow the application to fetch pattern data from the database. Run the following command on a separate terminal:
 
 ```bash
 npx json-server --watch data/db.json --port 8000
 ```
-
-This will run the JSON server on port 8000, which will allow the application to fetch pattern data from the database.
 
 
 
@@ -82,7 +81,8 @@ If you choose to explore categories from the homepage, you will gain access to d
 ## 8. Pattern Explanation (Category)
 After selecting a pattern from your chosen category, you will be directed to a dedicated pattern explanation page, similar to the one described in Step 3. Here, you can explore detailed information and specifics regarding the selected pattern.
 
-Congratulations! You now possess a comprehensive understanding of how to navigate and leverage the features offered by our System Design Patterns Teaching Website. We trust that this user manual will enable you to embark on a seamless and enriching learning journey.
+# Congratulations!
+You now possess a comprehensive understanding of how to navigate and leverage the features offered by our System Design Patterns Teaching Website. We trust that this user manual will enable you to embark on a seamless and enriching learning journey.
 
 Thank you for choosing DPatterns! Happy learning! 🚀
 

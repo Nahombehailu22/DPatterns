@@ -24,15 +24,20 @@ cd DPatterns
 npm install
 ```
 
-**4. Start the Development Server**: Launch the development server for the DPatterns website with the following command:
+**4. Set your API key**: Create an environment variable in the project directory and set the key to your own OPENAI API Key. This is important if you want to be able to use the pattern recommendation chatbot.
+```
+REACT_APP_OPENAI_API_KEY = "YourAPIKey"
+```
+
+**5. Start the Development Server**: Launch the development server for the DPatterns website with the following command:
 
 ```bash
 npm start
 ```
 
-**5. Access the Website**: Open your web browser and navigate to http://localhost:3000 to view and interact with the DPatterns website.
+**6. Access the Website**: Open your web browser and navigate to http://localhost:3000 to view and interact with the DPatterns website.
 
-**6. Run the JSON server**: Run the JSON server on port 8000, which will allow the application to fetch pattern data from the database. Run the following command on a separate terminal:
+**7. Run the JSON server**: Run the JSON server on port 8000, which will allow the application to fetch pattern data from the database. Run the following command on a separate terminal:
 
 ```bash
 npx json-server --watch data/db.json --port 8000
